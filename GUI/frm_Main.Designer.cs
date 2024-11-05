@@ -44,6 +44,9 @@
             this.btn_PhieuNhapHang = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_LapPhieuNhapKho = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_LapThongKeBaoCao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btn_LapPhieuKiemKe = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btn_LapDonDatHang = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btn_LapPhieuDoiTra = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_HoaDon = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_NhaCC = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -52,18 +55,15 @@
             this.btn_Kho = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_DonDatHang = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_NhanVien = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btn_DoiTra = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btn_NhapHang = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btn_HoanTra = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btn_Loai = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_BackUp = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_Restore = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_LapPhieuKiemKe = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.btn_LapDonDatHang = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.btn_LapPhieuDoiTra = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.btn_DoiTra = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.btn_NhapHang = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.btn_HoanTra = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.btn_Loai = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
             this.pnLeft.SuspendLayout();
@@ -125,7 +125,6 @@
             // pnMain
             // 
             this.pnMain.BackColor = System.Drawing.Color.GhostWhite;
-            this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnMain.Location = new System.Drawing.Point(314, 39);
             this.pnMain.Name = "pnMain";
             this.pnMain.Size = new System.Drawing.Size(1470, 842);
@@ -215,6 +214,27 @@
             this.btn_LapThongKeBaoCao.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_LapThongKeBaoCao.Text = "Lập thống kê báo cáo";
             // 
+            // btn_LapPhieuKiemKe
+            // 
+            this.btn_LapPhieuKiemKe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapPhieuKiemKe.ImageOptions.Image")));
+            this.btn_LapPhieuKiemKe.Name = "btn_LapPhieuKiemKe";
+            this.btn_LapPhieuKiemKe.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_LapPhieuKiemKe.Text = "Lập Phiếu Kiểm Kê";
+            // 
+            // btn_LapDonDatHang
+            // 
+            this.btn_LapDonDatHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapDonDatHang.ImageOptions.Image")));
+            this.btn_LapDonDatHang.Name = "btn_LapDonDatHang";
+            this.btn_LapDonDatHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_LapDonDatHang.Text = "Lập Đơn Đặt Hàng";
+            // 
+            // btn_LapPhieuDoiTra
+            // 
+            this.btn_LapPhieuDoiTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapPhieuDoiTra.ImageOptions.Image")));
+            this.btn_LapPhieuDoiTra.Name = "btn_LapPhieuDoiTra";
+            this.btn_LapPhieuDoiTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_LapPhieuDoiTra.Text = "Lập Phiếu Đổi Trả";
+            // 
             // accordionControlElement2
             // 
             this.accordionControlElement2.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
@@ -283,6 +303,34 @@
             this.btn_NhanVien.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_NhanVien.Text = "Quản lý nhân viên";
             // 
+            // btn_DoiTra
+            // 
+            this.btn_DoiTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_DoiTra.ImageOptions.Image")));
+            this.btn_DoiTra.Name = "btn_DoiTra";
+            this.btn_DoiTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_DoiTra.Text = "Quản lý đổi trả";
+            // 
+            // btn_NhapHang
+            // 
+            this.btn_NhapHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_NhapHang.ImageOptions.Image")));
+            this.btn_NhapHang.Name = "btn_NhapHang";
+            this.btn_NhapHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_NhapHang.Text = "Quản lý nhập hàng ";
+            // 
+            // btn_HoanTra
+            // 
+            this.btn_HoanTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_HoanTra.ImageOptions.Image")));
+            this.btn_HoanTra.Name = "btn_HoanTra";
+            this.btn_HoanTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_HoanTra.Text = "Quản lý hoàn sản phẩm";
+            // 
+            // btn_Loai
+            // 
+            this.btn_Loai.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Loai.ImageOptions.Image")));
+            this.btn_Loai.Name = "btn_Loai";
+            this.btn_Loai.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_Loai.Text = "Quản lý chủng loại sản phẩm";
+            // 
             // accordionControlElement3
             // 
             this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
@@ -324,55 +372,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
-            // 
-            // btn_LapPhieuKiemKe
-            // 
-            this.btn_LapPhieuKiemKe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapPhieuKiemKe.ImageOptions.Image")));
-            this.btn_LapPhieuKiemKe.Name = "btn_LapPhieuKiemKe";
-            this.btn_LapPhieuKiemKe.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_LapPhieuKiemKe.Text = "Lập Phiếu Kiểm Kê";
-            // 
-            // btn_LapDonDatHang
-            // 
-            this.btn_LapDonDatHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapDonDatHang.ImageOptions.Image")));
-            this.btn_LapDonDatHang.Name = "btn_LapDonDatHang";
-            this.btn_LapDonDatHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_LapDonDatHang.Text = "Lập Đơn Đặt Hàng";
-            // 
-            // btn_LapPhieuDoiTra
-            // 
-            this.btn_LapPhieuDoiTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapPhieuDoiTra.ImageOptions.Image")));
-            this.btn_LapPhieuDoiTra.Name = "btn_LapPhieuDoiTra";
-            this.btn_LapPhieuDoiTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_LapPhieuDoiTra.Text = "Lập Phiếu Đổi Trả";
-            // 
-            // btn_DoiTra
-            // 
-            this.btn_DoiTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_DoiTra.ImageOptions.Image")));
-            this.btn_DoiTra.Name = "btn_DoiTra";
-            this.btn_DoiTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_DoiTra.Text = "Quản lý đổi trả";
-            // 
-            // btn_NhapHang
-            // 
-            this.btn_NhapHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_NhapHang.ImageOptions.Image")));
-            this.btn_NhapHang.Name = "btn_NhapHang";
-            this.btn_NhapHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_NhapHang.Text = "Quản lý nhập hàng ";
-            // 
-            // btn_HoanTra
-            // 
-            this.btn_HoanTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_HoanTra.ImageOptions.Image")));
-            this.btn_HoanTra.Name = "btn_HoanTra";
-            this.btn_HoanTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_HoanTra.Text = "Quản lý hoàn sản phẩm";
-            // 
-            // btn_Loai
-            // 
-            this.btn_Loai.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Loai.ImageOptions.Image")));
-            this.btn_Loai.Name = "btn_Loai";
-            this.btn_Loai.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_Loai.Text = "Quản lý chủng loại sản phẩm";
             // 
             // frm_main
             // 

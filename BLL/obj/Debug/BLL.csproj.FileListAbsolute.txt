@@ -9,3 +9,14 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb

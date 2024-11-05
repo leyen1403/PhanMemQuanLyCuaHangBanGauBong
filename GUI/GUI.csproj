@@ -230,5 +230,11 @@
   <ItemGroup>
     <None Include="Resources\logo_gaubong.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-find-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-shopping-cart-35.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
