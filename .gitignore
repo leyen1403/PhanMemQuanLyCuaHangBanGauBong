@@ -1,4 +1,2 @@
-*.dbml
-*.dbml.layout
-*.designer.cs
 .vs/
+db_QLCHBGB*
