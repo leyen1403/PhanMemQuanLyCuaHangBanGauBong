@@ -16,3 +16,12 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csp
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.Up2Date
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb

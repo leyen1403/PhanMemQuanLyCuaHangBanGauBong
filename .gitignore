@@ -1,4 +1,3 @@
 *.dbml
 *.dbml.layout
-*.designer.cs
 .vs/
