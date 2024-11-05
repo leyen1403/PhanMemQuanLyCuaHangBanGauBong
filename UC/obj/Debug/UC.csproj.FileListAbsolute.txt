@@ -1,0 +1,9 @@
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\UC.dll
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\UC.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.AssemblyReference.cache
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.CoreCompileInputs.cache
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.Up2Date
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.dll
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.pdb
