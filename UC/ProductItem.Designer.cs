@@ -37,7 +37,6 @@
             // anhSanPham
             // 
             this.anhSanPham.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.anhSanPham.BackgroundImage = global::UC.Properties.Resources.gau1;
             this.anhSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.anhSanPham.Image = ((System.Drawing.Image)(resources.GetObject("anhSanPham.Image")));
             this.anhSanPham.Location = new System.Drawing.Point(16, 21);

@@ -59,7 +59,6 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpr
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraEditors.v22.2.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraLayout.v22.2.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DTO.dll
-D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\UC.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.PivotGrid.v22.2.Core.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Map.v22.2.Core.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraReports.v22.2.dll
@@ -180,3 +179,4 @@ D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.csproj.CoreCompileInp
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.csproj.Up2Date
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.exe
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\UC.dll

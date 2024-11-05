@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace UC
 {
@@ -63,11 +64,11 @@ namespace UC
             Color borderColor = Color.Navy;
             int borderWidth = 1; // Độ dày viền
 
-            // Vẽ viền
+            // Vẽ viền hình chữ nhật
             using (Pen pen = new Pen(borderColor, borderWidth))
             {
-                pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-                e.Graphics.DrawRectangle(pen, 0, 0, this.Width - borderWidth, this.Height - borderWidth);
+                // Vẽ hình chữ nhật không có bo góc
+                e.Graphics.DrawRectangle(pen, 0, 0, this.Width, this.Height);
             }
         }
 

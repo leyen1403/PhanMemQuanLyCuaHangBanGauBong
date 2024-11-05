@@ -53,5 +53,10 @@ namespace GUI
         {
             loadForm(new frm_lapHoaDon(), "");
         }
+
+        private void pnLeft_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

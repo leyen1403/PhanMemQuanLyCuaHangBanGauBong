@@ -48,8 +48,8 @@ namespace GUI
             dsSanPham.Controls.Clear();
 
             int controlWidth = 165;
-            int controlHeight = 190;
-            int spacing = 5;
+            int controlHeight = 170;
+            int spacing = 15;
             int panelWidth = dsSanPham.ClientSize.Width;
 
             int currentX = 10; // Vị trí X bắt đầu

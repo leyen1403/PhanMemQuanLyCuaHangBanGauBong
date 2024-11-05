@@ -125,7 +125,7 @@
             // pnMain
             // 
             this.pnMain.BackColor = System.Drawing.Color.GhostWhite;
-            this.pnMain.Location = new System.Drawing.Point(314, 39);
+            this.pnMain.Location = new System.Drawing.Point(314, 50);
             this.pnMain.Name = "pnMain";
             this.pnMain.Size = new System.Drawing.Size(1470, 842);
             this.pnMain.TabIndex = 3;
@@ -141,6 +141,7 @@
             this.pnLeft.Name = "pnLeft";
             this.pnLeft.Size = new System.Drawing.Size(311, 842);
             this.pnLeft.TabIndex = 0;
+            this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
             // 
             // accordionControl1
             // 
@@ -153,7 +154,7 @@
             this.accordionControlElement1,
             this.accordionControlElement2,
             this.accordionControlElement3});
-            this.accordionControl1.Location = new System.Drawing.Point(5, 72);
+            this.accordionControl1.Location = new System.Drawing.Point(5, 77);
             this.accordionControl1.Margin = new System.Windows.Forms.Padding(10, 2, 10, 2);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
@@ -358,17 +359,18 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(2, 65);
+            this.label1.Location = new System.Drawing.Point(2, 70);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(346, 5);
+            this.label1.Size = new System.Drawing.Size(370, 4);
             this.label1.TabIndex = 17;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = global::GUI.Properties.Resources.logo_gaubong;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(305, 59);
+            this.pictureBox1.Size = new System.Drawing.Size(311, 72);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
