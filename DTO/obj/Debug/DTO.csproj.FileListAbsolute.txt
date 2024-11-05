@@ -10,3 +10,9 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csp
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
