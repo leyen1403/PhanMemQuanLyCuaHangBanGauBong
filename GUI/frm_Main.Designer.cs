@@ -80,8 +80,9 @@
             this.label_tenNV});
             this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
+            this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1787, 39);
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1532, 31);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
             this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_thietLapTaiKhoan);
@@ -125,12 +126,15 @@
             // 
             // pnMain
             // 
+            this.pnMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnMain.BackColor = System.Drawing.Color.GhostWhite;
             this.pnMain.BackgroundImage = global::GUI.Properties.Resources._01_1;
             this.pnMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnMain.Location = new System.Drawing.Point(314, 50);
+            this.pnMain.Location = new System.Drawing.Point(269, 41);
+            this.pnMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(1470, 842);
+            this.pnMain.Size = new System.Drawing.Size(1260, 684);
             this.pnMain.TabIndex = 3;
             // 
             // pnLeft
@@ -140,9 +144,10 @@
             this.pnLeft.Controls.Add(this.label1);
             this.pnLeft.Controls.Add(this.pictureBox1);
             this.pnLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnLeft.Location = new System.Drawing.Point(0, 39);
+            this.pnLeft.Location = new System.Drawing.Point(0, 31);
+            this.pnLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(311, 842);
+            this.pnLeft.Size = new System.Drawing.Size(267, 685);
             this.pnLeft.TabIndex = 0;
             this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
             // 
@@ -157,13 +162,13 @@
             this.accordionControlElement1,
             this.accordionControlElement2,
             this.accordionControlElement3});
-            this.accordionControl1.Location = new System.Drawing.Point(5, 77);
-            this.accordionControl1.Margin = new System.Windows.Forms.Padding(10, 2, 10, 2);
+            this.accordionControl1.Location = new System.Drawing.Point(4, 63);
+            this.accordionControl1.Margin = new System.Windows.Forms.Padding(9, 2, 9, 2);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Auto;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Auto;
-            this.accordionControl1.Size = new System.Drawing.Size(291, 838);
+            this.accordionControl1.Size = new System.Drawing.Size(249, 681);
             this.accordionControl1.TabIndex = 18;
             // 
             // accordionControlElement1
@@ -362,9 +367,9 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(2, 70);
+            this.label1.Location = new System.Drawing.Point(2, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(370, 4);
+            this.label1.Size = new System.Drawing.Size(317, 3);
             this.label1.TabIndex = 17;
             // 
             // pictureBox1
@@ -372,8 +377,9 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = global::GUI.Properties.Resources.logo_gaubong;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(311, 72);
+            this.pictureBox1.Size = new System.Drawing.Size(267, 58);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
@@ -383,13 +389,14 @@
             // 
             this.Appearance.BackColor = System.Drawing.Color.Navy;
             this.Appearance.Options.UseBackColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1787, 881);
+            this.ClientSize = new System.Drawing.Size(1532, 716);
             this.Controls.Add(this.pnLeft);
             this.Controls.Add(this.pnMain);
             this.Controls.Add(this.fluentDesignFormControl1);
             this.FluentDesignFormControl = this.fluentDesignFormControl1;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frm_main";
             this.Text = "Hệ thống quản lý cửa hàng bán giày";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

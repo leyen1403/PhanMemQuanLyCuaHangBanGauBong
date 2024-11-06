@@ -55,7 +55,7 @@ namespace GUI
             int currentX = 10; // Vị trí X bắt đầu
             int currentY = 10; // Vị trí Y bắt đầu
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 50; i++)
             {
                 ProductItem myControl = new ProductItem();
                 myControl.Click += MyControl_Click;

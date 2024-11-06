@@ -190,3 +190,13 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyKhoHang.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhaCungCap.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhanVien.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_laPhieuDichVu.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_lapPhieuNhapHang.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_lapThongKeBaoCao.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyDichVu.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyDonDatHang.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyHoaDon.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyKhachHang.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyKhoHang.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhaCungCap.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhanVien.resources
