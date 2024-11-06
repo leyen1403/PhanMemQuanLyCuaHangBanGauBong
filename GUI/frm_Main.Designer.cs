@@ -82,7 +82,7 @@
             this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
             this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1532, 31);
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1748, 31);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
             this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_thietLapTaiKhoan);
@@ -126,15 +126,15 @@
             // 
             // pnMain
             // 
-            this.pnMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnMain.BackColor = System.Drawing.Color.GhostWhite;
-            this.pnMain.BackgroundImage = global::GUI.Properties.Resources._01_1;
             this.pnMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnMain.Location = new System.Drawing.Point(269, 41);
             this.pnMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(1260, 684);
+            this.pnMain.Size = new System.Drawing.Size(1476, 917);
             this.pnMain.TabIndex = 3;
             // 
             // pnLeft
@@ -147,7 +147,7 @@
             this.pnLeft.Location = new System.Drawing.Point(0, 31);
             this.pnLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(267, 685);
+            this.pnLeft.Size = new System.Drawing.Size(267, 927);
             this.pnLeft.TabIndex = 0;
             this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
             // 
@@ -168,7 +168,7 @@
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Auto;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Auto;
-            this.accordionControl1.Size = new System.Drawing.Size(249, 681);
+            this.accordionControl1.Size = new System.Drawing.Size(249, 864);
             this.accordionControl1.TabIndex = 18;
             // 
             // accordionControlElement1
@@ -391,7 +391,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1532, 716);
+            this.ClientSize = new System.Drawing.Size(1748, 958);
             this.Controls.Add(this.pnLeft);
             this.Controls.Add(this.pnMain);
             this.Controls.Add(this.fluentDesignFormControl1);

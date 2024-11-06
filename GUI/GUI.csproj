@@ -153,6 +153,12 @@
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_quanLyChungLoai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyChungLoai.Designer.cs">
+      <DependentUpon>frm_quanLyChungLoai.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_quanLyDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyChungLoai.resx">
+      <DependentUpon>frm_quanLyChungLoai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_quanLyDichVu.resx">
       <DependentUpon>frm_quanLyDichVu.cs</DependentUpon>

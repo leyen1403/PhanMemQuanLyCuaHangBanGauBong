@@ -16,10 +16,10 @@ namespace GUI
             InitializeComponent();
             this.Load += Frm_lapHoaDon_Load;
             // Khởi tạo Timer
-            timer = new Timer();
-            timer.Interval = 1000; // Cài đặt thời gian 1 giây (1000 ms)
-            timer.Tick += Timer_Tick; ; // Gán sự kiện Tick
-            timer.Start(); // Bắt đầu Timer
+            //timer = new Timer();
+            //timer.Interval = 1000; // Cài đặt thời gian 1 giây (1000 ms)
+            //timer.Tick += Timer_Tick; ; // Gán sự kiện Tick
+            //timer.Start(); // Bắt đầu Timer
             loadNgayHT();
 
         }
@@ -156,6 +156,26 @@ namespace GUI
         }
 
         private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
         {
 
         }

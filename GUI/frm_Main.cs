@@ -20,7 +20,13 @@ namespace GUI
             this.MaximizeBox = false;
             this.btn_NhanVien.Click += Btn_NhanVien_Click;
             this.btn_Kho.Click += Btn_Kho_Click;
+            this.btn_Loai.Click += Btn_Loai_Click;
 
+        }
+
+        private void Btn_Loai_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyChungLoai(),string.Empty);
         }
 
         private void Btn_Kho_Click(object sender, EventArgs e)

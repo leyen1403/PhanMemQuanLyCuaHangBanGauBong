@@ -200,3 +200,4 @@ D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyKhachHang.r
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyKhoHang.resources
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhaCungCap.resources
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhanVien.resources
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyChungLoai.resources
