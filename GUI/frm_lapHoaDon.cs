@@ -81,7 +81,7 @@ namespace GUI
         private void MyControl_MouseLeave(object sender, EventArgs e)
         {
             var hoverItem = sender as ProductItem;
-            if (hoverItem != null && ! hoverItem.IsSelected) // Chỉ thay đổi màu nếu không được chọn
+            if (hoverItem != null && !hoverItem.IsSelected) // Chỉ thay đổi màu nếu không được chọn
             {
                 hoverItem.BackColor = Color.White;
             }
@@ -148,6 +148,16 @@ namespace GUI
 
             // Hiển thị ra giao diện, ví dụ, vào một Label
             label_ngayHT.Text = formattedDate; // lblNgayHT là tên Label để hiển thị ngày giờ
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

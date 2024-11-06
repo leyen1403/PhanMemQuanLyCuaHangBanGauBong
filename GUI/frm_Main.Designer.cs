@@ -105,6 +105,7 @@
             this.btn_dangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.Image")));
             this.btn_dangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.LargeImage")));
             this.btn_dangXuat.Name = "btn_dangXuat";
+            this.btn_dangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_dangXuat_ItemClick);
             // 
             // label_tenNV
             // 
@@ -125,6 +126,8 @@
             // pnMain
             // 
             this.pnMain.BackColor = System.Drawing.Color.GhostWhite;
+            this.pnMain.BackgroundImage = global::GUI.Properties.Resources._01_1;
+            this.pnMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnMain.Location = new System.Drawing.Point(314, 50);
             this.pnMain.Name = "pnMain";
             this.pnMain.Size = new System.Drawing.Size(1470, 842);
@@ -374,6 +377,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // frm_main
             // 

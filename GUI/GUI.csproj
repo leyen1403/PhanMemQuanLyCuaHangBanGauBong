@@ -105,6 +105,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_lapDonDatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapDonDatHang.Designer.cs">
+      <DependentUpon>frm_lapDonDatHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_laPhieuDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,18 @@
     </Compile>
     <Compile Include="frm_lapHoaDon.Designer.cs">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_lapPhieuDoiTra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapPhieuDoiTra.Designer.cs">
+      <DependentUpon>frm_lapPhieuDoiTra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_lapPhieuKiemKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapPhieuKiemKe.Designer.cs">
+      <DependentUpon>frm_lapPhieuKiemKe.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_lapPhieuNhapHang.cs">
       <SubType>Form</SubType>
@@ -191,11 +209,41 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frm_laPhieuDichVu.resx">
+      <DependentUpon>frm_laPhieuDichVu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_lapHoaDon.resx">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapPhieuNhapHang.resx">
+      <DependentUpon>frm_lapPhieuNhapHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapThongKeBaoCao.resx">
+      <DependentUpon>frm_lapThongKeBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyDichVu.resx">
+      <DependentUpon>frm_quanLyDichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyDonDatHang.resx">
+      <DependentUpon>frm_quanLyDonDatHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyHoaDon.resx">
+      <DependentUpon>frm_quanLyHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyKhachHang.resx">
+      <DependentUpon>frm_quanLyKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyKhoHang.resx">
+      <DependentUpon>frm_quanLyKhoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyNhaCungCap.resx">
+      <DependentUpon>frm_quanLyNhaCungCap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyNhanVien.resx">
+      <DependentUpon>frm_quanLyNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_wait.resx">
       <DependentUpon>frm_wait.cs</DependentUpon>
@@ -235,6 +283,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-add-shopping-cart-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-as-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-delete-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gaucute.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
