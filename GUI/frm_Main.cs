@@ -21,7 +21,19 @@ namespace GUI
             this.btn_NhanVien.Click += Btn_NhanVien_Click;
             this.btn_Kho.Click += Btn_Kho_Click;
             this.btn_Loai.Click += Btn_Loai_Click;
+            this.btn_LapDonDatHang.Click += Btn_LapDonDatHang_Click;
+            this.btn_LapPhieuDichVu.Click += Btn_LapPhieuDichVu_Click;
 
+        }
+
+        private void Btn_LapPhieuDichVu_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuDichVu(),string.Empty);
+        }
+
+        private void Btn_LapDonDatHang_Click(object sender, EventArgs e)
+        {
+           loadForm(new frm_lapDonDatHang(),string.Empty);
         }
 
         private void Btn_Loai_Click(object sender, EventArgs e)

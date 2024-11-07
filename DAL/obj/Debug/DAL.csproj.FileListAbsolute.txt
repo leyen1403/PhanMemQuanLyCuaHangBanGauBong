@@ -25,3 +25,4 @@ D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CoreCompileInp
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.Up2Date
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll.config

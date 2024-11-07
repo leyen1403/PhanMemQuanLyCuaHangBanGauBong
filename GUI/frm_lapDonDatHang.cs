@@ -16,5 +16,10 @@ namespace GUI
         {
             InitializeComponent();
         }
+
+        private void frm_lapDonDatHang_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

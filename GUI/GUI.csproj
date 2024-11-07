@@ -111,11 +111,11 @@
     <Compile Include="frm_lapDonDatHang.Designer.cs">
       <DependentUpon>frm_lapDonDatHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_laPhieuDichVu.cs">
+    <Compile Include="frm_lapPhieuDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_laPhieuDichVu.Designer.cs">
-      <DependentUpon>frm_laPhieuDichVu.cs</DependentUpon>
+    <Compile Include="frm_lapPhieuDichVu.Designer.cs">
+      <DependentUpon>frm_lapPhieuDichVu.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_lapHoaDon.cs">
       <SubType>Form</SubType>
@@ -215,11 +215,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frm_laPhieuDichVu.resx">
-      <DependentUpon>frm_laPhieuDichVu.cs</DependentUpon>
+    <EmbeddedResource Include="frm_lapDonDatHang.resx">
+      <DependentUpon>frm_lapDonDatHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapPhieuDichVu.resx">
+      <DependentUpon>frm_lapPhieuDichVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_lapHoaDon.resx">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapPhieuDoiTra.resx">
+      <DependentUpon>frm_lapPhieuDoiTra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapPhieuKiemKe.resx">
+      <DependentUpon>frm_lapPhieuKiemKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_lapPhieuNhapHang.resx">
       <DependentUpon>frm_lapPhieuNhapHang.cs</DependentUpon>

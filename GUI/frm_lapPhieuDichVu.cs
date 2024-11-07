@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frm_laPhieuDichVu : Form
+    public partial class frm_lapPhieuDichVu : Form
     {
-        public frm_laPhieuDichVu()
+        public frm_lapPhieuDichVu()
         {
             InitializeComponent();
         }
