@@ -32,3 +32,4 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csp
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll.config

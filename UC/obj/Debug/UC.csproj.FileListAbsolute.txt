@@ -68,3 +68,4 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.cspro
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll.config

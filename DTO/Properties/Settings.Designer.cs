@@ -33,5 +33,16 @@ namespace DTO.Properties {
                 return ((string)(this["QL_CuaHangBanGauBongConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP\\MSSQLSERVER07;Initial Catalog=db_QLCHBGB;Integrated Security=T" +
+            "rue;TrustServerCertificate=True")]
+        public string db_QLCHBGBConnectionString {
+            get {
+                return ((string)(this["db_QLCHBGBConnectionString"]));
+            }
+        }
     }
 }

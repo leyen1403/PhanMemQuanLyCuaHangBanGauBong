@@ -49,6 +49,7 @@
     <Compile Include="LoaiSanPhamDAL.cs" />
     <Compile Include="MauSacDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SanPhamDAL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
