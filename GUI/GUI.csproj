@@ -263,6 +263,9 @@
     <EmbeddedResource Include="frm_quanLyNhanVien.resx">
       <DependentUpon>frm_quanLyNhanVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_thietLapTaiKhoan.resx">
+      <DependentUpon>frm_thietLapTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_wait.resx">
       <DependentUpon>frm_wait.cs</DependentUpon>
     </EmbeddedResource>
