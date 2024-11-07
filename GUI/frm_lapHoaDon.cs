@@ -11,6 +11,7 @@ namespace GUI
         ProductItem productSelected = null;
         private Timer timer;
 
+
         public frm_lapHoaDon()
         {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace GUI
             //timer.Tick += Timer_Tick; ; // Gán sự kiện Tick
             //timer.Start(); // Bắt đầu Timer
             loadNgayHT();
+            //hôm nay như ..
 
         }
 
