@@ -9,17 +9,6 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
@@ -32,7 +21,6 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csp
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll.config
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
@@ -45,3 +33,15 @@ B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGa
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll.config
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb

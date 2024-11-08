@@ -28,5 +28,11 @@ namespace BLL
         {
             return sanPhamDal.GetProductByType(typeId);
         }
+        public bool UpdateProduct(SanPham sanPham)
+        {
+           return sanPhamDal.UpdateProduct(sanPham);
+        }
+
+
     }
 }

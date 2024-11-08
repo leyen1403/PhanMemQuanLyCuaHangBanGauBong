@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChiTietPhieuKiemKeBLL.cs" />
     <Compile Include="KichThuocBLL.cs" />
     <Compile Include="LoaiSanPhamBLL.cs" />
     <Compile Include="MauSacBLL.cs" />
+    <Compile Include="PhieuKiemKeBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SanPhamBLL.cs" />
   </ItemGroup>
