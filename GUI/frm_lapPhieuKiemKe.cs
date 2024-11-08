@@ -18,6 +18,7 @@ namespace GUI
         ChiTietPhieuKiemKeBLL chiTietPhieuKiemKeBLL = new ChiTietPhieuKiemKeBLL();
         string _maPhieuKiemKe = "";
         string _tenNhanVien = "";
+        DateTime _ngayLap = DateTime.Now;
         NhanVien _nhanVien = new NhanVien();
         List<SanPham> _dsSanPhamTrongPhieuKiemKe = new List<SanPham>();
         List<ChiTietPhieuKiemKe> _dsChiTietPhieuKiemKe = new List<ChiTietPhieuKiemKe>();
@@ -72,21 +73,29 @@ namespace GUI
             ct.MaSanPham = txtMaSanPham.Text;
             ct.SoLuongThucTe = Convert.ToInt32(txtSoLuongThucTe.Value);
             ct.SoLuongHeThong = Convert.ToInt32(txtSoLuongHeThong.Value);
+            _ngayLap = DateTime.Now;
             SanPham sp = new SanPham();
             sp = sanPhamBll.GetProductById(ct.MaSanPham);
             if (chiTietPhieuKiemKeBLL.UpdateChiTietPhieuKiemKe(ct))
             {                
                 sp.SoLuongTon = ct.SoLuongThucTe;
+                sp.NgayCapNhat = _ngayLap;
+                sanPhamBll.UpdateProduct(sp);
                 MessageBox.Show("Cập nhật thành công");
             }
             else if(chiTietPhieuKiemKeBLL.InsertChiTietPhieuKiemKe(ct))
             {
                 sp.SoLuongTon = ct.SoLuongThucTe;
+                sp.NgayCapNhat = _ngayLap;
+                sanPhamBll.UpdateProduct(sp);
                 MessageBox.Show("Thêm thành công");
             }
             else
-
-            
+            {
+                MessageBox.Show("Thất bại");
+            }
+            dgvDSChiTietPhieuKiemKe.DataSource = chiTietPhieuKiemKeBLL.chiTietPhieuKiemKes(cbbMaPhieuKiemKe.SelectedValue.ToString());
+            dgv_DSSP.DataSource = sanPhamBll.GetProductList();
 
         }
 
@@ -142,7 +151,9 @@ namespace GUI
             int soLuongToiThieu = Convert.ToInt32(dgv_DSSP.CurrentRow.Cells["SoLuongToiThieu"].Value);
             int soLuongThucTe = soLuongHeThong;
             int soLuongChenhLech = soLuongHeThong - soLuongThucTe;
-            if(soLuongChenhLech < 0)
+            SanPham sp = sanPhamBll.GetProductById(maSanPham);
+            _ngayLap =(DateTime) sp.NgayCapNhat;
+            if (soLuongChenhLech < 0)
             {
                 soLuongChenhLech *= -1;
             }
@@ -157,25 +168,25 @@ namespace GUI
 
         private void BtnTao_Click(object sender, EventArgs e)
         {
+            loadProductList();                        
             DateTime dateCreate = dtpNgayLap.ToString().Length > 0 ? dtpNgayLap.Value : DateTime.Now;
             try
             {
                 PhieuKiemKe phieuKiemKe = new PhieuKiemKe();
-                phieuKiemKe.MaPhieuKiemKe = _maPhieuKiemKe;
-                phieuKiemKe.NgayLap = dateCreate;
-                //phieuKiemKe.NhanVien = _nhanVien;
+                phieuKiemKe.MaPhieuKiemKe = taoMaPhieuKiemKe();
+                phieuKiemKe.NgayLap = dateCreate;                
                 phieuKiemKe.MaNhanVien = "NV001";
                 phieuKiemKe.GhiChu = txtGhiChu.Text;
                 if (phieuKiemKeBLL.InsertPhieuKiemKe(phieuKiemKe))
                 {
                     MessageBox.Show("Tạo phiếu kiểm kê thành công");
                     loadCombobox();
-                }
-                
+                    cbbMaPhieuKiemKe.SelectedIndex = cbbMaPhieuKiemKe.Items.Count - 1;
+                }                
             }
             catch
             {
-
+                return;
             }
         }
 
@@ -204,6 +215,13 @@ namespace GUI
             txtNhanVienLap.Text = tenNhanVien;
             loadProductList();
             loadCombobox();
+            loadChiTietKiemKe();
+        }
+
+        private void loadChiTietKiemKe()
+        {
+            string maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue.ToString();
+            dgvDSChiTietPhieuKiemKe.DataSource = chiTietPhieuKiemKeBLL.chiTietPhieuKiemKes(maPhieuKiemKe);
         }
 
         // Load du lieu vao combobox
@@ -224,19 +242,8 @@ namespace GUI
         // Hien thi du lieu danh sach san pham vao dgv_DSSP
         private void loadProductList()
         {
-
-            dgv_DSSP.DataSource = sanPhams;
-
-            DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
-            sttColumn.Name = "STT";
-            sttColumn.HeaderText = "Số Thứ Tự";
-            sttColumn.Width = 80;
-            dgv_DSSP.Columns.Insert(0, sttColumn);
-            for (int i = 0; i < dgv_DSSP.Rows.Count; i++)
-            {
-                dgv_DSSP.Rows[i].Cells["STT"].Value = i + 1;
-            }
-
+            dgv_DSSP.DataSource = null;
+            dgv_DSSP.DataSource = sanPhamBll.GetProductList();
 
             dgv_DSSP.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
             dgv_DSSP.Columns["TenSanPham"].HeaderText = "Tên sản phẩm";
