@@ -28,5 +28,6 @@ namespace DAL
         {
             return db.SanPhams.Where(sp=>sp.MaLoai == typeId).ToList<SanPham>();
         }
+
     }
 }
