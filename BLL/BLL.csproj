@@ -47,10 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChiTietDonDatHangBLL.cs" />
     <Compile Include="ChiTietPhieuKiemKeBLL.cs" />
+    <Compile Include="DonDatHangBLL.cs" />
     <Compile Include="KichThuocBLL.cs" />
     <Compile Include="LoaiSanPhamBLL.cs" />
     <Compile Include="MauSacBLL.cs" />
+    <Compile Include="NhaCungCapBLL.cs" />
     <Compile Include="NhanVienBLL.cs" />
     <Compile Include="PhieuKiemKeBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

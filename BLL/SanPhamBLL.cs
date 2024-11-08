@@ -79,5 +79,10 @@ namespace BLL
             sanPhamDal.UpdateTrangThaiSanPham(maSanPham, trangThai);
         }
 
+        // Lấy danh sách sản phẩm còn hoạt động
+        public List<SanPham> GetActiveProductList()
+        {
+            return GetProductList().Where(sp => sp.TrangThai == true).ToList();
+        }
     }
 }
