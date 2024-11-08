@@ -28,5 +28,20 @@ namespace BLL
         {
             return phieuKiemKeDAL.GetPhieuKiemKeById(id);
         }
+
+        public bool UpdateGhiChu(string maPhieuKiemKe, string ghiChu)
+        {
+            return phieuKiemKeDAL.UpdateGhiChu(maPhieuKiemKe, ghiChu);
+        }
+
+        public List<PhieuKiemKe> GetListPhieuKiemKeByDate(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            return phieuKiemKeDAL.GetListPhieuKiemKeByDate(ngayBatDau, ngayKetThuc);
+        }
+
+        public List<PhieuKiemKe> GetListPhieuKiemKeByNhanVien(string maNhanVien)
+        {
+            return phieuKiemKeDAL.GetListPhieuKiemKeByNhanVien(maNhanVien);
+        }
     }
 }

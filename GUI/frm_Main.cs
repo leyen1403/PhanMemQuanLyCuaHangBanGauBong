@@ -17,7 +17,7 @@ namespace GUI
 
         private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
         {
-            //loadForm(new frm_quanLyPhieuKiemKe());
+            loadForm(new frm_quanLyPhieuKiemKe());
         }
 
         private void Btn_NhanVien_Click1(object sender, EventArgs e)

@@ -50,5 +50,31 @@ namespace DAL
             var phieuKiemKe = db.PhieuKiemKes.Single(x => x.MaPhieuKiemKe == id);
             return phieuKiemKe;
         }
+
+        public bool UpdateGhiChu(string maPhieuKiemKe, string ghiChu)
+        {
+            try
+            {
+                var phieuKiemKeUpdate = db.PhieuKiemKes.Single(x => x.MaPhieuKiemKe == maPhieuKiemKe);
+                phieuKiemKeUpdate.GhiChu = ghiChu;
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<PhieuKiemKe> GetListPhieuKiemKeByDate(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            var ListPhieuKiemKe = db.PhieuKiemKes.Where(x => x.NgayLap >= ngayBatDau && x.NgayLap <= ngayKetThuc).ToList();
+            return ListPhieuKiemKe;
+        }
+
+        public List<PhieuKiemKe> GetListPhieuKiemKeByNhanVien(string maNhanVien)
+        {
+            return db.PhieuKiemKes.Where(x => x.MaNhanVien == maNhanVien).ToList();
+        }
     }
 }

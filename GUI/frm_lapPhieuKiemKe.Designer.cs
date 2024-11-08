@@ -60,7 +60,7 @@
             this.txtTimTenSanPham = new System.Windows.Forms.TextBox();
             this.cbbLoaiSanPham = new System.Windows.Forms.ComboBox();
             this.btnTim = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCapNhatGhiChu = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvDSChiTietPhieuKiemKe = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
@@ -424,22 +424,22 @@
             this.btnTim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTim.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnCapNhatGhiChu
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackColor = System.Drawing.Color.Navy;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1043, 69);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 51);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Cập nhật";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnCapNhatGhiChu.AutoSize = true;
+            this.btnCapNhatGhiChu.BackColor = System.Drawing.Color.Navy;
+            this.btnCapNhatGhiChu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCapNhatGhiChu.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapNhatGhiChu.ForeColor = System.Drawing.Color.White;
+            this.btnCapNhatGhiChu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnCapNhatGhiChu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCapNhatGhiChu.Location = new System.Drawing.Point(1043, 69);
+            this.btnCapNhatGhiChu.Name = "btnCapNhatGhiChu";
+            this.btnCapNhatGhiChu.Size = new System.Drawing.Size(109, 51);
+            this.btnCapNhatGhiChu.TabIndex = 3;
+            this.btnCapNhatGhiChu.Text = "Cập nhật";
+            this.btnCapNhatGhiChu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCapNhatGhiChu.UseVisualStyleBackColor = false;
             // 
             // groupBox4
             // 
@@ -472,7 +472,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1364, 903);
             this.Controls.Add(this.cbbLoaiSanPham);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCapNhatGhiChu);
             this.Controls.Add(this.btnTim);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.txtTimTenSanPham);
@@ -532,7 +532,7 @@
         private System.Windows.Forms.TextBox txtTimTenSanPham;
         private System.Windows.Forms.ComboBox cbbLoaiSanPham;
         private System.Windows.Forms.Button btnTim;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCapNhatGhiChu;
         private System.Windows.Forms.TextBox txtSoLuongTonKhoToiThieu;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbbMaPhieuKiemKe;

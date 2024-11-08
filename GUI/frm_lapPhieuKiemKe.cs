@@ -36,7 +36,22 @@ namespace GUI
             this.dgvDSChiTietPhieuKiemKe.SelectionChanged += DgvDSChiTietPhieuKiemKe_SelectionChanged;
             this.cbbMaPhieuKiemKe.SelectedIndexChanged += CbbMaPhieuKiemKe_SelectedIndexChanged;
             this.btnCapNhat.Click += BtnCapNhat_Click;
+            this.btnCapNhatGhiChu.Click += BtnCapNhatGhiChu_Click;
             
+        }
+
+        private void BtnCapNhatGhiChu_Click(object sender, EventArgs e)
+        {
+            string ghiChu = txtGhiChu.Text;
+            string maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue.ToString();
+            if(phieuKiemKeBLL.UpdateGhiChu(maPhieuKiemKe, ghiChu))
+            {
+                MessageBox.Show("Cập nhật ghi chú thành công");
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật ghi chú thất bại");
+            }
         }
 
         private void DgvDSChiTietPhieuKiemKe_SelectionChanged(object sender, EventArgs e)
@@ -66,9 +81,19 @@ namespace GUI
 
         private void CbbMaPhieuKiemKe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _dsChiTietPhieuKiemKe = chiTietPhieuKiemKeBLL.chiTietPhieuKiemKes(cbbMaPhieuKiemKe.SelectedValue.ToString());
-            dgvDSChiTietPhieuKiemKe.DataSource = _dsChiTietPhieuKiemKe;
-            txtNhanVienLap.Text = _tenNhanVien;
+            try
+            {
+                _dsChiTietPhieuKiemKe = chiTietPhieuKiemKeBLL.chiTietPhieuKiemKes(cbbMaPhieuKiemKe.SelectedValue.ToString());
+                dgvDSChiTietPhieuKiemKe.DataSource = _dsChiTietPhieuKiemKe;
+                string maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue?.ToString();
+                string ghiChu = phieuKiemKeBLL.GetPhieuKiemKeById(maPhieuKiemKe).GhiChu;
+                txtGhiChu.Text = ghiChu;
+                txtNhanVienLap.Text = _tenNhanVien;
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void BtnCapNhat_Click(object sender, EventArgs e)
@@ -240,10 +265,19 @@ namespace GUI
             dgvDSChiTietPhieuKiemKe.Columns["MaPhieuKiemKe"].Visible = false;
             dgvDSChiTietPhieuKiemKe.Columns["PhieuKiemKe"].Visible = false;
             dgvDSChiTietPhieuKiemKe.Columns["SanPham"].Visible = false;
+            dgvDSChiTietPhieuKiemKe.Columns["TenSanPham"].Visible = false;
+            dgvDSChiTietPhieuKiemKe.Columns["ChenhLech"].Visible = false;
 
             dgvDSChiTietPhieuKiemKe.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
             dgvDSChiTietPhieuKiemKe.Columns["SoLuongHeThong"].HeaderText = "Số lượng hệ thống";
             dgvDSChiTietPhieuKiemKe.Columns["SoLuongThucTe"].HeaderText = "Số lượng thực tế";
+
+            foreach(DataGridViewRow row in dgvDSChiTietPhieuKiemKe.Rows)
+            {
+                row.Cells["STT"].Value = row.Index + 1;
+            }
+            string ghiChu = new PhieuKiemKeBLL().GetPhieuKiemKeById(maPhieuKiemKe).GhiChu;
+            txtGhiChu.Text = ghiChu;
         }
 
         // Load du lieu vao combobox
