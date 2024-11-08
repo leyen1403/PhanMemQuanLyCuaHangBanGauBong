@@ -12,6 +12,12 @@ namespace GUI
             this.Load += Frm_main1_Load;
             this.btn_LapPhieuKiemKe.Click += Btn_LapPhieuKiemKe_Click;
             this.btn_NhanVien.Click += Btn_NhanVien_Click1;
+            this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
+        }
+
+        private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
+        {
+            //loadForm(new frm_quanLyPhieuKiemKe());
         }
 
         private void Btn_NhanVien_Click1(object sender, EventArgs e)

@@ -16,22 +16,11 @@ namespace GUI
         {
             InitializeComponent();
             this.Load += Frm_lapHoaDon_Load;
-            // Khởi tạo Timer
-            //timer = new Timer();
-            //timer.Interval = 1000; // Cài đặt thời gian 1 giây (1000 ms)
-            //timer.Tick += Timer_Tick; ; // Gán sự kiện Tick
-            //timer.Start(); // Bắt đầu Timer
             loadNgayHT();
-            //hôm nay như ..
-
         }
 
         private void dsSanPham_Paint(object sender, PaintEventArgs e)
         {
-            //using (Pen pen = new Pen(Color.Navy, 2)) // Màu xanh, độ dày 2 pixel
-            //{
-            //    e.Graphics.DrawRectangle(pen, 0, 0, dsSanPham.Width - 1, dsSanPham.Height - 1);
-            //}
         }
 
         private void Frm_lapHoaDon_Load(object sender, EventArgs e)
@@ -72,10 +61,6 @@ namespace GUI
                     currentX = 10;
                     currentY += controlHeight + spacing;
                 }
-            }
-            foreach (ProductItem myControl in dsSanPham.Controls)
-            {
-
             }
             dsSanPham.AutoScrollMinSize = new Size(0, currentY + controlHeight + spacing);
         }

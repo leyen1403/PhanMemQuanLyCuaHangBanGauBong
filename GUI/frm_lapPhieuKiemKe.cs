@@ -11,6 +11,7 @@ namespace GUI
 {
     public partial class frm_lapPhieuKiemKe : Form
     {
+        string _maNhanVien = "NV001";
         List<SanPham> sanPhams = new List<SanPham>();
         SanPhamBLL sanPhamBll = new SanPhamBLL();
         LoaiSanPhamBLL loaiSanPhamBLL = new LoaiSanPhamBLL();
@@ -34,36 +35,40 @@ namespace GUI
             this.btnTim.Click += BtnTim_Click;
             this.dgvDSChiTietPhieuKiemKe.SelectionChanged += DgvDSChiTietPhieuKiemKe_SelectionChanged;
             this.cbbMaPhieuKiemKe.SelectedIndexChanged += CbbMaPhieuKiemKe_SelectedIndexChanged;
-
             this.btnCapNhat.Click += BtnCapNhat_Click;
+            
         }
 
         private void DgvDSChiTietPhieuKiemKe_SelectionChanged(object sender, EventArgs e)
         {
-            string _maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue.ToString();
-            string maSanPham = dgvDSChiTietPhieuKiemKe.CurrentRow.Cells["MaSanPham"].Value.ToString();
-            int soLuongHeThong = Convert.ToInt32(dgvDSChiTietPhieuKiemKe.CurrentRow.Cells["SoLuongHeThong"].Value);
-            int soLuongThucTe = Convert.ToInt32(dgvDSChiTietPhieuKiemKe.CurrentRow.Cells["SoLuongThucTe"].Value);
-            SanPham sp = sanPhamBll.GetProductById(maSanPham);
-            int soLuongToiThieu =(int) sp.SoLuongToiThieu;
-            int soLuongChenhLech = soLuongHeThong - soLuongThucTe;
-            if (soLuongChenhLech < 0)
+            if (dgvDSChiTietPhieuKiemKe.CurrentRow != null &&
+                dgvDSChiTietPhieuKiemKe.CurrentRow.Cells["MaSanPham"].Value != null)
             {
-                soLuongChenhLech *= -1;
-            }
+                string _maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue?.ToString();
+                string maSanPham = dgvDSChiTietPhieuKiemKe.CurrentRow.Cells["MaSanPham"].Value.ToString();
+                int soLuongHeThong = Convert.ToInt32(dgvDSChiTietPhieuKiemKe.CurrentRow.Cells["SoLuongHeThong"].Value);
+                int soLuongThucTe = Convert.ToInt32(dgvDSChiTietPhieuKiemKe.CurrentRow.Cells["SoLuongThucTe"].Value);
 
-            txtMaSanPham.Text = maSanPham;
-            txtTenSanPham.Text = sp.TenSanPham;
-            txtSoLuongHeThong.Value = soLuongHeThong;
-            txtSoLuongTonKhoToiThieu.Text = soLuongToiThieu.ToString();
-            txtSoLuongThucTe.Value = soLuongThucTe;
-            txtSoLuongChenhLech.Text = soLuongChenhLech.ToString();
+                SanPham sp = sanPhamBll.GetProductById(maSanPham);
+                int soLuongToiThieu = (int)sp.SoLuongToiThieu;
+                int soLuongChenhLech = Math.Abs(soLuongHeThong - soLuongThucTe);
+
+                // Cập nhật các trường thông tin trong form
+                txtMaSanPham.Text = maSanPham;
+                txtTenSanPham.Text = sp.TenSanPham;
+                txtSoLuongHeThong.Value = soLuongHeThong;
+                txtSoLuongTonKhoToiThieu.Text = soLuongToiThieu.ToString();
+                txtSoLuongThucTe.Value = soLuongThucTe;
+                txtSoLuongChenhLech.Text = soLuongChenhLech.ToString();
+            }
         }
+
 
         private void CbbMaPhieuKiemKe_SelectedIndexChanged(object sender, EventArgs e)
         {
             _dsChiTietPhieuKiemKe = chiTietPhieuKiemKeBLL.chiTietPhieuKiemKes(cbbMaPhieuKiemKe.SelectedValue.ToString());
             dgvDSChiTietPhieuKiemKe.DataSource = _dsChiTietPhieuKiemKe;
+            txtNhanVienLap.Text = _tenNhanVien;
         }
 
         private void BtnCapNhat_Click(object sender, EventArgs e)
@@ -75,11 +80,17 @@ namespace GUI
             ct.SoLuongHeThong = Convert.ToInt32(txtSoLuongHeThong.Value);
             _ngayLap = DateTime.Now;
             SanPham sp = new SanPham();
+            PhieuKiemKe phieuKiemKe = new PhieuKiemKe();
+            string maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue.ToString();
+            phieuKiemKe = phieuKiemKeBLL.GetPhieuKiemKeById(maPhieuKiemKe);
             sp = sanPhamBll.GetProductById(ct.MaSanPham);
             if (chiTietPhieuKiemKeBLL.UpdateChiTietPhieuKiemKe(ct))
             {                
                 sp.SoLuongTon = ct.SoLuongThucTe;
                 sp.NgayCapNhat = _ngayLap;
+                phieuKiemKe.GhiChu = txtGhiChu.Text;
+                phieuKiemKe.MaNhanVien = _maNhanVien;
+                phieuKiemKeBLL.UpdatePhieuKiemKe(phieuKiemKe);
                 sanPhamBll.UpdateProduct(sp);
                 MessageBox.Show("Cập nhật thành công");
             }
@@ -87,6 +98,9 @@ namespace GUI
             {
                 sp.SoLuongTon = ct.SoLuongThucTe;
                 sp.NgayCapNhat = _ngayLap;
+                phieuKiemKe.GhiChu = txtGhiChu.Text;
+                phieuKiemKe.MaNhanVien = _maNhanVien;
+                phieuKiemKeBLL.UpdatePhieuKiemKe(phieuKiemKe);
                 sanPhamBll.UpdateProduct(sp);
                 MessageBox.Show("Thêm thành công");
             }
@@ -175,7 +189,7 @@ namespace GUI
                 PhieuKiemKe phieuKiemKe = new PhieuKiemKe();
                 phieuKiemKe.MaPhieuKiemKe = taoMaPhieuKiemKe();
                 phieuKiemKe.NgayLap = dateCreate;                
-                phieuKiemKe.MaNhanVien = "NV001";
+                phieuKiemKe.MaNhanVien = _maNhanVien;
                 phieuKiemKe.GhiChu = txtGhiChu.Text;
                 if (phieuKiemKeBLL.InsertPhieuKiemKe(phieuKiemKe))
                 {
@@ -222,6 +236,14 @@ namespace GUI
         {
             string maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue.ToString();
             dgvDSChiTietPhieuKiemKe.DataSource = chiTietPhieuKiemKeBLL.chiTietPhieuKiemKes(maPhieuKiemKe);
+
+            dgvDSChiTietPhieuKiemKe.Columns["MaPhieuKiemKe"].Visible = false;
+            dgvDSChiTietPhieuKiemKe.Columns["PhieuKiemKe"].Visible = false;
+            dgvDSChiTietPhieuKiemKe.Columns["SanPham"].Visible = false;
+
+            dgvDSChiTietPhieuKiemKe.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
+            dgvDSChiTietPhieuKiemKe.Columns["SoLuongHeThong"].HeaderText = "Số lượng hệ thống";
+            dgvDSChiTietPhieuKiemKe.Columns["SoLuongThucTe"].HeaderText = "Số lượng thực tế";
         }
 
         // Load du lieu vao combobox

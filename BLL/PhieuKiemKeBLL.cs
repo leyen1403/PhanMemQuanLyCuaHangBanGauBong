@@ -20,5 +20,13 @@ namespace BLL
         {
             return phieuKiemKeDAL.InsertPhieuKiemKe(phieuKiemKe);
         }
+        public bool UpdatePhieuKiemKe(PhieuKiemKe phieuKiemKe)
+        {
+            return phieuKiemKeDAL.UpdatePhieuKiemKe(phieuKiemKe);
+        }
+        public PhieuKiemKe GetPhieuKiemKeById(string id)
+        {
+            return phieuKiemKeDAL.GetPhieuKiemKeById(id);
+        }
     }
 }
