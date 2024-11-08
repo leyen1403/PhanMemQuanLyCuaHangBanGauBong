@@ -28,6 +28,21 @@ namespace DAL
         {
             return db.SanPhams.Where(sp=>sp.MaLoai == typeId).ToList<SanPham>();
         }
-
+        public bool UpdateProduct(SanPham sanPham)
+        {
+            try
+            {
+                SanPham sp = db.SanPhams.FirstOrDefault(s => s.MaSanPham == sanPham.MaSanPham);
+                sp.SoLuongTon = sanPham.SoLuongTon;
+                sp.NgayCapNhat = sanPham.NgayCapNhat;
+                sp.SoLuongToiThieu = sanPham.SoLuongToiThieu;
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

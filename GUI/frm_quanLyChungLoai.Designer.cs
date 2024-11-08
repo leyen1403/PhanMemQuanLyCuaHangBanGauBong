@@ -111,7 +111,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(196, 20);
+            this.label2.Location = new System.Drawing.Point(215, 170);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(171, 25);
@@ -138,7 +138,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(180, 9);
+            this.label7.Location = new System.Drawing.Point(187, 17);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(206, 25);
@@ -152,7 +152,7 @@
             this.btn_themMauSac.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_themMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_themMauSac.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_themMauSac.Location = new System.Drawing.Point(61, 219);
+            this.btn_themMauSac.Location = new System.Drawing.Point(61, 250);
             this.btn_themMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.btn_themMauSac.Name = "btn_themMauSac";
             this.btn_themMauSac.Size = new System.Drawing.Size(47, 37);
@@ -177,7 +177,7 @@
             this.btn_suaMauSac.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_suaMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_suaMauSac.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_suaMauSac.Location = new System.Drawing.Point(61, 302);
+            this.btn_suaMauSac.Location = new System.Drawing.Point(61, 333);
             this.btn_suaMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.btn_suaMauSac.Name = "btn_suaMauSac";
             this.btn_suaMauSac.Size = new System.Drawing.Size(47, 37);
@@ -191,7 +191,7 @@
             this.btn_xoaMauSac.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_xoaMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_xoaMauSac.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_xoaMauSac.Location = new System.Drawing.Point(61, 261);
+            this.btn_xoaMauSac.Location = new System.Drawing.Point(61, 292);
             this.btn_xoaMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.btn_xoaMauSac.Name = "btn_xoaMauSac";
             this.btn_xoaMauSac.Size = new System.Drawing.Size(47, 37);
@@ -205,11 +205,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dsSanPham.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.dsSanPham.Controls.Add(this.dgv_dsLoaiSanPham);
-            this.dsSanPham.Controls.Add(this.label2);
-            this.dsSanPham.Location = new System.Drawing.Point(17, 166);
+            this.dsSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dsSanPham.Location = new System.Drawing.Point(17, 197);
             this.dsSanPham.Margin = new System.Windows.Forms.Padding(2);
             this.dsSanPham.Name = "dsSanPham";
-            this.dsSanPham.Size = new System.Drawing.Size(540, 352);
+            this.dsSanPham.Size = new System.Drawing.Size(540, 321);
             this.dsSanPham.TabIndex = 35;
             // 
             // dgv_dsLoaiSanPham
@@ -219,18 +219,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_dsLoaiSanPham.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgv_dsLoaiSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_dsLoaiSanPham.Location = new System.Drawing.Point(20, 60);
+            this.dgv_dsLoaiSanPham.Location = new System.Drawing.Point(4, 4);
             this.dgv_dsLoaiSanPham.Name = "dgv_dsLoaiSanPham";
             this.dgv_dsLoaiSanPham.ReadOnly = true;
             this.dgv_dsLoaiSanPham.RowHeadersWidth = 51;
-            this.dgv_dsLoaiSanPham.Size = new System.Drawing.Size(496, 275);
+            this.dgv_dsLoaiSanPham.Size = new System.Drawing.Size(533, 314);
             this.dgv_dsLoaiSanPham.TabIndex = 44;
             this.dgv_dsLoaiSanPham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsLoaiSanPham_CellClick);
+            this.dgv_dsLoaiSanPham.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsLoaiSanPham_CellContentClick);
             // 
             // img_mauSac
             // 
             this.img_mauSac.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.img_mauSac.Location = new System.Drawing.Point(446, 31);
+            this.img_mauSac.Location = new System.Drawing.Point(446, 62);
             this.img_mauSac.Margin = new System.Windows.Forms.Padding(2);
             this.img_mauSac.Name = "img_mauSac";
             this.img_mauSac.Size = new System.Drawing.Size(101, 131);
@@ -240,7 +241,7 @@
             // txt_moTaMauSac
             // 
             this.txt_moTaMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_moTaMauSac.Location = new System.Drawing.Point(149, 120);
+            this.txt_moTaMauSac.Location = new System.Drawing.Point(149, 151);
             this.txt_moTaMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.txt_moTaMauSac.Multiline = true;
             this.txt_moTaMauSac.Name = "txt_moTaMauSac";
@@ -253,7 +254,7 @@
             this.label10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(19, 124);
+            this.label10.Location = new System.Drawing.Point(19, 155);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(99, 20);
@@ -263,7 +264,7 @@
             // txt_tenMauSac
             // 
             this.txt_tenMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_tenMauSac.Location = new System.Drawing.Point(149, 82);
+            this.txt_tenMauSac.Location = new System.Drawing.Point(149, 113);
             this.txt_tenMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.txt_tenMauSac.Name = "txt_tenMauSac";
             this.txt_tenMauSac.Size = new System.Drawing.Size(274, 26);
@@ -275,7 +276,7 @@
             this.label9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Navy;
-            this.label9.Location = new System.Drawing.Point(19, 84);
+            this.label9.Location = new System.Drawing.Point(19, 115);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(116, 20);
@@ -288,7 +289,7 @@
             this.label8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Navy;
-            this.label8.Location = new System.Drawing.Point(19, 44);
+            this.label8.Location = new System.Drawing.Point(19, 75);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(120, 20);
@@ -315,11 +316,12 @@
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txt_maMauSac);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(602, 77);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(602, 50);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(569, 410);
+            this.groupBox2.Size = new System.Drawing.Size(569, 437);
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             // 
@@ -327,7 +329,7 @@
             // 
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label15.BackColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(-6, 401);
+            this.label15.Location = new System.Drawing.Point(-6, 428);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(577, 4);
             this.label15.TabIndex = 43;
@@ -336,7 +338,7 @@
             // 
             this.dgv_dsMauSac.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgv_dsMauSac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_dsMauSac.Location = new System.Drawing.Point(131, 219);
+            this.dgv_dsMauSac.Location = new System.Drawing.Point(131, 250);
             this.dgv_dsMauSac.Name = "dgv_dsMauSac";
             this.dgv_dsMauSac.ReadOnly = true;
             this.dgv_dsMauSac.RowHeadersWidth = 51;
@@ -348,7 +350,7 @@
             // txt_duongDanMauSac
             // 
             this.txt_duongDanMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_duongDanMauSac.Location = new System.Drawing.Point(149, 178);
+            this.txt_duongDanMauSac.Location = new System.Drawing.Point(149, 209);
             this.txt_duongDanMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.txt_duongDanMauSac.Name = "txt_duongDanMauSac";
             this.txt_duongDanMauSac.ReadOnly = true;
@@ -361,7 +363,7 @@
             this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(19, 182);
+            this.label3.Location = new System.Drawing.Point(19, 213);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 20);
@@ -370,9 +372,9 @@
             // 
             // btn_themAnhMauSac
             // 
-            this.btn_themAnhMauSac.Location = new System.Drawing.Point(461, 176);
+            this.btn_themAnhMauSac.Location = new System.Drawing.Point(446, 205);
             this.btn_themAnhMauSac.Name = "btn_themAnhMauSac";
-            this.btn_themAnhMauSac.Size = new System.Drawing.Size(75, 23);
+            this.btn_themAnhMauSac.Size = new System.Drawing.Size(86, 28);
             this.btn_themAnhMauSac.TabIndex = 23;
             this.btn_themAnhMauSac.Text = "Thêm ảnh";
             this.btn_themAnhMauSac.UseVisualStyleBackColor = true;
@@ -380,7 +382,7 @@
             // txt_maMauSac
             // 
             this.txt_maMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_maMauSac.Location = new System.Drawing.Point(149, 44);
+            this.txt_maMauSac.Location = new System.Drawing.Point(149, 75);
             this.txt_maMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.txt_maMauSac.Name = "txt_maMauSac";
             this.txt_maMauSac.ReadOnly = true;
@@ -404,6 +406,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.btn_timKiem);
             this.groupBox3.Controls.Add(this.txt_timKiem);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(17, 74);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
@@ -447,6 +450,7 @@
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.txt_maKichThuoc);
             this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(602, 490);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -476,7 +480,7 @@
             this.dgv_dsKichThuoc.Name = "dgv_dsKichThuoc";
             this.dgv_dsKichThuoc.ReadOnly = true;
             this.dgv_dsKichThuoc.RowHeadersWidth = 51;
-            this.dgv_dsKichThuoc.Size = new System.Drawing.Size(413, 76);
+            this.dgv_dsKichThuoc.Size = new System.Drawing.Size(479, 76);
             this.dgv_dsKichThuoc.TabIndex = 41;
             this.dgv_dsKichThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsKichThuoc_CellClick);
             this.dgv_dsKichThuoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsKichThuoc_CellContentClick);
@@ -630,7 +634,6 @@
             this.txt_duongDan.ReadOnly = true;
             this.txt_duongDan.Size = new System.Drawing.Size(232, 26);
             this.txt_duongDan.TabIndex = 45;
-            this.txt_duongDan.Visible = false;
             // 
             // label18
             // 
@@ -779,7 +782,6 @@
             this.txt_maLoai.ReadOnly = true;
             this.txt_maLoai.Size = new System.Drawing.Size(232, 26);
             this.txt_maLoai.TabIndex = 28;
-            this.txt_maLoai.Visible = false;
             // 
             // label14
             // 
@@ -800,6 +802,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1240, 857);
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
@@ -810,7 +813,6 @@
             this.Text = "frm_quanLyChungLoai";
             this.Load += new System.EventHandler(this.frm_quanLyChungLoai_Load);
             this.dsSanPham.ResumeLayout(false);
-            this.dsSanPham.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsLoaiSanPham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.img_mauSac)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -825,6 +827,7 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_Loai)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

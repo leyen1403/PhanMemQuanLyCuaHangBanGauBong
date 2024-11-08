@@ -7,36 +7,6 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.c
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.AssemblyReference.cache
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.ProductItem.resources
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.Properties.Resources.resources
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.GenerateResource.cache
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll.licenses
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.CoreCompileInputs.cache
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.Desktop.v22.2.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.v22.2.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Drawing.v22.2.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Printing.v22.2.Core.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Sparkline.v22.2.Core.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Utils.v22.2.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.XtraEditors.v22.2.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Pdf.v22.2.Core.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Pdf.v22.2.Drawing.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.Desktop.v22.2.xml
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.v22.2.xml
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Printing.v22.2.Core.xml
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Sparkline.v22.2.Core.xml
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Utils.v22.2.xml
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.XtraEditors.v22.2.xml
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Pdf.v22.2.Core.xml
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Pdf.v22.2.Drawing.xml
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.pdb
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.Desktop.v22.2.dll
@@ -68,7 +38,6 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.cspro
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll.config
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.dll
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.pdb
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll
@@ -93,3 +62,34 @@ B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGa
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.Desktop.v22.2.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.v22.2.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Drawing.v22.2.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Printing.v22.2.Core.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Sparkline.v22.2.Core.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Utils.v22.2.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.XtraEditors.v22.2.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Pdf.v22.2.Core.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Pdf.v22.2.Drawing.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.Desktop.v22.2.xml
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.v22.2.xml
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Printing.v22.2.Core.xml
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Sparkline.v22.2.Core.xml
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Utils.v22.2.xml
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.XtraEditors.v22.2.xml
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll.config
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Pdf.v22.2.Core.xml
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Pdf.v22.2.Drawing.xml
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.AssemblyReference.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.ProductItem.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.Properties.Resources.resources
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.GenerateResource.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll.licenses
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.CoreCompileInputs.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb
