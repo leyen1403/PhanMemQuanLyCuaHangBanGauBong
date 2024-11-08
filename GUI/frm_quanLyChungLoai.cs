@@ -18,6 +18,48 @@ namespace GUI
         {
             InitializeComponent();
         }
+        private string taoMaLoai()
+        {
+            string maloai = "";
+            int soLuongLoaI = _loaiSanPhamBLL.GetAll().Count;
+            if (soLuongLoaI == 0)
+            {
+                maloai = "LSP001";
+            }
+            else
+            {
+                maloai = "LSP" + (soLuongLoaI + 1).ToString("000");
+            }
+            return maloai;
+        }
+        private string taoMaMau()
+        {
+            string maMau = "";
+            int soLuongMau = _mauSacBLL.GetAllMauSac().Count; 
+            if (soLuongMau == 0)
+            {
+                maMau = "MS001";
+            }
+            else
+            {
+                maMau = "MS" + (soLuongMau + 1).ToString("000");
+            }
+            return maMau;
+        }
+        private string taoMaKichThuoc()
+        {
+            string maKichThuoc = "";
+            int soLuongKichThuoc = _kichThuocBLL.GetAll().Count; // Giả sử _kichThuocBLL là lớp xử lý kích thước
+            if (soLuongKichThuoc == 0)
+            {
+                maKichThuoc = "K001";
+            }
+            else
+            {
+                maKichThuoc = "K" + (soLuongKichThuoc + 1).ToString("000");
+            }
+            return maKichThuoc;
+        }
 
         private void loadMauSac()
         {
@@ -96,7 +138,6 @@ namespace GUI
             btn_suaKichThuoc.Click += Btn_suaKichThuoc_Click;
             txt_timKiem.TextChanged += Txt_timKiem_TextChanged;
             btn_themAnhMauSac.Click += Btn_themAnhMauSac_Click;
-
         }
         private void LoadImageToPictureBoxMauSac(string imageName)
         {
@@ -269,7 +310,7 @@ namespace GUI
 
         private void Btn_themKichThuoc_Click(object sender, EventArgs e)
         {
-            string maKichThuoc = txt_maKichThuoc.Text;
+            string maKichThuoc =taoMaKichThuoc() ;
             string tenKichThuoc = txt_tenKichThuoc.Text;
             string moTaKichThuoc = txt_moTaKichThuoc.Text;
 
@@ -384,7 +425,7 @@ namespace GUI
         private void Btn_themMauSac_Click(object sender, EventArgs e)
         {
             // Lấy dữ liệu từ các TextBox
-            string maMauSac = txt_maMauSac.Text;
+            string maMauSac = taoMaKichThuoc();
             string tenMauSac = txt_tenMauSac.Text;
             string moTaMauSac = txt_moTaMauSac.Text;
             string duongDanMauSac = txt_duongDanMauSac.Text;
@@ -618,7 +659,7 @@ namespace GUI
                 // Tạo đối tượng LoaiSanPham mới từ các giá trị trong TextBox
                 LoaiSanPham loaiSanPham = new LoaiSanPham
                 {
-                    MaLoai = txt_maLoai.Text,
+                    MaLoai = taoMaLoai(),
                     TenLoai = txt_tenLoai.Text,
                     MoTa = txt_moTa.Text,
                     HinhAnh = txt_duongDan.Text
@@ -764,6 +805,26 @@ namespace GUI
                 txt_maKichThuoc.Text = row.Cells[0].Value.ToString();
                 txt_tenKichThuoc.Text = row.Cells[1].Value.ToString();
                 txt_moTaKichThuoc.Text = row.Cells[2].Value.ToString();
+            }
+        }
+
+        private void dgv_dsLoaiSanPham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Sự kiện khi người dùng chọn một dòng trong DataGridView
+            if (dgv_dsLoaiSanPham.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgv_dsLoaiSanPham.SelectedRows[0];
+                LoaiSanPham selectedLoaiSanPham = selectedRow.DataBoundItem as LoaiSanPham;
+
+                if (selectedLoaiSanPham != null)
+                {
+                    txt_maLoai.Text = selectedLoaiSanPham.MaLoai;
+                    txt_tenLoai.Text = selectedLoaiSanPham.TenLoai;
+                    txt_moTa.Text = selectedLoaiSanPham.MoTa;
+
+                    string imageName = selectedLoaiSanPham.HinhAnh; // Tên tài nguyên hình ảnh
+                    LoadImageToPictureBox(imageName);
+                }
             }
         }
     }
