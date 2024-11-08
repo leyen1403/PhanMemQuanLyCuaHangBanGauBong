@@ -58,6 +58,8 @@ namespace DAL
                 {
                     mauSac.MaMau = updatedMauSac.MaMau;
                     mauSac.TenMau = updatedMauSac.TenMau;
+                    mauSac.MoTa=updatedMauSac.MoTa;
+                    mauSac.HinhAnh = updatedMauSac.HinhAnh;
                     db.SubmitChanges();
                     return true; // Trả về true nếu cập nhật thành công
                 }

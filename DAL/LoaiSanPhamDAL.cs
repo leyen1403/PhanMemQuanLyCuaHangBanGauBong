@@ -62,6 +62,8 @@ namespace DAL
                 {
                     loaiSanPham.MaLoai = updatedLoaiSanPham.MaLoai;
                     loaiSanPham.TenLoai = updatedLoaiSanPham.TenLoai;
+                    loaiSanPham.MoTa = updatedLoaiSanPham.MoTa;
+                    loaiSanPham.HinhAnh = updatedLoaiSanPham.HinhAnh;
                     db.SubmitChanges();
                     return true; // Cập nhật thành công
                 }

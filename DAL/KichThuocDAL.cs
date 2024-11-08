@@ -62,6 +62,7 @@ namespace DAL
                 {
                     kichThuoc.MaKichThuoc = updatedKichThuoc.MaKichThuoc;
                     kichThuoc.TenKichThuoc = updatedKichThuoc.TenKichThuoc;
+                    kichThuoc.MoTa=updatedKichThuoc.MoTa;
                     db.SubmitChanges();
                     return true; // Cập nhật thành công
                 }
