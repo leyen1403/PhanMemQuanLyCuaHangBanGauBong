@@ -10,7 +10,18 @@ namespace GUI
         {
             InitializeComponent();
             this.Load += Frm_main1_Load;
+            this.btn_LapPhieuKiemKe.Click += Btn_LapPhieuKiemKe_Click;
+            this.btn_NhanVien.Click += Btn_NhanVien_Click1;
+        }
 
+        private void Btn_NhanVien_Click1(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyNhanVien());
+        }
+
+        private void Btn_LapPhieuKiemKe_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuKiemKe());
         }
 
         private void Frm_main1_Load(object sender, EventArgs e)
@@ -24,34 +35,36 @@ namespace GUI
             this.btn_LapDonDatHang.Click += Btn_LapDonDatHang_Click;
             this.btn_LapPhieuDichVu.Click += Btn_LapPhieuDichVu_Click;
 
+            loadForm(new frm_lapPhieuKiemKe());
+
         }
 
         private void Btn_LapPhieuDichVu_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapPhieuDichVu(),string.Empty);
+            loadForm(new frm_lapPhieuDichVu());
         }
 
         private void Btn_LapDonDatHang_Click(object sender, EventArgs e)
         {
-           loadForm(new frm_lapDonDatHang(),string.Empty);
+           loadForm(new frm_lapDonDatHang());
         }
 
         private void Btn_Loai_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_quanLyChungLoai(),string.Empty);
+            loadForm(new frm_quanLyChungLoai());
         }
 
         private void Btn_Kho_Click(object sender, EventArgs e)
         {
-           loadForm(new frm_quanLyKhoHang(),string.Empty);
+           loadForm(new frm_quanLyKhoHang());
         }
 
         private void Btn_NhanVien_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_quanLyNhanVien(), string.Empty);
+            loadForm(new frm_quanLyNhanVien());
         }
 
-        void loadForm(Form form, string titleLabel)
+        void loadForm(Form form)
         {
             this.Text = form.Text;
             form.TopLevel = false;
@@ -61,8 +74,6 @@ namespace GUI
             form.Width = pnMain.Width;
             pnMain.Controls.Add(form);
             pnMain.Tag = form;
-            // Thiết lập tiêu đề của form vào label
-            //label_tenForm.Text = titleLabel;
             form.BringToFront();
             form.Show();
 
@@ -70,12 +81,12 @@ namespace GUI
 
         private void btn_LapHoaDon_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapHoaDon(), string.Empty);
+            loadForm(new frm_lapHoaDon());
         }
 
         private void btn_LapHoaDon_Click_1(object sender, EventArgs e)
         {
-            loadForm(new frm_lapHoaDon(), string.Empty);
+            loadForm(new frm_lapHoaDon());
         }
 
         private void pnLeft_Paint(object sender, PaintEventArgs e)

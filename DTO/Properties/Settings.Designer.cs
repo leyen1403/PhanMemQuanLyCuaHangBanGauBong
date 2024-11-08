@@ -33,5 +33,27 @@ namespace DTO.Properties {
                 return ((string)(this["QL_CuaHangBanGauBongConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP\\MSSQLSERVER07;Initial Catalog=db_QLCHBGB;Integrated Security=T" +
+            "rue;TrustServerCertificate=True")]
+        public string db_QLCHBGBConnectionString {
+            get {
+                return ((string)(this["db_QLCHBGBConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-5BL858OA\\PHUONGNAM;Initial Catalog=ql_CHBGB;User ID=sa;Passwor" +
+            "d=123;TrustServerCertificate=True")]
+        public string ql_CHBGBConnectionString {
+            get {
+                return ((string)(this["ql_CHBGBConnectionString"]));
+            }
+        }
     }
 }
