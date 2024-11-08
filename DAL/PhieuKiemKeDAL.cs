@@ -29,5 +29,26 @@ namespace DAL
                 return false;
             }
         }
+        public bool UpdatePhieuKiemKe(PhieuKiemKe phieuKiemKe)
+        {
+            try
+            {
+                var phieuKiemKeUpdate = db.PhieuKiemKes.Single(x => x.MaPhieuKiemKe == phieuKiemKe.MaPhieuKiemKe);
+                phieuKiemKeUpdate.NgayLap = phieuKiemKe.NgayLap;
+                phieuKiemKeUpdate.GhiChu = phieuKiemKe.GhiChu;
+                phieuKiemKeUpdate.MaNhanVien = phieuKiemKe.MaNhanVien;
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public PhieuKiemKe GetPhieuKiemKeById(string id)
+        {
+            var phieuKiemKe = db.PhieuKiemKes.Single(x => x.MaPhieuKiemKe == id);
+            return phieuKiemKe;
+        }
     }
 }

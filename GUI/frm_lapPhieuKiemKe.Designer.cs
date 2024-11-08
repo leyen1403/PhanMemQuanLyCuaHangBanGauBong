@@ -36,8 +36,10 @@
             this.btnCapNhat = new System.Windows.Forms.Button();
             this.txtSoLuongThucTe = new System.Windows.Forms.NumericUpDown();
             this.txtSoLuongHeThong = new System.Windows.Forms.NumericUpDown();
+            this.txtSoLuongTonKhoToiThieu = new System.Windows.Forms.TextBox();
             this.txtSoLuongChenhLech = new System.Windows.Forms.TextBox();
             this.txtTenSanPham = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -51,6 +53,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtNhanVienLap = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbbMaPhieuKiemKe = new System.Windows.Forms.ComboBox();
             this.dtpNgayLap = new System.Windows.Forms.DateTimePicker();
             this.btnTao = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
@@ -58,11 +61,8 @@
             this.cbbLoaiSanPham = new System.Windows.Forms.ComboBox();
             this.btnTim = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtSoLuongTonKhoToiThieu = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvDSChiTietPhieuKiemKe = new System.Windows.Forms.DataGridView();
-            this.cbbMaPhieuKiemKe = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DSSP)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -179,6 +179,13 @@
             this.txtSoLuongHeThong.Size = new System.Drawing.Size(120, 27);
             this.txtSoLuongHeThong.TabIndex = 2;
             // 
+            // txtSoLuongTonKhoToiThieu
+            // 
+            this.txtSoLuongTonKhoToiThieu.Location = new System.Drawing.Point(457, 340);
+            this.txtSoLuongTonKhoToiThieu.Name = "txtSoLuongTonKhoToiThieu";
+            this.txtSoLuongTonKhoToiThieu.Size = new System.Drawing.Size(120, 27);
+            this.txtSoLuongTonKhoToiThieu.TabIndex = 1;
+            // 
             // txtSoLuongChenhLech
             // 
             this.txtSoLuongChenhLech.Enabled = false;
@@ -194,6 +201,15 @@
             this.txtTenSanPham.Name = "txtTenSanPham";
             this.txtTenSanPham.Size = new System.Drawing.Size(256, 27);
             this.txtTenSanPham.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(314, 348);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(137, 19);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Tồn kho tối thiểu:";
             // 
             // label10
             // 
@@ -324,6 +340,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin chung";
             // 
+            // cbbMaPhieuKiemKe
+            // 
+            this.cbbMaPhieuKiemKe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbMaPhieuKiemKe.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbMaPhieuKiemKe.FormattingEnabled = true;
+            this.cbbMaPhieuKiemKe.Location = new System.Drawing.Point(222, 21);
+            this.cbbMaPhieuKiemKe.Name = "cbbMaPhieuKiemKe";
+            this.cbbMaPhieuKiemKe.Size = new System.Drawing.Size(275, 27);
+            this.cbbMaPhieuKiemKe.TabIndex = 6;
+            // 
             // dtpNgayLap
             // 
             this.dtpNgayLap.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -376,6 +402,7 @@
             // 
             // cbbLoaiSanPham
             // 
+            this.cbbLoaiSanPham.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbLoaiSanPham.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoaiSanPham.FormattingEnabled = true;
             this.cbbLoaiSanPham.Location = new System.Drawing.Point(467, 276);
@@ -414,22 +441,6 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(314, 348);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(137, 19);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Tồn kho tối thiểu:";
-            // 
-            // txtSoLuongTonKhoToiThieu
-            // 
-            this.txtSoLuongTonKhoToiThieu.Location = new System.Drawing.Point(457, 340);
-            this.txtSoLuongTonKhoToiThieu.Name = "txtSoLuongTonKhoToiThieu";
-            this.txtSoLuongTonKhoToiThieu.Size = new System.Drawing.Size(120, 27);
-            this.txtSoLuongTonKhoToiThieu.TabIndex = 1;
-            // 
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -454,15 +465,6 @@
             this.dgvDSChiTietPhieuKiemKe.ReadOnly = true;
             this.dgvDSChiTietPhieuKiemKe.Size = new System.Drawing.Size(730, 251);
             this.dgvDSChiTietPhieuKiemKe.TabIndex = 0;
-            // 
-            // cbbMaPhieuKiemKe
-            // 
-            this.cbbMaPhieuKiemKe.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbMaPhieuKiemKe.FormattingEnabled = true;
-            this.cbbMaPhieuKiemKe.Location = new System.Drawing.Point(222, 21);
-            this.cbbMaPhieuKiemKe.Name = "cbbMaPhieuKiemKe";
-            this.cbbMaPhieuKiemKe.Size = new System.Drawing.Size(275, 27);
-            this.cbbMaPhieuKiemKe.TabIndex = 6;
             // 
             // frm_lapPhieuKiemKe
             // 
