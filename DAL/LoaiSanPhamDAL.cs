@@ -14,22 +14,24 @@ namespace DAL
         public LoaiSanPhamDAL() { }
 
         // Phương thức thêm loại sản phẩm mới
-        public void Add(LoaiSanPham loaiSanPham)
+        public bool Add(LoaiSanPham loaiSanPham)
         {
             try
             {
                 db.LoaiSanPhams.InsertOnSubmit(loaiSanPham);
                 db.SubmitChanges();
+                return true; // Thêm thành công
             }
             catch (Exception ex)
             {
                 // Xử lý lỗi
                 Console.WriteLine("Error adding product category: " + ex.Message);
+                return false; // Thêm thất bại
             }
         }
 
         // Phương thức xóa loại sản phẩm theo Id
-        public void Delete(string id)
+        public bool Delete(string id)
         {
             try
             {
@@ -38,17 +40,20 @@ namespace DAL
                 {
                     db.LoaiSanPhams.DeleteOnSubmit(loaiSanPham);
                     db.SubmitChanges();
+                    return true; // Xóa thành công
                 }
+                return false; // Không tìm thấy loại sản phẩm để xóa
             }
             catch (Exception ex)
             {
                 // Xử lý lỗi
                 Console.WriteLine("Error deleting product category: " + ex.Message);
+                return false; // Xóa thất bại
             }
         }
 
         // Phương thức sửa thông tin loại sản phẩm
-        public void Update(LoaiSanPham updatedLoaiSanPham)
+        public bool Update(LoaiSanPham updatedLoaiSanPham)
         {
             try
             {
@@ -57,13 +62,18 @@ namespace DAL
                 {
                     loaiSanPham.MaLoai = updatedLoaiSanPham.MaLoai;
                     loaiSanPham.TenLoai = updatedLoaiSanPham.TenLoai;
+                    loaiSanPham.MoTa = updatedLoaiSanPham.MoTa;
+                    loaiSanPham.HinhAnh = updatedLoaiSanPham.HinhAnh;
                     db.SubmitChanges();
+                    return true; // Cập nhật thành công
                 }
+                return false; // Không tìm thấy loại sản phẩm để sửa
             }
             catch (Exception ex)
             {
                 // Xử lý lỗi
                 Console.WriteLine("Error updating product category: " + ex.Message);
+                return false; // Cập nhật thất bại
             }
         }
 

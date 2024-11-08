@@ -14,22 +14,24 @@ namespace DAL
         public KichThuocDAL() { }
 
         // Phương thức thêm kích thước mới
-        public void Add(KichThuoc kichThuoc)
+        public bool Add(KichThuoc kichThuoc)
         {
             try
             {
                 db.KichThuocs.InsertOnSubmit(kichThuoc);
                 db.SubmitChanges();
+                return true; // Thêm thành công
             }
             catch (Exception ex)
             {
                 // Xử lý lỗi
                 Console.WriteLine("Error adding size: " + ex.Message);
+                return false; // Thêm thất bại
             }
         }
 
         // Phương thức xóa kích thước theo Id
-        public void Delete(string id)
+        public bool Delete(string id)
         {
             try
             {
@@ -38,17 +40,20 @@ namespace DAL
                 {
                     db.KichThuocs.DeleteOnSubmit(kichThuoc);
                     db.SubmitChanges();
+                    return true; // Xóa thành công
                 }
+                return false; // Không tìm thấy kích thước để xóa
             }
             catch (Exception ex)
             {
                 // Xử lý lỗi
                 Console.WriteLine("Error deleting size: " + ex.Message);
+                return false; // Xóa thất bại
             }
         }
 
         // Phương thức sửa thông tin kích thước
-        public void Update(KichThuoc updatedKichThuoc)
+        public bool Update(KichThuoc updatedKichThuoc)
         {
             try
             {
@@ -57,13 +62,17 @@ namespace DAL
                 {
                     kichThuoc.MaKichThuoc = updatedKichThuoc.MaKichThuoc;
                     kichThuoc.TenKichThuoc = updatedKichThuoc.TenKichThuoc;
+                    kichThuoc.MoTa=updatedKichThuoc.MoTa;
                     db.SubmitChanges();
+                    return true; // Cập nhật thành công
                 }
+                return false; // Không tìm thấy kích thước để sửa
             }
             catch (Exception ex)
             {
                 // Xử lý lỗi
                 Console.WriteLine("Error updating size: " + ex.Message);
+                return false; // Cập nhật thất bại
             }
         }
 
