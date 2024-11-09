@@ -33,18 +33,46 @@ namespace DAL
         {
             try
             {
+                // Kiểm tra các giá trị đầu vào
+                if (string.IsNullOrEmpty(maSanPham) || string.IsNullOrEmpty(oldMaKichThuoc) || string.IsNullOrEmpty(newMaKichThuoc))
+                {
+                    return false; // Nếu một trong các giá trị đầu vào là rỗng hoặc null, trả về false
+                }
+
+                // Tìm sản phẩm kích thước cũ từ cơ sở dữ liệu
                 var spKichThuoc = db.SanPham_KichThuocs.FirstOrDefault(s => s.MaSanPham == maSanPham && s.MaKichThuoc == oldMaKichThuoc);
+
+                // Kiểm tra nếu tìm thấy sản phẩm kích thước
                 if (spKichThuoc != null)
                 {
-                    spKichThuoc.MaKichThuoc = newMaKichThuoc;
+                    // Xóa bản ghi cũ
+                    db.SanPham_KichThuocs.DeleteOnSubmit(spKichThuoc);
+
+                    // Tạo đối tượng mới với mã kích thước mới
+                    SanPham_KichThuoc newSize = new SanPham_KichThuoc
+                    {
+                        MaSanPham = maSanPham,
+                        MaKichThuoc = newMaKichThuoc,
+                        // Thêm các thuộc tính khác nếu cần thiết
+                    };
+
+                    // Thêm bản ghi mới vào cơ sở dữ liệu
+                    db.SanPham_KichThuocs.InsertOnSubmit(newSize);
+
+                    // Lưu thay đổi vào cơ sở dữ liệu
                     db.SubmitChanges();
-                    return true;
+                    return true; // Trả về true nếu cập nhật thành công
                 }
-                return false;
+                else
+                {
+                    return false; // Trả về false nếu không tìm thấy sản phẩm với mã kích thước cũ
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                // Ghi lại lỗi chi tiết trong trường hợp có exception
+                Console.WriteLine("Lỗi khi cập nhật kích thước: " + ex.Message);
+                return false; // Trả về false nếu có lỗi xảy ra
             }
         }
         // Xóa kích thước của sản phẩm
@@ -81,7 +109,7 @@ namespace DAL
                 var sizeName = (from spKichThuoc in db.SanPham_KichThuocs
                                 join kichThuoc in db.KichThuocs on spKichThuoc.MaKichThuoc equals kichThuoc.MaKichThuoc
                                 where spKichThuoc.MaSanPham == maSanPham
-                                select kichThuoc.TenKichThuoc).FirstOrDefault();
+                                select kichThuoc.MaKichThuoc).FirstOrDefault();
 
                 return sizeName; // Trả về tên kích thước hoặc null nếu không tìm thấy
             }

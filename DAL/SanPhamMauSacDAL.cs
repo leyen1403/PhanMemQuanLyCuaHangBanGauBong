@@ -81,7 +81,7 @@ namespace DAL
                 var colorName = (from spMauSac in db.SanPham_MauSacs
                                  join mauSac in db.MauSacs on spMauSac.MaMau equals mauSac.MaMau
                                  where spMauSac.MaSanPham == maSanPham
-                                 select mauSac.TenMau).FirstOrDefault();
+                                 select mauSac.MaMau).FirstOrDefault();
 
                 return colorName; // Trả về tên màu hoặc null nếu không tìm thấy
             }

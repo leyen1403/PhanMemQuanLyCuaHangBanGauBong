@@ -320,21 +320,29 @@ namespace GUI
         {
             try
             {
-                // Lấy thông tin từ các TextBox (hoặc các control tương ứng) để tạo đối tượng sản phẩm
-                string maSanPham = txt_maSanPham.Text; // Giả sử bạn có TextBox txt_maSanPham để lấy mã sản phẩm
-                string tenSanPham = txt_tenSanPham.Text; // TextBox cho tên sản phẩm
-                string donViTinh = txt_donViTinh.Text; // TextBox cho đơn vị tính
+                // Lấy thông tin từ các TextBox
+                string maSanPham = txt_maSanPham.Text.Trim();
+                string tenSanPham = txt_tenSanPham.Text.Trim();
+                string donViTinh = txt_donViTinh.Text.Trim();
+
+                // Kiểm tra thông tin không được để trống
+                if (string.IsNullOrEmpty(maSanPham) || string.IsNullOrEmpty(tenSanPham) || string.IsNullOrEmpty(donViTinh))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin sản phẩm.");
+                    return;
+                }
 
                 // Kiểm tra giá trị số lượng tồn
-                if (!int.TryParse(txt_soLuongToiThieu.Text, out int soLuongToiThieu))
+                
+                if (!int.TryParse(txt_soLuongToiThieu.Text.Trim(), out int soLuongToiThieu))
                 {
                     MessageBox.Show("Số lượng tối thiểu không hợp lệ!");
                     return;
                 }
 
                 // Kiểm tra và xử lý giá nhập và giá bán
-                string giaNhapText = txt_giaNhap.Text;
-                string giaBanText = txt_giaBan.Text;
+                string giaNhapText = txt_giaNhap.Text.Trim();
+                string giaBanText = txt_giaBan.Text.Trim();
 
                 if (!decimal.TryParse(giaNhapText, out decimal giaNhap))
                 {
@@ -348,7 +356,7 @@ namespace GUI
                     return;
                 }
 
-                string moTa = txt_moTa.Text; // TextBox cho mô tả
+                string moTa = txt_moTa.Text.Trim(); // TextBox cho mô tả
 
                 // Kiểm tra các ComboBox
                 if (cbo_loaiSanPhamAdd.SelectedValue == null || cbo_tenMauSac.SelectedValue == null || cb_kichThuoc.SelectedValue == null)
@@ -363,7 +371,7 @@ namespace GUI
                 string maKichThuocCuu = _sanPhamKichThuocBLL.GetOldSize(maSanPham);
                 string maMau = cbo_tenMauSac.SelectedValue.ToString();
                 string maKichThuoc = cb_kichThuoc.SelectedValue.ToString();
-                string hinhanh = txt_duongDan.Text;
+                string hinhanh = txt_duongDan.Text.Trim();
 
                 // Tạo đối tượng sản phẩm mới
                 SanPham updatedProduct = new SanPham
@@ -405,6 +413,7 @@ namespace GUI
             {
                 MessageBox.Show("Lỗi khi lưu sản phẩm: " + ex.Message);
             }
+
 
         }
 

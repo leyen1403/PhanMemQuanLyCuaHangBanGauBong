@@ -88,7 +88,6 @@ namespace DAL
                     product.GiaBan = updatedProduct.GiaBan;
                     product.MoTa = updatedProduct.MoTa;
                     product.HinhAnh = updatedProduct.HinhAnh;
-                    product.TrangThai = updatedProduct.TrangThai;
                     product.NgayCapNhat = DateTime.Now;
                     db.SubmitChanges();
                     return true;
