@@ -37,14 +37,14 @@ namespace GUI
             this.cbbMaPhieuKiemKe.SelectedIndexChanged += CbbMaPhieuKiemKe_SelectedIndexChanged;
             this.btnCapNhat.Click += BtnCapNhat_Click;
             this.btnCapNhatGhiChu.Click += BtnCapNhatGhiChu_Click;
-            
+
         }
 
         private void BtnCapNhatGhiChu_Click(object sender, EventArgs e)
         {
             string ghiChu = txtGhiChu.Text;
             string maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue.ToString();
-            if(phieuKiemKeBLL.UpdateGhiChu(maPhieuKiemKe, ghiChu))
+            if (phieuKiemKeBLL.UpdateGhiChu(maPhieuKiemKe, ghiChu))
             {
                 MessageBox.Show("Cập nhật ghi chú thành công");
             }
@@ -89,6 +89,10 @@ namespace GUI
                 string ghiChu = phieuKiemKeBLL.GetPhieuKiemKeById(maPhieuKiemKe).GhiChu;
                 txtGhiChu.Text = ghiChu;
                 txtNhanVienLap.Text = _tenNhanVien;
+                foreach (DataGridViewRow row in dgvDSChiTietPhieuKiemKe.Rows)
+                {
+                    row.Cells["STT"].Value = row.Index + 1;
+                }
             }
             catch
             {
@@ -110,24 +114,30 @@ namespace GUI
             phieuKiemKe = phieuKiemKeBLL.GetPhieuKiemKeById(maPhieuKiemKe);
             sp = sanPhamBll.GetProductById(ct.MaSanPham);
             if (chiTietPhieuKiemKeBLL.UpdateChiTietPhieuKiemKe(ct))
-            {                
-                sp.SoLuongTon = ct.SoLuongThucTe;
-                sp.NgayCapNhat = _ngayLap;
-                phieuKiemKe.GhiChu = txtGhiChu.Text;
-                phieuKiemKe.MaNhanVien = _maNhanVien;
-                phieuKiemKeBLL.UpdatePhieuKiemKe(phieuKiemKe);
-                sanPhamBll.UpdateProduct(sp);
-                MessageBox.Show("Cập nhật thành công");
-            }
-            else if(chiTietPhieuKiemKeBLL.InsertChiTietPhieuKiemKe(ct))
             {
                 sp.SoLuongTon = ct.SoLuongThucTe;
                 sp.NgayCapNhat = _ngayLap;
+                sp.SoLuongToiThieu = Convert.ToInt32(txtSoLuongTonKhoToiThieu.Text);
                 phieuKiemKe.GhiChu = txtGhiChu.Text;
                 phieuKiemKe.MaNhanVien = _maNhanVien;
                 phieuKiemKeBLL.UpdatePhieuKiemKe(phieuKiemKe);
-                sanPhamBll.UpdateProduct(sp);
-                MessageBox.Show("Thêm thành công");
+                if (sanPhamBll.UpdateProduct(sp))
+                {
+                    MessageBox.Show("Cập nhật thành công");
+                }
+            }
+            else if (chiTietPhieuKiemKeBLL.InsertChiTietPhieuKiemKe(ct))
+            {
+                sp.SoLuongTon = ct.SoLuongThucTe;
+                sp.NgayCapNhat = _ngayLap;
+                sp.SoLuongToiThieu = Convert.ToInt32(txtSoLuongTonKhoToiThieu.Text);
+                phieuKiemKe.GhiChu = txtGhiChu.Text;
+                phieuKiemKe.MaNhanVien = _maNhanVien;
+                phieuKiemKeBLL.UpdatePhieuKiemKe(phieuKiemKe);
+                if (sanPhamBll.UpdateProduct(sp))
+                {
+                    MessageBox.Show("Thêm thành công");
+                }
             }
             else
             {
@@ -135,7 +145,10 @@ namespace GUI
             }
             dgvDSChiTietPhieuKiemKe.DataSource = chiTietPhieuKiemKeBLL.chiTietPhieuKiemKes(cbbMaPhieuKiemKe.SelectedValue.ToString());
             dgv_DSSP.DataSource = sanPhamBll.GetProductList();
-
+            foreach (DataGridViewRow row in dgvDSChiTietPhieuKiemKe.Rows)
+            {
+                row.Cells["STT"].Value = row.Index + 1;
+            }
         }
 
         private void BtnTim_Click(object sender, EventArgs e)
@@ -153,7 +166,7 @@ namespace GUI
 
         private void CbbLoaiSanPham_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbbLoaiSanPham.SelectedIndex == 0)
+            if (cbbLoaiSanPham.SelectedIndex == 0)
             {
                 dgv_DSSP.DataSource = sanPhams;
                 return;
@@ -170,7 +183,7 @@ namespace GUI
                 int soLuongHeThong = Convert.ToInt32(txtSoLuongHeThong.Value);
                 int soLuongThucTe = Convert.ToInt32(txtSoLuongThucTe.Text);
                 int soLuongChenhLech = soLuongHeThong - soLuongThucTe;
-                if(soLuongChenhLech < 0)
+                if (soLuongChenhLech < 0)
                 {
                     soLuongChenhLech *= -1;
                 }
@@ -191,7 +204,7 @@ namespace GUI
             int soLuongThucTe = soLuongHeThong;
             int soLuongChenhLech = soLuongHeThong - soLuongThucTe;
             SanPham sp = sanPhamBll.GetProductById(maSanPham);
-            _ngayLap =(DateTime) sp.NgayCapNhat;
+            _ngayLap = (DateTime)sp.NgayCapNhat;
             if (soLuongChenhLech < 0)
             {
                 soLuongChenhLech *= -1;
@@ -207,13 +220,13 @@ namespace GUI
 
         private void BtnTao_Click(object sender, EventArgs e)
         {
-            loadProductList();                        
+            loadProductList();
             DateTime dateCreate = dtpNgayLap.ToString().Length > 0 ? dtpNgayLap.Value : DateTime.Now;
             try
             {
                 PhieuKiemKe phieuKiemKe = new PhieuKiemKe();
                 phieuKiemKe.MaPhieuKiemKe = taoMaPhieuKiemKe();
-                phieuKiemKe.NgayLap = dateCreate;                
+                phieuKiemKe.NgayLap = dateCreate;
                 phieuKiemKe.MaNhanVien = _maNhanVien;
                 phieuKiemKe.GhiChu = txtGhiChu.Text;
                 if (phieuKiemKeBLL.InsertPhieuKiemKe(phieuKiemKe))
@@ -221,7 +234,7 @@ namespace GUI
                     MessageBox.Show("Tạo phiếu kiểm kê thành công");
                     loadCombobox();
                     cbbMaPhieuKiemKe.SelectedIndex = cbbMaPhieuKiemKe.Items.Count - 1;
-                }                
+                }
             }
             catch
             {
@@ -248,7 +261,7 @@ namespace GUI
         {
             SetPlaceholder(txtTimTenSanPham, "Nhập tên sản phẩm");
             string maPhieuKiemKe = taoMaPhieuKiemKe();
-            _maPhieuKiemKe = maPhieuKiemKe;            
+            _maPhieuKiemKe = maPhieuKiemKe;
             string tenNhanVien = "Nguyen Van A";
             _tenNhanVien = tenNhanVien;
             txtNhanVienLap.Text = tenNhanVien;
@@ -272,7 +285,7 @@ namespace GUI
             dgvDSChiTietPhieuKiemKe.Columns["SoLuongHeThong"].HeaderText = "Số lượng hệ thống";
             dgvDSChiTietPhieuKiemKe.Columns["SoLuongThucTe"].HeaderText = "Số lượng thực tế";
 
-            foreach(DataGridViewRow row in dgvDSChiTietPhieuKiemKe.Rows)
+            foreach (DataGridViewRow row in dgvDSChiTietPhieuKiemKe.Rows)
             {
                 row.Cells["STT"].Value = row.Index + 1;
             }
@@ -316,7 +329,7 @@ namespace GUI
             dgv_DSSP.Columns["NgayTao"].Visible = false;
             dgv_DSSP.Columns["MaLoai"].Visible = false;
             dgv_DSSP.Columns["LoaiSanPham"].Visible = false;
-            
+
 
         }
 

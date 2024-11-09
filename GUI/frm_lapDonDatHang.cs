@@ -56,24 +56,107 @@ namespace GUI
         {
             InitializeComponent();
             loadNCC();
-            loadLoaiSanPham();
+            loadLoaiSanPham(cbbLoaiSanPham);
+            loadLoaiSanPham(cbbLoai2);
             loadDanhSachSanPham();
             MaDonDatHang = taoMaDonDatHang();
+            this.Load += Frm_lapDonDatHang_Load;
             this.cbbNhaCungCap.SelectedIndexChanged += CbbNhaCungCap_SelectedIndexChanged;
             this.dgvDanhSachSanPham.SelectionChanged += DgvDanhSachSanPham_SelectionChanged;
             this.btnThem.Click += BtnThem_Click;
             this.dgvDanhSachChiTietDonDatHang.SelectionChanged += DgvDanhSachChiTietDonDatHang_SelectionChanged;
             this.btnXoa.Click += BtnXoa_Click;
             this.btnDatHang.Click += BtnDatHang_Click;
+            this.cbbLoaiSanPham.SelectedIndexChanged += CbbLoaiSanPham_SelectedIndexChanged;
+            this.btnTim.Click += BtnTim_Click;
+            this.cbbLoai2.SelectedIndexChanged += CbbLoai2_SelectedIndexChanged;
+            dgvDanhSachChiTietDonDatHang.KeyDown += DgvDanhSachChiTietDonDatHang_KeyDown;
+        }
+
+        private void DgvDanhSachChiTietDonDatHang_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Kiểm tra nếu có hàng đang được chọn
+            if (dgvDanhSachChiTietDonDatHang.CurrentRow != null)
+            {
+                // Kiểm tra nếu phím nhấn không phải là phím điều hướng hay các phím chức năng khác
+                if (!(e.KeyCode == Keys.Up || e.KeyCode == Keys.Down ||
+                      e.KeyCode == Keys.Left || e.KeyCode == Keys.Right ||
+                      e.KeyCode == Keys.PageUp || e.KeyCode == Keys.PageDown ||
+                      e.KeyCode == Keys.Home || e.KeyCode == Keys.End ||
+                      e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.ControlKey ||
+                      e.KeyCode == Keys.Alt))
+                {
+                    // Đặt focus vào TextBox "Số lượng nhập thêm"
+                    txtSoLuongNhapThem.Focus();
+                    e.Handled = true; // Ngăn sự kiện tiếp tục xử lý trong DataGridView
+                }
+            }
+        }
+
+        private void Frm_lapDonDatHang_Load(object sender, EventArgs e)
+        {
+            txtSoLuongNhapThem.Enter += TxtSoLuongNhapThem_Enter;
+        }
+
+        private void TxtSoLuongNhapThem_Enter(object sender, EventArgs e)
+        {
+            this.AcceptButton = btnThem;
+        }
+
+        private void CbbLoai2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<SanPham> sanPhamLisst = new List<SanPham>();
+            if (cbbLoai2.SelectedValue.ToString() == "TatCa")
+            {
+                dgvDanhSachSanPham.DataSource = SanPhamList;
+            }
+            else if(cbbLoai2.SelectedValue.ToString() == "SoLuongTon")
+            {
+                sanPhamLisst = SanPhamList.Where(sp => sp.SoLuongTon < sp.SoLuongToiThieu).ToList();
+                dgvDanhSachSanPham.DataSource = sanPhamLisst;
+            }
+            else
+            {
+                string maLoai = cbbLoai2.SelectedValue.ToString();
+                sanPhamLisst = SanPhamList.Where(sp => sp.LoaiSanPham.MaLoai == maLoai).ToList();
+                dgvDanhSachSanPham.DataSource = sanPhamLisst;
+            }
+        }
+
+        private void BtnTim_Click(object sender, EventArgs e)
+        {
+            string noiDung = txtTim.Text;
+            List<SanPham> sanPhamList = new List<SanPham>();
+            sanPhamList = SanPhamList.Where(sp => sp.TenSanPham.Contains(noiDung) || sp.MaSanPham.Contains(noiDung)).ToList();
+            dgvDanhSachSanPham.DataSource = sanPhamList;
+        }
+
+        private void CbbLoaiSanPham_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<ChiTietDonDatHang> newCTDDH = new List<ChiTietDonDatHang>();
+            if (cbbLoaiSanPham.SelectedValue.ToString() == "TatCa")
+            {
+                dgvDanhSachChiTietDonDatHang.DataSource = ChiTietDonDatHangList;
+            }
+            else
+            {
+                string maLoai = cbbLoaiSanPham.SelectedValue.ToString();
+                newCTDDH = ChiTietDonDatHangList.Where(ct => ct.SanPham.LoaiSanPham.MaLoai == maLoai).ToList();
+                dgvDanhSachChiTietDonDatHang.DataSource = newCTDDH;
+            }
         }
 
         private void BtnDatHang_Click(object sender, EventArgs e)
         {
-            DonDatHang ddhNew = new DonDatHang();
-            ddhNew = DonDatHangBLL.LayDonDayHang(MaDonDatHang);
+            DonDatHang ddhNew = DonDatHangBLL.LayDonDayHang(MaDonDatHang);
+            if (ddhNew == null)
+            {
+                MessageBox.Show("Đơn đặt hàng không tồn tại");
+                return;
+            }
             ddhNew.NgayDat = DateTime.Now;
             ChiTietDonDatHangList = ChiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(MaDonDatHang);
-            TongTienDonDatHang = tinhTongGiaTriDonDatHang(ChiTietDonDatHangList);            
+            TongTienDonDatHang = tinhTongGiaTriDonDatHang(ChiTietDonDatHangList);
             ddhNew.TongTien = TongTienDonDatHang;
             ddhNew.TrangThai = "Đã xác nhận";
             ddhNew.NgayTao = DateTime.Now;
@@ -90,7 +173,6 @@ namespace GUI
             {
                 MessageBox.Show("Xác nhận đơn đặt hàng thất bại");
             }
-
         }
 
         private decimal? tinhTongGiaTriDonDatHang(List<ChiTietDonDatHang> chiTietDonDatHangList)
@@ -263,15 +345,24 @@ namespace GUI
         }
 
 
-        private void loadLoaiSanPham()
+        private void loadLoaiSanPham(ComboBox cb)
         {
             List<LoaiSanPham> temp = new List<LoaiSanPham>();
             temp.Add(new LoaiSanPham { MaLoai = "TatCa", TenLoai = "Tất cả" });
+            if (cb.Name == "cbbLoai2")
+            {
+                temp.Add(new LoaiSanPham { MaLoai = "SoLuongTon", TenLoai = "Số lượng tồn < số lượng tối thiểu" });
+            }
+            else
+            {
+
+            }
             temp.AddRange(LoaiSanPhamBLL.GetAll());
-            cbbLoaiSanPham.DataSource = temp;
+            cb.DataSource = temp;
             LoaiSanPhamList = LoaiSanPhamBLL.GetAll();
-            cbbLoaiSanPham.DisplayMember = "TenLoai";
-            cbbLoaiSanPham.ValueMember = "MaLoai";
+            cb.DisplayMember = "TenLoai";
+            cb.ValueMember = "MaLoai";
+            
         }
 
         private void DgvDanhSachSanPham_SelectionChanged(object sender, EventArgs e)
