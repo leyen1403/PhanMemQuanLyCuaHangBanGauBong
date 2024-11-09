@@ -350,38 +350,26 @@ namespace DAL
                 return new List<SanPham>(); // Trả về danh sách rỗng nếu có lỗi
             }
         }
-        public IQueryable<object> GetSanPhamWithMauSacKichThuocByMaSanPham(string maSanPham)
+        public SanPhamGioHangDTO GetSanPhamByMaSanPham(string maSanPham)
         {
-            try
-            {
-                var query = from sp in db.SanPhams
-                            join sp_mauSac in db.SanPham_MauSacs on sp.MaSanPham equals sp_mauSac.MaSanPham
-                            join mauSac in db.MauSacs on sp_mauSac.MaMau equals mauSac.MaMau
-                            join sp_kichThuoc in db.SanPham_KichThuocs on sp.MaSanPham equals sp_kichThuoc.MaSanPham
-                            join kichThuoc in db.KichThuocs on sp_kichThuoc.MaKichThuoc equals kichThuoc.MaKichThuoc
-                            where sp.MaSanPham == maSanPham && sp.TrangThai == true // Lọc theo mã sản phẩm và trạng thái còn bán
-                            select new
-                            {
-                                sp.MaSanPham,
-                                sp.TenSanPham,
-                                sp.DonViTinh,
-                                sp.SoLuongTon,
-                                sp.GiaBan,
-                                sp.MoTa,
-                                sp.HinhAnh,
-                                TenMau = mauSac.TenMau,
-                                TenKichThuoc = kichThuoc.TenKichThuoc
-                            };
+            var query = (from sp in db.SanPhams
+                         join sp_mauSac in db.SanPham_MauSacs on sp.MaSanPham equals sp_mauSac.MaSanPham
+                         join mauSac in db.MauSacs on sp_mauSac.MaMau equals mauSac.MaMau
+                         join sp_kichThuoc in db.SanPham_KichThuocs on sp.MaSanPham equals sp_kichThuoc.MaSanPham
+                         join kichThuoc in db.KichThuocs on sp_kichThuoc.MaKichThuoc equals kichThuoc.MaKichThuoc
+                         where sp.MaSanPham == maSanPham && sp.TrangThai == true
+                         select new SanPhamGioHangDTO
+                         {
+                             MaSanPham = sp.MaSanPham,
+                             TenSanPham = sp.TenSanPham,
+                             MauSac = mauSac.TenMau,
+                             KichThuoc = kichThuoc.TenKichThuoc,
+                             GiaBan = (decimal)sp.GiaBan  // Ép kiểu về decimal nếu cần
+                         }).FirstOrDefault();
 
-                return query;
-            }
-            catch (Exception ex)
-            {
-                // Log lỗi nếu có
-                Console.WriteLine("Lỗi khi lấy thông tin sản phẩm, màu sắc và kích thước: " + ex.Message);
-                return null;
-            }
+            return query;
         }
+
     }
 }
 

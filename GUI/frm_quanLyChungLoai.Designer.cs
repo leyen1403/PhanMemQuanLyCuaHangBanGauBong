@@ -346,6 +346,7 @@
             this.dgv_dsMauSac.TabIndex = 26;
             this.dgv_dsMauSac.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsMauSac_CellClick);
             this.dgv_dsMauSac.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsMauSac_CellContentClick);
+            this.dgv_dsMauSac.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_dsMauSac_CellValidating);
             // 
             // txt_duongDanMauSac
             // 

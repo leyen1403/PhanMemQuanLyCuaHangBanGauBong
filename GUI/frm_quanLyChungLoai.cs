@@ -827,5 +827,10 @@ namespace GUI
                 }
             }
         }
+
+        private void dgv_dsMauSac_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+
+        }
     }
 }

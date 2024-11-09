@@ -25,15 +25,26 @@ namespace GUI
         }
         private void InitializeDataGridView()
         {
-            dgvCart.Columns.Clear(); // Xóa các cột cũ nếu có
-
-            // Thêm các cột
+            // Xóa các cột cũ nếu có
+            dgvCart.Columns.Clear();
+            // Thêm các cột dữ liệu
             dgvCart.Columns.Add("MaSP", "Mã Sản Phẩm");
             dgvCart.Columns.Add("TenSanPham", "Tên Sản Phẩm");
-            dgvCart.Columns.Add("MauSac", "Màu Sắc"); // Thêm cột màu sắc
-            dgvCart.Columns.Add("KichThuoc", "Kích Thước"); // Thêm cột kích thước
-            dgvCart.Columns.Add("SoLuong", "Số Lượng");
+            dgvCart.Columns.Add("MauSac", "Màu Sắc");
+            dgvCart.Columns.Add("KichThuoc", "Kích Thước");
+
+            // Thêm cột Số Lượng (kiểu số, có thể sửa)
+            DataGridViewTextBoxColumn colSoLuong = new DataGridViewTextBoxColumn();
+            colSoLuong.Name = "SoLuong";
+            colSoLuong.HeaderText = "Số Lượng";
+            colSoLuong.ValueType = typeof(int); // Kiểu số nguyên
+            colSoLuong.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; // Căn phải cho số lượng
+            dgvCart.Columns.Add(colSoLuong);
+
+            // Thêm cột Giá
             dgvCart.Columns.Add("Gia", "Giá");
+
+            // Thêm cột Thành Tiền
             dgvCart.Columns.Add("ThanhTien", "Thành Tiền");
 
             // Thêm cột Xóa với hình ảnh
@@ -41,8 +52,16 @@ namespace GUI
             btnXoa.Name = "Xoa";
             btnXoa.HeaderText = "Xóa";
             btnXoa.Image = Properties.Resources.icons8_delete_35;  // Đảm bảo rằng "icons8_delete_35" là tên tài nguyên của bạn trong Resources
-
+            btnXoa.ImageLayout = DataGridViewImageCellLayout.Zoom; // Đảm bảo hình ảnh được thu nhỏ vừa vặn
             dgvCart.Columns.Add(btnXoa);
+
+            // Đặt ReadOnly cho các cột không muốn chỉnh sửa
+            dgvCart.Columns["MaSP"].ReadOnly = true;
+            dgvCart.Columns["TenSanPham"].ReadOnly = true;
+            dgvCart.Columns["MauSac"].ReadOnly = true;
+            dgvCart.Columns["KichThuoc"].ReadOnly = true;
+            dgvCart.Columns["Gia"].ReadOnly = true;
+            dgvCart.Columns["ThanhTien"].ReadOnly = true;
         }
 
         private void dsSanPham_Paint(object sender, PaintEventArgs e)
@@ -67,59 +86,82 @@ namespace GUI
         }
         private void Btn_addCart_Click(object sender, EventArgs e)
         {
-            //if (cbo_mauSac.SelectedItem != null && cbo_kichThuoc.SelectedItem != null)
-            //{
-            //    string tenSanPham = productSelected.TenSanPham;  // Lấy tên sản phẩm đã chọn
-            //    string mauSac = cbo_mauSac.SelectedItem.ToString();  // Lấy màu sắc đã chọn
-            //    string kichThuoc = cbo_kichThuoc.SelectedItem.ToString();  // Lấy kích thước đã chọn
+            if (cbo_mauSac.SelectedItem != null && cbo_kichThuoc.SelectedItem != null)
+            {
+                // Lấy thông tin tên sản phẩm, màu sắc và kích thước đã chọn
+                string tenSanPham = productSelected?.TenSanPham; // Sử dụng toán tử null conditional để tránh NullReferenceException
+                if (string.IsNullOrEmpty(tenSanPham))
+                {
+                    MessageBox.Show("Sản phẩm chưa được chọn.");
+                    return;
+                }
 
-            //    // Lấy mã sản phẩm dựa trên tên, màu sắc và kích thước
-            //    string maSanPham = _sanPhamBLL.GetProductCodesByNameColorSize(tenSanPham, mauSac, kichThuoc);
+                string mauSac = cbo_mauSac.SelectedItem?.ToString();
+                string kichThuoc = cbo_kichThuoc.SelectedItem?.ToString();
 
-            //    if (string.IsNullOrEmpty(maSanPham))
-            //    {
-            //        MessageBox.Show("Mã sản phẩm không hợp lệ!");
-            //        return;
-            //    }
+                // Lấy mã sản phẩm theo tên, màu sắc và kích thước
+                string maSanPham = _sanPhamBLL?.GetProductCodesByNameColorSize(tenSanPham, mauSac, kichThuoc);
 
-            //    int soLuong = (int)txt_soLuong.Value;  // Lấy số lượng từ control txt_soLuong
-            //    if (soLuong <= 0)
-            //    {
-            //        MessageBox.Show("Vui lòng chọn số lượng sản phẩm lớn hơn 0!");
-            //        return;
-            //    }
+                if (string.IsNullOrEmpty(maSanPham))
+                {
+                    MessageBox.Show("Mã sản phẩm không hợp lệ. Vui lòng kiểm tra lại thông tin sản phẩm.");
+                    return;
+                }
 
-            //    var sanPham = _sanPhamBLL.GetSanPhamWithMauSacKichThuocByMaSanPham(maSanPham);
+                // Lấy số lượng từ control txt_soLuong
+                int soLuong = (int)txt_soLuong.Value;
+                if (soLuong <= 0)
+                {
+                    MessageBox.Show("Vui lòng chọn số lượng sản phẩm lớn hơn 0.");
+                    return;
+                }
 
-            //    if (sanPham != null)
-            //    {
-            //        decimal giaBan = sanPham.GiaBan;  // Truy cập thuộc tính giaBan trực tiếp
+                // Lấy sản phẩm theo mã sản phẩm
+                var sanPham = _sanPhamBLL?.GetSanPhamByMaSanPham(maSanPham);
 
-            //        if (giaBan <= 0)
-            //        {
-            //            MessageBox.Show("Giá sản phẩm không hợp lệ!");
-            //            return;
-            //        }
+                if (sanPham != null)
+                {
+                    // Nếu có sản phẩm, truy cập các thuộc tính
+                    string _tenSanPham = sanPham.TenSanPham;
+                    string tenMau = sanPham.MauSac;
+                    string tenKichThuoc = sanPham.KichThuoc;
+                    decimal giaBan = sanPham.GiaBan;
+                    decimal thanhTien = giaBan * soLuong;
 
-            //        decimal thanhTien = giaBan * soLuong;
+                    // Kiểm tra xem sản phẩm đã có trong giỏ hàng hay chưa
+                    bool sanPhamDaCo = false;
+                    foreach (DataGridViewRow row in dgvCart.Rows)
+                    {
+                        if (row.Cells["MaSP"].Value?.ToString() == maSanPham &&
+                            row.Cells["MauSac"].Value?.ToString() == tenMau &&
+                            row.Cells["KichThuoc"].Value?.ToString() == tenKichThuoc)
+                        {
+                            // Nếu sản phẩm đã có trong giỏ hàng, cập nhật số lượng và thành tiền
+                            int currentQuantity = (int)row.Cells["SoLuong"].Value;
+                            row.Cells["SoLuong"].Value = currentQuantity + soLuong;
+                            row.Cells["ThanhTien"].Value = giaBan * (currentQuantity + soLuong);
+                            sanPhamDaCo = true;
+                            break;
+                        }
+                    }
 
-            //        // Thêm sản phẩm vào giỏ hàng
-            //        dgvCart.Rows.Add(sanPham.MaSanPham, sanPham.TenSanPham,
-            //                         sanPham.TenMau, sanPham.TenKichThuoc,
-            //                         giaBan.ToString("N0"), soLuong, thanhTien.ToString("N0"));
-
-            //        UpdateTotalAmount();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Sản phẩm không tìm thấy!");
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Vui lòng chọn màu sắc và kích thước sản phẩm!");
-            //}
-
+                    if (!sanPhamDaCo)
+                    {
+                        // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới
+                        dgvCart.Rows.Add(maSanPham, _tenSanPham, tenMau, tenKichThuoc, soLuong, giaBan, thanhTien);
+                    }
+                }
+                else
+                {
+                    // Nếu không tìm thấy sản phẩm
+                    MessageBox.Show("Sản phẩm không tìm thấy.");
+                }
+            }
+            else
+            {
+                // Thông báo khi người dùng chưa chọn màu sắc và kích thước
+                MessageBox.Show("Vui lòng chọn màu sắc và kích thước sản phẩm.");
+            }
         }
         private void UpdateTotalAmount()
         {
@@ -536,6 +578,48 @@ namespace GUI
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)  // 8 là phím Backspace
             {
                 e.Handled = true; // Nếu không phải số hoặc phím Backspace thì không cho nhập
+            }
+        }
+
+        private void dgvCart_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == dgvCart.Columns["SoLuong"].Index) // Kiểm tra nếu người dùng đang chỉnh sửa cột "Số Lượng"
+            {
+                string inputValue = dgvCart.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+
+                if (!int.TryParse(inputValue, out int soLuong) || soLuong < 1 || soLuong > 100)
+                {
+                    e.Cancel = true; 
+                }
+            }
+        }
+
+        private void dgvCart_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvCart.Columns["SoLuong"].Index)
+            {
+                // Lấy số lượng và giá bán
+                var row = dgvCart.Rows[e.RowIndex];
+                int soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
+                decimal giaBan = Convert.ToDecimal(row.Cells["Gia"].Value);
+
+                decimal thanhTien = giaBan * soLuong;
+                row.Cells["ThanhTien"].Value = thanhTien;
+            }
+        }
+
+        private void dgvCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kiểm tra nếu người dùng nhấn vào cột Xóa (cột có tên là "Xoa")
+            if (e.ColumnIndex == dgvCart.Columns["Xoa"].Index && e.RowIndex >= 0)
+            {
+                // Xác nhận trước khi xóa
+                var result = MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    // Xóa sản phẩm tại dòng hiện tại
+                    dgvCart.Rows.RemoveAt(e.RowIndex);
+                }
             }
         }
     }

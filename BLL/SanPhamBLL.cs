@@ -125,9 +125,9 @@ namespace BLL
         {
             return sanPhamDal.GetSanPhamByMaSP((string) maSanPham);
         }
-        public IQueryable<object> GetSanPhamWithMauSacKichThuocByMaSanPham(string maSanPham)
+        public SanPhamGioHangDTO GetSanPhamByMaSanPham(string maSanPham)
         {
-            return sanPhamDal.GetSanPhamWithMauSacKichThuocByMaSanPham(maSanPham);
+            return sanPhamDal.GetSanPhamByMaSanPham(maSanPham);
         }
     }
 }
