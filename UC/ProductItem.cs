@@ -60,16 +60,32 @@ namespace UC
 
         private void ProductItem_Paint(object sender, PaintEventArgs e)
         {
-            // Màu viền
+            // Định nghĩa màu viền và độ dày viền
             Color borderColor = Color.Navy;
-            int borderWidth = 1; // Độ dày viền
+            int borderWidth = 1;
 
-            // Vẽ viền hình chữ nhật
+            // Tạo bút vẽ viền
             using (Pen pen = new Pen(borderColor, borderWidth))
             {
-                // Vẽ hình chữ nhật không có bo góc
-                e.Graphics.DrawRectangle(pen, 0, 0, this.Width, this.Height);
+                // Vẽ viền cho 4 cạnh
+                // Viền trên
+                e.Graphics.DrawLine(pen, 0, 0, this.Width, 0);
+
+                // Viền dưới
+                e.Graphics.DrawLine(pen, 0, this.Height - 1, this.Width, this.Height - 1);
+
+                // Viền trái
+                e.Graphics.DrawLine(pen, 0, 0, 0, this.Height);
+
+                // Viền phải
+                e.Graphics.DrawLine(pen, this.Width - 1, 0, this.Width - 1, this.Height);
             }
+        }
+        // Thuộc tính để thiết lập tên sản phẩm
+        public string TenSanPham
+        {
+            get { return label_tenSanPham.Text; }
+            set { label_tenSanPham.Text = value; }
         }
 
     }

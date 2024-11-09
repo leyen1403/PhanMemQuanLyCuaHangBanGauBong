@@ -92,5 +92,42 @@ namespace BLL
         {
             return sanPhamDal.SearchProductsOnList(searchText);
         }
+        public List<SanPham> GetUniqueProducts()
+        {
+            return sanPhamDal.GetUniqueProducts();
+        }
+
+        public List<KichThuoc> GetAllSizesByProductName(string productName)
+        {
+            return sanPhamDal.GetAllSizesByProductName(productName);
+        }
+        public List<MauSac> GetAllColorsByProductName(string productName)
+        {
+            return sanPhamDal.GetAllColorsByProductName(productName);
+        }
+        public string GetProductCodesByNameColorSize(string productName, string color, string size)
+        {
+            return sanPhamDal.GetProductCodesByNameColorSize(productName, color, size);
+        }
+        public decimal GetProductPriceByCode(string productCode)
+        {
+            return sanPhamDal.GetProductPriceByCode(productCode);
+        }
+        public List<SanPham> GetUniqueProductsByCategory(string maLoai)
+        {
+            return sanPhamDal.GetUniqueProductsByCategory(maLoai);
+        }
+        public List<SanPham> GetUniqueProducts(string searchKeyword = "")
+        {
+            return sanPhamDal.GetUniqueProducts(searchKeyword);
+        }
+        public List<SanPham> GetSanPhamByMaSP(string maSanPham)
+        {
+            return sanPhamDal.GetSanPhamByMaSP((string) maSanPham);
+        }
+        public IQueryable<object> GetSanPhamWithMauSacKichThuocByMaSanPham(string maSanPham)
+        {
+            return sanPhamDal.GetSanPhamWithMauSacKichThuocByMaSanPham(maSanPham);
+        }
     }
 }

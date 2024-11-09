@@ -39,9 +39,10 @@
             this.anhSanPham.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.anhSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.anhSanPham.Image = ((System.Drawing.Image)(resources.GetObject("anhSanPham.Image")));
-            this.anhSanPham.Location = new System.Drawing.Point(16, 21);
+            this.anhSanPham.Location = new System.Drawing.Point(12, 17);
+            this.anhSanPham.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.anhSanPham.Name = "anhSanPham";
-            this.anhSanPham.Size = new System.Drawing.Size(153, 131);
+            this.anhSanPham.Size = new System.Drawing.Size(115, 106);
             this.anhSanPham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.anhSanPham.TabIndex = 0;
             this.anhSanPham.TabStop = false;
@@ -49,28 +50,29 @@
             // label_tenSanPham
             // 
             this.label_tenSanPham.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label_tenSanPham.AutoSize = true;
             this.label_tenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_tenSanPham.ForeColor = System.Drawing.Color.Navy;
-            this.label_tenSanPham.Location = new System.Drawing.Point(40, 167);
+            this.label_tenSanPham.Location = new System.Drawing.Point(2, 125);
+            this.label_tenSanPham.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_tenSanPham.Name = "label_tenSanPham";
-            this.label_tenSanPham.Size = new System.Drawing.Size(105, 16);
+            this.label_tenSanPham.Size = new System.Drawing.Size(138, 43);
             this.label_tenSanPham.TabIndex = 1;
             this.label_tenSanPham.Text = "Tên sản phẩm";
+            this.label_tenSanPham.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProductItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.label_tenSanPham);
             this.Controls.Add(this.anhSanPham);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ProductItem";
-            this.Size = new System.Drawing.Size(189, 207);
+            this.Size = new System.Drawing.Size(142, 168);
             ((System.ComponentModel.ISupportInitialize)(this.anhSanPham)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
