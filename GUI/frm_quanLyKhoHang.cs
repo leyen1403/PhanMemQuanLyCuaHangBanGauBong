@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using DevExpress.XtraEditors.Filtering.Templates;
 using System.IO;
 using System.Drawing;
+using System.Globalization;
 
 namespace GUI
 {
@@ -258,7 +259,26 @@ namespace GUI
             txt_ngayTao.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             txt_ngayCapNhat.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             GetCurrentRowData();
+            btn_timDK.Click += Btn_timDK_Click;
+            btn_load.Click += Btn_load_Click;
+            //PlaceHover(txt_timSanPham, "Nhập thông tin cần tìm");
 
+        }
+
+        private void Btn_load_Click(object sender, EventArgs e)
+        {
+            loadSanPham();
+        }
+
+        private void Btn_timDK_Click(object sender, EventArgs e)
+        {
+            dgv_dsSanPham.DataSource = null;
+            // Kiểm tra nếu ComboBox có giá trị được chọn
+            string maLoai = cbo_loaiSanPham.SelectedValue != null ? cbo_loaiSanPham.SelectedValue.ToString() : string.Empty;
+            string maMau = cb_tenMauSac.SelectedValue != null ? cb_tenMauSac.SelectedValue.ToString() : string.Empty;
+            string maKichThuoc = cbo_tenKichThuoc.SelectedValue != null ? cbo_tenKichThuoc.SelectedValue.ToString() : string.Empty;
+            List<SanPham> dsSanPham = _sanPhamBLL.SearchProducts(maLoai, maMau, maKichThuoc);
+            dgv_dsSanPham.DataSource = dsSanPham;
         }
 
         private void Btn_khoiPhuc_Click(object sender, EventArgs e)
@@ -304,10 +324,46 @@ namespace GUI
                 string maSanPham = txt_maSanPham.Text; // Giả sử bạn có TextBox txt_maSanPham để lấy mã sản phẩm
                 string tenSanPham = txt_tenSanPham.Text; // TextBox cho tên sản phẩm
                 string donViTinh = txt_donViTinh.Text; // TextBox cho đơn vị tính
-                int soLuongToiThieu = int.Parse(txt_soLuongToiThieu.Text); // TextBox cho số lượng tồn
-                decimal giaNhap = decimal.Parse(txt_giaNhap.Text); // TextBox cho giá nhập
-                decimal giaBan = decimal.Parse(txt_giaBan.Text); // TextBox cho giá bán
+
+                // Kiểm tra giá trị số lượng tồn
+                if (!int.TryParse(txt_soLuongToiThieu.Text, out int soLuongToiThieu))
+                {
+                    MessageBox.Show("Số lượng tối thiểu không hợp lệ!");
+                    return;
+                }
+
+                // Kiểm tra và xử lý giá nhập và giá bán
+                string giaNhapText = txt_giaNhap.Text;
+                string giaBanText = txt_giaBan.Text;
+
+                if (!decimal.TryParse(giaNhapText, out decimal giaNhap))
+                {
+                    MessageBox.Show("Giá nhập không hợp lệ!");
+                    return;
+                }
+
+                if (!decimal.TryParse(giaBanText, out decimal giaBan))
+                {
+                    MessageBox.Show("Giá bán không hợp lệ!");
+                    return;
+                }
+
                 string moTa = txt_moTa.Text; // TextBox cho mô tả
+
+                // Kiểm tra các ComboBox
+                if (cbo_loaiSanPhamAdd.SelectedValue == null || cbo_tenMauSac.SelectedValue == null || cb_kichThuoc.SelectedValue == null)
+                {
+                    MessageBox.Show("Vui lòng chọn Mã Loại, Màu Sắc và Kích Thước.");
+                    return;
+                }
+
+                // Lấy giá trị từ ComboBox
+                string maLoai = cbo_loaiSanPhamAdd.SelectedValue.ToString();
+                string maMauCu = _sanPhamMauSacBll.GetOldProductColor(maSanPham);
+                string maKichThuocCuu = _sanPhamKichThuocBLL.GetOldSize(maSanPham);
+                string maMau = cbo_tenMauSac.SelectedValue.ToString();
+                string maKichThuoc = cb_kichThuoc.SelectedValue.ToString();
+                string hinhanh = txt_duongDan.Text;
 
                 // Tạo đối tượng sản phẩm mới
                 SanPham updatedProduct = new SanPham
@@ -318,15 +374,19 @@ namespace GUI
                     GiaNhap = giaNhap,
                     GiaBan = giaBan,
                     MoTa = moTa,
-                    SoLuongToiThieu=soLuongToiThieu,
+                    SoLuongToiThieu = soLuongToiThieu,
+                    MaLoai = maLoai,
+                    HinhAnh = hinhanh,
                     NgayCapNhat = DateTime.Now // Cập nhật ngày giờ hiện tại
                 };
 
                 // Gọi BLL để lưu thông tin sản phẩm
                 bool result = _sanPhamBLL.UpdateProductInList(updatedProduct); // Giả sử bạn có phương thức UpdateProductInList trong BLL
+                bool capNhatMauSac = _sanPhamMauSacBll.UpdateProductColor(maSanPham, maMauCu, maMau);
+                bool capNhatKichThuoc = _sanPhamKichThuocBLL.UpdateProductSize(maSanPham, maKichThuocCuu, maKichThuoc);
 
-                // Nếu lưu thành công
-                if (result)
+                // Kiểm tra xem tất cả các thao tác có thành công không
+                if (result && capNhatMauSac && capNhatKichThuoc)
                 {
                     MessageBox.Show("Cập nhật sản phẩm thành công.");
 
@@ -345,6 +405,7 @@ namespace GUI
             {
                 MessageBox.Show("Lỗi khi lưu sản phẩm: " + ex.Message);
             }
+
         }
 
         private void Btn_xoaSanPham_Click(object sender, EventArgs e)
@@ -384,8 +445,8 @@ namespace GUI
 
         private void Btn_suaSanPham_Click(object sender, EventArgs e)
         {
-            btn_luuSanPham.Visible=true;
-            btn_khoiPhuc.Visible=true;
+            btn_luuSanPham.Visible = true;
+            btn_khoiPhuc.Visible = true;
         }
         private string taoMaSanPham()
         {
@@ -416,25 +477,38 @@ namespace GUI
                     txt_tenSanPham.Text = currentRow.Cells["TenSanPham"].Value.ToString();
                     txt_donViTinh.Text = currentRow.Cells["DonViTinh"].Value.ToString();
                     txt_soLuongTon.Text = Convert.ToInt32(currentRow.Cells["SoLuongTon"].Value).ToString();
-                    txt_giaNhap.Text = Convert.ToDecimal(currentRow.Cells["GiaNhap"].Value).ToString();
-                    txt_giaBan.Text = Convert.ToDecimal(currentRow.Cells["GiaBan"].Value).ToString();
+                    // Lấy giá trị từ các ô và chuyển đổi thành decimal
+                    decimal giaNhap = Convert.ToDecimal(currentRow.Cells["GiaNhap"].Value);
+                    decimal giaBan = Convert.ToDecimal(currentRow.Cells["GiaBan"].Value);
+
+                    // Định dạng giá trị theo Tiền Việt Nam (VND) và hiển thị trong TextBox
+                    txt_giaNhap.Text = giaNhap.ToString();
+                    txt_giaBan.Text = giaBan.ToString();
                     txt_moTa.Text = currentRow.Cells["MoTa"].Value.ToString();
                     txt_ngayTao.Text = Convert.ToDateTime(currentRow.Cells["NgayTao"].Value).ToString("dd/MM/yyyy");
                     txt_ngayCapNhat.Text = Convert.ToDateTime(currentRow.Cells["NgayCapNhat"].Value).ToString("dd/MM/yyyy");
                     txt_soLuongToiThieu.Text = Convert.ToInt32(currentRow.Cells["SoLuongToiThieu"].Value).ToString();
                     txt_duongDan.Text = currentRow.Cells["HinhAnh"].Value?.ToString();
-                    string hinhanh = currentRow.Cells["HinhAnh"].Value?.ToString(); 
+                    string hinhanh = currentRow.Cells["HinhAnh"].Value?.ToString();
                     if (!string.IsNullOrEmpty(hinhanh))
                     {
-                        LoadImageToPictureBox(hinhanh); 
+                        LoadImageToPictureBox(hinhanh);
                     }
                     else
                     {
-                        img_sanPham.Image = null; 
+                        img_sanPham.Image = null;
                     }
 
-                    string trangThai = currentRow.Cells["TrangThai"].Value.ToString();
-                    txt_trangThai.Text = trangThai == "True" ? "Hoạt động" : "Không hoạt động";
+                    string trangThai = currentRow.Cells["TrangThai"].Value?.ToString(); // Sử dụng dấu hỏi (?) để kiểm tra null
+                    if (string.IsNullOrEmpty(trangThai))
+                    {
+                        txt_trangThai.Text = "Không xác định"; // Hoặc giá trị mặc định khi null
+                    }
+                    else
+                    {
+                        txt_trangThai.Text = trangThai == "True" ? "Hoạt động" : "Không hoạt động";
+                    }
+
 
                 }
                 else
@@ -453,9 +527,29 @@ namespace GUI
         {
             try
             {
-                string maSanPham = taoMaSanPham();  
+                string maSanPham = taoMaSanPham();
                 string tenSanPham = txt_tenSanPham.Text;
                 string donViTinh = txt_donViTinh.Text;
+                string giaNhapText = txt_giaNhap.Text;
+                string giaBanText = txt_giaBan.Text;
+
+                // Loại bỏ các ký tự không hợp lệ như dấu phân cách (ví dụ: dấu ',' hoặc ký hiệu tiền tệ "₫")
+                giaNhapText = giaNhapText.Replace(",", "").Replace("₫", "").Trim();
+                giaBanText = giaBanText.Replace(",", "").Replace("₫", "").Trim();
+
+                // Kiểm tra và ép kiểu số liệu từ các TextBox
+                if (!decimal.TryParse(giaNhapText, out decimal giaNhap))
+                {
+                    MessageBox.Show("Giá nhập không hợp lệ!");
+                    return;
+                }
+
+                if (!decimal.TryParse(giaBanText, out decimal giaBan))
+                {
+                    MessageBox.Show("Giá bán không hợp lệ!");
+                    return;
+                }
+
 
                 // Kiểm tra và ép kiểu số liệu từ các TextBox
                 if (!int.TryParse(txt_soLuongTon.Text, out int soLuongTon))
@@ -464,21 +558,9 @@ namespace GUI
                     return;
                 }
 
-                int soLuongToiThieu = 10;  
-                if (!decimal.TryParse(txt_giaNhap.Text, out decimal giaNhap))
-                {
-                    MessageBox.Show("Giá nhập không hợp lệ!");
-                    return;
-                }
-
-                if (!decimal.TryParse(txt_giaBan.Text, out decimal giaBan))
-                {
-                    MessageBox.Show("Giá bán không hợp lệ!");
-                    return;
-                }
-
+                int soLuongToiThieu = 10;
                 string moTa = txt_moTa.Text;
-                string hinhAnh = txt_duongDan.Text;  
+                string hinhAnh = txt_duongDan.Text;
 
                 // Kiểm tra ComboBox có giá trị được chọn hay không
                 if (cbo_loaiSanPhamAdd.SelectedValue == null || cbo_tenMauSac.SelectedValue == null || cb_kichThuoc.SelectedValue == null)
@@ -604,8 +686,58 @@ namespace GUI
 
         private void Btn_timKiem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            string search = txt_timSanPham.Text;
+            if (string.IsNullOrEmpty(search))
+            {
+                MessageBox.Show("Vui lòng nhập thông tin cần tìm kiếm");
+            }
+            List<SanPham> dsSanPham = _sanPhamBLL.SearchProducts(search);
+            if (dsSanPham != null)
+            {
+                dgv_dsSanPham.DataSource = dsSanPham;
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sản phẩm nào");
+                loadSanPham();
+            }
         }
+
+        private void PlaceHover(TextBox textBox, string textToShow)
+        {
+            // Di chuột vào TextBox
+            textBox.MouseEnter += (sender, e) =>
+            {
+                if (string.IsNullOrEmpty(textBox.Text))  // Kiểm tra nếu TextBox trống thì ẩn chữ mẫu
+                {
+                    textBox.Text = "";  // Xóa chữ khi chuột rời khỏi
+                    textBox.ForeColor = System.Drawing.Color.Black; // Đặt màu chữ lại như mặc định (màu đen)
+                }
+            };
+
+            // Rời chuột khỏi TextBox
+            textBox.MouseLeave += (sender, e) =>
+            {
+                if (string.IsNullOrEmpty(textBox.Text))  // Kiểm tra nếu TextBox trống thì hiển thị chữ mẫu
+                {
+                    textBox.Text = textToShow;  // Hiển thị chữ khi chuột vào
+                    textBox.ForeColor = System.Drawing.Color.Gray;  // Chữ màu xám
+                }
+
+            };
+
+            // Kiểm tra khi người dùng bắt đầu nhập liệu
+            textBox.TextChanged += (sender, e) =>
+            {
+                if (string.IsNullOrEmpty(textBox.Text))  // Kiểm tra nếu TextBox trống thì ẩn chữ mẫu
+                {
+                    textBox.Text = "";  // Xóa chữ khi chuột rời khỏi
+                    textBox.ForeColor = System.Drawing.Color.Black; // Đặt màu chữ lại như mặc định (màu đen)
+                }
+            };
+        }
+
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {

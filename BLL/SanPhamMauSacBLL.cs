@@ -22,5 +22,9 @@ namespace BLL
         {
             return dal.DeleteProductColor(maSanPham, maMau);
         }
+        public string GetOldProductColor(string maSanPham)
+        {
+            return dal.GetOldProductColor(maSanPham);
+        }
     }
 }

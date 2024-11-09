@@ -73,5 +73,23 @@ namespace DAL
         {
             return db.SanPham_KichThuocs.Where(s => s.MaSanPham == maSanPham).ToList();
         }
+        // Lấy tên kích thước của sản phẩm dựa trên mã sản phẩm
+        public string GetOldProductSize(string maSanPham)
+        {
+            try
+            {
+                var sizeName = (from spKichThuoc in db.SanPham_KichThuocs
+                                join kichThuoc in db.KichThuocs on spKichThuoc.MaKichThuoc equals kichThuoc.MaKichThuoc
+                                where spKichThuoc.MaSanPham == maSanPham
+                                select kichThuoc.TenKichThuoc).FirstOrDefault();
+
+                return sizeName; // Trả về tên kích thước hoặc null nếu không tìm thấy
+            }
+            catch
+            {
+                return null; // Hoặc có thể trả về một giá trị khác nếu cần
+            }
+        }
+
     }
 }

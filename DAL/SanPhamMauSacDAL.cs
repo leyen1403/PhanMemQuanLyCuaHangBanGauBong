@@ -73,5 +73,23 @@ namespace DAL
         {
             return db.SanPham_MauSacs.Where(s => s.MaSanPham == maSanPham).ToList();
         }
+        // Lấy tên màu sắc của sản phẩm dựa trên mã sản phẩm
+        public string GetOldProductColor(string maSanPham)
+        {
+            try
+            {
+                var colorName = (from spMauSac in db.SanPham_MauSacs
+                                 join mauSac in db.MauSacs on spMauSac.MaMau equals mauSac.MaMau
+                                 where spMauSac.MaSanPham == maSanPham
+                                 select mauSac.TenMau).FirstOrDefault();
+
+                return colorName; // Trả về tên màu hoặc null nếu không tìm thấy
+            }
+            catch
+            {
+                return null; // Trả về null trong trường hợp lỗi
+            }
+        }
+
     }
 }

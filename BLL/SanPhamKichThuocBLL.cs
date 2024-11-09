@@ -22,5 +22,10 @@ namespace BLL
         {
             return dal.DeleteProductSize(maSanPham, maKichThuoc);
         }
+
+        public string GetOldSize(string maSanPham)
+        {
+            return dal.GetOldProductSize(maSanPham);
+        }
     }
 }

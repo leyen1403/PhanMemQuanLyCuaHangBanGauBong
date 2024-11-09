@@ -84,5 +84,13 @@ namespace BLL
         {
             return GetProductList().Where(sp => sp.TrangThai == true).ToList();
         }
+        public List<SanPham> SearchProducts(string maLoaiSanPham = null, string maMau = null, string maKichThuoc = null)
+        {
+            return sanPhamDal.SearchProducts(maLoaiSanPham, maMau, maKichThuoc);
+        }
+        public List<SanPham> SearchProductsOnList(string searchText)
+        {
+            return sanPhamDal.SearchProductsOnList(searchText);
+        }
     }
 }
