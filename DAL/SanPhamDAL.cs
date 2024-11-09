@@ -164,6 +164,224 @@ namespace DAL
                 return new List<SanPham>(); // Trả về danh sách rỗng nếu có lỗi
             }
         }
+
+        // xử lý hoá đơn
+        // Phương thức lấy tất cả sản phẩm không trùng tên
+        public List<SanPham> GetUniqueProducts()
+        {
+            try
+            {
+                // Lấy tất cả sản phẩm từ cơ sở dữ liệu
+                var allProducts = db.SanPhams.Where(sp => sp.TrangThai==true).ToList();
+
+                // Lọc ra các sản phẩm, nếu có nhiều sản phẩm trùng tên thì chỉ lấy một sản phẩm trong nhóm đó
+                var uniqueProducts = allProducts
+                    .GroupBy(sp => sp.TenSanPham)  // Nhóm theo tên sản phẩm
+                    .Select(g => g.First())        // Lấy sản phẩm đầu tiên trong mỗi nhóm (ngay cả khi có nhiều sản phẩm trùng tên)
+                    .ToList();
+
+                return uniqueProducts;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách sản phẩm không trùng tên: " + ex.Message);
+                return new List<SanPham>();  // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+
+        public List<KichThuoc> GetAllSizesByProductName(string productName)
+        {
+            try
+            {
+                // Truy vấn kết hợp giữa SanPham và SanPham_KichThuoc
+                var sizes = from sp in db.SanPhams
+                            join spKichThuoc in db.SanPham_KichThuocs on sp.MaSanPham equals spKichThuoc.MaSanPham
+                            join kichThuoc in db.KichThuocs on spKichThuoc.MaKichThuoc equals kichThuoc.MaKichThuoc
+                            where sp.TenSanPham == productName  // Lọc theo tên sản phẩm
+                            select kichThuoc;  // Chọn kích thước tương ứng
+
+                return sizes.Distinct().ToList();  // Trả về danh sách kích thước không trùng lặp
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy kích thước sản phẩm: " + ex.Message);
+                return new List<KichThuoc>();  // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+        public List<MauSac> GetAllColorsByProductName(string productName)
+        {
+            try
+            {
+                // Truy vấn kết hợp giữa SanPham và SanPham_MauSac
+                var colors = from sp in db.SanPhams
+                             join spMauSac in db.SanPham_MauSacs on sp.MaSanPham equals spMauSac.MaSanPham
+                             join mauSac in db.MauSacs on spMauSac.MaMau equals mauSac.MaMau
+                             where sp.TenSanPham == productName  // Lọc theo tên sản phẩm
+                             select mauSac;  // Chọn màu sắc tương ứng
+
+                return colors.Distinct().ToList();  // Trả về danh sách màu sắc không trùng lặp
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy màu sắc sản phẩm: " + ex.Message);
+                return new List<MauSac>();  // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+        // Phương thức tìm mã sản phẩm theo tên, màu sắc và kích thước
+        public string GetProductCodesByNameColorSize(string productName, string color, string size)
+        {
+            try
+            {
+                var query = from sp in db.SanPhams
+                            join spMauSac in db.SanPham_MauSacs on sp.MaSanPham equals spMauSac.MaSanPham into spMauSacJoin
+                            from spMauSac in spMauSacJoin.DefaultIfEmpty()
+                            join mau in db.MauSacs on spMauSac.MaMau equals mau.MaMau into mauJoin
+                            from mau in mauJoin.DefaultIfEmpty()
+                            join spKichThuoc in db.SanPham_KichThuocs on sp.MaSanPham equals spKichThuoc.MaSanPham into spKichThuocJoin
+                            from spKichThuoc in spKichThuocJoin.DefaultIfEmpty()
+                            join kichThuoc in db.KichThuocs on spKichThuoc.MaKichThuoc equals kichThuoc.MaKichThuoc into kichThuocJoin
+                            from kichThuoc in kichThuocJoin.DefaultIfEmpty()
+                            where (string.IsNullOrEmpty(productName) || sp.TenSanPham.Contains(productName))
+                                  && (string.IsNullOrEmpty(color) || (mau != null && mau.TenMau.Contains(color)))
+                                  && (string.IsNullOrEmpty(size) || (kichThuoc != null && kichThuoc.TenKichThuoc.Contains(size)))
+                            select sp.MaSanPham;
+
+                // Trả về mã sản phẩm đầu tiên, hoặc có thể sử dụng ToList() nếu cần tất cả mã sản phẩm
+                return query.Distinct().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi tìm mã sản phẩm: " + ex.Message);
+                return null;  // Trả về null nếu có lỗi
+            }
+        }
+
+        // Phương thức lấy giá bán của sản phẩm dựa trên mã sản phẩm
+        public decimal GetProductPriceByCode(string productCode)
+        {
+            try
+            {
+                var product = db.SanPhams
+                                .FirstOrDefault(sp => sp.MaSanPham == productCode);
+
+                if (product != null)
+                {
+                    return product.GiaBan ?? 0;  // Trả về 0 nếu GiaBan là null
+                }
+                else
+                {
+                    return 0;  // Trả về giá 0 nếu không tìm thấy sản phẩm
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy giá sản phẩm: " + ex.Message);
+                return 0;  // Trả về 0 nếu có lỗi
+            }
+        }
+
+        // Phương thức lấy danh sách sản phẩm không trùng tên theo mã loại
+        public List<SanPham> GetUniqueProductsByCategory(string maLoai)
+        {
+            try
+            {
+                // Lấy tất cả sản phẩm từ cơ sở dữ liệu theo mã loại và trạng thái
+                var allProducts = db.SanPhams
+                    .Where(sp => sp.TrangThai == true && sp.MaLoai == maLoai)
+                    .ToList();
+
+                // Lọc ra các sản phẩm không trùng tên
+                var uniqueProducts = allProducts
+                    .GroupBy(sp => sp.TenSanPham)  // Nhóm theo tên sản phẩm
+                    .Select(g => g.First())        // Lấy sản phẩm đầu tiên trong mỗi nhóm
+                    .ToList();
+
+                return uniqueProducts;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách sản phẩm không trùng tên: " + ex.Message);
+                return new List<SanPham>();  // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+
+        public List<SanPham> GetUniqueProducts(string searchKeyword = "")
+        {
+            try
+            {
+                var allProducts = db.SanPhams
+                    .Where(sp => sp.TrangThai == true)
+                    .AsQueryable(); 
+
+                if (!string.IsNullOrEmpty(searchKeyword))
+                {
+                    allProducts = allProducts
+                        .Where(sp => sp.TenSanPham.Contains(searchKeyword) || sp.MaSanPham.Contains(searchKeyword));
+                }
+
+                var uniqueProducts = allProducts
+                    .GroupBy(sp => sp.TenSanPham)  
+                    .Select(g => g.First())        
+                    .ToList();
+
+                return uniqueProducts;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách sản phẩm không trùng tên: " + ex.Message);
+                return new List<SanPham>();  
+            }
+        }
+        public List<SanPham> GetSanPhamByMaSP(string maSanPham)
+        {
+            try
+            {
+                // Truy vấn cơ sở dữ liệu để lấy danh sách sản phẩm theo mã sản phẩm
+                var sanPhams = db.SanPhams
+                                 .Where(sp => sp.MaSanPham == maSanPham && sp.TrangThai == true)
+                                 .ToList();
+
+                return sanPhams;
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi nếu có
+                Console.WriteLine("Lỗi khi lấy thông tin sản phẩm: " + ex.Message);
+                return new List<SanPham>(); // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+        public IQueryable<object> GetSanPhamWithMauSacKichThuocByMaSanPham(string maSanPham)
+        {
+            try
+            {
+                var query = from sp in db.SanPhams
+                            join sp_mauSac in db.SanPham_MauSacs on sp.MaSanPham equals sp_mauSac.MaSanPham
+                            join mauSac in db.MauSacs on sp_mauSac.MaMau equals mauSac.MaMau
+                            join sp_kichThuoc in db.SanPham_KichThuocs on sp.MaSanPham equals sp_kichThuoc.MaSanPham
+                            join kichThuoc in db.KichThuocs on sp_kichThuoc.MaKichThuoc equals kichThuoc.MaKichThuoc
+                            where sp.MaSanPham == maSanPham && sp.TrangThai == true // Lọc theo mã sản phẩm và trạng thái còn bán
+                            select new
+                            {
+                                sp.MaSanPham,
+                                sp.TenSanPham,
+                                sp.DonViTinh,
+                                sp.SoLuongTon,
+                                sp.GiaBan,
+                                sp.MoTa,
+                                sp.HinhAnh,
+                                TenMau = mauSac.TenMau,
+                                TenKichThuoc = kichThuoc.TenKichThuoc
+                            };
+
+                return query;
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi nếu có
+                Console.WriteLine("Lỗi khi lấy thông tin sản phẩm, màu sắc và kích thước: " + ex.Message);
+                return null;
+            }
+        }
     }
 }
 
