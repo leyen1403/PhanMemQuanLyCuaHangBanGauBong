@@ -30,5 +30,31 @@ namespace DAL
                 return false;
             }
         }
+
+        public DonDatHang LayDonDatHang(string maDonDatHang)
+        {
+            return db.DonDatHangs.Where(ddh => ddh.MaDonDatHang == maDonDatHang).FirstOrDefault();
+        }
+
+        public bool CapNhatDonDatHang(DonDatHang ddh)
+        {
+            try
+            {
+                DonDatHang ddhNew = db.DonDatHangs.Where(d => d.MaDonDatHang == ddh.MaDonDatHang).FirstOrDefault();
+                ddhNew.NgayDat = ddh.NgayDat;
+                ddhNew.TongTien = ddh.TongTien;
+                ddhNew.TrangThai = ddh.TrangThai;
+                ddhNew.NgayTao = ddh.NgayTao;
+                ddhNew.NgayCapNhat = ddh.NgayCapNhat;
+                ddhNew.MaNhanVien = ddh.MaNhanVien;
+                ddhNew.MaNhaCungCap = ddh.MaNhaCungCap;
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

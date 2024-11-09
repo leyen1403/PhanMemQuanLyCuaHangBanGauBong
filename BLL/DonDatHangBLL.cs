@@ -22,5 +22,15 @@ namespace BLL
         {
             return ddhDAL.ThemDonDatHang(ddh);
         }
+
+        public DonDatHang LayDonDayHang(string maDonDatHang)
+        {
+            return ddhDAL.LayDonDatHang(maDonDatHang);
+        }
+
+        public bool CapNhatDonDatHang(DonDatHang ddh)
+        {
+            return ddhDAL.CapNhatDonDatHang(ddh);
+        }
     }
 }

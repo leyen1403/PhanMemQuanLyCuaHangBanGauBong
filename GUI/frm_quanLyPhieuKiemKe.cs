@@ -15,7 +15,6 @@ namespace GUI
 {
     public partial class frm_quanLyPhieuKiemKe : Form
     {
-        string _maNhanVien = "";
         int _tongChenhLech = 0, _tongChenhLechGia = 0;
         List<PhieuKiemKe> _ListPhieuKiemKe = new List<PhieuKiemKe>();
         PhieuKiemKeBLL _PhieuKiemKeBLL = new PhieuKiemKeBLL();

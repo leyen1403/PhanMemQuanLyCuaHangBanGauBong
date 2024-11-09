@@ -34,6 +34,7 @@ namespace DAL
                 if (ctdh1 != null)
                 {
                     ctdh1.SoLuongYeuCau = ctdh.SoLuongYeuCau;
+                    ctdh1.ThanhTien = ctdh.ThanhTien;
                     db.SubmitChanges();
                     return true;
                 }

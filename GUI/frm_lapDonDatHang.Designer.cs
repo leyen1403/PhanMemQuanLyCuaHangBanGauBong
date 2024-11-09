@@ -47,6 +47,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvDanhSachSanPham = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtSoLuongNhapThem = new System.Windows.Forms.NumericUpDown();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -64,8 +65,8 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.txtSoLuongNhapThem = new System.Windows.Forms.NumericUpDown();
+            this.btnDatHang = new System.Windows.Forms.Button();
+            this.lblTongGiaTriDonHang = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachChiTietDonDatHang)).BeginInit();
@@ -232,10 +233,12 @@
             // 
             // dgvDanhSachChiTietDonDatHang
             // 
+            this.dgvDanhSachChiTietDonDatHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDanhSachChiTietDonDatHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDanhSachChiTietDonDatHang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDanhSachChiTietDonDatHang.Location = new System.Drawing.Point(3, 23);
             this.dgvDanhSachChiTietDonDatHang.Name = "dgvDanhSachChiTietDonDatHang";
+            this.dgvDanhSachChiTietDonDatHang.ReadOnly = true;
             this.dgvDanhSachChiTietDonDatHang.Size = new System.Drawing.Size(690, 467);
             this.dgvDanhSachChiTietDonDatHang.TabIndex = 0;
             // 
@@ -259,6 +262,7 @@
             this.dgvDanhSachSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDanhSachSanPham.Location = new System.Drawing.Point(3, 23);
             this.dgvDanhSachSanPham.Name = "dgvDanhSachSanPham";
+            this.dgvDanhSachSanPham.ReadOnly = true;
             this.dgvDanhSachSanPham.Size = new System.Drawing.Size(762, 467);
             this.dgvDanhSachSanPham.TabIndex = 0;
             // 
@@ -288,6 +292,13 @@
             this.groupBox4.TabIndex = 31;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Thông tin sản phẩm";
+            // 
+            // txtSoLuongNhapThem
+            // 
+            this.txtSoLuongNhapThem.Location = new System.Drawing.Point(181, 108);
+            this.txtSoLuongNhapThem.Name = "txtSoLuongNhapThem";
+            this.txtSoLuongNhapThem.Size = new System.Drawing.Size(260, 27);
+            this.txtSoLuongNhapThem.TabIndex = 34;
             // 
             // btnXoa
             // 
@@ -456,24 +467,27 @@
             this.button3.TabIndex = 33;
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnDatHang
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(1238, 167);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(83, 52);
-            this.button4.TabIndex = 34;
-            this.button4.Text = "Đặt hàng";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnDatHang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDatHang.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnDatHang.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDatHang.Location = new System.Drawing.Point(1238, 167);
+            this.btnDatHang.Name = "btnDatHang";
+            this.btnDatHang.Size = new System.Drawing.Size(83, 52);
+            this.btnDatHang.TabIndex = 34;
+            this.btnDatHang.Text = "Đặt hàng";
+            this.btnDatHang.UseVisualStyleBackColor = false;
             // 
-            // txtSoLuongNhapThem
+            // lblTongGiaTriDonHang
             // 
-            this.txtSoLuongNhapThem.Location = new System.Drawing.Point(181, 108);
-            this.txtSoLuongNhapThem.Name = "txtSoLuongNhapThem";
-            this.txtSoLuongNhapThem.Size = new System.Drawing.Size(260, 27);
-            this.txtSoLuongNhapThem.TabIndex = 34;
+            this.lblTongGiaTriDonHang.AutoSize = true;
+            this.lblTongGiaTriDonHang.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongGiaTriDonHang.Location = new System.Drawing.Point(12, 358);
+            this.lblTongGiaTriDonHang.Name = "lblTongGiaTriDonHang";
+            this.lblTongGiaTriDonHang.Size = new System.Drawing.Size(103, 19);
+            this.lblTongGiaTriDonHang.TabIndex = 35;
+            this.lblTongGiaTriDonHang.Text = "Tổng giá trị: ";
             // 
             // frm_lapDonDatHang
             // 
@@ -481,7 +495,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1491, 903);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.lblTongGiaTriDonHang);
+            this.Controls.Add(this.btnDatHang);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -543,9 +558,10 @@
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnDatHang;
         private System.Windows.Forms.DataGridView dgvDanhSachChiTietDonDatHang;
         private System.Windows.Forms.DataGridView dgvDanhSachSanPham;
         private System.Windows.Forms.NumericUpDown txtSoLuongNhapThem;
+        private System.Windows.Forms.Label lblTongGiaTriDonHang;
     }
 }
