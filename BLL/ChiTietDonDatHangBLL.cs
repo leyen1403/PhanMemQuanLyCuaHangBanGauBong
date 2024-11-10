@@ -32,5 +32,9 @@ namespace BLL
         {
             return ctdhDAL.XoaChiTietDonDatHang(ctddh);
         }
+        public bool CapNhatChiTietDonDatHang(ChiTietDonDatHang ctddh)
+        {
+            return ctdhDAL.CapNhatChiTietDonDatHang(ctddh);
+        }
     }
 }

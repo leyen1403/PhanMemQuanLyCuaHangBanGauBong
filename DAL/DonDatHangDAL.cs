@@ -15,8 +15,9 @@ namespace DAL
         db_QLCHBGBDataContext db = new db_QLCHBGBDataContext();
         public List<DonDatHang> LayDanhSachDonDatHang()
         {
-            return db.DonDatHangs.ToList();
+            return db.DonDatHangs.OrderByDescending(ddh => ddh.MaDonDatHang).ToList();
         }
+
         public bool ThemDonDatHang(DonDatHang ddh)
         {
             try
@@ -48,6 +49,7 @@ namespace DAL
                 ddhNew.NgayCapNhat = ddh.NgayCapNhat;
                 ddhNew.MaNhanVien = ddh.MaNhanVien;
                 ddhNew.MaNhaCungCap = ddh.MaNhaCungCap;
+                ddhNew.MaNhanVien = ddh.MaNhanVien;
                 db.SubmitChanges();
                 return true;
             }

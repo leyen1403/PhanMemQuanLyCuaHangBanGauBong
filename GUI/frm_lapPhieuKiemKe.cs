@@ -233,7 +233,7 @@ namespace GUI
                 {
                     MessageBox.Show("Tạo phiếu kiểm kê thành công");
                     loadCombobox();
-                    cbbMaPhieuKiemKe.SelectedIndex = cbbMaPhieuKiemKe.Items.Count - 1;
+                    cbbMaPhieuKiemKe.SelectedIndex = 0;
                 }
             }
             catch

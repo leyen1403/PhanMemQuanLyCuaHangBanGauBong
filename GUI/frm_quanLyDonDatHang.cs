@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,8 +11,6 @@ namespace GUI
     public partial class frm_quanLyDonDatHang : Form
     {
         string _maNhanVien = "NV002";
-        int _soLuong;
-        decimal _donGia, _thanhTien, _tongTien;
 
         List<NhaCungCap> _listNhaCungCap = new List<NhaCungCap>();
         NhaCungCapBLL _nhaCungCapBLL = new NhaCungCapBLL();
@@ -24,6 +23,8 @@ namespace GUI
 
         List<ChiTietDonDatHang> _listCTDDH = new List<ChiTietDonDatHang>();
         ChiTietDonDatHangBLL _chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+
+        SanPhamBLL _sanPhamBLL = new SanPhamBLL();
 
         public frm_quanLyDonDatHang()
         {
@@ -41,15 +42,105 @@ namespace GUI
             this.btnCapNhat.Click += BtnCapNhat_Click;
         }
 
+        private void BtnCapNhat_Click(object sender, EventArgs e)
+        {
+            SanPham sp = new SanPham();
+            ChiTietDonDatHang ctddh = new ChiTietDonDatHang();
+            DonDatHang ddh = new DonDatHang();
+            if (dgvChiTietDDH.Rows.Count > 0)
+            {
+                string maSP = dgvChiTietDDH.CurrentRow.Cells["MaSanPham"].Value.ToString();
+                sp = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang().Where(ct => ct.MaSanPham == maSP).FirstOrDefault().SanPham;
+                sp.GiaNhap = Convert.ToDecimal(txtDonGia.Text.Replace(",", ""));
+                sp.NgayCapNhat = DateTime.Now;
+                if (!_sanPhamBLL.UpdateProduct(sp))
+                {
+                    MessageBox.Show("Cập nhật sản phẩm thất bại");
+                }
+                string maDDH = dgvChiTietDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
+                ddh = _donDatHangBLL.LayDonDayHang(maDDH);
+                ddh.TongTien = Convert.ToDecimal(txtTongTien.Text.Replace(",", ""));
+                ddh.NgayCapNhat = DateTime.Now;
+                ddh.TrangThai = cbbTrangThaiCTDDH.SelectedValue.ToString();
+                ddh.MaNhanVien = _maNhanVien;
+                if (!_donDatHangBLL.CapNhatDonDatHang(ddh))
+                {
+                    MessageBox.Show("Cập nhật đơn đặt hàng thất bại");
+                    return;
+                }
+                ctddh = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(maDDH).Where(ct => ct.MaSanPham == maSP).FirstOrDefault();
+                ctddh.SoLuongYeuCau = Convert.ToInt32(txtSoLuongYeuCau.Value.ToString());
+                ctddh.SoLuongCungCap = Convert.ToInt32(txtSoLuongCungCap.Value.ToString());
+                ctddh.SoLuongThieu = int.Parse(txtSoLuongThieu.Text);
+                ctddh.DonGia = Convert.ToDecimal(txtDonGia.Text.Replace(",", ""));
+                ctddh.ThanhTien = Convert.ToDecimal(txtThanhTien.Text.Replace(",", ""));
+                if (cbbTrangThaiCTDDH.SelectedValue != null)
+                {
+                    ctddh.TrangThai = cbbTrangThaiCTDDH.SelectedValue.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Hãy chọn trạng thái.");
+                    return;
+                }
+                ctddh.TrangThai = cbbTrangThaiCTDDH.SelectedValue.ToString();
+                if (!_chiTietDonDatHangBLL.CapNhatChiTietDonDatHang(ctddh))
+                {
+                    MessageBox.Show("Cập nhật chi tiết đơn đặt hàng thất bại");
+                    return;
+                }
+                MessageBox.Show("Cập nhật thành công");
+                hienThiDanhSachDonDatHang();
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn đúng");
+            }
+        }
+        void hienThiDanhSachDonDatHang()
+        {
+            string luaChon = cbbLuaChonHienThi.SelectedValue.ToString();
+            switch (luaChon)
+            {
+                case "TatCa":
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang();
+                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
+                    suaTieuDeCotDSDDH();
+                    break;
+                case "NhanVien":
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(d => d.MaNhanVien == cbbNhanVien.SelectedValue.ToString()).ToList();
+                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
+                    suaTieuDeCotDSDDH();
+                    break;
+                case "NgayDatHang":
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(d => d.NgayDat >= dtpTuNgay.Value && d.NgayDat <= dtpDenNgay.Value).ToList();
+                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
+                    suaTieuDeCotDSDDH();
+                    break;
+                case "TrangThai":
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(d => d.TrangThai == cbbTrangThai.SelectedValue.ToString()).ToList();
+                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
+                    suaTieuDeCotDSDDH();
+                    break;
+                case "NhaCungCap":
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(d => d.MaNhaCungCap == cbbNhaCungCap.SelectedValue.ToString()).ToList();
+                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
+                    suaTieuDeCotDSDDH();
+                    break;
+                default:
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang();
+                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
+                    suaTieuDeCotDSDDH();
+                    break;
+            }
+        }
+
         private void TxtSoLuongCungCap_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                _soLuong = int.Parse(txtSoLuongCungCap.Text);
-                _donGia = decimal.Parse(txtDonGia.Text.Replace(",", ""));
-                _thanhTien = _soLuong * _donGia;
-                txtThanhTien.Text = _thanhTien.ToString("N0");
-                txtDonGia.Text = _donGia.ToString("N0");
+                tinhToanTien();
             }
             catch
             {
@@ -62,12 +153,17 @@ namespace GUI
             try
             {
                 string input = txtDonGia.Text.Replace(",", "");
+                if (string.IsNullOrEmpty(txtDonGia.Text))
+                {
+                    txtDonGia.Text = "0";
+                    return;
+                }
                 if (decimal.TryParse(input, out decimal result))
                 {
                     txtDonGia.Text = result.ToString("N0");
                     txtDonGia.SelectionStart = txtDonGia.Text.Length;
                 }
-                
+                tinhToanTien();
             }
             catch (Exception ex)
             {
@@ -75,6 +171,42 @@ namespace GUI
             }
         }
 
+        private void tinhToanTien()
+        {
+
+            int soLuong = int.Parse(txtSoLuongCungCap.Text);
+            decimal donGia = decimal.Parse(txtDonGia.Text.Replace(",", ""));
+            decimal thanhTienMoi = soLuong * donGia;
+
+            if (dgvDanhSachDonDatHang.CurrentRow != null && dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value != null)
+            {
+                decimal tongTienCu = Convert.ToDecimal(dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value.ToString());
+                decimal thanhTienCu = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["ThanhTien"].Value.ToString());
+                decimal tongTienMoi = tongTienCu - thanhTienCu + thanhTienMoi;
+                int soLuongThieu = (int)(txtSoLuongYeuCau.Value - txtSoLuongCungCap.Value);
+                txtSoLuongThieu.Text = soLuongThieu.ToString();
+                txtTongTien.Text = tongTienMoi.ToString("N0");
+                txtThanhTien.Text = thanhTienMoi.ToString("N0");
+            }
+            else
+            {
+                clearAll();
+            }
+
+
+        }
+
+        private void clearAll()
+        {
+            txtSoLuongCungCap.Text = "0";
+            txtDonGia.Text = "0";
+            txtThanhTien.Text = "0";
+            txtTongTien.Text = "0";
+            txtTenLoai.Text = "";
+            txtTenSP.Text = "";
+            txtSoLuongYeuCau.Text = "";
+            txtSoLuongThieu.Text = "";
+        }
 
         private void TxtDonGia_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -84,38 +216,50 @@ namespace GUI
             }
         }
 
-        private void BtnCapNhat_Click(object sender, EventArgs e)
-        {
-            SanPham sp = new SanPham();
-            ChiTietDonDatHang ctddh = new ChiTietDonDatHang();
-            string maSP = dgvChiTietDDH.CurrentRow.Cells["MaSanPham"].Value.ToString();
-            string maDDH = dgvChiTietDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
-            sp = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang().Where(ct => ct.MaSanPham == maSP).FirstOrDefault().SanPham;
-            ctddh = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang().Where(ct => ct.MaSanPham == maSP && ct.MaDonDatHang == maDDH).FirstOrDefault();
-
-        }
-
         private void dgvChiTietDDH_SelectionChanged(object sender, EventArgs e)
         {
-            string maSP = dgvChiTietDDH.CurrentRow.Cells["MaSanPham"].Value.ToString();
-            SanPham sp = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang().Where(ct => ct.MaSanPham == maSP).FirstOrDefault().SanPham;
-            txtTenSP.Text = sp.TenSanPham;
-            txtTenLoai.Text = sp.LoaiSanPham.TenLoai;
-            txtSoLuongYeuCau.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongYeuCau"].Value.ToString();
-            txtSoLuongCungCap.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongCungCap"].Value.ToString();
-            txtSoLuongThieu.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongThieu"].Value.ToString();
-            txtDonGia.Text = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["DonGia"].Value).ToString("N0");
-            txtThanhTien.Text = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["ThanhTien"].Value).ToString("N0");
-            txtTongTien.Text = Convert.ToDecimal(dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value).ToString("N0");
+            if (dgvChiTietDDH.DataSource != null)
+            {
+                string maSP = dgvChiTietDDH.CurrentRow.Cells["MaSanPham"].Value.ToString();
+                SanPham sp = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang().Where(ct => ct.MaSanPham == maSP).FirstOrDefault().SanPham;
+                txtTenSP.Text = sp.TenSanPham;
+                txtTenLoai.Text = sp.LoaiSanPham.TenLoai;
+                txtSoLuongYeuCau.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongYeuCau"].Value.ToString();
+                txtSoLuongCungCap.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongCungCap"].Value.ToString();
+                txtSoLuongThieu.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongThieu"].Value.ToString();
+                txtDonGia.Text = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["DonGia"].Value).ToString("N0");
+                txtThanhTien.Text = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["ThanhTien"].Value).ToString("N0");
+                string trangThai = dgvChiTietDDH.CurrentRow.Cells["TrangThai"].Value.ToString();
+                cbbTrangThaiCTDDH.SelectedValue = trangThai;
+                if (dgvDanhSachDonDatHang.CurrentRow != null && dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value != null)
+                {
+                    txtTongTien.Text = Convert.ToDecimal(dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value).ToString("N0");
+                }
+            }
+            
         }
 
         private void dgvDanhSachDonDatHang_SelectionChanged(object sender, EventArgs e)
         {
             string maDonDatHang = dgvDanhSachDonDatHang.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
             _listCTDDH = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(maDonDatHang);
+            if(_listCTDDH.Count < 0)
+            {
+                dgvChiTietDDH.DataSource = null;
+                return;
+            }
             ThemCotSoThuTu(dgvChiTietDDH);
             dgvChiTietDDH.DataSource = _listCTDDH;
             suaTieuDeCotDSCTDDH();
+            string trangThaiDonHang = dgvDanhSachDonDatHang.CurrentRow.Cells["TrangThai"].Value.ToString();
+            foreach(var item in cbbTrangThaiCTDDH.Items)
+            {
+                if (item.ToString() == trangThaiDonHang)
+                {
+                    cbbTrangThaiCTDDH.SelectedValue = trangThaiDonHang;
+                    break;
+                }
+            }
         }
 
         private void suaTieuDeCotDSCTDDH()
@@ -225,6 +369,10 @@ namespace GUI
             dgvDanhSachDonDatHang.Columns["MaNhanVien"].Visible = false;
             dgvDanhSachDonDatHang.Columns["NhaCungCap"].Visible = false;
             dgvDanhSachDonDatHang.Columns["NhanVien"].Visible = false;
+            if(_listDonDatHang.Count <= 0)
+            {
+                dgvChiTietDDH.DataSource = null;
+            }
         }
 
         private void ChinhSuaTieuDeCot(DataGridView dgv, Dictionary<string, string> columnHeaders)
@@ -298,7 +446,24 @@ namespace GUI
             loadNhaCungCapVaoComboBox(cbbNhaCungCap);
             loadLuaChonHienThiVaoComboBox(cbbLuaChonHienThi);
             loadNhanVienVaoComboBox(cbbNhanVien);
-            loadTrangThaiVaoComboBox(cbbTrangThai);
+            loadTrangThaiVaoComboBox1(cbbTrangThai);
+            loadTrangThaiVaoComboBox1(cbbTrangThaiCTDDH);
+        }
+
+        private void loadTrangThaiVaoComboBox1(ComboBox combo)
+        {
+            List<LuaChonHienThi> lst = new List<LuaChonHienThi>();
+            lst.Add(new LuaChonHienThi() { TenHienThi = "Chưa xác nhận", MaHienThi = "Chưa xác nhận" });
+            lst.Add(new LuaChonHienThi() { TenHienThi = "Đã xác nhận", MaHienThi = "Đã xác nhận" });
+            lst.Add(new LuaChonHienThi() { TenHienThi = "Đang giao hàng", MaHienThi = "Đang giao hàng" });
+            lst.Add(new LuaChonHienThi() { TenHienThi = "Đã nhận hàng", MaHienThi = "Đã nhận hàng" });
+            lst.Add(new LuaChonHienThi() { TenHienThi = "Hoàn thành", MaHienThi = "Hoàn thành" });
+            lst.Add(new LuaChonHienThi() { TenHienThi = "Đã hủy", MaHienThi = "Đã hủy" });
+            lst.Add(new LuaChonHienThi() { TenHienThi = "Hoàn trả", MaHienThi = "Hoàn trả" });
+            combo.DataSource = lst;
+            combo.DisplayMember = "TenHienThi";
+            combo.ValueMember = "MaHienThi";
+
         }
 
         private void loadTrangThaiVaoComboBox(ComboBox combo)

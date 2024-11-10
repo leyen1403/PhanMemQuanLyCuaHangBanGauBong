@@ -33,9 +33,17 @@ namespace DAL
             try
             {
                 SanPham sp = db.SanPhams.FirstOrDefault(s => s.MaSanPham == sanPham.MaSanPham);
+                sp.TenSanPham = sanPham.TenSanPham;
+                sp.DonViTinh = sanPham.DonViTinh;
                 sp.SoLuongTon = sanPham.SoLuongTon;
-                sp.NgayCapNhat = sanPham.NgayCapNhat;
                 sp.SoLuongToiThieu = sanPham.SoLuongToiThieu;
+                sp.GiaNhap = sanPham.GiaNhap;
+                sp.GiaBan = sanPham.GiaBan;
+                sp.MoTa = sanPham.MoTa;
+                sp.HinhAnh = sanPham.HinhAnh;
+                sp.TrangThai = sanPham.TrangThai;
+                sp.NgayCapNhat = sanPham.NgayCapNhat;
+                sp.MaLoai = sanPham.MaLoai;
                 db.SubmitChanges();
                 return true;
             }

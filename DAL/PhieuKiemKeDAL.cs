@@ -13,8 +13,7 @@ namespace DAL
         public PhieuKiemKeDAL() { }
         public List<PhieuKiemKe> GetListPhieuKiemKe()
         {
-            var listPhieuKiemKe = db.PhieuKiemKes.ToList<PhieuKiemKe>();
-            return listPhieuKiemKe;
+            return db.PhieuKiemKes.OrderByDescending(x => x.MaPhieuKiemKe).ToList();
         }
         public bool InsertPhieuKiemKe(PhieuKiemKe phieuKiemKe)
         {
