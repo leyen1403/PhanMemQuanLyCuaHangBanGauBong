@@ -67,12 +67,7 @@ namespace GUI
                     txtDonGia.Text = result.ToString("N0");
                     txtDonGia.SelectionStart = txtDonGia.Text.Length;
                 }
-                _soLuong = int.Parse(txtSoLuongCungCap.Text);
-                _donGia = decimal.Parse(txtDonGia.Text.Replace(",", ""));
-                decimal thanhTienNew = _soLuong * _donGia;
-                txtThanhTien.Text = thanhTienNew.ToString("N0");
-                decimal tongTienNew = _tongTien - _thanhTien + thanhTienNew;
-                txtTongTien.Text = tongTienNew.ToString("N0");
+                
             }
             catch (Exception ex)
             {
@@ -112,10 +107,6 @@ namespace GUI
             txtDonGia.Text = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["DonGia"].Value).ToString("N0");
             txtThanhTien.Text = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["ThanhTien"].Value).ToString("N0");
             txtTongTien.Text = Convert.ToDecimal(dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value).ToString("N0");
-            _soLuong = Convert.ToInt32(dgvChiTietDDH.CurrentRow.Cells["SoLuongCungCap"].Value);
-            _donGia = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["DonGia"].Value);
-            _thanhTien = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["ThanhTien"].Value);
-            _tongTien = Convert.ToDecimal(dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value);
         }
 
         private void dgvDanhSachDonDatHang_SelectionChanged(object sender, EventArgs e)
