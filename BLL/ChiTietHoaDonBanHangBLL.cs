@@ -65,5 +65,16 @@ namespace BLL
                 return null;
             }
         }
+        public List<ChiTietHoaDonBanHang> GetAllChiTietHoaDonBanHang()
+        {
+            try
+            {
+                return _chiTietHoaDonBanHangDAL.GetAllChiTietHoaDonBanHang();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

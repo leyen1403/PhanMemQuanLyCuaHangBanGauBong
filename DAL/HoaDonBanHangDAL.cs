@@ -8,7 +8,7 @@ namespace DAL
     public class HoaDonBanHangDAL
     {
         // Giả sử bạn có một context của Entity Framework hoặc một đối tượng db liên kết với cơ sở dữ liệu
-        private readonly db_QLCHBGBDataContext db;
+        private db_QLCHBGBDataContext db = new db_QLCHBGBDataContext();
 
         public HoaDonBanHangDAL()
         {
@@ -18,15 +18,23 @@ namespace DAL
         // 1. Thêm hóa đơn bán hàng
         public bool AddHoaDonBanHang(HoaDonBanHang hoaDon)
         {
-            if (hoaDon == null)
-            {
-                throw new ArgumentNullException(nameof(hoaDon), "Hóa đơn không thể là null.");
-            }
-
             try
             {
+                if (hoaDon == null)
+                {
+                    throw new ArgumentNullException(nameof(hoaDon), "Hóa đơn không thể là null.");
+                }
+
+                // Kiểm tra xem db có dữ liệu không
+                if (db == null)
+                {
+                    throw new InvalidOperationException("Chưa có kết nối đến cơ sở dữ liệu.");
+                }
+
+                // Thêm hóa đơn vào bảng HoaDonBanHangs
                 db.HoaDonBanHangs.InsertOnSubmit(hoaDon);
-                db.SubmitChanges();
+                db.SubmitChanges(); // Lưu thay đổi vào cơ sở dữ liệu
+
                 return true; // Trả về true nếu thêm thành công
             }
             catch (Exception ex)
@@ -35,6 +43,7 @@ namespace DAL
                 return false; // Trả về false nếu có lỗi
             }
         }
+
         // 5. Lấy mã hóa đơn bán hàng mới nhất
         public string GetLatestHoaDonBanHangId()
         {
@@ -62,15 +71,20 @@ namespace DAL
         {
             try
             {
+                if (db == null)
+                {
+                    throw new InvalidOperationException("Chưa có dữ liệu");
+                }
+
                 var hoaDonList = db.HoaDonBanHangs.ToList();
-                // Đảm bảo trả về danh sách trống nếu không có dữ liệu
                 return hoaDonList ?? new List<HoaDonBanHang>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return new List<HoaDonBanHang>(); // Trả về danh sách trống khi có lỗi
+                return new List<HoaDonBanHang>();
             }
         }
+
     }
 }

@@ -101,6 +101,20 @@ namespace GUI
             }
             return maKhachHang;
         }
+        private string taoCTHD()
+        {
+            string maCTHD = "";
+            int soLuongCTHD = _chiTietHoaDonBanHangBLL.GetAllChiTietHoaDonBanHang().Count;
+            if (soLuongCTHD == 0)
+            {
+                maCTHD = "CTHD001";
+            }
+            else
+            {
+                maCTHD = "CTHD" + (soLuongCTHD + 1).ToString("000");
+            }
+            return maCTHD;
+        }
         private int CalculateTotalProducts()
         {
             int totalProducts = 0;
@@ -163,6 +177,8 @@ namespace GUI
                     TenKhachHang = tenKhachHang,
                     SoDienThoai = sdt,
                     DiaChi = diaChi,
+                    TrangThai=true,
+                    ThanhVien=false
                 };
 
                 bool isAdded = _khachHangBLL.ThemKhachHang(khachHangMoi);
@@ -177,7 +193,12 @@ namespace GUI
             }
 
             // Kiểm tra và sử dụng điểm tích lũy (nếu khách hàng là thành viên)
-            decimal diemSuDung = 0;
+            decimal diemSuDung = 0; // Gán giá trị mặc định
+            if (decimal.TryParse(txt_diemDung.Text, out diemSuDung))
+            {
+                // Chuyển thành công, diemSuDung sẽ chứa giá trị nhập vào
+            }
+
             if (chkSuDungDiemTichLuy.Checked)
             {
                 if (kh.ThanhVien == false) // Kiểm tra nếu khách hàng là thành viên mới có thể sử dụng điểm tích lũy
@@ -185,9 +206,13 @@ namespace GUI
                     MessageBox.Show("Chỉ khách hàng thành viên mới có thể sử dụng điểm tích lũy.");
                     return; // Dừng lại nếu khách hàng không phải là thành viên
                 }
+                if (diemSuDung > 0)
+                {
 
-                diemSuDung = (kh.DiemTichLuy ?? 0) >= diemTichLuy ? diemTichLuy : (kh.DiemTichLuy ?? 0);
-                tongTien -= diemSuDung; // Trừ điểm tích lũy từ tổng tiền
+                    diemSuDung = (kh.DiemTichLuy ?? 0) >= diemTichLuy ? diemTichLuy : (kh.DiemTichLuy ?? 0);
+                    tongTien -= diemSuDung; // Trừ điểm tích lũy từ tổng tiền
+                    txt_tongTien.Text = tongTien.ToString();
+                }
             }
 
             // Kiểm tra và lưu hóa đơn
@@ -205,6 +230,12 @@ namespace GUI
                     DiemTichLuy = (kh.DiemTichLuy ?? 0) + diemTichLuy - diemSuDung // Điểm tích lũy cập nhật
                 };
 
+                bool themDiemCong = _khachHangBLL.AddDiemCongTichLuy(kh.MaKhachHang, diemTichLuy);
+
+                if (!themDiemCong)
+                {
+                    Console.WriteLine("Thêm điểm cộng thất bại");
+                }
                 // Kiểm tra các giá trị trước khi thêm vào cơ sở dữ liệu
                 if (hoaDon.MaKhachHang == null || hoaDon.MaNhanVien == null)
                 {
@@ -225,12 +256,14 @@ namespace GUI
                 {
                     if (!row.IsNewRow)
                     {
+                        string maCTHDBH = taoCTHD();
                         var chiTietHoaDon = new ChiTietHoaDonBanHang
                         {
+                            MaChiTietHoaDonBanHang=maCTHDBH,
                             MaHoaDon = hoaDon.MaHoaDonBanHang,
-                            MaSanPham = row.Cells["MaSanPham"].Value.ToString(),
+                            MaSanPham = row.Cells["MaSP"].Value.ToString(),
                             SoLuong = Convert.ToInt32(row.Cells["SoLuong"].Value),
-                            DonGia = Convert.ToDecimal(row.Cells["DonGia"].Value),
+                            DonGia = Convert.ToDecimal(row.Cells["Gia"].Value),
                             ThanhTien = Convert.ToDecimal(row.Cells["ThanhTien"].Value),
                         };
 
@@ -240,6 +273,8 @@ namespace GUI
                 }
 
                 MessageBox.Show("Hóa đơn đã được lưu thành công!");
+                dgvCart.Rows.Clear();
+                clearAll();
             }
             catch (Exception ex)
             {
@@ -301,10 +336,19 @@ namespace GUI
 
         private void Btn_Clear_Click(object sender, EventArgs e)
         {
+           clearAll();
+        }
+        private void clearAll()
+        {
             txt_maKhachHang.Text = "";
             txt_tenKhachHang.Text = "";
             txt_soDienThoai.Text = "";
             txt_diaChi.Text = "";
+            txt_diemDung.Text = "";
+            txt_diemTichLuy.Text = "";
+            txt_soLuong.Text = "";
+            txt_tongTien.Text = "";
+            txt_TongSL.Text = "";
         }
 
         private void Btn_timKhachHang_Click(object sender, EventArgs e)
@@ -325,6 +369,14 @@ namespace GUI
                 txt_tenKhachHang.Text = kh.TenKhachHang;
                 txt_soDienThoai.Text = kh.SoDienThoai;
                 txt_diaChi.Text = kh.DiaChi;
+                if (kh.DiemTichLuy.HasValue)
+                {
+                    txt_diemTichLuy.Text = kh.DiemTichLuy.Value.ToString("0.##"); 
+                }
+                else
+                {
+                    txt_diemTichLuy.Text = "0";  
+                }
             }
             else
             {
@@ -390,6 +442,7 @@ namespace GUI
                     MessageBox.Show("Sản phẩm không tìm thấy.");
                 }
                 txt_tongTien.Text = CalculateTotalAmount().ToString("N0");
+                txt_TongSL.Text = CalculateTotalProducts().ToString();
             }
             else
             {
@@ -709,6 +762,8 @@ namespace GUI
             }
             string tongTien = CalculateTotalAmount().ToString();
             txt_tongTien.Text = tongTien;
+            txt_TongSL.Text = CalculateTotalProducts().ToString();
+
         }
 
         private void dgvCart_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -723,6 +778,7 @@ namespace GUI
                 }
                 string tongTien = CalculateTotalAmount().ToString();
                 txt_tongTien.Text = tongTien;
+                txt_TongSL.Text = CalculateTotalProducts().ToString();
             }
         }
 
@@ -740,6 +796,7 @@ namespace GUI
             }
 
             txt_tongTien.Text = CalculateTotalAmount().ToString("N0");
+            txt_TongSL.Text = CalculateTotalProducts().ToString();
         }
 
         private void dgvCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -756,6 +813,7 @@ namespace GUI
                 }
                 string tongTien = CalculateTotalAmount().ToString();
                 txt_tongTien.Text = tongTien;
+                txt_TongSL.Text = CalculateTotalProducts().ToString();
             }
         }
     }

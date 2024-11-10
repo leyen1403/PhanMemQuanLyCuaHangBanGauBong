@@ -74,5 +74,22 @@ namespace DAL
                 return false;
             }
         }
+        public List<ChiTietHoaDonBanHang> GetAllChiTietHoaDonBanHang()
+        {
+            try
+            {
+                // Sử dụng LINQ để lấy tất cả các chi tiết hóa đơn bán hàng từ cơ sở dữ liệu
+                var chiTietHoaDons = _dbContext.ChiTietHoaDonBanHangs.ToList();
+
+                // Trả về danh sách các chi tiết hóa đơn bán hàng
+                return chiTietHoaDons;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message); // In thông báo lỗi
+                return null; // Trả về null nếu có lỗi
+            }
+        }
+
     }
 }

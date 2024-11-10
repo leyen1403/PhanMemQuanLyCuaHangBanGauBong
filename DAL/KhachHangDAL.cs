@@ -71,6 +71,33 @@ namespace DAL
                 return new List<KhachHang>(); 
             }
         }
+        public bool AddDiemCongTichLuy(string maKhachHang, decimal diemCong)
+        {
+            try
+            {
+                // Kiểm tra xem khách hàng có tồn tại hay không
+                var khachHang = db.KhachHangs.FirstOrDefault(kh => kh.MaKhachHang == maKhachHang);
+                if (khachHang == null)
+                {
+                    Console.WriteLine("Khách hàng không tồn tại.");
+                    return false; // Trả về false nếu khách hàng không tồn tại
+                }
+
+                // Cập nhật điểm tích lũy mới
+                khachHang.DiemTichLuy = (khachHang.DiemTichLuy ?? 0) + diemCong;
+
+                // Lưu lại thay đổi vào cơ sở dữ liệu
+                db.SubmitChanges();
+
+                Console.WriteLine($"Thêm {diemCong} điểm cộng cho khách hàng {maKhachHang}. Điểm tích lũy hiện tại: {khachHang.DiemTichLuy}");
+                return true; // Trả về true nếu việc thêm điểm thành công
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi: {ex.Message}");
+                return false; // Trả về false nếu có lỗi
+            }
+        }
 
     }
 }
