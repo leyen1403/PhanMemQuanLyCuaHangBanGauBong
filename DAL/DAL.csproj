@@ -50,6 +50,7 @@
     <Compile Include="ChiTietPhieuKiemKeDAL.cs" />
     <Compile Include="DonDatHangDAL.cs" />
     <Compile Include="HoaDonBanHangDAL.cs" />
+    <Compile Include="KhachHangDAL.cs" />
     <Compile Include="KichThuocDAL.cs" />
     <Compile Include="LoaiSanPhamDAL.cs" />
     <Compile Include="MauSacDAL.cs" />

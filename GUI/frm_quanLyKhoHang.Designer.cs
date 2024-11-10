@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_load = new System.Windows.Forms.Button();
+            this.btn_timDK = new System.Windows.Forms.Button();
             this.cbo_loaiSanPham = new System.Windows.Forms.ComboBox();
             this.cbo_tenKichThuoc = new System.Windows.Forms.ComboBox();
             this.cb_tenMauSac = new System.Windows.Forms.ComboBox();
@@ -80,8 +82,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgv_dsSanPham = new System.Windows.Forms.DataGridView();
-            this.btn_timDK = new System.Windows.Forms.Button();
-            this.btn_load = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_sanPham)).BeginInit();
@@ -109,6 +109,29 @@
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nhập thông tin cần tìm";
+            // 
+            // btn_load
+            // 
+            this.btn_load.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_load.Image = global::GUI.Properties.Resources.icons8_load_32;
+            this.btn_load.Location = new System.Drawing.Point(222, 20);
+            this.btn_load.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_load.Name = "btn_load";
+            this.btn_load.Size = new System.Drawing.Size(42, 38);
+            this.btn_load.TabIndex = 23;
+            this.btn_load.UseVisualStyleBackColor = true;
+            // 
+            // btn_timDK
+            // 
+            this.btn_timDK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_timDK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_timDK.Image = global::GUI.Properties.Resources.icons8_find_35;
+            this.btn_timDK.Location = new System.Drawing.Point(552, 20);
+            this.btn_timDK.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_timDK.Name = "btn_timDK";
+            this.btn_timDK.Size = new System.Drawing.Size(42, 38);
+            this.btn_timDK.TabIndex = 22;
+            this.btn_timDK.UseVisualStyleBackColor = true;
             // 
             // cbo_loaiSanPham
             // 
@@ -266,6 +289,7 @@
             // 
             // txt_trangThai
             // 
+            this.txt_trangThai.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_trangThai.Location = new System.Drawing.Point(191, 621);
             this.txt_trangThai.Margin = new System.Windows.Forms.Padding(2);
             this.txt_trangThai.Name = "txt_trangThai";
@@ -288,6 +312,7 @@
             // 
             // txt_ngayCapNhat
             // 
+            this.txt_ngayCapNhat.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_ngayCapNhat.Location = new System.Drawing.Point(194, 583);
             this.txt_ngayCapNhat.Margin = new System.Windows.Forms.Padding(2);
             this.txt_ngayCapNhat.Name = "txt_ngayCapNhat";
@@ -310,6 +335,7 @@
             // 
             // txt_duongDan
             // 
+            this.txt_duongDan.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_duongDan.Location = new System.Drawing.Point(191, 507);
             this.txt_duongDan.Margin = new System.Windows.Forms.Padding(2);
             this.txt_duongDan.Name = "txt_duongDan";
@@ -432,6 +458,7 @@
             // 
             // txt_ngayTao
             // 
+            this.txt_ngayTao.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_ngayTao.Location = new System.Drawing.Point(194, 545);
             this.txt_ngayTao.Margin = new System.Windows.Forms.Padding(2);
             this.txt_ngayTao.Name = "txt_ngayTao";
@@ -454,9 +481,11 @@
             // 
             // txt_soLuongTon
             // 
+            this.txt_soLuongTon.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_soLuongTon.Location = new System.Drawing.Point(191, 351);
             this.txt_soLuongTon.Margin = new System.Windows.Forms.Padding(2);
             this.txt_soLuongTon.Name = "txt_soLuongTon";
+            this.txt_soLuongTon.ReadOnly = true;
             this.txt_soLuongTon.Size = new System.Drawing.Size(235, 26);
             this.txt_soLuongTon.TabIndex = 25;
             // 
@@ -736,29 +765,6 @@
             this.dgv_dsSanPham.Size = new System.Drawing.Size(570, 589);
             this.dgv_dsSanPham.TabIndex = 0;
             this.dgv_dsSanPham.SelectionChanged += new System.EventHandler(this.dgv_dsSanPham_SelectionChanged);
-            // 
-            // btn_timDK
-            // 
-            this.btn_timDK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_timDK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_timDK.Image = global::GUI.Properties.Resources.icons8_find_35;
-            this.btn_timDK.Location = new System.Drawing.Point(552, 20);
-            this.btn_timDK.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_timDK.Name = "btn_timDK";
-            this.btn_timDK.Size = new System.Drawing.Size(42, 38);
-            this.btn_timDK.TabIndex = 22;
-            this.btn_timDK.UseVisualStyleBackColor = true;
-            // 
-            // btn_load
-            // 
-            this.btn_load.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_load.Image = global::GUI.Properties.Resources.icons8_load_32;
-            this.btn_load.Location = new System.Drawing.Point(222, 20);
-            this.btn_load.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_load.Name = "btn_load";
-            this.btn_load.Size = new System.Drawing.Size(42, 38);
-            this.btn_load.TabIndex = 23;
-            this.btn_load.UseVisualStyleBackColor = true;
             // 
             // frm_quanLyKhoHang
             // 

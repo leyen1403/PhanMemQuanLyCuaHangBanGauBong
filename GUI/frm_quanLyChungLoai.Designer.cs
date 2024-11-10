@@ -217,7 +217,7 @@
             this.dgv_dsLoaiSanPham.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv_dsLoaiSanPham.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_dsLoaiSanPham.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv_dsLoaiSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_dsLoaiSanPham.Location = new System.Drawing.Point(4, 4);
             this.dgv_dsLoaiSanPham.Name = "dgv_dsLoaiSanPham";
@@ -336,7 +336,7 @@
             // 
             // dgv_dsMauSac
             // 
-            this.dgv_dsMauSac.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_dsMauSac.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv_dsMauSac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_dsMauSac.Location = new System.Drawing.Point(131, 250);
             this.dgv_dsMauSac.Name = "dgv_dsMauSac";
@@ -350,6 +350,7 @@
             // 
             // txt_duongDanMauSac
             // 
+            this.txt_duongDanMauSac.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_duongDanMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_duongDanMauSac.Location = new System.Drawing.Point(149, 209);
             this.txt_duongDanMauSac.Margin = new System.Windows.Forms.Padding(2);
@@ -382,6 +383,7 @@
             // 
             // txt_maMauSac
             // 
+            this.txt_maMauSac.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_maMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_maMauSac.Location = new System.Drawing.Point(149, 75);
             this.txt_maMauSac.Margin = new System.Windows.Forms.Padding(2);
@@ -405,6 +407,7 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox3.Controls.Add(this.btn_timKiem);
             this.groupBox3.Controls.Add(this.txt_timKiem);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -475,7 +478,7 @@
             this.dgv_dsKichThuoc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv_dsKichThuoc.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_dsKichThuoc.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv_dsKichThuoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_dsKichThuoc.Location = new System.Drawing.Point(33, 182);
             this.dgv_dsKichThuoc.Name = "dgv_dsKichThuoc";
@@ -575,6 +578,7 @@
             // 
             // txt_maKichThuoc
             // 
+            this.txt_maKichThuoc.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_maKichThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_maKichThuoc.Location = new System.Drawing.Point(149, 48);
             this.txt_maKichThuoc.Margin = new System.Windows.Forms.Padding(2);
@@ -628,6 +632,7 @@
             // 
             this.txt_duongDan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_duongDan.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_duongDan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_duongDan.Location = new System.Drawing.Point(137, 141);
             this.txt_duongDan.Margin = new System.Windows.Forms.Padding(2);
@@ -776,6 +781,7 @@
             // 
             this.txt_maLoai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_maLoai.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_maLoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_maLoai.Location = new System.Drawing.Point(137, 26);
             this.txt_maLoai.Margin = new System.Windows.Forms.Padding(2);
