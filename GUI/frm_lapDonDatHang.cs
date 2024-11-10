@@ -71,8 +71,55 @@ namespace GUI
             this.btnTim.Click += BtnTim_Click;
             this.cbbLoai2.SelectedIndexChanged += CbbLoai2_SelectedIndexChanged;
             dgvDanhSachChiTietDonDatHang.KeyDown += DgvDanhSachChiTietDonDatHang_KeyDown;
+            AddButtonPaintEvent();
+            // Gọi hàm này trong Form_Load:
+            AddButtonPaintEventRecursive(this);
+        }
+        private void AddButtonPaintEvent()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button button)
+                {
+                    button.Paint += CustomButton_Paint; // Gán sự kiện Paint cho mỗi nút
+                }
+            }
+        }
+        private void AddButtonPaintEventRecursive(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is Button button)
+                {
+                    button.Paint += CustomButton_Paint;
+                    button.MouseEnter += Button_MouseEnter;  // Thêm sự kiện hover vào nút
+                    button.MouseLeave += Button_MouseLeave; // Thêm sự kiện rời chuột khỏi nút
+                }
+                else if (control.HasChildren)
+                {
+                    AddButtonPaintEventRecursive(control); // Đệ quy vào các container con
+                }
+            }
+        }
+        private void CustomButton_Paint(object sender, PaintEventArgs e)
+        {
+            Button btn = sender as Button;
+            Pen pen = new Pen(Color.Navy, 1); // Màu sắc và độ dày viền
+            e.Graphics.DrawRectangle(pen, 0, 0, btn.Width - 1, btn.Height - 1);
+        }
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.BackColor = SystemColors.Control; // Đặt lại màu nền mặc định khi rời chuột
+            btn.ForeColor = Color.Black; // Đặt lại màu chữ mặc định nếu cần
         }
 
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.BackColor = Color.Navy; // Đổi màu nền khi chuột vào
+            btn.ForeColor = Color.White; // Đổi màu chữ nếu cần
+        }
         private void DgvDanhSachChiTietDonDatHang_KeyDown(object sender, KeyEventArgs e)
         {
             // Kiểm tra nếu có hàng đang được chọn
