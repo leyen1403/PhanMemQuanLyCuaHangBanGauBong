@@ -59,10 +59,22 @@ namespace DTO.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN-PC;Initial Catalog=ql_CHBGB;Integrated Security=True;Encrypt=Tr" +"ue;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN-PC;Initial Catalog=ql_CHBGB;Integrated Security=True;Encrypt=Tr" +
+            "ue;TrustServerCertificate=True")]
         public string ql_CHBGBConnectionString1 {
             get {
                 return ((string)(this["ql_CHBGBConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN-PC;Initial Catalog=ql_CHBGB;Integrated Security=True;TrustServe" +
+            "rCertificate=True")]
+        public string ql_CHBGBConnectionString2 {
+            get {
+                return ((string)(this["ql_CHBGBConnectionString2"]));
             }
         }
     }
