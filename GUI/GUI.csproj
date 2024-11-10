@@ -220,6 +220,7 @@
     <Compile Include="frm_wait.Designer.cs">
       <DependentUpon>frm_wait.cs</DependentUpon>
     </Compile>
+    <Compile Include="LuaChonHienThi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frm_lapDonDatHang.resx">

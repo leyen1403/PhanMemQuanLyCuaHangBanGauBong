@@ -12,7 +12,13 @@ namespace GUI
             this.Load += Frm_main1_Load;
             this.btn_LapPhieuKiemKe.Click += Btn_LapPhieuKiemKe_Click;
             this.btn_NhanVien.Click += Btn_NhanVien_Click1;
-            this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;            
+            this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
+            this.btn_DonDatHang.Click += Btn_DonDatHang_Click;
+        }
+
+        private void Btn_DonDatHang_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyDonDatHang());
         }
 
         private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
@@ -41,7 +47,7 @@ namespace GUI
             this.btn_LapDonDatHang.Click += Btn_LapDonDatHang_Click;
             this.btn_LapPhieuDichVu.Click += Btn_LapPhieuDichVu_Click;
 
-            loadForm(new frm_lapDonDatHang());
+            loadForm(new frm_quanLyDonDatHang());
 
         }
 
