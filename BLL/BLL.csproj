@@ -52,6 +52,7 @@
     <Compile Include="ChiTietPhieuKiemKeBLL.cs" />
     <Compile Include="DonDatHangBLL.cs" />
     <Compile Include="HoaDonBanHangBLL.cs" />
+    <Compile Include="KhachHangBLL.cs" />
     <Compile Include="KichThuocBLL.cs" />
     <Compile Include="LoaiSanPhamBLL.cs" />
     <Compile Include="MauSacBLL.cs" />

@@ -30,8 +30,28 @@ namespace DAL
                 return false;
             }
         }
+        // 5. Lấy mã hóa đơn bán hàng mới nhất
+        public string GetLatestHoaDonBanHangId()
+        {
+            try
+            {
+                // Giả định mã hóa đơn có dạng "HD0001", "HD0002", ...
+                var latestHoaDon = db.HoaDonBanHangs
+                    .OrderByDescending(hd => int.Parse(hd.MaHoaDonBanHang.Substring(2))) // Lấy phần số từ mã hóa đơn
+                    .Select(hd => hd.MaHoaDonBanHang)
+                    .FirstOrDefault();
 
-       
+                return latestHoaDon;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy mã hóa đơn mới nhất: " + ex.Message);
+                return null; // Trả về null nếu có lỗi
+            }
+        }
+
+
+
         // 4. Lấy tất cả hóa đơn bán hàng
         public List<HoaDonBanHang> GetAllHoaDonBanHang()
         {
