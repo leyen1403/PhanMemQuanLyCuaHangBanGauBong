@@ -8,7 +8,7 @@ namespace DAL
     public class HoaDonBanHangDAL
     {
         // Giả sử bạn có một context của Entity Framework hoặc một đối tượng db liên kết với cơ sở dữ liệu
-        private readonly db_QLCHBGBDataContext db;
+        private db_QLCHBGBDataContext db = new db_QLCHBGBDataContext();
 
         public HoaDonBanHangDAL()
         {
@@ -62,15 +62,20 @@ namespace DAL
         {
             try
             {
+                if (db == null)
+                {
+                    throw new InvalidOperationException("Chưa có dữ liệu");
+                }
+
                 var hoaDonList = db.HoaDonBanHangs.ToList();
-                // Đảm bảo trả về danh sách trống nếu không có dữ liệu
                 return hoaDonList ?? new List<HoaDonBanHang>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return new List<HoaDonBanHang>(); // Trả về danh sách trống khi có lỗi
+                return new List<HoaDonBanHang>();
             }
         }
+
     }
 }
