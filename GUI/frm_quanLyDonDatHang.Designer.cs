@@ -326,8 +326,8 @@
             // 
             this.txtSoLuongYeuCau.Location = new System.Drawing.Point(154, 202);
             this.txtSoLuongYeuCau.Maximum = new decimal(new int[] {
-            1316134912,
-            2328,
+            10000,
+            0,
             0,
             0});
             this.txtSoLuongYeuCau.Name = "txtSoLuongYeuCau";
@@ -337,6 +337,11 @@
             // txtSoLuongCungCap
             // 
             this.txtSoLuongCungCap.Location = new System.Drawing.Point(154, 261);
+            this.txtSoLuongCungCap.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.txtSoLuongCungCap.Name = "txtSoLuongCungCap";
             this.txtSoLuongCungCap.Size = new System.Drawing.Size(289, 27);
             this.txtSoLuongCungCap.TabIndex = 7;

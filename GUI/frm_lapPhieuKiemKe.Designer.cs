@@ -167,6 +167,11 @@
             // txtSoLuongThucTe
             // 
             this.txtSoLuongThucTe.Location = new System.Drawing.Point(188, 265);
+            this.txtSoLuongThucTe.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.txtSoLuongThucTe.Name = "txtSoLuongThucTe";
             this.txtSoLuongThucTe.Size = new System.Drawing.Size(120, 27);
             this.txtSoLuongThucTe.TabIndex = 2;
@@ -175,6 +180,11 @@
             // 
             this.txtSoLuongHeThong.Enabled = false;
             this.txtSoLuongHeThong.Location = new System.Drawing.Point(188, 190);
+            this.txtSoLuongHeThong.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.txtSoLuongHeThong.Name = "txtSoLuongHeThong";
             this.txtSoLuongHeThong.Size = new System.Drawing.Size(120, 27);
             this.txtSoLuongHeThong.TabIndex = 2;

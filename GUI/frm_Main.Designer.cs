@@ -159,17 +159,18 @@
             this.accordionControl1.Appearance.AccordionControl.Options.UseBackColor = true;
             this.accordionControl1.Appearance.AccordionControl.Options.UseForeColor = true;
             this.accordionControl1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement1,
             this.accordionControlElement2,
             this.accordionControlElement3});
-            this.accordionControl1.Location = new System.Drawing.Point(4, 63);
+            this.accordionControl1.Location = new System.Drawing.Point(0, 58);
             this.accordionControl1.Margin = new System.Windows.Forms.Padding(9, 2, 9, 2);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Auto;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Auto;
-            this.accordionControl1.Size = new System.Drawing.Size(306, 739);
+            this.accordionControl1.Size = new System.Drawing.Size(320, 804);
             this.accordionControl1.TabIndex = 18;
             // 
             // accordionControlElement1
@@ -288,7 +289,7 @@
             // 
             // btnQuanLyPhieuKiemKe
             // 
-            this.btnQuanLyPhieuKiemKe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
+            this.btnQuanLyPhieuKiemKe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnQuanLyPhieuKiemKe.ImageOptions.Image")));
             this.btnQuanLyPhieuKiemKe.Name = "btnQuanLyPhieuKiemKe";
             this.btnQuanLyPhieuKiemKe.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnQuanLyPhieuKiemKe.Text = "Quản lý phiếu kiểm kê";

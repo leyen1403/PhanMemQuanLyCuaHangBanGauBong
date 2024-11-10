@@ -316,6 +316,11 @@
             // txtSoLuongNhapThem
             // 
             this.txtSoLuongNhapThem.Location = new System.Drawing.Point(214, 108);
+            this.txtSoLuongNhapThem.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.txtSoLuongNhapThem.Name = "txtSoLuongNhapThem";
             this.txtSoLuongNhapThem.Size = new System.Drawing.Size(227, 27);
             this.txtSoLuongNhapThem.TabIndex = 8;

@@ -560,12 +560,12 @@ namespace GUI
                 }
 
 
-                // Kiểm tra và ép kiểu số liệu từ các TextBox
-                if (!int.TryParse(txt_soLuongTon.Text, out int soLuongTon))
-                {
-                    MessageBox.Show("Số lượng tồn không hợp lệ!");
-                    return;
-                }
+                //// Kiểm tra và ép kiểu số liệu từ các TextBox
+                //if (!int.TryParse(txt_soLuongTon.Text, out int soLuongTon))
+                //{
+                //    MessageBox.Show("Số lượng tồn không hợp lệ!");
+                //    return;
+                //}
 
                 int soLuongToiThieu = 10;
                 string moTa = txt_moTa.Text;
@@ -590,7 +590,7 @@ namespace GUI
                     TenSanPham = tenSanPham,
                     MaLoai = maLoai,  // Mã loại lấy từ ComboBox
                     DonViTinh = donViTinh,
-                    SoLuongTon = soLuongTon,
+                    SoLuongTon = 0,
                     SoLuongToiThieu = soLuongToiThieu,
                     GiaNhap = giaNhap,
                     GiaBan = giaBan,
@@ -761,6 +761,11 @@ namespace GUI
         private void dgv_dsSanPham_SelectionChanged(object sender, EventArgs e)
         {
             GetCurrentRowData();
+        }
+
+        private void btn_themSanPham_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

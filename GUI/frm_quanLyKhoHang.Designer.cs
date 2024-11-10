@@ -565,6 +565,7 @@
             this.btn_themSanPham.Size = new System.Drawing.Size(47, 37);
             this.btn_themSanPham.TabIndex = 19;
             this.btn_themSanPham.UseVisualStyleBackColor = false;
+            this.btn_themSanPham.Click += new System.EventHandler(this.btn_themSanPham_Click_1);
             // 
             // img_sanPham
             // 

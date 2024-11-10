@@ -13,10 +13,10 @@ namespace UC
 {
     public partial class ProductItem: UserControl
     {
-
+        public event EventHandler BamChuot;
         private Color originalBackColor; // Màu nền ban đầu
         private Color hoverBackColor = Color.LightSkyBlue; // Màu nền khi hover
-        private bool isSelected;
+        private bool isSelected;        
         public bool IsSelected // Thuộc tính để kiểm tra trạng thái được chọn
         {
             get { return isSelected; }
@@ -27,6 +27,7 @@ namespace UC
             }
         }
 
+        
         //public event EventHandler hover;
         public ProductItem()
         {
@@ -43,7 +44,19 @@ namespace UC
                 control.MouseEnter += (s, e) => this.OnMouseEnter(e);
                 control.MouseLeave += (s, e) => this.OnMouseLeave(e);
             }
+            anhSanPham.Click += AnhSanPham_Click;
+            label_tenSanPham.Click += Label_tenSanPham_Click;
 
+        }
+
+        private void Label_tenSanPham_Click(object sender, EventArgs e)
+        {
+            BamChuot?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void AnhSanPham_Click(object sender, EventArgs e)
+        {
+            BamChuot?.Invoke(this, EventArgs.Empty);
         }
 
         //private void ProductItem_MouseLeave(object sender, EventArgs e)

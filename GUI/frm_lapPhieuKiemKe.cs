@@ -272,6 +272,10 @@ namespace GUI
 
         private void loadChiTietKiemKe()
         {
+            if (cbbMaPhieuKiemKe.SelectedValue == null || cbbMaPhieuKiemKe.SelectedValue.ToString() == string.Empty)
+            {
+                return;
+            }
             string maPhieuKiemKe = cbbMaPhieuKiemKe.SelectedValue.ToString();
             dgvDSChiTietPhieuKiemKe.DataSource = chiTietPhieuKiemKeBLL.chiTietPhieuKiemKes(maPhieuKiemKe);
 

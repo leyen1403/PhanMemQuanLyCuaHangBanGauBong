@@ -524,6 +524,7 @@ namespace GUI
             {
                 ProductItem myControl = new ProductItem();
                 myControl.TenSanPham = sp.TenSanPham;  // Gán tên sản phẩm vào Label
+                myControl.BamChuot += MyControl_BamChuot;
                 myControl.Click += MyControl_Click;
                 myControl.MouseEnter += MyControl_MouseEnter;
                 myControl.MouseLeave += MyControl_MouseLeave;
@@ -544,6 +545,23 @@ namespace GUI
                 }
             }
             dsSanPham.AutoScrollMinSize = new Size(0, currentY + controlHeight + spacing);
+        }
+
+        private void MyControl_BamChuot(object sender, EventArgs e)
+        {
+            var clickItem = sender as ProductItem;
+            if (clickItem != null)
+            {
+                if (productSelected != null && productSelected != clickItem)
+                {
+                    productSelected.IsSelected = false; // Bỏ chọn sản phẩm đã chọn
+                }
+                productSelected = clickItem;
+                productSelected.IsSelected = true; // Đánh dấu sản phẩm hiện tại là được chọn
+                string tensp = productSelected.TenSanPham;
+                LoadColorsAndSizes(tensp);
+                LoadProductPrice();
+            }
         }
 
         private void MyControl_MouseLeave(object sender, EventArgs e)
