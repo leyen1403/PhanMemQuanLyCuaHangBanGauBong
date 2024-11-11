@@ -48,7 +48,7 @@ namespace GUI
             this.btn_LapPhieuDichVu.Click += Btn_LapPhieuDichVu_Click;
             this.btn_HoaDon.Click += Btn_HoaDon_Click;
 
-            loadForm(new frm_quanLyDonDatHang());
+            loadForm(new frm_lapHoaDon());
 
         }
 

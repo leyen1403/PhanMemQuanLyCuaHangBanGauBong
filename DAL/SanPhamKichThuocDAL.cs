@@ -80,18 +80,27 @@ namespace DAL
         {
             try
             {
+                // Kiểm tra xem sản phẩm và kích thước có tồn tại trong cơ sở dữ liệu không
                 var spKichThuoc = db.SanPham_KichThuocs
                     .FirstOrDefault(s => s.MaSanPham == maSanPham && s.MaKichThuoc == maKichThuoc);
+
                 if (spKichThuoc != null)
                 {
                     db.SanPham_KichThuocs.DeleteOnSubmit(spKichThuoc);
+
+                    // Kiểm tra nếu có thay đổi trước khi gọi SubmitChanges
                     db.SubmitChanges();
                     return true;
                 }
-                return false;
+                else
+                {
+                    Console.WriteLine("Không tìm thấy bản ghi cần xóa.");
+                    return false;
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine("Lỗi khi xóa kích thước sản phẩm: " + ex.Message);
                 return false;
             }
         }
@@ -118,6 +127,5 @@ namespace DAL
                 return null; // Hoặc có thể trả về một giá trị khác nếu cần
             }
         }
-
     }
 }

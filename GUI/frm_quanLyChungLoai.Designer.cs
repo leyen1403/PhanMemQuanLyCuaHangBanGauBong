@@ -138,7 +138,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(187, 17);
+            this.label7.Location = new System.Drawing.Point(216, 17);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(206, 25);
@@ -231,7 +231,7 @@
             // img_mauSac
             // 
             this.img_mauSac.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.img_mauSac.Location = new System.Drawing.Point(446, 62);
+            this.img_mauSac.Location = new System.Drawing.Point(484, 64);
             this.img_mauSac.Margin = new System.Windows.Forms.Padding(2);
             this.img_mauSac.Name = "img_mauSac";
             this.img_mauSac.Size = new System.Drawing.Size(101, 131);
@@ -245,7 +245,7 @@
             this.txt_moTaMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.txt_moTaMauSac.Multiline = true;
             this.txt_moTaMauSac.Name = "txt_moTaMauSac";
-            this.txt_moTaMauSac.Size = new System.Drawing.Size(274, 44);
+            this.txt_moTaMauSac.Size = new System.Drawing.Size(293, 44);
             this.txt_moTaMauSac.TabIndex = 5;
             // 
             // label10
@@ -267,7 +267,7 @@
             this.txt_tenMauSac.Location = new System.Drawing.Point(149, 113);
             this.txt_tenMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.txt_tenMauSac.Name = "txt_tenMauSac";
-            this.txt_tenMauSac.Size = new System.Drawing.Size(274, 26);
+            this.txt_tenMauSac.Size = new System.Drawing.Size(293, 26);
             this.txt_tenMauSac.TabIndex = 3;
             // 
             // label9
@@ -321,7 +321,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(569, 437);
+            this.groupBox2.Size = new System.Drawing.Size(627, 437);
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             // 
@@ -329,7 +329,7 @@
             // 
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label15.BackColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(-6, 428);
+            this.label15.Location = new System.Drawing.Point(23, 428);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(577, 4);
             this.label15.TabIndex = 43;
@@ -342,7 +342,7 @@
             this.dgv_dsMauSac.Name = "dgv_dsMauSac";
             this.dgv_dsMauSac.ReadOnly = true;
             this.dgv_dsMauSac.RowHeadersWidth = 51;
-            this.dgv_dsMauSac.Size = new System.Drawing.Size(416, 165);
+            this.dgv_dsMauSac.Size = new System.Drawing.Size(469, 165);
             this.dgv_dsMauSac.TabIndex = 26;
             this.dgv_dsMauSac.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsMauSac_CellClick);
             this.dgv_dsMauSac.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsMauSac_CellContentClick);
@@ -356,7 +356,7 @@
             this.txt_duongDanMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.txt_duongDanMauSac.Name = "txt_duongDanMauSac";
             this.txt_duongDanMauSac.ReadOnly = true;
-            this.txt_duongDanMauSac.Size = new System.Drawing.Size(274, 26);
+            this.txt_duongDanMauSac.Size = new System.Drawing.Size(293, 26);
             this.txt_duongDanMauSac.TabIndex = 25;
             // 
             // label3
@@ -374,7 +374,7 @@
             // 
             // btn_themAnhMauSac
             // 
-            this.btn_themAnhMauSac.Location = new System.Drawing.Point(446, 205);
+            this.btn_themAnhMauSac.Location = new System.Drawing.Point(484, 205);
             this.btn_themAnhMauSac.Name = "btn_themAnhMauSac";
             this.btn_themAnhMauSac.Size = new System.Drawing.Size(86, 28);
             this.btn_themAnhMauSac.TabIndex = 23;
@@ -389,7 +389,7 @@
             this.txt_maMauSac.Margin = new System.Windows.Forms.Padding(2);
             this.txt_maMauSac.Name = "txt_maMauSac";
             this.txt_maMauSac.ReadOnly = true;
-            this.txt_maMauSac.Size = new System.Drawing.Size(274, 26);
+            this.txt_maMauSac.Size = new System.Drawing.Size(293, 26);
             this.txt_maMauSac.TabIndex = 1;
             // 
             // txt_timKiem
@@ -430,7 +430,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(187, 15);
+            this.label4.Location = new System.Drawing.Point(216, 15);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(226, 25);
@@ -459,7 +459,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(569, 284);
+            this.groupBox1.Size = new System.Drawing.Size(627, 284);
             this.groupBox1.TabIndex = 41;
             this.groupBox1.TabStop = false;
             // 
@@ -470,7 +470,7 @@
             this.label16.BackColor = System.Drawing.Color.Navy;
             this.label16.Location = new System.Drawing.Point(2, 277);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(562, 4);
+            this.label16.Size = new System.Drawing.Size(620, 4);
             this.label16.TabIndex = 44;
             // 
             // dgv_dsKichThuoc
@@ -484,7 +484,7 @@
             this.dgv_dsKichThuoc.Name = "dgv_dsKichThuoc";
             this.dgv_dsKichThuoc.ReadOnly = true;
             this.dgv_dsKichThuoc.RowHeadersWidth = 51;
-            this.dgv_dsKichThuoc.Size = new System.Drawing.Size(479, 76);
+            this.dgv_dsKichThuoc.Size = new System.Drawing.Size(537, 76);
             this.dgv_dsKichThuoc.TabIndex = 41;
             this.dgv_dsKichThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsKichThuoc_CellClick);
             this.dgv_dsKichThuoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsKichThuoc_CellContentClick);
@@ -496,7 +496,7 @@
             this.btn_suaKichThuoc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_suaKichThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_suaKichThuoc.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_suaKichThuoc.Location = new System.Drawing.Point(465, 131);
+            this.btn_suaKichThuoc.Location = new System.Drawing.Point(523, 131);
             this.btn_suaKichThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.btn_suaKichThuoc.Name = "btn_suaKichThuoc";
             this.btn_suaKichThuoc.Size = new System.Drawing.Size(47, 37);
@@ -510,7 +510,7 @@
             this.btn_xoaKichThuoc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_xoaKichThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_xoaKichThuoc.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_xoaKichThuoc.Location = new System.Drawing.Point(465, 90);
+            this.btn_xoaKichThuoc.Location = new System.Drawing.Point(523, 90);
             this.btn_xoaKichThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.btn_xoaKichThuoc.Name = "btn_xoaKichThuoc";
             this.btn_xoaKichThuoc.Size = new System.Drawing.Size(47, 37);
@@ -524,7 +524,7 @@
             this.btn_themKichThuoc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_themKichThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_themKichThuoc.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_themKichThuoc.Location = new System.Drawing.Point(465, 48);
+            this.btn_themKichThuoc.Location = new System.Drawing.Point(523, 48);
             this.btn_themKichThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.btn_themKichThuoc.Name = "btn_themKichThuoc";
             this.btn_themKichThuoc.Size = new System.Drawing.Size(47, 37);
@@ -538,7 +538,7 @@
             this.txt_moTaKichThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.txt_moTaKichThuoc.Multiline = true;
             this.txt_moTaKichThuoc.Name = "txt_moTaKichThuoc";
-            this.txt_moTaKichThuoc.Size = new System.Drawing.Size(274, 44);
+            this.txt_moTaKichThuoc.Size = new System.Drawing.Size(330, 44);
             this.txt_moTaKichThuoc.TabIndex = 32;
             // 
             // label6
@@ -560,7 +560,7 @@
             this.txt_tenKichThuoc.Location = new System.Drawing.Point(149, 86);
             this.txt_tenKichThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.txt_tenKichThuoc.Name = "txt_tenKichThuoc";
-            this.txt_tenKichThuoc.Size = new System.Drawing.Size(274, 26);
+            this.txt_tenKichThuoc.Size = new System.Drawing.Size(330, 26);
             this.txt_tenKichThuoc.TabIndex = 30;
             // 
             // label11
@@ -584,7 +584,7 @@
             this.txt_maKichThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.txt_maKichThuoc.Name = "txt_maKichThuoc";
             this.txt_maKichThuoc.ReadOnly = true;
-            this.txt_maKichThuoc.Size = new System.Drawing.Size(274, 26);
+            this.txt_maKichThuoc.Size = new System.Drawing.Size(330, 26);
             this.txt_maKichThuoc.TabIndex = 28;
             // 
             // label12
