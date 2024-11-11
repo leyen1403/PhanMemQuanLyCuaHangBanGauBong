@@ -40,6 +40,7 @@ namespace GUI
             this.txtDonGia.TextChanged += TxtDonGia_TextChanged;
             this.txtSoLuongCungCap.ValueChanged += TxtSoLuongCungCap_ValueChanged;
             this.btnCapNhat.Click += BtnCapNhat_Click;
+            this.txtSoLuongYeuCau.ValueChanged += TxtSoLuongCungCap_ValueChanged;
         }
 
         private void BtnCapNhat_Click(object sender, EventArgs e)
@@ -322,27 +323,28 @@ namespace GUI
             switch (luaChon)
             {
                 case "TatCa":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang();
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(x => x.TongTien.HasValue && x.TongTien.Value != 0).ToList();
+
                     dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
                     suaTieuDeCotDSDDH();
                     break;
                 case "NhanVien":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => ddh.MaNhanVien == cbbNhanVien.SelectedValue.ToString()).ToList();
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => (ddh.MaNhanVien == cbbNhanVien.SelectedValue.ToString())&& (ddh.TongTien.HasValue && ddh.TongTien.Value!=0)).ToList();
                     dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
                     suaTieuDeCotDSDDH();
                     break;
                 case "NgayDatHang":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => ddh.NgayDat >= dtpTuNgay.Value && ddh.NgayDat <= dtpDenNgay.Value).ToList();
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => (ddh.NgayDat >= dtpTuNgay.Value && ddh.NgayDat <= dtpDenNgay.Value) && (ddh.TongTien.HasValue && ddh.TongTien.Value != 0)).ToList();
                     dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
                     suaTieuDeCotDSDDH();
                     break;
                 case "TrangThai":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => ddh.TrangThai == cbbTrangThai.SelectedValue.ToString()).ToList();
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => (ddh.TrangThai == cbbTrangThai.SelectedValue.ToString()) && (ddh.TongTien.HasValue && ddh.TongTien.Value != 0)).ToList();
                     dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
                     suaTieuDeCotDSDDH();
                     break;
                 case "NhaCungCap":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => ddh.MaNhaCungCap == cbbNhaCungCap.SelectedValue.ToString()).ToList();
+                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => (ddh.MaNhaCungCap == cbbNhaCungCap.SelectedValue.ToString()) && (ddh.TongTien.HasValue && ddh.TongTien.Value != 0)).ToList();
                     dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
                     suaTieuDeCotDSDDH();
                     break;
@@ -443,11 +445,22 @@ namespace GUI
             dtpTuNgay.Enabled = false;
             dtpDenNgay.Enabled = false;
             cbbTrangThai.Enabled = false;
+            txtSoLuongYeuCau.KeyDown += TextBox_KeyDown;
+            txtSoLuongCungCap.KeyDown += TextBox_KeyDown;
+            txtDonGia.KeyDown += TextBox_KeyDown;
             loadNhaCungCapVaoComboBox(cbbNhaCungCap);
             loadLuaChonHienThiVaoComboBox(cbbLuaChonHienThi);
             loadNhanVienVaoComboBox(cbbNhanVien);
             loadTrangThaiVaoComboBox1(cbbTrangThai);
             loadTrangThaiVaoComboBox1(cbbTrangThaiCTDDH);
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnCapNhat.PerformClick();
+            }
         }
 
         private void loadTrangThaiVaoComboBox1(ComboBox combo)

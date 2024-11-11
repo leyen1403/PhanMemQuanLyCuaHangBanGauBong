@@ -58,5 +58,25 @@ namespace DAL
                 return false;
             }
         }
+
+        public bool XoaDonDatHang(string maDonDatHang)
+        {
+            DonDatHang ddh = db.DonDatHangs.Where(d => d.MaDonDatHang == maDonDatHang).FirstOrDefault();
+            if (ddh != null)
+            {
+                List<ChiTietDonDatHang> lstCTDDH = db.ChiTietDonDatHangs.Where(ct => ct.MaDonDatHang == maDonDatHang).ToList();
+                foreach (ChiTietDonDatHang ct in lstCTDDH)
+                {
+                    db.ChiTietDonDatHangs.DeleteOnSubmit(ct);
+                }
+                db.DonDatHangs.DeleteOnSubmit(ddh);
+                db.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

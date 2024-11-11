@@ -32,5 +32,10 @@ namespace BLL
         {
             return ddhDAL.CapNhatDonDatHang(ddh);
         }
+
+        public bool XoaDonDatHang(string maDonDatHang)
+        {
+            return ddhDAL.XoaDonDatHang(maDonDatHang);
+        }
     }
 }

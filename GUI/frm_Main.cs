@@ -84,18 +84,25 @@ namespace GUI
 
         void loadForm(Form form)
         {
+            // Kiểm tra nếu pnMain đã có một form con nào khác đang mở thì đóng nó
+            if (pnMain.Controls.Count > 0)
+            {
+                var existingForm = pnMain.Controls[0] as Form;
+                existingForm?.Close();
+                pnMain.Controls.Clear();
+            }
+
+            // Thiết lập form mới
             this.Text = form.Text;
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            form.Height = pnMain.Height;
-            form.Width = pnMain.Width;
             pnMain.Controls.Add(form);
             pnMain.Tag = form;
             form.BringToFront();
             form.Show();
-
         }
+
 
         private void btn_LapHoaDon_Click(object sender, EventArgs e)
         {

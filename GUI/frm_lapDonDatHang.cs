@@ -15,6 +15,7 @@ namespace GUI
 {
     public partial class frm_lapDonDatHang : Form
     {
+        private bool _daDatHang = false;
         private string _maNhaCungCap;
         private string _maDonDatHang;
         private string _maNhanVien = "NV001";
@@ -71,10 +72,86 @@ namespace GUI
             this.btnTim.Click += BtnTim_Click;
             this.cbbLoai2.SelectedIndexChanged += CbbLoai2_SelectedIndexChanged;
             dgvDanhSachChiTietDonDatHang.KeyDown += DgvDanhSachChiTietDonDatHang_KeyDown;
+            this.FormClosing += Frm_lapDonDatHang_FormClosing;
+            this.btnDong.Click += BtnDong_Click;
             AddButtonPaintEvent();
             // Gọi hàm này trong Form_Load:
             AddButtonPaintEventRecursive(this);
         }
+
+        private void BtnDong_Click(object sender, EventArgs e)
+        {
+
+            if (_chiTietDonDatHangList == null || !_chiTietDonDatHangList.Any())
+            {
+                // Nếu không có dữ liệu chi tiết, chỉ cần đóng form
+                this.Close();
+                return;
+            }
+            var result = MessageBox.Show("Bạn có chắc chắn muốn xóa đơn đặt hàng này không?",
+                                         "Xác nhận xóa",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                bool isDeleted = DonDatHangBLL.XoaDonDatHang(MaDonDatHang);
+
+                if (isDeleted)
+                {
+                    MessageBox.Show("Đơn đặt hàng đã được xóa thành công.", "Thông báo");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể xóa đơn đặt hàng. Vui lòng thử lại.", "Lỗi");
+                }
+            }
+        }
+
+
+        private void Frm_lapDonDatHang_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_daDatHang)
+            {
+                var result = MessageBox.Show(
+                    "Bạn chưa nhấn 'Đặt hàng'. Bạn có chắc chắn muốn thoát không?",
+                    "Xác nhận thoát",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question
+                );
+
+                // Kiểm tra lựa chọn của người dùng
+                if (result == DialogResult.Yes)
+                {
+                    // Nếu người dùng chọn "Yes", cho phép form đóng
+                    e.Cancel = false;
+                }
+                else if (result == DialogResult.No)
+                {
+                    // Nếu người dùng chọn "No", xóa đơn đặt hàng và giữ form lại
+                    bool isDeleted = DonDatHangBLL.XoaDonDatHang(MaDonDatHang);
+
+                    if (isDeleted)
+                    {
+                        MessageBox.Show("Đơn đặt hàng đã được xóa.", "Thông báo");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa đơn đặt hàng. Vui lòng thử lại.", "Lỗi");
+                    }
+
+                    // Giữ form lại (ngừng đóng form)
+                    e.Cancel = true;
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    // Nếu người dùng chọn "Cancel", giữ form lại (ngừng đóng form)
+                    e.Cancel = true;
+                }
+            }
+        }
+
         private void AddButtonPaintEvent()
         {
             foreach (Control control in this.Controls)
@@ -201,11 +278,15 @@ namespace GUI
                 MessageBox.Show("Đơn đặt hàng không tồn tại");
                 return;
             }
+            if (!ShowConfirmationDialog("Bạn có chắc chắn muốn đặt hàng không?", "Xác nhận đặt hàng"))
+            {
+                return;
+            }
             ddhNew.NgayDat = DateTime.Now;
             ChiTietDonDatHangList = ChiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(MaDonDatHang);
             TongTienDonDatHang = tinhTongGiaTriDonDatHang(ChiTietDonDatHangList);
             ddhNew.TongTien = TongTienDonDatHang;
-            ddhNew.TrangThai = "Đã xác nhận";
+            ddhNew.TrangThai = "Chưa xác nhận";
             ddhNew.NgayTao = DateTime.Now;
             ddhNew.NgayCapNhat = DateTime.Now;
             ddhNew.MaNhanVien = MaNhanVien;
@@ -213,6 +294,7 @@ namespace GUI
             // Cap nhat don dat hang
             if (DonDatHangBLL.CapNhatDonDatHang(ddhNew))
             {
+                _daDatHang = true;
                 MessageBox.Show("Đã xác nhận đơn đặt hàng");
                 this.Close();
             }
@@ -236,6 +318,10 @@ namespace GUI
         {
             string maSanPham = txtMaSanPham.Text;
             string maDonDatHang = MaDonDatHang;
+            if (!ShowConfirmationDialog("Bạn có chắc chắn muốn xoá sản phẩm vào đơn đặt hàng không?", "Xác nhận xoá sản phẩm"))
+            {
+                return;
+            }
             ChiTietDonDatHang chiTietDonDatHang = ChiTietDonDatHangList.Where(ct => ct.MaSanPham == maSanPham && ct.MaDonDatHang == MaDonDatHang).FirstOrDefault();
             if (ChiTietDonDatHangBLL.XoaChiTietDonDatHang(chiTietDonDatHang))
             {
@@ -280,11 +366,21 @@ namespace GUI
             return maDonDatHang;
         }
 
+        private bool ShowConfirmationDialog(string message, string title)
+        {
+            var result = MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return result == DialogResult.Yes;
+        }
+
         private void BtnThem_Click(object sender, EventArgs e)
         {
             if (MaNhaCungCap == null)
             {
                 MessageBox.Show("Vui lòng chọn nhà cung cấp");
+                return;
+            }
+            if (!ShowConfirmationDialog("Bạn có chắc chắn muốn thêm sản phẩm vào đơn đặt hàng không?", "Xác nhận thêm sản phẩm"))
+            {
                 return;
             }
             if (ChiTietDonDatHangList.Count() == 0)

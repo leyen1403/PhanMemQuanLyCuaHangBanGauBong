@@ -60,7 +60,7 @@ namespace BLL
 
                 return _chiTietHoaDonBanHangDAL.GetChiTietHoaDonByMaChiTiet(maChiTietHoaDon);
             }
-            catch (Exception e)
+            catch
             {
                 return null;
             }
@@ -71,7 +71,7 @@ namespace BLL
             {
                 return _chiTietHoaDonBanHangDAL.GetAllChiTietHoaDonBanHang();
             }
-            catch (Exception e)
+            catch
             {
                 return null;
             }

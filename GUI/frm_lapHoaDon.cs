@@ -13,7 +13,6 @@ namespace GUI
     public partial class frm_lapHoaDon : Form
     {
         ProductItem productSelected = null;
-        private Timer timer;
         private string maNV = "NV001";
         SanPhamBLL _sanPhamBLL = new SanPhamBLL();
         LoaiSanPhamBLL _loaiSanPhamBLL = new LoaiSanPhamBLL();

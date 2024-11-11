@@ -67,6 +67,7 @@
             this.btnTim = new System.Windows.Forms.Button();
             this.btnDatHang = new System.Windows.Forms.Button();
             this.lblTongGiaTriDonHang = new System.Windows.Forms.Label();
+            this.btnDong = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachChiTietDonDatHang)).BeginInit();
@@ -531,6 +532,19 @@
             this.lblTongGiaTriDonHang.TabIndex = 3;
             this.lblTongGiaTriDonHang.Text = "Tổng giá trị: ";
             // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDong.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDong.ForeColor = System.Drawing.Color.Red;
+            this.btnDong.Location = new System.Drawing.Point(1300, 228);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(93, 52);
+            this.btnDong.TabIndex = 9;
+            this.btnDong.Text = "Huỷ";
+            this.btnDong.UseVisualStyleBackColor = false;
+            // 
             // frm_lapDonDatHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,6 +552,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1491, 903);
             this.Controls.Add(this.lblTongGiaTriDonHang);
+            this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnDatHang);
             this.Controls.Add(this.btnTim);
             this.Controls.Add(this.groupBox3);
@@ -605,5 +620,6 @@
         private System.Windows.Forms.DataGridView dgvDanhSachSanPham;
         private System.Windows.Forms.NumericUpDown txtSoLuongNhapThem;
         private System.Windows.Forms.Label lblTongGiaTriDonHang;
+        private System.Windows.Forms.Button btnDong;
     }
 }
