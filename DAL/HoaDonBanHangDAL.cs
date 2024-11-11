@@ -85,6 +85,91 @@ namespace DAL
                 return new List<HoaDonBanHang>();
             }
         }
+        // 2. Lọc hóa đơn theo mã khách hàng
+        public List<HoaDonBanHang> GetHoaDonByMaKhachHang(string maKhachHang)
+        {
+            try
+            {
+                return db.HoaDonBanHangs
+                    .Where(hd => hd.MaKhachHang == maKhachHang)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy hóa đơn theo mã khách hàng: " + ex.Message);
+                return new List<HoaDonBanHang>();
+            }
+        }
 
+        public List<HoaDonBanHang> GetHoaDonByMaNhanVien(string maNhanVien)
+        {
+            try
+            {
+                return db.HoaDonBanHangs
+                    .Where(hd => hd.MaNhanVien == maNhanVien)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy hóa đơn theo mã nhân viên: " + ex.Message);
+                return new List<HoaDonBanHang>();
+            }
+        }
+
+        public List<HoaDonBanHang> GetHoaDonByMaHoaDon(string maHoaDon)
+        {
+            try
+            {
+                return db.HoaDonBanHangs
+                    .Where(hd => hd.MaHoaDonBanHang == maHoaDon)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy hóa đơn theo mã hóa đơn: " + ex.Message);
+                return new List<HoaDonBanHang>();
+            }
+        }
+        public List<HoaDonBanHang> GetHoaDonByDateRange(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return db.HoaDonBanHangs
+                    .Where(hd => hd.NgayLap >= startDate && hd.NgayLap <= endDate)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy hóa đơn theo khoảng thời gian: " + ex.Message);
+                return new List<HoaDonBanHang>();
+            }
+        }
+        public bool UpdateHoaDonBanHang(HoaDonBanHang hoaDon)
+        {
+            try
+            {
+                var existingHoaDon = db.HoaDonBanHangs.FirstOrDefault(hd => hd.MaHoaDonBanHang == hoaDon.MaHoaDonBanHang);
+                if (existingHoaDon == null)
+                {
+                    Console.WriteLine("Không tìm thấy hóa đơn để cập nhật.");
+                    return false;
+                }
+
+                existingHoaDon.MaKhachHang = hoaDon.MaKhachHang;
+                existingHoaDon.MaNhanVien = hoaDon.MaNhanVien;
+                existingHoaDon.TongSanPham = hoaDon.TongSanPham;
+                existingHoaDon.DiemCongTichLuy= hoaDon.DiemCongTichLuy;
+                existingHoaDon.DiemTichLuy = hoaDon.DiemTichLuy;
+                existingHoaDon.TongTien = hoaDon.TongTien;
+
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi cập nhật hóa đơn: " + ex.Message);
+                return false;
+            }
+        }
     }
 }

@@ -20,5 +20,9 @@ namespace DAL
         {
             return db.NhanViens.Where(nv => nv.MaNhanVien == id).FirstOrDefault();
         }
+        public NhanVien GetNhanVienByName(string name)
+        {
+            return db.NhanViens.Where(nv => nv.HoTen == name).FirstOrDefault();
+        }
     }
 }

@@ -14,7 +14,6 @@ namespace BLL
         {
             _hoaDonBanHangDAL = new HoaDonBanHangDAL();
         }
-
         public bool AddHoaDonBanHang(HoaDonBanHang hoaDon)
         {
             try
@@ -53,5 +52,54 @@ namespace BLL
                 return null;
             }
         }
+
+        public List<HoaDonBanHang> GetHoaDonByMaKhachHang(string maKhachHang)
+        {
+            if (string.IsNullOrWhiteSpace(maKhachHang))
+            {
+                Console.WriteLine("Mã khách hàng không được để trống.");
+                return new List<HoaDonBanHang>();
+            }
+
+            return _hoaDonBanHangDAL.GetHoaDonByMaKhachHang(maKhachHang);
+        }
+
+        public List<HoaDonBanHang> GetHoaDonByMaNhanVien(string maNhanVien)
+        {
+            if (string.IsNullOrWhiteSpace(maNhanVien))
+            {
+                Console.WriteLine("Mã nhân viên không được để trống.");
+                return new List<HoaDonBanHang>();
+            }
+
+            return _hoaDonBanHangDAL.GetHoaDonByMaNhanVien(maNhanVien);
+        }
+
+        public List<HoaDonBanHang> GetHoaDonByMaHoaDon(string maHoaDon)
+        {
+            if (string.IsNullOrWhiteSpace(maHoaDon))
+            {
+                Console.WriteLine("Mã hóa đơn không được để trống.");
+                return new List<HoaDonBanHang>();
+            }
+
+            return _hoaDonBanHangDAL.GetHoaDonByMaHoaDon(maHoaDon);
+        }
+
+        public List<HoaDonBanHang> GetHoaDonByDateRange(DateTime startDate, DateTime endDate)
+        {
+            if (startDate > endDate)
+            {
+                Console.WriteLine("Ngày bắt đầu không thể lớn hơn ngày kết thúc.");
+                return new List<HoaDonBanHang>();
+            }
+
+            return _hoaDonBanHangDAL.GetHoaDonByDateRange(startDate, endDate);
+        }
+        public bool UpdateHoaDonBanHang(HoaDonBanHang hoaDon)
+        {
+            return _hoaDonBanHangDAL.UpdateHoaDonBanHang(hoaDon);
+        }
+
     }
 }
