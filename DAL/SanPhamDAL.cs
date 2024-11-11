@@ -90,7 +90,6 @@ namespace DAL
                 {
                     product.TenSanPham = updatedProduct.TenSanPham;
                     product.DonViTinh = updatedProduct.DonViTinh;
-                    product.SoLuongTon = updatedProduct.SoLuongTon;
                     product.SoLuongToiThieu = updatedProduct.SoLuongToiThieu;
                     product.GiaNhap = updatedProduct.GiaNhap;
                     product.GiaBan = updatedProduct.GiaBan;
@@ -312,7 +311,6 @@ namespace DAL
                 return new List<SanPham>();  // Trả về danh sách rỗng nếu có lỗi
             }
         }
-
         public List<SanPham> GetUniqueProducts(string searchKeyword = "")
         {
             try
@@ -377,6 +375,65 @@ namespace DAL
 
             return query;
         }
+        public bool DeleteProduct(string maSanPham)
+        {
+            try
+            {
+                var product = db.SanPhams.SingleOrDefault(sp => sp.MaSanPham == maSanPham);
+
+                if (product == null)
+                {
+                    return false;
+                }
+
+                db.SanPhams.DeleteOnSubmit(product);
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi xóa sản phẩm: " + ex.Message);
+                return false;
+            }
+
+        }
+
+        public List<KichThuoc> GetKichThuocByProductCode(string maSanPham)
+        {
+            try
+            {
+                var query = from spKichThuoc in db.SanPham_KichThuocs
+                            join kichThuoc in db.KichThuocs on spKichThuoc.MaKichThuoc equals kichThuoc.MaKichThuoc
+                            where spKichThuoc.MaSanPham == maSanPham
+                            select kichThuoc;
+
+                return query.ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy thông tin kích thước: " + ex.Message);
+                return new List<KichThuoc>();  // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+
+        public List<MauSac> GetMauSacByProductCode(string maSanPham)
+        {
+            try
+            {
+                var query = from spMauSac in db.SanPham_MauSacs
+                            join mauSac in db.MauSacs on spMauSac.MaMau equals mauSac.MaMau
+                            where spMauSac.MaSanPham == maSanPham
+                            select mauSac;
+
+                return query.ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy thông tin màu sắc: " + ex.Message);
+                return new List<DTO.MauSac>();  // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+
 
     }
 }

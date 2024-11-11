@@ -58,8 +58,6 @@ namespace GUI
                 if (dsSanPham != null)
                 {
                     dgv_dsSanPham.DataSource = dsSanPham;
-
-                    // Đặt tên các cột cho DataGridView
                     dgv_dsSanPham.Columns["MaSanPham"].HeaderText = "Mã Sản Phẩm";
                     dgv_dsSanPham.Columns["TenSanPham"].HeaderText = "Tên Sản Phẩm";
                     dgv_dsSanPham.Columns["DonViTinh"].HeaderText = "Đơn Vị Tính";
@@ -72,24 +70,21 @@ namespace GUI
                     dgv_dsSanPham.Columns["HinhAnh"].HeaderText = "Hình Ảnh";
                     dgv_dsSanPham.Columns["SoLuongToiThieu"].HeaderText = "Số Lượng Tối Thiểu";
                     dgv_dsSanPham.Columns["TrangThai"].HeaderText = "Trạng Thái";
-
-                    // Căn giữa tiêu đề cột và định dạng tiêu đề
                     foreach (DataGridViewColumn column in dgv_dsSanPham.Columns)
                     {
                         column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Căn giữa tiêu đề
                         column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold); // Đặt kiểu chữ cho tiêu đề (tuỳ chọn)
                     }
-
-                    // Duyệt qua các dòng và thay đổi màu nền nếu trạng thái là "đã xóa" (TrangThai = false)
                     foreach (DataGridViewRow row in dgv_dsSanPham.Rows)
                     {
-                        // Kiểm tra trạng thái sản phẩm, nếu trạng thái là false (đã xóa)
                         bool trangThai = Convert.ToBoolean(row.Cells["TrangThai"].Value);
                         if (!trangThai)
                         {
-                            row.DefaultCellStyle.BackColor = Color.LightPink; // Bôi màu đỏ cho dòng
+                            row.DefaultCellStyle.BackColor = Color.LightPink; 
                         }
                     }
+
+                    dgv_dsSanPham.RowPostPaint += dgv_RowPostPaint;
                 }
                 else
                 {
@@ -101,6 +96,25 @@ namespace GUI
                 MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
             }
         }
+
+        private void dgv_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            string rowIdx = (e.RowIndex + 1).ToString();
+
+            System.Drawing.Font rowFont = new System.Drawing.Font("Microsoft Sans Serif", 14, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+
+            var leftFormat = new System.Drawing.StringFormat()
+            {
+                Alignment = System.Drawing.StringAlignment.Near, // Căn trái
+                LineAlignment = System.Drawing.StringAlignment.Center // Giữa theo chiều dọc
+            };
+
+            System.Drawing.Rectangle headerBounds = new System.Drawing.Rectangle(e.RowBounds.Left, e.RowBounds.Top, dgv.Columns[0].Width, e.RowBounds.Height);
+
+            e.Graphics.DrawString(rowIdx, rowFont, System.Drawing.SystemBrushes.ControlText, headerBounds, leftFormat);
+        }
+
         // Method to load ComboBox for Product Types
         private void loadComBoBoxLoaiSanPhamAdd()
         {
@@ -238,6 +252,29 @@ namespace GUI
             }
         }
 
+        private void LoadKichThuocAndMauSac(string maSanPham)
+        {
+            try
+            {
+                // Lấy thông tin Kích thước và Màu sắc dựa trên mã sản phẩm
+                var kichThuocs = _sanPhamBLL.GetKichThuocByProductCode(maSanPham);
+                var mauSacs = _sanPhamBLL.GetMauSacByProductCode(maSanPham);
+
+                // Gán vào ComboBox kích thước
+                cb_kichThuoc.DataSource = kichThuocs;
+                cb_kichThuoc.DisplayMember = "TenKichThuoc";  // Hiển thị tên kích thước
+                cb_kichThuoc.ValueMember = "MaKichThuoc";    // Lưu giá trị mã kích thước
+
+                // Gán vào ComboBox màu sắc
+                cbo_tenMauSac.DataSource = mauSacs;
+                cbo_tenMauSac.DisplayMember = "TenMau";  // Hiển thị tên màu sắc
+                cbo_tenMauSac.ValueMember = "MaMau";    // Lưu giá trị mã màu sắc
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải thông tin kích thước và màu sắc: " + ex.Message);
+            }
+        }
 
         private void Frm_quanLyKhoHang_Load(object sender, EventArgs e)
         {
@@ -255,7 +292,14 @@ namespace GUI
             btn_xoaSanPham.Click += Btn_xoaSanPham_Click;
             btn_luuSanPham.Click += Btn_luuSanPham_Click;
             btn_khoiPhuc.Click += Btn_khoiPhuc_Click;
+            btn_xoaLuon.Click += Btn_xoaLuon_Click;
             btn_luuSanPham.Visible = false;
+            btn_xoaLuon.Visible = false;
+            btn_xoaSanPham.Visible=false;
+            btn_khoiPhuc.Visible=false;
+            txt_maSanPham.Enabled=false;
+            txt_soLuongTon.Enabled=txt_trangThai.Enabled=txt_ngayTao.Enabled=txt_ngayCapNhat.Enabled=txt_duongDan.Enabled= false;
+            btn_clear.Click += Btn_clear_Click;
             txt_ngayTao.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             txt_ngayCapNhat.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             GetCurrentRowData();
@@ -263,6 +307,54 @@ namespace GUI
             btn_load.Click += Btn_load_Click;
             //PlaceHover(txt_timSanPham, "Nhập thông tin cần tìm");
 
+        }
+
+        private void Btn_clear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void Btn_xoaLuon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy mã sản phẩm từ giao diện (hoặc từ nơi bạn đang lưu trữ mã sản phẩm cần xóa)
+                string maSanPham = txt_maSanPham.Text;
+                string maMau=cbo_tenMauSac.SelectedValue.ToString();
+                string maKichThuoc = cb_kichThuoc.SelectedValue.ToString();
+                if (string.IsNullOrEmpty(maSanPham))
+                {
+                    MessageBox.Show("Vui lòng chọn một sản phẩm để xóa.");
+                    return;
+                }
+                if (string.IsNullOrEmpty(maMau)|| string.IsNullOrEmpty(maKichThuoc))
+                {
+                    return;
+                }
+                
+                // Gọi DAL để xóa các liên kết kích thước, màu sắc của sản phẩm
+                bool isSizeDeleted = _sanPhamKichThuocBLL.DeleteProductSize(maSanPham,maKichThuoc);
+                bool isColorDeleted = _sanPhamMauSacBll.DeleteProductColor(maSanPham,maMau);
+
+                // Gọi DAL để xóa sản phẩm
+                bool isProductDeleted = _sanPhamBLL.DeleteProduct(maSanPham);
+
+                // Kiểm tra kết quả và hiển thị thông báo
+                if (isSizeDeleted && isColorDeleted && isProductDeleted)
+                {
+                    MessageBox.Show("Sản phẩm đã được xóa thành công!");
+                    loadSanPham(); // Tải lại danh sách sản phẩm
+                    btn_xoaLuon.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi xóa sản phẩm. Vui lòng thử lại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
 
         private void Btn_load_Click(object sender, EventArgs e)
@@ -273,7 +365,6 @@ namespace GUI
         private void Btn_timDK_Click(object sender, EventArgs e)
         {
             dgv_dsSanPham.DataSource = null;
-            // Kiểm tra nếu ComboBox có giá trị được chọn
             string maLoai = cbo_loaiSanPham.SelectedValue != null ? cbo_loaiSanPham.SelectedValue.ToString() : string.Empty;
             string maMau = cb_tenMauSac.SelectedValue != null ? cb_tenMauSac.SelectedValue.ToString() : string.Empty;
             string maKichThuoc = cbo_tenKichThuoc.SelectedValue != null ? cbo_tenKichThuoc.SelectedValue.ToString() : string.Empty;
@@ -286,13 +377,10 @@ namespace GUI
             try
             {
                 string maSanPham = string.Empty;
-
-                // Kiểm tra xem mã sản phẩm có được nhập vào TextBox không
                 if (!string.IsNullOrEmpty(txt_maSanPham.Text))
                 {
                     maSanPham = txt_maSanPham.Text;
                 }
-                // Nếu không có mã sản phẩm trong TextBox, lấy từ DataGridView
                 else if (dgv_dsSanPham.CurrentRow != null)
                 {
                     maSanPham = dgv_dsSanPham.CurrentRow.Cells["MaSanPham"].Value.ToString();
@@ -302,13 +390,16 @@ namespace GUI
                     MessageBox.Show("Vui lòng chọn sản phẩm cần khôi phục hoặc nhập mã sản phẩm.");
                     return;
                 }
+                if(string.IsNullOrEmpty(txt_maSanPham.Text))
+                {
+                    MessageBox.Show("Lỗi khi khôi phục sản phẩm: ");
+                    return;
+                }
 
-                // Gọi phương thức UpdateTrangThaiSanPham từ BLL để cập nhật trạng thái sản phẩm thành "đã xóa"
                 _sanPhamBLL.UpdateTrangThaiSanPham(maSanPham, true);
-
-                // Tải lại danh sách sản phẩm
                 loadSanPham();
                 MessageBox.Show("Sản phẩm đã được khôi phục.");
+                btn_khoiPhuc.Visible = false;
             }
             catch (Exception ex)
             {
@@ -320,60 +411,58 @@ namespace GUI
         {
             try
             {
-                // Lấy thông tin từ các TextBox
                 string maSanPham = txt_maSanPham.Text.Trim();
                 string tenSanPham = txt_tenSanPham.Text.Trim();
                 string donViTinh = txt_donViTinh.Text.Trim();
-
-                // Kiểm tra thông tin không được để trống
                 if (string.IsNullOrEmpty(maSanPham) || string.IsNullOrEmpty(tenSanPham) || string.IsNullOrEmpty(donViTinh))
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin sản phẩm.");
                     return;
                 }
-
-                // Kiểm tra giá trị số lượng tồn
-                
                 if (!int.TryParse(txt_soLuongToiThieu.Text.Trim(), out int soLuongToiThieu))
                 {
                     MessageBox.Show("Số lượng tối thiểu không hợp lệ!");
                     return;
                 }
-
-                // Kiểm tra và xử lý giá nhập và giá bán
-                string giaNhapText = txt_giaNhap.Text.Trim();
-                string giaBanText = txt_giaBan.Text.Trim();
-
+                string giaNhapText = txt_giaNhap.Text;
+                string giaBanText = txt_giaBan.Text;
+                giaNhapText = giaNhapText.Replace(",", "").Replace("₫", "").Trim();
+                giaBanText = giaBanText.Replace(",", "").Replace("₫", "").Trim();
                 if (!decimal.TryParse(giaNhapText, out decimal giaNhap))
                 {
                     MessageBox.Show("Giá nhập không hợp lệ!");
                     return;
                 }
-
                 if (!decimal.TryParse(giaBanText, out decimal giaBan))
                 {
                     MessageBox.Show("Giá bán không hợp lệ!");
                     return;
                 }
+                
 
-                string moTa = txt_moTa.Text.Trim(); // TextBox cho mô tả
-
-                // Kiểm tra các ComboBox
+                string moTa = txt_moTa.Text.Trim(); 
                 if (cbo_loaiSanPhamAdd.SelectedValue == null || cbo_tenMauSac.SelectedValue == null || cb_kichThuoc.SelectedValue == null)
                 {
                     MessageBox.Show("Vui lòng chọn Mã Loại, Màu Sắc và Kích Thước.");
                     return;
                 }
-
-                // Lấy giá trị từ ComboBox
                 string maLoai = cbo_loaiSanPhamAdd.SelectedValue.ToString();
                 string maMauCu = _sanPhamMauSacBll.GetOldProductColor(maSanPham);
                 string maKichThuocCuu = _sanPhamKichThuocBLL.GetOldSize(maSanPham);
                 string maMau = cbo_tenMauSac.SelectedValue.ToString();
                 string maKichThuoc = cb_kichThuoc.SelectedValue.ToString();
                 string hinhanh = txt_duongDan.Text.Trim();
+                string tenMau = cbo_tenMauSac.SelectedItem.ToString();
+                string tenKichThuoc = cb_kichThuoc.SelectedItem.ToString();
 
-                // Tạo đối tượng sản phẩm mới
+                // Kiểm tra xem sản phẩm với tên, màu sắc và kích thước này đã tồn tại hay chưa
+                string existingProductCode = _sanPhamBLL.GetProductCodesByNameColorSize(tenSanPham, tenMau, tenKichThuoc);
+                if (existingProductCode != null)
+                {
+                    MessageBox.Show("Sản phẩm với tên, màu sắc và kích thước này đã tồn tại.");
+                    return;
+                }
+
                 SanPham updatedProduct = new SanPham
                 {
                     MaSanPham = maSanPham,
@@ -385,23 +474,17 @@ namespace GUI
                     SoLuongToiThieu = soLuongToiThieu,
                     MaLoai = maLoai,
                     HinhAnh = hinhanh,
-                    NgayCapNhat = DateTime.Now // Cập nhật ngày giờ hiện tại
+                    NgayCapNhat = DateTime.Now 
                 };
 
-                // Gọi BLL để lưu thông tin sản phẩm
-                bool result = _sanPhamBLL.UpdateProductInList(updatedProduct); // Giả sử bạn có phương thức UpdateProductInList trong BLL
+                bool result = _sanPhamBLL.UpdateProductInList(updatedProduct); 
                 bool capNhatMauSac = _sanPhamMauSacBll.UpdateProductColor(maSanPham, maMauCu, maMau);
                 bool capNhatKichThuoc = _sanPhamKichThuocBLL.UpdateProductSize(maSanPham, maKichThuocCuu, maKichThuoc);
 
-                // Kiểm tra xem tất cả các thao tác có thành công không
                 if (result && capNhatMauSac && capNhatKichThuoc)
                 {
                     MessageBox.Show("Cập nhật sản phẩm thành công.");
-
-                    // Ẩn nút Lưu sau khi cập nhật thành công
                     btn_luuSanPham.Visible = false;
-
-                    // Tải lại danh sách sản phẩm
                     loadSanPham();
                 }
                 else
@@ -422,13 +505,10 @@ namespace GUI
             try
             {
                 string maSanPham = string.Empty;
-
-                // Kiểm tra xem mã sản phẩm có được nhập vào TextBox không
                 if (!string.IsNullOrEmpty(txt_maSanPham.Text))
                 {
                     maSanPham = txt_maSanPham.Text;
                 }
-                // Nếu không có mã sản phẩm trong TextBox, lấy từ DataGridView
                 else if (dgv_dsSanPham.CurrentRow != null)
                 {
                     maSanPham = dgv_dsSanPham.CurrentRow.Cells["MaSanPham"].Value.ToString();
@@ -439,12 +519,10 @@ namespace GUI
                     return;
                 }
 
-                // Gọi phương thức UpdateTrangThaiSanPham từ BLL để cập nhật trạng thái sản phẩm thành "đã xóa"
                 _sanPhamBLL.UpdateTrangThaiSanPham(maSanPham, false);
-
-                // Tải lại danh sách sản phẩm
                 loadSanPham();
                 MessageBox.Show("Sản phẩm đã được xóa.");
+                btn_xoaSanPham.Visible=false;
             }
             catch (Exception ex)
             {
@@ -456,6 +534,9 @@ namespace GUI
         {
             btn_luuSanPham.Visible = true;
             btn_khoiPhuc.Visible = true;
+            btn_themSanPham.Visible=true;
+            btn_xoaSanPham.Visible=true ;
+            btn_xoaLuon.Visible=true;
         }
         private string taoMaSanPham()
         {
@@ -471,34 +552,50 @@ namespace GUI
             }
             return maSanPham;
         }
+        private void ClearFields()
+        {
+            // Xóa các giá trị trong các TextBox
+            txt_maSanPham.Clear();
+            txt_tenSanPham.Clear();
+            txt_donViTinh.Clear();
+            txt_soLuongTon.Clear();
+            txt_giaNhap.Clear();
+            txt_giaBan.Clear();
+            txt_moTa.Clear();
+            txt_ngayTao.Clear();
+            txt_ngayCapNhat.Clear();
+            txt_soLuongTon.Clear();
+            txt_soLuongToiThieu.Clear();
+            txt_duongDan.Clear();
+            loadComBoBoxLoaiSanPhamAdd();
+            loadComboBoxCbKichThuoc();
+            loadComboBoxMauSac();
+            img_sanPham.Image = null; 
+            txt_tenSanPham.Focus();
+        }
+
         private void GetCurrentRowData()
         {
             try
             {
-                // Kiểm tra xem có dòng hiện tại nào được chọn không
                 if (dgv_dsSanPham.CurrentRow != null)
                 {
-                    // Lấy dòng hiện tại
                     DataGridViewRow currentRow = dgv_dsSanPham.CurrentRow;
-
-                    // Lấy giá trị của các cột trong dòng hiện tại và gán vào các TextBox
                     txt_maSanPham.Text = currentRow.Cells["MaSanPham"].Value.ToString();
                     txt_tenSanPham.Text = currentRow.Cells["TenSanPham"].Value.ToString();
                     txt_donViTinh.Text = currentRow.Cells["DonViTinh"].Value.ToString();
                     txt_soLuongTon.Text = Convert.ToInt32(currentRow.Cells["SoLuongTon"].Value).ToString();
-                    // Lấy giá trị từ các ô và chuyển đổi thành decimal
                     decimal giaNhap = Convert.ToDecimal(currentRow.Cells["GiaNhap"].Value);
                     decimal giaBan = Convert.ToDecimal(currentRow.Cells["GiaBan"].Value);
-
-                    // Định dạng giá trị theo Tiền Việt Nam (VND) và hiển thị trong TextBox
-                    txt_giaNhap.Text = giaNhap.ToString();
-                    txt_giaBan.Text = giaBan.ToString();
+                    txt_giaNhap.Text = giaNhap.ToString("N0");
+                    txt_giaBan.Text = giaBan.ToString("N0");
                     txt_moTa.Text = currentRow.Cells["MoTa"].Value.ToString();
                     txt_ngayTao.Text = Convert.ToDateTime(currentRow.Cells["NgayTao"].Value).ToString("dd/MM/yyyy");
                     txt_ngayCapNhat.Text = Convert.ToDateTime(currentRow.Cells["NgayCapNhat"].Value).ToString("dd/MM/yyyy");
                     txt_soLuongToiThieu.Text = Convert.ToInt32(currentRow.Cells["SoLuongToiThieu"].Value).ToString();
                     txt_duongDan.Text = currentRow.Cells["HinhAnh"].Value?.ToString();
                     string hinhanh = currentRow.Cells["HinhAnh"].Value?.ToString();
+                    LoadKichThuocAndMauSac(txt_maSanPham.Text = currentRow.Cells["MaSanPham"].Value.ToString());
                     if (!string.IsNullOrEmpty(hinhanh))
                     {
                         LoadImageToPictureBox(hinhanh);
@@ -517,12 +614,10 @@ namespace GUI
                     {
                         txt_trangThai.Text = trangThai == "True" ? "Hoạt động" : "Không hoạt động";
                     }
-
-
                 }
                 else
                 {
-                    MessageBox.Show("Không có dòng nào được chọn.");
+                    Console.Write("Không có dòng nào được chọn.");
                 }
             }
             catch (Exception ex)
@@ -541,54 +636,53 @@ namespace GUI
                 string donViTinh = txt_donViTinh.Text;
                 string giaNhapText = txt_giaNhap.Text;
                 string giaBanText = txt_giaBan.Text;
-
-                // Loại bỏ các ký tự không hợp lệ như dấu phân cách (ví dụ: dấu ',' hoặc ký hiệu tiền tệ "₫")
                 giaNhapText = giaNhapText.Replace(",", "").Replace("₫", "").Trim();
                 giaBanText = giaBanText.Replace(",", "").Replace("₫", "").Trim();
-
-                // Kiểm tra và ép kiểu số liệu từ các TextBox
                 if (!decimal.TryParse(giaNhapText, out decimal giaNhap))
                 {
                     MessageBox.Show("Giá nhập không hợp lệ!");
                     return;
                 }
-
                 if (!decimal.TryParse(giaBanText, out decimal giaBan))
                 {
                     MessageBox.Show("Giá bán không hợp lệ!");
                     return;
                 }
-
-
-                //// Kiểm tra và ép kiểu số liệu từ các TextBox
-                //if (!int.TryParse(txt_soLuongTon.Text, out int soLuongTon))
-                //{
-                //    MessageBox.Show("Số lượng tồn không hợp lệ!");
-                //    return;
-                //}
-
                 int soLuongToiThieu = 10;
                 string moTa = txt_moTa.Text;
                 string hinhAnh = txt_duongDan.Text;
 
-                // Kiểm tra ComboBox có giá trị được chọn hay không
                 if (cbo_loaiSanPhamAdd.SelectedValue == null || cbo_tenMauSac.SelectedValue == null || cb_kichThuoc.SelectedValue == null)
                 {
                     MessageBox.Show("Vui lòng chọn Mã Loại, Màu Sắc và Kích Thước.");
                     return;
                 }
 
-                // Lấy giá trị từ các ComboBox
                 string maLoai = cbo_loaiSanPhamAdd.SelectedValue.ToString();
                 string mauSac = cbo_tenMauSac.SelectedValue.ToString();
                 string kichThuoc = cb_kichThuoc.SelectedValue.ToString();
 
-                // Tạo đối tượng SanPham mới
+                // Kiểm tra và lấy giá trị của màu sắc từ ComboBox
+                string tenMauSac = cbo_tenMauSac.SelectedItem != null
+                    ? ((DTO.MauSac)cbo_tenMauSac.SelectedItem).TenMau
+                    : string.Empty;
+
+                // Kiểm tra và lấy giá trị của kích thước từ ComboBox
+                string tenKichThuoc = cb_kichThuoc.SelectedItem != null
+                    ? ((DTO.KichThuoc)cb_kichThuoc.SelectedItem).TenKichThuoc
+                    : string.Empty;
+                string maDaCo = _sanPhamBLL.GetProductCodesByNameColorSize(tenSanPham, tenMauSac, tenKichThuoc);
+                if (maDaCo != null)
+                {
+                    MessageBox.Show("Đã có sản phẩm này rồi !");
+                    return;
+                }
+                
                 SanPham newProduct = new SanPham
                 {
                     MaSanPham = maSanPham,
                     TenSanPham = tenSanPham,
-                    MaLoai = maLoai,  // Mã loại lấy từ ComboBox
+                    MaLoai = maLoai, 
                     DonViTinh = donViTinh,
                     SoLuongTon = 0,
                     SoLuongToiThieu = soLuongToiThieu,
@@ -596,23 +690,18 @@ namespace GUI
                     GiaBan = giaBan,
                     MoTa = moTa,
                     HinhAnh = hinhAnh,
-                    TrangThai = true,  // Trạng thái mặc định là sản phẩm còn hoạt động
+                    TrangThai = true, 
                     NgayTao = DateTime.Now,
                     NgayCapNhat = DateTime.Now
                 };
 
-                // Gọi phương thức thêm sản phẩm từ BLL
                 bool isSuccess = _sanPhamBLL.AddProduct(newProduct);
-
-                // Gọi thêm màu sắc và kích thước cho sản phẩm
                 bool themMauSac = _sanPhamMauSacBll.AddProductColor(maSanPham, mauSac);
                 bool themKichThuoc = _sanPhamKichThuocBLL.AddProductSize(maSanPham, kichThuoc);
-
-                // Kiểm tra xem tất cả các thao tác có thành công không
                 if (isSuccess && themMauSac && themKichThuoc)
                 {
                     MessageBox.Show("Sản phẩm đã được thêm thành công!");
-                    loadSanPham();  // Làm mới danh sách sản phẩm (nếu cần)
+                    loadSanPham(); 
                 }
                 else
                 {
@@ -629,17 +718,12 @@ namespace GUI
         {
             try
             {
-                // Đường dẫn lưu ảnh trong thư mục Resources của ứng dụng
                 string resourcePath = Path.Combine(Application.StartupPath, "Resources", imageName);
-
-                // Tạo thư mục Resources nếu chưa tồn tại
                 string directoryPath = Path.GetDirectoryName(resourcePath);
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
                 }
-
-                // Sao chép ảnh vào thư mục Resources
                 File.Copy(imagePath, resourcePath, true);
 
                 return true;
@@ -659,34 +743,22 @@ namespace GUI
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string selectedImagePath = openFileDialog.FileName;
-
-                    // Đổi tên ảnh dựa trên mã loại sản phẩm hoặc tên khác
                     string newImageName = $"{txt_maSanPham.Text}_{Path.GetFileName(selectedImagePath)}";
-
-                    // Đường dẫn lưu ảnh trong thư mục Resources của ứng dụng
                     string resourcePath = Path.Combine(Application.StartupPath, "Resources", newImageName);
-
-                    // Kiểm tra xem ảnh đã tồn tại chưa
                     if (File.Exists(resourcePath))
                     {
-                        // Hỏi người dùng có muốn ghi đè ảnh cũ không
                         DialogResult result = MessageBox.Show("Ảnh đã tồn tại. Bạn có muốn ghi đè không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
                         if (result == DialogResult.No)
                         {
-                            return; // Dừng lại nếu người dùng không muốn ghi đè
+                            return; 
                         }
                     }
 
-                    // Cập nhật đường dẫn mới vào TextBox hiển thị đường dẫn
                     txt_duongDan.Text = newImageName;
-
-                    // Lưu ảnh vào thư mục Resources
                     bool isSaved = SaveImageToResources(selectedImagePath, newImageName);
 
                     if (isSaved)
                     {
-                        // Hiển thị hình ảnh đã lưu vào PictureBox
                         LoadImageToPictureBox(newImageName);
                     }
                 }
@@ -714,34 +786,31 @@ namespace GUI
 
         private void PlaceHover(TextBox textBox, string textToShow)
         {
-            // Di chuột vào TextBox
             textBox.MouseEnter += (sender, e) =>
             {
-                if (string.IsNullOrEmpty(textBox.Text))  // Kiểm tra nếu TextBox trống thì ẩn chữ mẫu
+                if (string.IsNullOrEmpty(textBox.Text))  
                 {
-                    textBox.Text = "";  // Xóa chữ khi chuột rời khỏi
-                    textBox.ForeColor = System.Drawing.Color.Black; // Đặt màu chữ lại như mặc định (màu đen)
+                    textBox.Text = "";  
+                    textBox.ForeColor = System.Drawing.Color.Black; 
                 }
             };
 
-            // Rời chuột khỏi TextBox
             textBox.MouseLeave += (sender, e) =>
             {
-                if (string.IsNullOrEmpty(textBox.Text))  // Kiểm tra nếu TextBox trống thì hiển thị chữ mẫu
+                if (string.IsNullOrEmpty(textBox.Text))  
                 {
-                    textBox.Text = textToShow;  // Hiển thị chữ khi chuột vào
-                    textBox.ForeColor = System.Drawing.Color.Gray;  // Chữ màu xám
+                    textBox.Text = textToShow;  
+                    textBox.ForeColor = System.Drawing.Color.Gray; 
                 }
 
             };
 
-            // Kiểm tra khi người dùng bắt đầu nhập liệu
             textBox.TextChanged += (sender, e) =>
             {
-                if (string.IsNullOrEmpty(textBox.Text))  // Kiểm tra nếu TextBox trống thì ẩn chữ mẫu
+                if (string.IsNullOrEmpty(textBox.Text))  
                 {
-                    textBox.Text = "";  // Xóa chữ khi chuột rời khỏi
-                    textBox.ForeColor = System.Drawing.Color.Black; // Đặt màu chữ lại như mặc định (màu đen)
+                    textBox.Text = ""; 
+                    textBox.ForeColor = System.Drawing.Color.Black; 
                 }
             };
         }

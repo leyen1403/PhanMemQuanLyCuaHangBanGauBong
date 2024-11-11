@@ -28,32 +28,63 @@ namespace GUI
         }
         private void InitializeDataGridView()
         {
+            // Xóa cột cũ nếu có
             dgvCart.Columns.Clear();
+
+            // Thêm các cột vào DataGridView
             dgvCart.Columns.Add("MaSP", "Mã Sản Phẩm");
             dgvCart.Columns.Add("TenSanPham", "Tên Sản Phẩm");
             dgvCart.Columns.Add("MauSac", "Màu Sắc");
-            dgvCart.Columns.Add("KichThuoc", "Kích Thước");
+            dgvCart.Columns.Add("KichThuoc", "Size");
 
+            // Cột Số Lượng
             DataGridViewTextBoxColumn colSoLuong = new DataGridViewTextBoxColumn();
             colSoLuong.Name = "SoLuong";
-            colSoLuong.HeaderText = "Số Lượng";
-            colSoLuong.ValueType = typeof(int); // Kiểu số nguyên
+            colSoLuong.HeaderText = "SL";  // Tiêu đề cột
+            colSoLuong.ValueType = typeof(int);  // Kiểu dữ liệu số nguyên
             colSoLuong.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; // Căn phải cho số lượng
             dgvCart.Columns.Add(colSoLuong);
+
+            // Cột Giá
             dgvCart.Columns.Add("Gia", "Giá");
+
+            // Cột Thành Tiền
             dgvCart.Columns.Add("ThanhTien", "Thành Tiền");
+
+            // Cột Xóa (với hình ảnh)
             DataGridViewImageColumn btnXoa = new DataGridViewImageColumn();
             btnXoa.Name = "Xoa";
             btnXoa.HeaderText = "Xóa";
-            btnXoa.Image = Properties.Resources.icons8_delete_35;  // Đảm bảo rằng "icons8_delete_35" là tên tài nguyên của bạn trong Resources
-            btnXoa.ImageLayout = DataGridViewImageCellLayout.Zoom; // Đảm bảo hình ảnh được thu nhỏ vừa vặn
+            btnXoa.Image = Properties.Resources.icons8_delete_35;  // Đảm bảo hình ảnh đã được thêm vào Resources
+            btnXoa.ImageLayout = DataGridViewImageCellLayout.Zoom;  // Hình ảnh sẽ thu nhỏ vừa vặn với ô
             dgvCart.Columns.Add(btnXoa);
+
+            // Đặt thuộc tính ReadOnly cho các cột không muốn chỉnh sửa
             dgvCart.Columns["MaSP"].ReadOnly = true;
             dgvCart.Columns["TenSanPham"].ReadOnly = true;
             dgvCart.Columns["MauSac"].ReadOnly = true;
             dgvCart.Columns["KichThuoc"].ReadOnly = true;
             dgvCart.Columns["Gia"].ReadOnly = true;
             dgvCart.Columns["ThanhTien"].ReadOnly = true;
+
+            // Đặt chiều rộng của các cột đã có
+            dgvCart.Columns["MaSP"].Width = 70;  // Đặt chiều rộng cột Mã Sản Phẩm là 70
+            dgvCart.Columns["SoLuong"].Width = 30;  // Đặt chiều rộng cột Số Lượng là 30
+            dgvCart.Columns["KichThuoc"].Width = 50;  // Đặt chiều rộng cột Kích Thước là 50
+
+            // Đặt lại kiểu font cho tiêu đề cột
+            dgvCart.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 8, FontStyle.Bold);
+            dgvCart.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+
+            // Cập nhật lại bảng
+            dgvCart.Refresh();
+
+            // Thêm chức năng tự động thay đổi kích thước cột
+            dgvCart.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            dgvCart.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ngăn không cho tạo thêm cột mới
+            dgvCart.AllowUserToAddRows = false;
         }
 
         private void dsSanPham_Paint(object sender, PaintEventArgs e)
@@ -72,6 +103,7 @@ namespace GUI
             this.btn_Clear.Click += Btn_Clear_Click;
             this.btn_inHoaDon.Click += Btn_inHoaDon_Click;
             this.btn_luuHoaDon.Click += Btn_luuHoaDon_Click;
+            txt_TongSL.Enabled =txt_tongTien.Enabled =txt_diemTichLuy.Enabled= false;
             dsSanPham.AutoScroll = true;
             loadSanPham(_sanPhamBLL.GetUniqueProducts());
             loadComBoxLoai();

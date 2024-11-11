@@ -129,5 +129,34 @@ namespace BLL
         {
             return sanPhamDal.GetSanPhamByMaSanPham(maSanPham);
         }
+        public bool DeleteProduct(string maSanPham)
+        {
+            return sanPhamDal.DeleteProduct(maSanPham);
+        }
+        public List<KichThuoc> GetKichThuocByProductCode(string maSanPham)
+        {
+            try
+            {
+                return sanPhamDal.GetKichThuocByProductCode(maSanPham); // Gọi phương thức trong DAL
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy thông tin kích thước: " + ex.Message);
+                return new List<KichThuoc>(); // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+
+        public List<MauSac> GetMauSacByProductCode(string maSanPham)
+        {
+            try
+            {
+                return sanPhamDal.GetMauSacByProductCode(maSanPham); // Gọi phương thức trong DAL
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy thông tin màu sắc: " + ex.Message);
+                return new List<MauSac>(); // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
     }
 }
