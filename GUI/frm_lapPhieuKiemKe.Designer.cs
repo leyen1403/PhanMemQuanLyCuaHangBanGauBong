@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgv_DSSP = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCapNhat = new System.Windows.Forms.Button();
@@ -63,8 +62,8 @@
             this.btnCapNhatGhiChu = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvDSChiTietPhieuKiemKe = new System.Windows.Forms.DataGridView();
+            this.dgv_DSSP = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_DSSP)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoLuongThucTe)).BeginInit();
@@ -72,6 +71,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSChiTietPhieuKiemKe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_DSSP)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -90,8 +90,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dgv_DSSP);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -101,17 +100,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách sản phẩm";
-            // 
-            // dgv_DSSP
-            // 
-            this.dgv_DSSP.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_DSSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_DSSP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_DSSP.Location = new System.Drawing.Point(3, 23);
-            this.dgv_DSSP.Name = "dgv_DSSP";
-            this.dgv_DSSP.ReadOnly = true;
-            this.dgv_DSSP.Size = new System.Drawing.Size(730, 251);
-            this.dgv_DSSP.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -473,8 +461,24 @@
             this.dgvDSChiTietPhieuKiemKe.Location = new System.Drawing.Point(3, 23);
             this.dgvDSChiTietPhieuKiemKe.Name = "dgvDSChiTietPhieuKiemKe";
             this.dgvDSChiTietPhieuKiemKe.ReadOnly = true;
+            this.dgvDSChiTietPhieuKiemKe.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvDSChiTietPhieuKiemKe.Size = new System.Drawing.Size(730, 251);
             this.dgvDSChiTietPhieuKiemKe.TabIndex = 0;
+            // 
+            // dgv_DSSP
+            // 
+            this.dgv_DSSP.AllowUserToAddRows = false;
+            this.dgv_DSSP.AllowUserToDeleteRows = false;
+            this.dgv_DSSP.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_DSSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_DSSP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_DSSP.Location = new System.Drawing.Point(3, 23);
+            this.dgv_DSSP.Name = "dgv_DSSP";
+            this.dgv_DSSP.ReadOnly = true;
+            this.dgv_DSSP.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgv_DSSP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgv_DSSP.Size = new System.Drawing.Size(730, 251);
+            this.dgv_DSSP.TabIndex = 0;
             // 
             // frm_lapPhieuKiemKe
             // 
@@ -496,7 +500,6 @@
             this.Name = "frm_lapPhieuKiemKe";
             this.Text = "frm_lapPhieuKiemKe";
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_DSSP)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -506,6 +509,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSChiTietPhieuKiemKe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_DSSP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -523,7 +527,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNhanVienLap;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dgv_DSSP;
         private System.Windows.Forms.TextBox txtTenSanPham;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -548,5 +551,6 @@
         private System.Windows.Forms.ComboBox cbbMaPhieuKiemKe;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dgvDSChiTietPhieuKiemKe;
+        private System.Windows.Forms.DataGridView dgv_DSSP;
     }
 }

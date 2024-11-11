@@ -575,6 +575,7 @@ namespace GUI
                     currentY += controlHeight + spacing;
                 }
             }
+
             dsSanPham.AutoScrollMinSize = new Size(0, currentY + controlHeight + spacing);
         }
 
