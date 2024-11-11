@@ -85,8 +85,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.dtpDenNgay = new System.Windows.Forms.DateTimePicker();
             this.label21 = new System.Windows.Forms.Label();
-            this.cbbMaNhanVien = new System.Windows.Forms.ComboBox();
             this.cbbLuaChonHienThi = new System.Windows.Forms.ComboBox();
+            this.txt_timMaNV = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -474,7 +474,7 @@
             // 
             this.txt_maHDBH.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_maHDBH.Location = new System.Drawing.Point(185, 32);
+            this.txt_maHDBH.Location = new System.Drawing.Point(185, 25);
             this.txt_maHDBH.Margin = new System.Windows.Forms.Padding(2);
             this.txt_maHDBH.Name = "txt_maHDBH";
             this.txt_maHDBH.Size = new System.Drawing.Size(254, 26);
@@ -486,7 +486,7 @@
             this.label12.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Navy;
-            this.label12.Location = new System.Drawing.Point(27, 33);
+            this.label12.Location = new System.Drawing.Point(27, 26);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(103, 20);
@@ -542,7 +542,7 @@
             // 
             this.txt_maNhanVien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_maNhanVien.Location = new System.Drawing.Point(183, 70);
+            this.txt_maNhanVien.Location = new System.Drawing.Point(183, 63);
             this.txt_maNhanVien.Margin = new System.Windows.Forms.Padding(2);
             this.txt_maNhanVien.Name = "txt_maNhanVien";
             this.txt_maNhanVien.Size = new System.Drawing.Size(254, 26);
@@ -554,7 +554,7 @@
             this.label24.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.Navy;
-            this.label24.Location = new System.Drawing.Point(25, 71);
+            this.label24.Location = new System.Drawing.Point(25, 64);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(115, 20);
@@ -742,6 +742,7 @@
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.txt_timMaNV);
             this.groupBox5.Controls.Add(this.dtpTuNgay);
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Controls.Add(this.btnTim);
@@ -749,12 +750,11 @@
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.dtpDenNgay);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Controls.Add(this.cbbMaNhanVien);
             this.groupBox5.Controls.Add(this.cbbLuaChonHienThi);
             this.groupBox5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(6, 67);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(550, 176);
+            this.groupBox5.Size = new System.Drawing.Size(550, 173);
             this.groupBox5.TabIndex = 29;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tìm thông tin hoá đơn";
@@ -785,7 +785,7 @@
             this.btnTim.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTim.ForeColor = System.Drawing.Color.White;
             this.btnTim.Image = global::GUI.Properties.Resources.icons8_find_35;
-            this.btnTim.Location = new System.Drawing.Point(454, 102);
+            this.btnTim.Location = new System.Drawing.Point(460, 113);
             this.btnTim.Name = "btnTim";
             this.btnTim.Size = new System.Drawing.Size(68, 57);
             this.btnTim.TabIndex = 7;
@@ -815,7 +815,7 @@
             // dtpDenNgay
             // 
             this.dtpDenNgay.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDenNgay.Location = new System.Drawing.Point(161, 94);
+            this.dtpDenNgay.Location = new System.Drawing.Point(164, 94);
             this.dtpDenNgay.Name = "dtpDenNgay";
             this.dtpDenNgay.Size = new System.Drawing.Size(281, 27);
             this.dtpDenNgay.TabIndex = 5;
@@ -830,20 +830,6 @@
             this.label21.TabIndex = 3;
             this.label21.Text = "Mã nhân viên:";
             // 
-            // cbbMaNhanVien
-            // 
-            this.cbbMaNhanVien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbMaNhanVien.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbMaNhanVien.FormattingEnabled = true;
-            this.cbbMaNhanVien.Items.AddRange(new object[] {
-            "Tất cả phiếu kiểm kê",
-            "Phiếu theo ngày lập",
-            "Phiếu theo nhân viên"});
-            this.cbbMaNhanVien.Location = new System.Drawing.Point(161, 130);
-            this.cbbMaNhanVien.Name = "cbbMaNhanVien";
-            this.cbbMaNhanVien.Size = new System.Drawing.Size(281, 27);
-            this.cbbMaNhanVien.TabIndex = 4;
-            // 
             // cbbLuaChonHienThi
             // 
             this.cbbLuaChonHienThi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -857,6 +843,13 @@
             this.cbbLuaChonHienThi.Name = "cbbLuaChonHienThi";
             this.cbbLuaChonHienThi.Size = new System.Drawing.Size(281, 27);
             this.cbbLuaChonHienThi.TabIndex = 4;
+            // 
+            // txt_timMaNV
+            // 
+            this.txt_timMaNV.Location = new System.Drawing.Point(164, 130);
+            this.txt_timMaNV.Name = "txt_timMaNV";
+            this.txt_timMaNV.Size = new System.Drawing.Size(278, 27);
+            this.txt_timMaNV.TabIndex = 8;
             // 
             // frm_quanLyHoaDon
             // 
@@ -948,7 +941,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DateTimePicker dtpDenNgay;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox cbbMaNhanVien;
         private System.Windows.Forms.ComboBox cbbLuaChonHienThi;
+        private System.Windows.Forms.TextBox txt_timMaNV;
     }
 }
