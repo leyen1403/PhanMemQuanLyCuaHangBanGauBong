@@ -1,2 +1,4 @@
+*.dbml
+*.dbml.layout
 .vs/
 db_QLCHBGB*
