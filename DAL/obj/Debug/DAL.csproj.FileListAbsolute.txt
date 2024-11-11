@@ -37,3 +37,13 @@ D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CoreCompileInp
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.Up2Date
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.dll
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.pdb
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.pdb
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll.config
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
+D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb

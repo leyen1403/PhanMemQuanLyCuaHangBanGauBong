@@ -58,6 +58,8 @@
     <Compile Include="MauSacBLL.cs" />
     <Compile Include="NhaCungCapBLL.cs" />
     <Compile Include="NhanVienBLL.cs" />
+    <Compile Include="NhatKyDichVuBLL.cs" />
+    <Compile Include="PhieuDichVuBLL.cs" />
     <Compile Include="PhieuKiemKeBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SanPhamBLL.cs" />

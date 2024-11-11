@@ -14,7 +14,6 @@ namespace BLL
         {
             _hoaDonBanHangDAL = new HoaDonBanHangDAL();
         }
-
         public bool AddHoaDonBanHang(HoaDonBanHang hoaDon)
         {
             try
@@ -53,5 +52,6 @@ namespace BLL
                 return null;
             }
         }
+
     }
 }
