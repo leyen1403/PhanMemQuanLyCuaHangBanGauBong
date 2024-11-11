@@ -146,9 +146,9 @@
             this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(41, 42);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 16);
+            this.label6.Size = new System.Drawing.Size(105, 16);
             this.label6.TabIndex = 37;
-            this.label6.Text = "Mã nhân viên";
+            this.label6.Text = "Tên nhân viên";
             // 
             // txt_TongTien
             // 
@@ -327,10 +327,10 @@
             this.btn_LuuPDV.BackColor = System.Drawing.Color.Navy;
             this.btn_LuuPDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LuuPDV.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_LuuPDV.Location = new System.Drawing.Point(248, 587);
+            this.btn_LuuPDV.Location = new System.Drawing.Point(184, 587);
             this.btn_LuuPDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_LuuPDV.Name = "btn_LuuPDV";
-            this.btn_LuuPDV.Size = new System.Drawing.Size(255, 46);
+            this.btn_LuuPDV.Size = new System.Drawing.Size(229, 46);
             this.btn_LuuPDV.TabIndex = 25;
             this.btn_LuuPDV.Text = "Lưu Đơn Phiếu Dịch Vụ";
             this.btn_LuuPDV.UseVisualStyleBackColor = false;
@@ -342,7 +342,7 @@
             this.btn_InPhieu.BackColor = System.Drawing.Color.Navy;
             this.btn_InPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_InPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_InPhieu.Location = new System.Drawing.Point(473, 587);
+            this.btn_InPhieu.Location = new System.Drawing.Point(428, 587);
             this.btn_InPhieu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_InPhieu.Name = "btn_InPhieu";
             this.btn_InPhieu.Size = new System.Drawing.Size(141, 46);
@@ -417,11 +417,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.dgv_ChiTietHoaDon);
-            this.groupBox5.Location = new System.Drawing.Point(30, 668);
+            this.groupBox5.Location = new System.Drawing.Point(30, 717);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox5.Size = new System.Drawing.Size(820, 179);
+            this.groupBox5.Size = new System.Drawing.Size(820, 130);
             this.groupBox5.TabIndex = 70;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Chi tiết hoá đơn";
@@ -436,7 +436,7 @@
             this.dgv_ChiTietHoaDon.Name = "dgv_ChiTietHoaDon";
             this.dgv_ChiTietHoaDon.ReadOnly = true;
             this.dgv_ChiTietHoaDon.RowHeadersWidth = 51;
-            this.dgv_ChiTietHoaDon.Size = new System.Drawing.Size(814, 162);
+            this.dgv_ChiTietHoaDon.Size = new System.Drawing.Size(814, 113);
             this.dgv_ChiTietHoaDon.TabIndex = 1;
             // 
             // label5
@@ -445,7 +445,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(402, 636);
+            this.label5.Location = new System.Drawing.Point(402, 691);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 24);
             this.label5.TabIndex = 69;
@@ -493,7 +493,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(823, 411);
+            this.groupBox3.Size = new System.Drawing.Size(823, 360);
             this.groupBox3.TabIndex = 74;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Danh sách hoá đơn";
@@ -508,7 +508,7 @@
             this.dgv_HoaDon.Name = "dgv_HoaDon";
             this.dgv_HoaDon.ReadOnly = true;
             this.dgv_HoaDon.RowHeadersWidth = 51;
-            this.dgv_HoaDon.Size = new System.Drawing.Size(817, 394);
+            this.dgv_HoaDon.Size = new System.Drawing.Size(817, 343);
             this.dgv_HoaDon.TabIndex = 1;
             // 
             // label2

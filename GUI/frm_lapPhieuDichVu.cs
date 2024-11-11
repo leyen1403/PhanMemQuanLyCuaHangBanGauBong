@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using BLL;
 using DTO;
 using Word = Microsoft.Office.Interop.Word;
+using System.Text.RegularExpressions;
+
 
 namespace GUI
 {
@@ -49,6 +51,27 @@ namespace GUI
 
         }
 
+        // Phương thức kiểm tra số điện thoại
+        public static bool IsValidPhoneNumber(string phoneNumber)
+        {
+            // Kiểm tra nếu số điện thoại rỗng
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                MessageBox.Show("Số điện thoại không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Dùng regex để kiểm tra số điện thoại (10 hoặc 11 chữ số)
+            string pattern = @"^\d{10,11}$";  // Điều kiện: chỉ chứa số và có độ dài 10 hoặc 11 ký tự
+            if (!Regex.IsMatch(phoneNumber, pattern))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ. Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Nếu số điện thoại hợp lệ
+            return true;
+        }
         private void Dgv_ChiTietHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -111,6 +134,8 @@ namespace GUI
         {
             LoadSanPhamData(); // Đảm bảo sanPhams được nạp dữ liệu
             LoadHoaDonData();
+            txt_MaNV.Text = "NV001";
+            LoadEmployeeName("NV001"); // Lấy tên nhân viên cho MaNV mặc định
         }
 
         private void LoadSanPhamData()
@@ -238,10 +263,25 @@ namespace GUI
             txt_DiaChi.Text = "";
             txt_LanDichVu.Text = "";
         }
-
         private void btn_LuuPDV_Click(object sender, EventArgs e)
         {
+            string sdt = txt_SDT.Text.Trim();  // Lấy giá trị số điện thoại từ textbox
+
+            // Gọi phương thức kiểm tra số điện thoại
+            if (!IsValidPhoneNumber(sdt))
+            {
+                // Nếu số điện thoại không hợp lệ, dừng lại
+                return;
+            }
+
             if (!ValidateFormData()) return;
+
+            string employeeId = new NhanVienBLL().GetEmployeeIdFromName(txt_MaNV.Text); // Get employee ID by name
+            if (employeeId == null)
+            {
+                MessageBox.Show("Không tìm thấy nhân viên!");
+                return;
+            }
 
             string errorMessage;
             PhieuDichVu phieuDichVu = new PhieuDichVu
@@ -250,7 +290,7 @@ namespace GUI
                 NgayLap = DateTime.Parse(txt_NgayLap.Text),
                 TongTien = decimal.Parse(txt_TongTien.Text),
                 MaKhachHang = txt_MaKH.Text,
-                MaNhanVien = txt_MaNV.Text,
+                MaNhanVien = employeeId, // Use employee ID here
                 GhiChu = txt_GhiChu.Text,
                 TrangThai = true,
                 NgayTao = DateTime.Now,
@@ -508,5 +548,22 @@ namespace GUI
             filteredHoaDons = HoaDons.ToList(); // Đưa toàn bộ hóa đơn vào danh sách hiển thị
             dgv_HoaDon.DataSource = filteredHoaDons;
         }
+        private void LoadEmployeeName(string maNV)
+        {
+            // Lấy thông tin nhân viên từ BLL
+            var nhanVien = new NhanVienBLL().GetNhanVienById(maNV);
+
+            if (nhanVien != null)
+            {
+                // Hiển thị tên nhân viên vào TextBox txt_TenNV
+                txt_MaNV.Text = nhanVien.HoTen; // Giả sử 'TenNhanVien' là trường chứa tên nhân viên
+            }
+            else
+            {
+                // Nếu không tìm thấy nhân viên
+                txt_MaNV.Text = "Không tìm thấy nhân viên";
+            }
+        }
+
     }
 }
