@@ -2,3 +2,4 @@
 *.dbml.layout
 .vs/
 db_QLCHBGB*
+*.cache
