@@ -1,5 +1,6 @@
 ﻿using BLL;
 using DevExpress.Utils.DPI;
+using DevExpress.XtraEditors.Mask.Design;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -213,6 +214,7 @@ namespace GUI
                     // Đặt focus vào TextBox "Số lượng nhập thêm"
                     txtSoLuongNhapThem.Focus();
                     e.Handled = true; // Ngăn sự kiện tiếp tục xử lý trong DataGridView
+
                 }
             }
         }
@@ -343,6 +345,15 @@ namespace GUI
                     hienThiThongTinSanPham(maSanPham);
                     int soLuongNhap = int.Parse(dgvDanhSachChiTietDonDatHang.CurrentRow.Cells["SoLuongYeuCau"].Value.ToString());
                     txtSoLuongNhapThem.Text = soLuongNhap.ToString();
+                    string tenMau = new SanPhamMauSacBLL().GetOldProductColor(maSanPham);
+                    string tenKichThuoc = new SanPhamKichThuocBLL().GetOldSize(maSanPham);
+                    if (tenMau != null || tenKichThuoc != null)
+                    {
+                        tenMau = new BLL.MauSacBLL().GetAllMauSac().Where(x => x.MaMau == tenMau).FirstOrDefault().TenMau;
+                        tenKichThuoc = new BLL.KichThuocBLL().GetAll().Where(x => x.MaKichThuoc == tenKichThuoc).FirstOrDefault().TenKichThuoc;
+                        txtMauSac.Text = tenMau;
+                        txtKichThuoc.Text = tenKichThuoc;
+                    }
                 }
             }
             catch
@@ -519,6 +530,15 @@ namespace GUI
                 soLuongNhap = (int)chiTietDonDatHang.SoLuongYeuCau;
             }
             txtSoLuongNhapThem.Text = soLuongNhap.ToString();
+            string tenMau = new SanPhamMauSacBLL().GetOldProductColor(maSanPham);
+            string tenKichThuoc = new SanPhamKichThuocBLL().GetOldSize(maSanPham);
+            if (tenMau != null || tenKichThuoc != null)
+            {
+                tenMau = new BLL.MauSacBLL().GetAllMauSac().Where(x => x.MaMau == tenMau).FirstOrDefault().TenMau;
+                tenKichThuoc = new BLL.KichThuocBLL().GetAll().Where(x => x.MaKichThuoc == tenKichThuoc).FirstOrDefault().TenKichThuoc;
+                txtMauSac.Text = tenMau;
+                txtKichThuoc.Text = tenKichThuoc;
+            }
         }
 
         private void hienThiThongTinSanPham(string maSanPham)

@@ -236,6 +236,16 @@ namespace GUI
                 {
                     txtTongTien.Text = Convert.ToDecimal(dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value).ToString("N0");
                 }
+                string tenMau = new SanPhamMauSacBLL().GetOldProductColor(maSP);
+                string tenKichThuoc = new SanPhamKichThuocBLL().GetOldSize(maSP);
+                if(tenMau != null || tenKichThuoc != null)
+                {
+                    tenMau = new BLL.MauSacBLL().GetAllMauSac().Where(x => x.MaMau == tenMau).FirstOrDefault().TenMau;
+                    tenKichThuoc = new BLL.KichThuocBLL().GetAll().Where(x => x.MaKichThuoc == tenKichThuoc).FirstOrDefault().TenKichThuoc;
+                    txtMau.Text = tenMau;
+                    txtKichThuoc.Text = tenKichThuoc;
+                }
+
             }
             
         }
