@@ -86,9 +86,6 @@
             this.fluentDesignFormControl1.Size = new System.Drawing.Size(1661, 31);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
-            this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_thietLapTaiKhoan);
-            this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_dangXuat);
-            this.fluentDesignFormControl1.TitleItemLinks.Add(this.label_tenNV);
             // 
             // btn_thietLapTaiKhoan
             // 
