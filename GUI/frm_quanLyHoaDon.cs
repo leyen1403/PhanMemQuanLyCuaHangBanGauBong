@@ -41,5 +41,10 @@ namespace GUI
                 dgv_dsCTHD.DataSource = dsCTHDBH;
             }    
         }
+
+        private void dgv_dsHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

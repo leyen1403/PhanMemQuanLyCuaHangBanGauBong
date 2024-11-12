@@ -836,5 +836,10 @@ namespace GUI
         {
 
         }
+
+        private void dgv_dsSanPham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
