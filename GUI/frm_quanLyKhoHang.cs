@@ -842,6 +842,9 @@ namespace GUI
 
         }
 
-     
+        private void btn_themAnh_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

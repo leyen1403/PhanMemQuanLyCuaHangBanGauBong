@@ -24,12 +24,243 @@ namespace GUI
             this.btn_timKiem.Click += Btn_timKiem_Click;
             this.btn_load.Click += Btn_load_Click;
             this.btn_clear.Click += Btn_clear_Click;
+            this.btn_timDK.Click += Btn_timDK_Click;
+            this.btnThemNhanVien.Click += BtnThemNhanVien_Click;
+            this.btnXoaNhanVien.Click += BtnXoaNhanVien_Click;
+            this.btnSuaNhanVien.Click += BtnSuaNhanVien_Click; ;
+            this.btnLuuSanPham.Click += BtnLuuSanPham_Click;
 
         }
+
+        private void BtnSuaNhanVien_Click(object sender, EventArgs e)
+        {
+           txtMaNV.Enabled = false;
+        }
+
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void BtnLuuSanPham_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maNhanVien = txtMaNV.Text.Trim();
+                string hoTen = txtHoTen.Text;
+                string chucVu = cbbChucVu.SelectedValue?.ToString();
+
+                DateTime ngaySinh = dTPNgaySinh.Value;
+                DateTime ngayTao = dTPNgayTao.Value;
+
+                string gioiTinh = txtGioiTinh.Text;
+                string soDienThoai = txtSoDienThoai.Text;
+                string email = txtEmail.Text;
+                string taiKhoan = txtTaiKhoan.Text;
+                string matKhau = txtMatKhau.Text;
+                string hinhAnh = txtHinhAnh.Text;
+
+                string diaChi = txtDiaChi.Text;
+
+                if (string.IsNullOrEmpty(maNhanVien) || string.IsNullOrEmpty(hoTen) || string.IsNullOrEmpty(chucVu) ||
+                    string.IsNullOrEmpty(soDienThoai) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(taiKhoan))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin nhân viên.");
+                    return;
+                }
+
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Email không hợp lệ!");
+                    return;
+                }
+
+                if (ngaySinh > DateTime.Now)
+                {
+                    MessageBox.Show("Ngày sinh không thể lớn hơn ngày hiện tại!");
+                    return;
+                }
+
+                NhanVien updatedEmployee = new NhanVien
+                {
+                    MaNhanVien = maNhanVien,
+                    HoTen = hoTen,
+                    ChucVu = chucVu,
+                    GioiTinh = gioiTinh,
+                    SoDienThoai = soDienThoai,
+                    Email = email,
+                    TaiKhoan = taiKhoan,
+                    MatKhau = matKhau,
+                    HinhAnh = hinhAnh,
+                    TrangThai = true, 
+                    NgaySinh = ngaySinh,
+                    NgayTao = DateTime.Now,
+                    NgayCapNhat = DateTime.Now, 
+                    DiaChi = diaChi
+                };
+
+                bool result = nhanVienBLL.UpdateEmployee(updatedEmployee);
+
+                if (result)
+                {
+                    MessageBox.Show("Cập nhật nhân viên thành công.");
+                    loadDSNhanVien(); // 
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật nhân viên thất bại. Vui lòng kiểm tra lại thông tin.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu nhân viên: " + ex.Message);
+            }
+        }
+
+       
+        private void BtnXoaNhanVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maNV = string.Empty;
+                if (!string.IsNullOrEmpty(txtMaNV.Text))
+                {
+                    maNV = txtMaNV.Text;
+                }
+                else if (dgvNhanVien.CurrentRow != null)
+                {
+                    maNV = dgvNhanVien.CurrentRow.Cells["MaNhanVien"].Value.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn nhân viên cần xóa hoặc nhập mã nhân viên.");
+                    return;
+                }
+                bool isDeleted = nhanVienBLL.DeleteEmployee(maNV);
+
+                if (isDeleted)
+                {
+                    loadDSNhanVien();
+                    MessageBox.Show("Nhân viên đã được xóa thành công.");
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy nhân viên để xóa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa nhân viên: " + ex.Message);
+            }
+        }
+
+        private void BtnThemNhanVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maNhanVien = txtMaNV.Text; // Hàm tự động tạo mã nhân viên
+                string hoTen = txtHoTen.Text;
+                string chucVu = cbbChucVu.SelectedValue?.ToString();
+
+
+                // Sử dụng DateTimePicker để lấy ngày sinh, ngày tạo, và ngày cập nhật
+                DateTime ngaySinh = dTPNgaySinh.Value;
+                DateTime ngayTao = dTPNgayTao.Value;
+                DateTime ngayCapNhat = dTPNgayCapNhat.Value;
+
+                string gioiTinh = txtGioiTinh.Text;
+                string soDienThoai = txtSoDienThoai.Text;
+                string email = txtEmail.Text;
+                string taiKhoan = txtTaiKhoan.Text;
+                string matKhau = txtMatKhau.Text;
+                string hinhAnh = txtHinhAnh.Text;
+           
+                string diaChi = txtDiaChi.Text;
+
+                // Kiểm tra xem mã nhân viên đã tồn tại chưa
+                string maDaCo = nhanVienBLL.GetEmployeeByCode(maNhanVien);
+                if (maDaCo != null)
+                {
+                    MessageBox.Show("Mã nhân viên đã tồn tại!");
+                    return;
+                }
+
+                // Tạo đối tượng NhanVien mới
+                NhanVien newEmployee = new NhanVien
+                {
+                    MaNhanVien = maNhanVien,
+                    HoTen = hoTen,
+                    ChucVu = chucVu,
+                    NgaySinh = ngaySinh,
+                    GioiTinh = gioiTinh,
+                    SoDienThoai = soDienThoai,
+                    Email = email,
+                    TaiKhoan = taiKhoan,
+                    MatKhau = matKhau,
+                    HinhAnh = hinhAnh,
+                    TrangThai = true,
+                    NgayTao = ngayTao,
+                    NgayCapNhat = ngayCapNhat,
+                    DiaChi = diaChi
+                };
+
+                // Gọi phương thức thêm nhân viên
+                bool isSuccess = nhanVienBLL.AddNhanVien(newEmployee);
+
+                if (isSuccess)
+                {
+                    MessageBox.Show("Nhân viên đã được thêm thành công!");
+                    loadDSNhanVien(); // Hàm tải lại danh sách nhân viên vào DataGridView
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi thêm nhân viên. Vui lòng thử lại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void Btn_timDK_Click(object sender, EventArgs e)
+        {
+            dgvNhanVien.DataSource = null;
+
+            bool tinhTrangDuocChon = cboTrangThai.SelectedItem.ToString() == "True";
+
+            var danhSachNhanVien = nhanVienBLL.SearchNhanVienByTinhTrang(tinhTrangDuocChon);
+
+            dgvNhanVien.DataSource = danhSachNhanVien;
+        }
+
 
         private void Btn_clear_Click(object sender, EventArgs e)
         {
             txtMaNV.Clear();
+            txtHoTen.Clear();
+            loadComBoBoxChucVu();
+            dTPNgaySinh.Value = DateTime.Now;
+            txtGioiTinh.Clear();
+            txtSoDienThoai.Clear();
+            txtEmail.Clear();
+            txtTaiKhoan.Clear();
+            txtMatKhau.Clear();
+            txtHinhAnh.Clear();
+            txtTrangThai.Clear();
+            dTPNgayTao.Value = DateTime.Now;
+            dTPNgayCapNhat.Value = DateTime.Now;
+            txtDiaChi.Clear();
+            txtMaNV.Focus();
+            txtMaNV.Enabled = true;
         }
 
         private void Btn_load_Click(object sender, EventArgs e)
@@ -67,11 +298,9 @@ namespace GUI
                 txtSoDienThoai.Text = currentRow.Cells["SoDienThoai"].Value.ToString();
                 txtEmail.Text = currentRow.Cells["Email"].Value.ToString();
                 dTPNgayCapNhat.Value = Convert.ToDateTime(currentRow.Cells["NgayCapNhat"].Value);
-                //dTPNgayCapNhat.Text = Convert.ToDateTime(currentRow.Cells["NgayCapNhat"].Value).ToString("dd/MM/yyyy");
+                
                 dTPNgaySinh.Value = Convert.ToDateTime(currentRow.Cells["NgaySinh"].Value);
-                //dTPNgaySinh.Text = Convert.ToDateTime(currentRow.Cells["NgaySinh"].Value).ToString("dd/MM/yyyy");
                 dTPNgayTao.Value = Convert.ToDateTime(currentRow.Cells["NgayTao"].Value);
-                //dTPNgayTao.Text = Convert.ToDateTime(currentRow.Cells["NgayTao"].Value).ToString("dd/MM/yyyy");
                 txtTaiKhoan.Text = currentRow.Cells["TaiKhoan"].Value.ToString();
                 txtMatKhau.Text = currentRow.Cells["MatKhau"].Value.ToString();
                 txtDiaChi.Text = currentRow.Cells["DiaChi"].Value.ToString();
@@ -125,7 +354,7 @@ namespace GUI
         private void Frm_quanLyNhanVien_Load(object sender, EventArgs e)
         {
            loadDSNhanVien();
-            loadComBoBoxChucVu();
+           loadComBoBoxChucVu();
      
         }
 
@@ -248,7 +477,61 @@ namespace GUI
             e.Graphics.DrawString(rowIdx, rowFont, System.Drawing.SystemBrushes.ControlText, headerBounds, leftFormat);
         }
 
+        //private void loadComBoBoxChucVu()
+        //{
+        //    try
+        //    {
+        //        List<NhanVien> dsNhanVien = nhanVienBLL.getAllNhanVien();
+        //        if (dsNhanVien != null && dsNhanVien.Count > 0)
+        //        {
+        //            cbbChucVu.DataSource = null; // Đặt lại trước khi gán nguồn dữ liệu
+        //            cbbChucVu.DataSource = dsNhanVien;
+        //            cbbChucVu.ValueMember = "MaNhanVien";
+        //            cbbChucVu.DisplayMember = "ChucVu";
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Không có chức vụ nào.");
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Lỗi khi tải danh sách dịch vụ.");
+        //    }
+        //}
         private void loadComBoBoxChucVu()
+        {
+            try
+            {
+                List<NhanVien> dsNhanVien = nhanVienBLL.getAllNhanVien();
+
+                // Lọc danh sách chức vụ duy nhất
+                var uniqueChucVuList = dsNhanVien
+                    .Select(nv => nv.ChucVu)
+                    .Distinct()
+                    .ToList();
+
+                if (uniqueChucVuList != null && uniqueChucVuList.Count > 0)
+                {
+                    cbbChucVu.DataSource = null; // Đặt lại trước khi gán nguồn dữ liệu
+
+                    // Gán lại DataSource với danh sách chức vụ duy nhất
+                    cbbChucVu.DataSource = uniqueChucVuList;
+                    cbbChucVu.DisplayMember = "ChucVu"; // Hiển thị chức vụ
+                }
+                else
+                {
+                    MessageBox.Show("Không có chức vụ nào.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách chức vụ: " + ex.Message);
+            }
+        }
+
+
+        private void loadComBoBoxTrangThai()
         {
             try
             {
@@ -258,7 +541,7 @@ namespace GUI
                     cbbChucVu.DataSource = null; // Đặt lại trước khi gán nguồn dữ liệu
                     cbbChucVu.DataSource = dsNhanVien;
                     cbbChucVu.ValueMember = "MaNhanVien";
-                    cbbChucVu.DisplayMember = "ChucVu";
+                    cbbChucVu.DisplayMember = "TrangThai";
                 }
                 else
                 {
@@ -271,7 +554,7 @@ namespace GUI
             }
         }
 
-      
+
 
         private void frm_quanLyNhanVien_Load(object sender, EventArgs e)
         {
@@ -339,6 +622,11 @@ namespace GUI
         }
 
         private void btn_timKiem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXoaNhanVien_Click_1(object sender, EventArgs e)
         {
 
         }
