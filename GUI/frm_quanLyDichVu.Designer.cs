@@ -98,8 +98,6 @@
             this.dgv_DanhSachDichVu.ReadOnly = true;
             this.dgv_DanhSachDichVu.Size = new System.Drawing.Size(877, 427);
             this.dgv_DanhSachDichVu.TabIndex = 0;
-            this.dgv_DanhSachDichVu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DanhSachDichVu_CellContentClick);
-            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Navy;
