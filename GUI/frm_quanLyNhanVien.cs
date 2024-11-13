@@ -66,9 +66,12 @@ namespace GUI
                 txtGioiTinh.Text = currentRow.Cells["GioiTinh"].Value.ToString();
                 txtSoDienThoai.Text = currentRow.Cells["SoDienThoai"].Value.ToString();
                 txtEmail.Text = currentRow.Cells["Email"].Value.ToString();
-                dTPNgayCapNhat.Text = Convert.ToDateTime(currentRow.Cells["NgayCapNhat"].Value).ToString("dd/MM/yyyy");
-                dTPNgaySinh.Text = Convert.ToDateTime(currentRow.Cells["NgaySinh"].Value).ToString("dd/MM/yyyy");
-                dTPNgayTao.Text = Convert.ToDateTime(currentRow.Cells["NgayTao"].Value).ToString("dd/MM/yyyy");
+                dTPNgayCapNhat.Value = Convert.ToDateTime(currentRow.Cells["NgayCapNhat"].Value);
+                //dTPNgayCapNhat.Text = Convert.ToDateTime(currentRow.Cells["NgayCapNhat"].Value).ToString("dd/MM/yyyy");
+                dTPNgaySinh.Value = Convert.ToDateTime(currentRow.Cells["NgaySinh"].Value);
+                //dTPNgaySinh.Text = Convert.ToDateTime(currentRow.Cells["NgaySinh"].Value).ToString("dd/MM/yyyy");
+                dTPNgayTao.Value = Convert.ToDateTime(currentRow.Cells["NgayTao"].Value);
+                //dTPNgayTao.Text = Convert.ToDateTime(currentRow.Cells["NgayTao"].Value).ToString("dd/MM/yyyy");
                 txtTaiKhoan.Text = currentRow.Cells["TaiKhoan"].Value.ToString();
                 txtMatKhau.Text = currentRow.Cells["MatKhau"].Value.ToString();
                 txtDiaChi.Text = currentRow.Cells["DiaChi"].Value.ToString();
