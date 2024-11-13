@@ -388,7 +388,7 @@ namespace GUI
                 MaKhachHang = txt_MaKH.Text.Length > 10 ? txt_MaKH.Text.Substring(0, 10) : txt_MaKH.Text,
                 MaNhanVien = employeeId, // Sử dụng mã nhân viên từ tên
                 GhiChu = txt_GhiChu.Text.Length > 255 ? txt_GhiChu.Text.Substring(0, 255) : txt_GhiChu.Text,
-                TrangThai = "Tiếp nhận".Length > 50 ? "Tiếp nhận".Substring(0, 50) : "Tiếp nhận",
+                TrangThai = true,
                 NgayTao = DateTime.Now,
                 NgayCapNhat = DateTime.Now
             };

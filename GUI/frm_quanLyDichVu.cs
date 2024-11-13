@@ -168,7 +168,7 @@ namespace GUI
 
                 case "Trạng thái":
                     string trangThai = cb_TrangThai.SelectedItem.ToString();
-                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai.Contains(trangThai)).ToList();
+                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai==true).ToList();
                     break;
 
                 default:
