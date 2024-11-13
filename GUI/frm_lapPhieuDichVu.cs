@@ -100,9 +100,29 @@ namespace GUI
         {
             if (dgv_HoaDon.CurrentRow != null)
             {
+                // Lấy mã hóa đơn
                 string maHoaDon = dgv_HoaDon.CurrentRow.Cells["MaHoaDonBanHang"].Value.ToString();
-                LoadChiTietHoaDonData(maHoaDon);
-                LoadKhachHangInfo(maHoaDon);
+
+                // Lấy ngày lập hóa đơn từ dữ liệu
+                DateTime ngayLapHoaDon = Convert.ToDateTime(dgv_HoaDon.CurrentRow.Cells["NgayLap"].Value);
+
+                // Tính số ngày từ ngày lập đến hiện tại
+                int soNgay = (DateTime.Now - ngayLapHoaDon).Days;
+
+                // Kiểm tra nếu số ngày vượt quá 90
+                if (soNgay > 90)
+                {
+                    MessageBox.Show("Số ngày mua vượt quá 90, không thể sử dụng dịch vụ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    // Không hiển thị thông tin lên các ô TextBox
+                    ResetTextBoxes();  // Gọi hàm để làm sạch các TextBox
+                }
+                else
+                {
+                    // Nếu số ngày hợp lệ, hiển thị thông tin
+                    LoadChiTietHoaDonData(maHoaDon);
+                    LoadKhachHangInfo(maHoaDon);
+                }
             }
         }
         private void LoadKhachHangInfo(string maHoaDon)
@@ -139,6 +159,7 @@ namespace GUI
         }
         private void Frm_lapPhieuDichVu_Load(object sender, EventArgs e)
         {
+            
             LoadSanPhamData(); // Đảm bảo sanPhams được nạp dữ liệu
             LoadHoaDonData();
             txt_MaNV.Text = "NV001";
@@ -251,7 +272,6 @@ namespace GUI
             txt_MPDV.Text = GenerateNewMaPhieuDichVu(); // Hoặc tự động tạo mã mới
             txt_NgayLap.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); // Đặt lại ngày giờ hiện tại
             txt_MaKH.Text = "";
-            txt_MaNV.Text = "";
             txt_TongTien.Text = "";
             txt_GhiChu.Text = "";
             txt_TenKH.Text = "";
@@ -356,21 +376,24 @@ namespace GUI
                 MessageBox.Show("Không thể lưu phiếu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Ngừng việc lưu
             }
-            
 
+            string employeeName = txt_MaNV.Text; // TextBox chứa tên nhân viên
+            string employeeId = new NhanVienBLL().GetEmployeeIdFromName(employeeName);
             string errorMessage;
             PhieuDichVu phieuDichVu = new PhieuDichVu
             {
-                MaPhieuDichVu = txt_MPDV.Text,
+                MaPhieuDichVu = txt_MPDV.Text.Length > 10 ? txt_MPDV.Text.Substring(0, 10) : txt_MPDV.Text,
                 NgayLap = DateTime.Parse(txt_NgayLap.Text),
                 TongTien = decimal.Parse(txt_TongTien.Text),
-                MaKhachHang = txt_MaKH.Text,
-                MaNhanVien = txt_MaNV.Text,
-                GhiChu = txt_GhiChu.Text,
-                TrangThai = true,
+                MaKhachHang = txt_MaKH.Text.Length > 10 ? txt_MaKH.Text.Substring(0, 10) : txt_MaKH.Text,
+                MaNhanVien = employeeId, // Sử dụng mã nhân viên từ tên
+                GhiChu = txt_GhiChu.Text.Length > 255 ? txt_GhiChu.Text.Substring(0, 255) : txt_GhiChu.Text,
+                TrangThai = "Tiếp nhận".Length > 50 ? "Tiếp nhận".Substring(0, 50) : "Tiếp nhận",
                 NgayTao = DateTime.Now,
                 NgayCapNhat = DateTime.Now
             };
+
+
 
             bool isSaved = new PhieuDichVuBLL().SavePhieuDichVu(phieuDichVu, out errorMessage);
             if (isSaved)
