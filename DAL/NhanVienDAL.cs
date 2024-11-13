@@ -24,5 +24,15 @@ namespace DAL
         {
             return db.NhanViens.Where(nv => nv.HoTen == name).FirstOrDefault();
         }
+
+        public List<NhanVien> SearchNhanVien(string keyword)
+        {
+            return db.NhanViens.Where(nv =>
+                nv.MaNhanVien.Contains(keyword) ||
+                nv.HoTen.Contains(keyword) ||
+                nv.TaiKhoan.Contains(keyword) ||
+                nv.SoDienThoai.Contains(keyword)
+            ).ToList();
+        }
     }
 }

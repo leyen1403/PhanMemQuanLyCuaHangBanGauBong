@@ -145,9 +145,7 @@
   <data name="icons8-save-as-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-save-as-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NV001" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NV001.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  
   <data name="icons8-find-35" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-find-35.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,7 +158,5 @@
   <data name="gaucute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gaucute.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NV002" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NV002.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  
 </root>
