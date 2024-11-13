@@ -422,17 +422,31 @@ namespace GUI
                     dgvNhanVien.Columns["MaNhanVien"].HeaderText = "Mã Nhân Viên";
                     dgvNhanVien.Columns["HoTen"].HeaderText = "Tên Nhân Viên";
                     dgvNhanVien.Columns["ChucVu"].HeaderText = "Chức Vụ";
+                   
                     dgvNhanVien.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
                     dgvNhanVien.Columns["GioiTinh"].HeaderText = "Giới Tính";
                     dgvNhanVien.Columns["SoDienThoai"].HeaderText = "Số Điện Thoại";
                     dgvNhanVien.Columns["Email"].HeaderText = "Email";
                     dgvNhanVien.Columns["TaiKhoan"].HeaderText = "Tài Khoản";
-                    dgvNhanVien.Columns["MatKhau"].HeaderText = "Mật Khẩu";
-                    dgvNhanVien.Columns["HinhAnh"].HeaderText = "Hình Ảnh";
+
+                    //dgvNhanVien.Columns["MatKhau"].HeaderText = "Mật Khẩu";
+                    dgvNhanVien.Columns["MatKhau"].Visible = false;
+
+
+                    //dgvNhanVien.Columns["HinhAnh"].HeaderText = "Hình Ảnh";
+                    dgvNhanVien.Columns["HinhAnh"].Visible = false;
                     dgvNhanVien.Columns["TrangThai"].HeaderText = "Trạng Thái";
-                    dgvNhanVien.Columns["NgayTao"].HeaderText = "Ngày Tạo";
-                    dgvNhanVien.Columns["NgayCapNhat"].HeaderText = "Ngày Cập Nhật";
-                    dgvNhanVien.Columns["DiaChi"].HeaderText = "Địa Chỉ";
+                  
+                    //dgvNhanVien.Columns["NgayTao"].HeaderText = "Ngày Tạo";
+                    dgvNhanVien.Columns["NgayTao"].Visible = false;
+
+
+                    //dgvNhanVien.Columns["NgayCapNhat"].HeaderText = "Ngày Cập Nhật";
+                    dgvNhanVien.Columns["NgayCapNhat"].Visible = false;
+
+
+                   // dgvNhanVien.Columns["DiaChi"].HeaderText = "Địa Chỉ";
+                    dgvNhanVien.Columns["DiaChi"].Visible = false;
                     foreach (DataGridViewColumn column in dgvNhanVien.Columns)
                     {
                         column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Căn giữa tiêu đề
@@ -627,6 +641,16 @@ namespace GUI
         }
 
         private void btnXoaNhanVien_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dTPNgaySinh_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dTPNgayTao_ValueChanged(object sender, EventArgs e)
         {
 
         }
