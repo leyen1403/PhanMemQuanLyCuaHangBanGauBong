@@ -29,5 +29,9 @@ namespace BLL
             }
             return null; // Or throw an exception if the employee is not found
         }
+        public List<NhanVien> SearchNhanVien(string keyword)
+        {
+           return nhanVienDAL.SearchNhanVien(keyword);
+        }
     }
 }
