@@ -21,8 +21,52 @@ namespace GUI
         public frm_quanLyDichVu()
         {
             InitializeComponent();
-            phieuDichVuBLL = new PhieuDichVuBLL(); 
+            phieuDichVuBLL = new PhieuDichVuBLL();
+            cb_TimKiem.SelectedIndexChanged += Cb_TimKiem_SelectedIndexChanged;
+            cb_TrangThai.Items.Add("Tiếp nhận");
+            cb_TrangThai.Items.Add("Đang xử lý");
+            cb_TrangThai.Items.Add("Hoàn thành");
+            cb_TrangThai.Items.Add("Đã hủy");
+            cb_TrangThai.SelectedIndex = 0;
+            cb_TrangThai.DropDownStyle = ComboBoxStyle.DropDownList;
+            // Thêm các lựa chọn vào ComboBox
+            cb_TimKiem.Items.Add("Mã phiếu dịch vụ");
+            cb_TimKiem.Items.Add("Mã khách hàng");
+            cb_TimKiem.Items.Add("Mã nhân viên");
+            cb_TimKiem.Items.Add("Trạng thái");
+            cb_TimKiem.Items.Add("Ngày lập");
+            
+            cb_TimKiem.SelectedIndex = 0;
+            cb_TimKiem.DropDownStyle = ComboBoxStyle.DropDownList;
+
         }
+
+        private void Cb_TimKiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_TimKiem.SelectedItem.ToString() == "Ngày lập")
+            {
+                dtpTuNgay.Enabled = true;
+                dtpDenNgay.Enabled = true;
+                txt_TimKiem.Enabled = false;
+                cb_TrangThai.Enabled = false;
+            }
+            else if (cb_TimKiem.SelectedItem.ToString() == "Trạng thái")
+            {
+                dtpTuNgay.Enabled = false;
+                dtpDenNgay.Enabled = false;
+                txt_TimKiem.Enabled = false;
+                cb_TrangThai.Enabled = true;
+            }
+            else
+            {
+                dtpTuNgay.Enabled = false;
+                dtpDenNgay.Enabled = false;
+                txt_TimKiem.Enabled = true;
+                cb_TrangThai.Enabled = false;
+
+            }
+        }
+
         private void frm_quanLyDichVu_Load(object sender, EventArgs e)
         {
             phieuDichVus = phieuDichVuBLL.GetPhieuDichVuList();
@@ -72,16 +116,79 @@ namespace GUI
                 dgv_NhatKyDichVu.Columns["PhieuDichVu"].Visible = false;
 
         }
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void dgv_DanhSachDichVu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex >= 0) 
+            {
+                string maPhieuDichVu = dgv_DanhSachDichVu.Rows[e.RowIndex].Cells["MaPhieuDichVu"].Value.ToString();
+                var nhatKyPhieuDichVu = nhatKyDichVus.Where(nk => nk.MaPhieuDichVu == maPhieuDichVu).ToList();
+                dgv_NhatKyDichVu.DataSource = nhatKyPhieuDichVu;
+            }
         }
 
-        
+
+        private void btn_TimKiem_Click(object sender, EventArgs e)
+        {
+            List<PhieuDichVu> filteredPhieuDichVus = new List<PhieuDichVu>();
+
+            // Lọc phiếu dịch vụ dựa trên tiêu chí tìm kiếm và giá trị tìm kiếm
+            string searchCriteria = cb_TimKiem.SelectedItem.ToString(); // Lấy tiêu chí tìm kiếm
+            string searchValue = txt_TimKiem.Text.Trim(); // Lấy giá trị tìm kiếm từ TextBox
+
+            // Kiểm tra tiêu chí tìm kiếm và lọc danh sách phiếu dịch vụ tương ứng
+            if (string.IsNullOrEmpty(searchValue) && searchCriteria != "Ngày Lập" && searchCriteria != "Trạng thái")
+            {
+                MessageBox.Show("Vui lòng nhập giá trị tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            switch (searchCriteria)
+            {
+                case "Mã phiếu dịch vụ":
+                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.MaPhieuDichVu.Contains(searchValue)).ToList();
+                    break;
+
+                case "Mã khách hàng":
+                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.MaKhachHang.Contains(searchValue)).ToList();
+                    break;
+
+                case "Mã nhân viên":
+                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.MaNhanVien.Contains(searchValue)).ToList();
+                    break;
+
+                case "Ngày lập":
+                    // Kiểm tra ngày bắt đầu và ngày kết thúc
+                    DateTime fromDate = dtpTuNgay.Value.Date; // Lấy ngày bắt đầu từ DateTimePicker
+                    DateTime toDate = dtpDenNgay.Value.Date;   // Lấy ngày kết thúc từ DateTimePicker
+
+                    // Lọc danh sách phiếu dịch vụ trong khoảng thời gian
+                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.NgayLap >= fromDate && hd.NgayLap <= toDate).ToList();
+                    break;
+
+                case "Trạng thái":
+                    string trangThai = cb_TrangThai.SelectedItem.ToString();
+                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai.Contains(trangThai)).ToList();
+                    break;
+
+                default:
+                    MessageBox.Show("Tiêu chí tìm kiếm không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+
+            // Cập nhật lại DataGridView với danh sách đã lọc
+            dgv_DanhSachDichVu.DataSource = filteredPhieuDichVus;
+        }
+
+
+        private void btn_HienThiTatCa_Click(object sender, EventArgs e)
+        {
+            List<PhieuDichVu> filteredPhieuDichVus = new List<PhieuDichVu>();
+            filteredPhieuDichVus = phieuDichVus.ToList(); 
+            dgv_DanhSachDichVu.DataSource = filteredPhieuDichVus;
+            List<NhatKyDichVu> filteredNhatKyDichVus = new List<NhatKyDichVu>();
+            filteredNhatKyDichVus = nhatKyDichVus.ToList(); 
+            dgv_NhatKyDichVu.DataSource = nhatKyDichVus;
+        }
     }
 }
