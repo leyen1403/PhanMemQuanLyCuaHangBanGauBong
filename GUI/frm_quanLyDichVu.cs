@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BLL;
+using DTO;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -6,6 +9,11 @@ namespace GUI
 {
     public partial class frm_quanLyDichVu : Form
     {
+        List<PhieuDichVu> phieuDichVus = new List<PhieuDichVu>();
+        PhieuDichVuBLL phieuDichVuBLL = new PhieuDichVuBLL();
+
+        List<NhatKyDichVu> nhatKyDichVus = new List<NhatKyDichVu>();
+        NhatKyDichVuBLL nhatKyDichVuBLL = new NhatKyDichVuBLL();
         public frm_quanLyDichVu()
         {
             InitializeComponent();
@@ -107,12 +115,12 @@ namespace GUI
 
         private void label13_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0) 
-            {
-                string maPhieuDichVu = dgv_DanhSachDichVu.Rows[e.RowIndex].Cells["MaPhieuDichVu"].Value.ToString();
-                var nhatKyPhieuDichVu = nhatKyDichVus.Where(nk => nk.MaPhieuDichVu == maPhieuDichVu).ToList();
-                dgv_NhatKyDichVu.DataSource = nhatKyPhieuDichVu;
-            }
+            //if (e.RowIndex >= 0) 
+            //{
+            //    string maPhieuDichVu = dgv_DanhSachDichVu.Rows[e.RowIndex].Cells["MaPhieuDichVu"].Value.ToString();
+            //    var nhatKyPhieuDichVu = nhatKyDichVus.Where(nk => nk.MaPhieuDichVu == maPhieuDichVu).ToList();
+            //    dgv_NhatKyDichVu.DataSource = nhatKyPhieuDichVu;
+            //}
         }
 
 
@@ -156,7 +164,7 @@ namespace GUI
 
                 case "Trạng thái":
                     string trangThai = cb_TrangThai.SelectedItem.ToString();
-                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai.Contains(trangThai)).ToList();
+                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai==true).ToList();
                     break;
 
                 default:
