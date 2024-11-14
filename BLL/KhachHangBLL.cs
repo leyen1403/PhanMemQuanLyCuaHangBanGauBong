@@ -41,5 +41,28 @@ namespace BLL
         {
             return _khachHangDAL.AddDiemCongTichLuy(maKhachHang, diemCong);
         }
+
+        public string CreateKhachHang(KhachHang kh)
+        {
+            return _khachHangDAL.CreateKhachHang(kh);
+        }
+
+        public bool isEmailExits(string email) { 
+            return _khachHangDAL.isEmailExits(email);
+        }
+        public bool isPhoneExits(string phone) { 
+            return _khachHangDAL.isPhoneExits(phone);
+        }
+        public bool isTaiKhoanExits(string taiKhoan) {
+            return _khachHangDAL.isTaiKhoanExits(taiKhoan);
+        }
+
+        public string deleteKhachHang(string maKhachHang) { 
+            return _khachHangDAL.deleteKhachHang(maKhachHang);
+        }
+        public void updateKhachHang(KhachHang kh)
+        {
+            _khachHangDAL.updateKhachHang(kh.MaKhachHang,kh);
+        }
     }
 }
