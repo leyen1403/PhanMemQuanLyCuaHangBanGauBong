@@ -147,7 +147,6 @@
             this.pnLeft.Name = "pnLeft";
             this.pnLeft.Size = new System.Drawing.Size(320, 862);
             this.pnLeft.TabIndex = 0;
-            this.pnLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLeft_Paint);
             // 
             // accordionControl1
             // 

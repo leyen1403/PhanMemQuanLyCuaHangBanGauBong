@@ -14,6 +14,7 @@ namespace GUI
             this.btn_NhanVien.Click += Btn_NhanVien_Click1;
             this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
             this.btn_DonDatHang.Click += Btn_DonDatHang_Click;
+           
         }
 
         private void Btn_DonDatHang_Click(object sender, EventArgs e)
@@ -48,6 +49,7 @@ namespace GUI
             this.btn_LapPhieuDichVu.Click += Btn_LapPhieuDichVu_Click;
             this.btn_HoaDon.Click += Btn_HoaDon_Click;
             this.btn_DichVu.Click += Btn_DichVu_Click;
+            
             loadForm(new frm_lapHoaDon());
 
         }
@@ -119,11 +121,7 @@ namespace GUI
             loadForm(new frm_lapHoaDon());
         }
 
-        private void pnLeft_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+       
         private void btn_dangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
