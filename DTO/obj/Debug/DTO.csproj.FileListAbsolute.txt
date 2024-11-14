@@ -25,3 +25,10 @@ D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.AssemblyRefere
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
+D:\HK7\CNPM\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll.config
+D:\HK7\CNPM\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll
+D:\HK7\CNPM\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
+D:\HK7\CNPM\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\HK7\CNPM\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\HK7\CNPM\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
+D:\HK7\CNPM\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
