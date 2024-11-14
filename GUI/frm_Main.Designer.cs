@@ -318,6 +318,7 @@
             this.btn_KhachHang.Name = "btn_KhachHang";
             this.btn_KhachHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_KhachHang.Text = "Quản lý khách hàng";
+            this.btn_KhachHang.Click += new System.EventHandler(this.btn_KhachHang_Click);
             // 
             // btn_Kho
             // 

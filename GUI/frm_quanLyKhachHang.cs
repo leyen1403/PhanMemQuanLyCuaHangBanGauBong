@@ -395,16 +395,21 @@ namespace GUI
         }
         private bool isNewEmail()
         {
-            
-            var row = dgv_dsKhachHang.SelectedRows[0];
-            string email = row.Cells["Email"].Value.ToString();
-            if (email.Equals(txt_Email.Text))
+            if (dgv_dsKhachHang.SelectedRows.Count == 0)
             {
                 return false;
             }
-            else { 
-                return true;
+
+            var row = dgv_dsKhachHang.SelectedRows[0];
+            var cell = row.Cells["Email"];
+
+            if (cell == null || cell.Value == null)
+            {
+                return false;
             }
+
+            string email = cell.Value?.ToString();
+            return !email.Equals(txt_Email.Text);
         }
         private bool isNewPhone()
         {
