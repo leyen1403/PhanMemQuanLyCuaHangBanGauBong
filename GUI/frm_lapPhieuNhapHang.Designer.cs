@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTongTien = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dTPNgayLap = new System.Windows.Forms.DateTimePicker();
             this.txtTrangThai = new System.Windows.Forms.TextBox();
@@ -47,11 +49,7 @@
             this.dgvPhieuNhap = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvChiTietPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnNhapLaiCTPN = new System.Windows.Forms.Button();
-            this.btnThemCTPN = new System.Windows.Forms.Button();
             this.txtThanhTien = new System.Windows.Forms.TextBox();
             this.txtSoLuong = new System.Windows.Forms.NumericUpDown();
             this.txtDonViTinh = new System.Windows.Forms.TextBox();
@@ -66,8 +64,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.btnThemPN = new System.Windows.Forms.Button();
+            this.btnNhapLaiCTPN = new System.Windows.Forms.Button();
+            this.btnThemCTPN = new System.Windows.Forms.Button();
             this.btnNhapLaiPN = new System.Windows.Forms.Button();
+            this.btnThemPN = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuNhap)).BeginInit();
@@ -83,7 +84,7 @@
             this.label1.BackColor = System.Drawing.Color.Navy;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(339, 9);
+            this.label1.Location = new System.Drawing.Point(368, 9);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(100, 10, 100, 10);
             this.label1.Size = new System.Drawing.Size(470, 45);
@@ -92,6 +93,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDong);
             this.groupBox1.Controls.Add(this.btnNhapLaiPN);
             this.groupBox1.Controls.Add(this.txtTongTien);
             this.groupBox1.Controls.Add(this.btnThemPN);
@@ -116,6 +118,23 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chung";
+            // 
+            // txtTongTien
+            // 
+            this.txtTongTien.Enabled = false;
+            this.txtTongTien.Location = new System.Drawing.Point(197, 264);
+            this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.Size = new System.Drawing.Size(248, 26);
+            this.txtTongTien.TabIndex = 36;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(35, 264);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(75, 20);
+            this.label16.TabIndex = 35;
+            this.label16.Text = "Tổng tiền";
             // 
             // label12
             // 
@@ -289,23 +308,6 @@
             this.dgvChiTietPhieuNhap.Size = new System.Drawing.Size(1241, 206);
             this.dgvChiTietPhieuNhap.TabIndex = 0;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(35, 264);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(75, 20);
-            this.label16.TabIndex = 35;
-            this.label16.Text = "Tổng tiền";
-            // 
-            // txtTongTien
-            // 
-            this.txtTongTien.Enabled = false;
-            this.txtTongTien.Location = new System.Drawing.Point(197, 264);
-            this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.Size = new System.Drawing.Size(248, 26);
-            this.txtTongTien.TabIndex = 36;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnNhapLaiCTPN);
@@ -331,24 +333,6 @@
             this.groupBox4.TabIndex = 37;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Thông tin chi tiết phiếu nhập";
-            // 
-            // btnNhapLaiCTPN
-            // 
-            this.btnNhapLaiCTPN.Image = global::GUI.Properties.Resources.icons8_load_32;
-            this.btnNhapLaiCTPN.Location = new System.Drawing.Point(518, 97);
-            this.btnNhapLaiCTPN.Name = "btnNhapLaiCTPN";
-            this.btnNhapLaiCTPN.Size = new System.Drawing.Size(74, 34);
-            this.btnNhapLaiCTPN.TabIndex = 50;
-            this.btnNhapLaiCTPN.UseVisualStyleBackColor = true;
-            // 
-            // btnThemCTPN
-            // 
-            this.btnThemCTPN.Image = global::GUI.Properties.Resources.icons8_add_35;
-            this.btnThemCTPN.Location = new System.Drawing.Point(518, 38);
-            this.btnThemCTPN.Name = "btnThemCTPN";
-            this.btnThemCTPN.Size = new System.Drawing.Size(74, 35);
-            this.btnThemCTPN.TabIndex = 49;
-            this.btnThemCTPN.UseVisualStyleBackColor = true;
             // 
             // txtThanhTien
             // 
@@ -466,14 +450,23 @@
             this.label13.TabIndex = 35;
             this.label13.Text = "Mã chi tiết phiếu nhập";
             // 
-            // btnThemPN
+            // btnNhapLaiCTPN
             // 
-            this.btnThemPN.Image = global::GUI.Properties.Resources.icons8_add_35;
-            this.btnThemPN.Location = new System.Drawing.Point(479, 48);
-            this.btnThemPN.Name = "btnThemPN";
-            this.btnThemPN.Size = new System.Drawing.Size(74, 35);
-            this.btnThemPN.TabIndex = 49;
-            this.btnThemPN.UseVisualStyleBackColor = true;
+            this.btnNhapLaiCTPN.Image = global::GUI.Properties.Resources.icons8_load_32;
+            this.btnNhapLaiCTPN.Location = new System.Drawing.Point(518, 97);
+            this.btnNhapLaiCTPN.Name = "btnNhapLaiCTPN";
+            this.btnNhapLaiCTPN.Size = new System.Drawing.Size(74, 34);
+            this.btnNhapLaiCTPN.TabIndex = 50;
+            this.btnNhapLaiCTPN.UseVisualStyleBackColor = true;
+            // 
+            // btnThemCTPN
+            // 
+            this.btnThemCTPN.Image = global::GUI.Properties.Resources.icons8_add_35;
+            this.btnThemCTPN.Location = new System.Drawing.Point(518, 38);
+            this.btnThemCTPN.Name = "btnThemCTPN";
+            this.btnThemCTPN.Size = new System.Drawing.Size(74, 35);
+            this.btnThemCTPN.TabIndex = 49;
+            this.btnThemCTPN.UseVisualStyleBackColor = true;
             // 
             // btnNhapLaiPN
             // 
@@ -483,6 +476,24 @@
             this.btnNhapLaiPN.Size = new System.Drawing.Size(74, 34);
             this.btnNhapLaiPN.TabIndex = 50;
             this.btnNhapLaiPN.UseVisualStyleBackColor = true;
+            // 
+            // btnThemPN
+            // 
+            this.btnThemPN.Image = global::GUI.Properties.Resources.icons8_add_35;
+            this.btnThemPN.Location = new System.Drawing.Point(479, 48);
+            this.btnThemPN.Name = "btnThemPN";
+            this.btnThemPN.Size = new System.Drawing.Size(74, 35);
+            this.btnThemPN.TabIndex = 49;
+            this.btnThemPN.UseVisualStyleBackColor = true;
+            // 
+            // btnDong
+            // 
+            this.btnDong.Location = new System.Drawing.Point(478, 163);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(83, 41);
+            this.btnDong.TabIndex = 51;
+            this.btnDong.Text = "Đóng";
+            this.btnDong.UseVisualStyleBackColor = true;
             // 
             // frm_lapPhieuNhapHang
             // 
@@ -553,5 +564,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnDong;
     }
 }

@@ -32,6 +32,10 @@ namespace BLL
         {
             return chiTietPhieuNhapDAL.AddChiTietPhieuNhap(maCTPN);
         }
+        public bool UpdateChiTietPhieuNhapList(List<ChiTietPhieuNhap> updatedList, string maPN)
+        {
+            return chiTietPhieuNhapDAL.UpdateChiTietPhieuNhapList(updatedList, maPN);
+        }
 
 
 

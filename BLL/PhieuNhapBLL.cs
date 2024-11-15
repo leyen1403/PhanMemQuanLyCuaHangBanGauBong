@@ -20,6 +20,21 @@ namespace BLL
         {
             return phieuNhapDAL.AddPhieuNhap(phieuNhap);
         }
-       
+        public List<PhieuNhap> GetListPhieuNhapByDate(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            return phieuNhapDAL.GetListPhieuNhapByDate(ngayBatDau, ngayKetThuc);
+        }
+        public List<PhieuNhap> GetListPhieuNhapByNhanVien(string maNV)
+        {
+            return phieuNhapDAL.GetListPhieuNhapByNhanVien(maNV);
+        }
+        public bool UpdateTongTien(string maPN, decimal tongTien)
+        {
+            return phieuNhapDAL.UpdateTongTien(maPN, tongTien);
+        }
+        public bool DeletePhieuNhap(string maPN)
+        {
+            return phieuNhapDAL.DeletePhieuNhap(maPN);
+        }
     }
 }

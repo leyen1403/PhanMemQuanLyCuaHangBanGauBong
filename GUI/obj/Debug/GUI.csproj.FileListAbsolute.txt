@@ -335,3 +335,4 @@ D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.csproj.CoreCompil
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.csproj.CopyComplete
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.exe
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.pdb
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhapHang.resources

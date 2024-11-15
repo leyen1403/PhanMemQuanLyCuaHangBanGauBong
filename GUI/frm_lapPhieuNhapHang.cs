@@ -30,6 +30,24 @@ namespace GUI
             this.btnThemCTPN.Click += BtnThemCTPN_Click;
             this.txtDonGia.TextChanged += TxtDonGia_TextChanged;
             this.txtSoLuong.ValueChanged += TxtSoLuong_ValueChanged;
+            this.btnDong.Click += BtnDong_Click;
+        }
+
+        private void BtnNhapLaiPN_Click(object sender, EventArgs e)
+        {
+            txtMaPN.Clear();
+            loadCbbNhanVien();
+            loadCbbDonDatHang();
+            txtLanNhap.Clear();
+            txtTrangThai.Clear();
+            dTPNgayLap.Value = DateTime.Now;
+            txtTongTien.Clear();
+            
+        }
+
+        private void BtnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void BtnThemCTPN_Click(object sender, EventArgs e)
@@ -37,7 +55,7 @@ namespace GUI
             try
             {
                 string maCTPN = txtMaCTPN.Text;
-                // Retrieve selected value safely
+          
                 string maCTDDH = cbbMaCTDDH.SelectedValue != null ? cbbMaCTDDH.SelectedValue.ToString() : string.Empty;
                 if (string.IsNullOrEmpty(maCTPN))
                 {
@@ -45,7 +63,6 @@ namespace GUI
                     return;
                 }
 
-                // Required fields from textboxes
                 string maPN = txtMaPN.Text;
                 string donViTinh = txtDonViTinh.Text;
 
@@ -55,20 +72,16 @@ namespace GUI
                     return;
                 }
 
-                // DonGia with error handling
                 if (!decimal.TryParse(txtDonGia.Text, out decimal donGia) || donGia <= 0)
                 {
                     MessageBox.Show("Đơn giá không hợp lệ!");
                     return;
                 }
 
-                // Calculate ThanhTien instead of retrieving from TextBox
                 decimal thanhTien = soLuong * donGia;
 
-                // Optional fields
                 string ghiChu = txtGhiChu.Text;
 
-                // Initialize ChiTietPhieuNhap object
                 ChiTietPhieuNhap newCTPN = new ChiTietPhieuNhap
                 {
                     MaChiTietPhieuNhap = maCTPN,
@@ -88,6 +101,7 @@ namespace GUI
                 if (isSuccessCTPN)
                 {
                     MessageBox.Show("Chi tiết phiếu nhập đã được thêm thành công!");
+                    UpdateTongTien(maPN);
                     loadChiTietPhieuNhap(maPN);
                 }
                 else
@@ -101,17 +115,33 @@ namespace GUI
             }
         }
 
-        private void BtnNhapLaiPN_Click(object sender, EventArgs e)
+        private void UpdateTongTien(string maPN)
         {
-            txtMaPN.Clear();
-            loadCbbNhanVien();
-            loadCbbDonDatHang();
-            txtLanNhap.Clear();
-            txtTrangThai.Clear();
-            dTPNgayLap.Value = DateTime.Now;
-            txtTongTien.Clear();
-            loadDSPhieuNhap();
+            try
+            {
+             
+                var chiTietPhieuNhaps = chiTietPhieuNhapBLL.GetChiTietPhieuNhapByMaPN(maPN);
+
+                decimal tongTien = chiTietPhieuNhaps.Sum(ct => ct.ThanhTien ?? 0);
+
+                bool isUpdated = phieuNhapBLL.UpdateTongTien(maPN, tongTien);
+
+                if (isUpdated)
+                {
+                    loadDSPhieuNhap();
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật tổng tiền thất bại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật tổng tiền: " + ex.Message);
+            }
         }
+
+      
 
         private void TxtSoLuong_ValueChanged(object sender, EventArgs e)
         {
