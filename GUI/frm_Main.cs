@@ -137,5 +137,10 @@ namespace GUI
         {
             loadForm(new frm_quanLyKhachHang());
         }
+
+        private void btn_NhaCC_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyNhaCungCap());
+        }
     }
 }

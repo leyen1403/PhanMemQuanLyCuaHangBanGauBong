@@ -83,7 +83,7 @@
             this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
             this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1661, 31);
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1661, 39);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
             // 
@@ -142,10 +142,10 @@
             this.pnLeft.Controls.Add(this.label1);
             this.pnLeft.Controls.Add(this.pictureBox1);
             this.pnLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnLeft.Location = new System.Drawing.Point(0, 31);
+            this.pnLeft.Location = new System.Drawing.Point(0, 39);
             this.pnLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(320, 862);
+            this.pnLeft.Size = new System.Drawing.Size(320, 854);
             this.pnLeft.TabIndex = 0;
             // 
             // accordionControl1
@@ -166,7 +166,7 @@
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Auto;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Auto;
-            this.accordionControl1.Size = new System.Drawing.Size(320, 804);
+            this.accordionControl1.Size = new System.Drawing.Size(320, 796);
             this.accordionControl1.TabIndex = 18;
             // 
             // accordionControlElement1
@@ -310,6 +310,7 @@
             this.btn_NhaCC.Name = "btn_NhaCC";
             this.btn_NhaCC.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_NhaCC.Text = "Quản lý nhà cung cấp";
+            this.btn_NhaCC.Click += new System.EventHandler(this.btn_NhaCC_Click);
             // 
             // btn_KhachHang
             // 

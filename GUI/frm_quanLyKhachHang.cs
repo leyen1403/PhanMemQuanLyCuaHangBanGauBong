@@ -49,7 +49,7 @@ namespace GUI
                     lbl_NgayTaoValue.Text = khachHang.NgayTao.ToString();
                     lbl_DiemTichLuyValue.Text = khachHang.DiemTichLuy.ToString();
                     pb_img.ImageLocation = khachHang.HinhAnh;
-
+                    txt_DiaChi.Text = khachHang.DiaChi;
                     txt_Email.Text = khachHang.Email;
                     txt_SoDienThoai.Text = khachHang.SoDienThoai;
                     if(khachHang.TrangThai == true)
