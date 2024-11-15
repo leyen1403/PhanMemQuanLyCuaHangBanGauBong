@@ -57,3 +57,15 @@ D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Core
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CopyComplete
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll.config
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb

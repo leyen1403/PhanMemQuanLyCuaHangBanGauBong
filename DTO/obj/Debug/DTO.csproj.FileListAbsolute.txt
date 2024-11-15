@@ -31,3 +31,9 @@ D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll.config
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb

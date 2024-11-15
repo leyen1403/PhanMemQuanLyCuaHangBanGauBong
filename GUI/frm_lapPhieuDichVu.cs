@@ -100,26 +100,16 @@ namespace GUI
         {
             if (dgv_HoaDon.CurrentRow != null)
             {
-                // Lấy mã hóa đơn
                 string maHoaDon = dgv_HoaDon.CurrentRow.Cells["MaHoaDonBanHang"].Value.ToString();
-
-                // Lấy ngày lập hóa đơn từ dữ liệu
                 DateTime ngayLapHoaDon = Convert.ToDateTime(dgv_HoaDon.CurrentRow.Cells["NgayLap"].Value);
-
-                // Tính số ngày từ ngày lập đến hiện tại
                 int soNgay = (DateTime.Now - ngayLapHoaDon).Days;
-
-                // Kiểm tra nếu số ngày vượt quá 90
                 if (soNgay > 90)
                 {
                     MessageBox.Show("Số ngày mua vượt quá 90, không thể sử dụng dịch vụ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    // Không hiển thị thông tin lên các ô TextBox
-                    ResetTextBoxes();  // Gọi hàm để làm sạch các TextBox
+                    ResetTextBoxes();  
                 }
                 else
                 {
-                    // Nếu số ngày hợp lệ, hiển thị thông tin
                     LoadChiTietHoaDonData(maHoaDon);
                     LoadKhachHangInfo(maHoaDon);
                 }
@@ -127,30 +117,23 @@ namespace GUI
         }
         private void LoadKhachHangInfo(string maHoaDon)
         {
-            // Lấy mã khách hàng từ hóa đơn
             var hoaDon = HoaDons.FirstOrDefault(hd => hd.MaHoaDonBanHang == maHoaDon);
             if (hoaDon != null)
             {
                 string maKhachHang = hoaDon.MaKhachHang;
-
-                // Kiểm tra xem danh sách khách hàng có dữ liệu không
                 if (khachHangs.Count == 0)
                 {
-                    khachHangs = khachHangBll.GetAllKhachHangs();  // Lấy danh sách khách hàng từ BLL
+                    khachHangs = khachHangBll.GetAllKhachHangs(); 
                 }
-
-                // Tìm thông tin khách hàng từ mã khách hàng
                 var khachHang = khachHangs.FirstOrDefault(kh => kh.MaKhachHang == maKhachHang);
                 if (khachHang != null)
                 {
-                    // Hiển thị thông tin khách hàng lên các textbox
                     txt_MaKH.Text = khachHang.MaKhachHang;
                     txt_TenKH.Text = khachHang.TenKhachHang;
                     txt_SDT.Text = khachHang.SoDienThoai;
                 }
                 else
                 {
-                    // Nếu không tìm thấy khách hàng
                     txt_MaKH.Text = "Không tìm thấy";
                     txt_TenKH.Text = "Không tìm thấy";
                     txt_SDT.Text = "Không tìm thấy";
@@ -160,17 +143,15 @@ namespace GUI
         private void Frm_lapPhieuDichVu_Load(object sender, EventArgs e)
         {
             
-            LoadSanPhamData(); // Đảm bảo sanPhams được nạp dữ liệu
+            LoadSanPhamData(); 
             LoadHoaDonData();
             txt_MaNV.Text = "NV001";
-            LoadEmployeeName("NV001"); // Lấy tên nhân viên cho MaNV mặc định
+            LoadEmployeeName("NV001"); 
         }
 
         private void LoadSanPhamData()
         {
-            sanPhams = sanPhamBll.GetProductList(); // Nạp danh sách sản phẩm
-
-            // Kiểm tra xem sanPhams có dữ liệu hay không
+            sanPhams = sanPhamBll.GetProductList(); 
             if (sanPhams.Count == 0)
             {
                 MessageBox.Show("Danh sách sản phẩm trống!");
@@ -179,9 +160,7 @@ namespace GUI
 
         private void LoadHoaDonData()
         {
-            dgv_HoaDon.DataSource = HoaDons;  // Gán DataSource cho DataGridView
-
-            // Sau khi gán DataSource, bạn cần thực hiện lại các thay đổi cột.
+            dgv_HoaDon.DataSource = HoaDons; 
             dgv_HoaDon.Columns["MaHoaDonBanHang"].HeaderText = "Mã Hóa Đơn";
             dgv_HoaDon.Columns["NgayLap"].HeaderText = "Ngày Lập";
             dgv_HoaDon.Columns["TongSanPham"].HeaderText = "Tổng Sản Phẩm";
@@ -191,7 +170,6 @@ namespace GUI
             dgv_HoaDon.Columns["MaKhachHang"].HeaderText = "Mã Khách Hàng";
             dgv_HoaDon.Columns["MaNhanVien"].HeaderText = "Mã Nhân Viên";
 
-            // Kiểm tra và ẩn các cột không cần thiết
             if (dgv_HoaDon.Columns.Contains("KhachHang"))
                 dgv_HoaDon.Columns["KhachHang"].Visible = false;
 
@@ -202,10 +180,9 @@ namespace GUI
 
         private void LoadChiTietHoaDonData(string maHoaDon)
         {
-            var chiTietHoaDons = chiTietHoaDonBanHangBLL.GetChiTietHoaDonByMaHoaDon(maHoaDon); // Lấy theo mã hóa đơn
+            var chiTietHoaDons = chiTietHoaDonBanHangBLL.GetChiTietHoaDonByMaHoaDon(maHoaDon); 
             dgv_ChiTietHoaDon.DataSource = chiTietHoaDons;
 
-            // Định dạng cột và ẩn các cột không cần thiết
             dgv_ChiTietHoaDon.Columns["MaChiTietHoaDonBanHang"].HeaderText = "Mã Chi Tiết HĐ";
             dgv_ChiTietHoaDon.Columns["MaHoaDon"].HeaderText = "Mã Hóa Đơn";
             dgv_ChiTietHoaDon.Columns["MaSanPham"].HeaderText = "Mã Sản Phẩm";
@@ -239,7 +216,6 @@ namespace GUI
             if (string.IsNullOrEmpty(txt_MPDV.Text) ||
                 string.IsNullOrEmpty(txt_MaKH.Text) ||
                 string.IsNullOrEmpty(txt_MaNV.Text) ||
-                string.IsNullOrEmpty(txt_DiaChi.Text) ||
                 string.IsNullOrEmpty(txt_GhiChu.Text) ||
                 string.IsNullOrEmpty(txt_TongTien.Text) ||
                 string.IsNullOrEmpty(txt_NgayLap.Text))
@@ -284,12 +260,9 @@ namespace GUI
         private void btn_TimKiem_Click(object sender, EventArgs e)
         {
             List<HoaDonBanHang> filteredHoaDons = new List<HoaDonBanHang>();
+            string searchCriteria = cb_TimKiem.SelectedItem.ToString(); 
+            string searchValue = txt_TimKiem.Text.Trim(); 
 
-            // Lọc hóa đơn dựa trên tiêu chí tìm kiếm và giá trị tìm kiếm
-            string searchCriteria = cb_TimKiem.SelectedItem.ToString(); // Lấy tiêu chí tìm kiếm
-            string searchValue = txt_TimKiem.Text.Trim(); // Lấy giá trị tìm kiếm từ TextBox
-
-            // Kiểm tra tiêu chí tìm kiếm và lọc danh sách hóa đơn tương ứng
             if (string.IsNullOrEmpty(searchValue) && searchCriteria != "Ngày Lập")
             {
                 MessageBox.Show("Vui lòng nhập giá trị tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -311,11 +284,15 @@ namespace GUI
                     break;
 
                 case "Ngày Lập":
-                    // Kiểm tra ngày bắt đầu và ngày kết thúc
-                    DateTime fromDate = dtpTuNgay.Value.Date; // Lấy ngày bắt đầu từ DateTimePicker
-                    DateTime toDate = dtpDenNgay.Value.Date;   // Lấy ngày kết thúc từ DateTimePicker
+                    // Kiểm tra nếu dtpTuNgay lớn hơn hoặc bằng dtpDenNgay
+                    if (dtpTuNgay.Value.Date > dtpDenNgay.Value.Date)
+                    {
+                        MessageBox.Show("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Dừng việc tìm kiếm
+                    }
+                    DateTime fromDate = dtpTuNgay.Value.Date;
+                    DateTime toDate = dtpDenNgay.Value.Date;
 
-                    // Lọc danh sách hóa đơn trong khoảng thời gian
                     filteredHoaDons = HoaDons.Where(hd => hd.NgayLap >= fromDate && hd.NgayLap <= toDate).ToList();
                     break;
 
@@ -324,12 +301,9 @@ namespace GUI
                     return;
             }
 
-            // Hiển thị kết quả tìm kiếm trong DataGridView
             if (filteredHoaDons.Count > 0)
             {
                 dgv_HoaDon.DataSource = filteredHoaDons;
-
-                // Sau khi gán DataSource, ẩn các cột không cần thiết
                 dgv_HoaDon.Columns["KhachHang"].Visible = false;
                 dgv_HoaDon.Columns["NhanVien"].Visible = false;
             }
@@ -341,12 +315,10 @@ namespace GUI
         }
 
 
-        // Sự kiện khi thay đổi lựa chọn trong ComboBox
         private void cb_TimKiem_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cb_TimKiem.SelectedItem.ToString() == "Ngày Lập")
             {
-                // Hiển thị DateTimePicker và ẩn TextBox
                 dtpTuNgay.Enabled = true;
                 dtpDenNgay.Enabled = true;
                 txt_TimKiem.Enabled = false;
@@ -354,7 +326,6 @@ namespace GUI
             }
             else
             {
-                // Ẩn DateTimePicker và hiển thị TextBox
                 dtpTuNgay.Enabled = false;
                 dtpDenNgay.Enabled = false;
                 txt_TimKiem.Enabled = true;
@@ -367,17 +338,15 @@ namespace GUI
         {
             if (!ValidateFormData())
             {
-                // Nếu hàm ValidateFormData trả về false (dữ liệu không hợp lệ), dừng lại
                 return;
             }
             if (txt_LanDichVu.Text == "3")
             {
-                // Hiển thị thông báo lỗi và ngừng thực hiện lưu
                 MessageBox.Show("Không thể lưu phiếu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Ngừng việc lưu
             }
 
-            string employeeName = txt_MaNV.Text; // TextBox chứa tên nhân viên
+            string employeeName = txt_MaNV.Text;
             string employeeId = new NhanVienBLL().GetEmployeeIdFromName(employeeName);
             string errorMessage;
             PhieuDichVu phieuDichVu = new PhieuDichVu
@@ -386,9 +355,9 @@ namespace GUI
                 NgayLap = DateTime.Parse(txt_NgayLap.Text),
                 TongTien = decimal.Parse(txt_TongTien.Text),
                 MaKhachHang = txt_MaKH.Text.Length > 10 ? txt_MaKH.Text.Substring(0, 10) : txt_MaKH.Text,
-                MaNhanVien = employeeId, // Sử dụng mã nhân viên từ tên
+                MaNhanVien = employeeId, 
                 GhiChu = txt_GhiChu.Text.Length > 255 ? txt_GhiChu.Text.Substring(0, 255) : txt_GhiChu.Text,
-                TrangThai = true,
+                TrangThai = false,
                 NgayTao = DateTime.Now,
                 NgayCapNhat = DateTime.Now
             };
@@ -398,7 +367,6 @@ namespace GUI
             bool isSaved = new PhieuDichVuBLL().SavePhieuDichVu(phieuDichVu, out errorMessage);
             if (isSaved)
             {
-                // Tạo bản ghi Nhật ký dịch vụ
                 var maChiTietHoaDon = dgv_ChiTietHoaDon.CurrentRow.Cells["MaChiTietHoaDonBanHang"].Value.ToString();
                 var lanDichVu = new NhatKyDichVuBLL().GenerateLanDichVu(maChiTietHoaDon);
 
@@ -596,25 +564,20 @@ namespace GUI
 
         private void btn_HienThiTatCa_Click(object sender, EventArgs e)
         {
-            // Lọc danh sách hóa đơn dựa trên tiêu chí tìm kiếm và giá trị tìm kiếm
             List<HoaDonBanHang> filteredHoaDons = new List<HoaDonBanHang>();
-            // Giả sử 'HoaDons' là danh sách chứa tất cả hóa đơn
-            filteredHoaDons = HoaDons.ToList(); // Đưa toàn bộ hóa đơn vào danh sách hiển thị
+            filteredHoaDons = HoaDons.ToList(); 
             dgv_HoaDon.DataSource = filteredHoaDons;
         }
         private void LoadEmployeeName(string maNV)
         {
-            // Lấy thông tin nhân viên từ BLL
             var nhanVien = new NhanVienBLL().GetNhanVienById(maNV);
 
             if (nhanVien != null)
             {
-                // Hiển thị tên nhân viên vào TextBox txt_TenNV
-                txt_MaNV.Text = nhanVien.HoTen; // Giả sử 'TenNhanVien' là trường chứa tên nhân viên
+                txt_MaNV.Text = nhanVien.HoTen;
             }
             else
             {
-                // Nếu không tìm thấy nhân viên
                 txt_MaNV.Text = "Không tìm thấy nhân viên";
             }
         }
@@ -626,10 +589,8 @@ namespace GUI
 
         private void txt_LanDichVu_TextChanged(object sender, EventArgs e)
         {
-            // Kiểm tra nếu giá trị trong txt_LanDichVu là 3
             if (txt_LanDichVu.Text == "3")
             {
-                // Hiển thị thông báo lỗi
                 MessageBox.Show("Đã đạt 3 lần dịch vụ, không thể thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
@@ -637,19 +598,17 @@ namespace GUI
 
         private void txt_TongTien_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Kiểm tra tính hợp lệ của tổng tiền
             if (!IsValidTotalAmount(txt_TongTien.Text))
             {
-                e.Cancel = true; // Dừng việc chuyển focus
+                e.Cancel = true; 
             }
         }
 
         private void txt_SDT_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Kiểm tra tính hợp lệ của số điện thoại
             if (!IsValidPhoneNumber(txt_SDT.Text))
             {
-                e.Cancel = true; // Dừng việc chuyển focus
+                e.Cancel = true; 
             }
         }
     }
