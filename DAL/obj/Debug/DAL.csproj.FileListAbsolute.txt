@@ -47,3 +47,13 @@ D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.Core
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CopyComplete
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.pdb
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll.config
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
+D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb

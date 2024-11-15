@@ -9,6 +9,10 @@ namespace GUI
 {
     public partial class frm_quanLyDichVu : Form
     {
+        List<KhachHang> khachHangs = new List<KhachHang>();  // Danh sách khách hàng
+        KhachHangBLL khachHangBll = new KhachHangBLL();
+
+
         List<PhieuDichVu> phieuDichVus = new List<PhieuDichVu>();
         PhieuDichVuBLL phieuDichVuBLL = new PhieuDichVuBLL();
 
@@ -19,10 +23,16 @@ namespace GUI
             InitializeComponent();
             phieuDichVuBLL = new PhieuDichVuBLL();
             cb_TimKiem.SelectedIndexChanged += Cb_TimKiem_SelectedIndexChanged;
-            cb_TrangThai.Items.Add("Tiếp nhận");
-            cb_TrangThai.Items.Add("Đang xử lý");
-            cb_TrangThai.Items.Add("Hoàn thành");
-            cb_TrangThai.Items.Add("Đã hủy");
+            dgv_DanhSachDichVu.CellClick += Dgv_DanhSachDichVu_CellClick;
+            dgv_NhatKyDichVu.CellClick += Dgv_NhatKyDichVu_CellClick;
+            txt_GhiChu.ReadOnly = true;
+            txt_LanDichVu.ReadOnly = true;
+            txt_MaPDV.ReadOnly = true;
+            txt_TenKH.ReadOnly = true;
+            txt_TenSP.ReadOnly = true;
+            txt_TongTien.ReadOnly = true;
+            cb_TrangThai.Items.Add("True");
+            cb_TrangThai.Items.Add("False");
             cb_TrangThai.SelectedIndex = 0;
             cb_TrangThai.DropDownStyle = ComboBoxStyle.DropDownList;
             // Thêm các lựa chọn vào ComboBox
@@ -35,6 +45,61 @@ namespace GUI
             cb_TimKiem.SelectedIndex = 0;
             cb_TimKiem.DropDownStyle = ComboBoxStyle.DropDownList;
 
+        }
+
+        private void Dgv_NhatKyDichVu_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = dgv_NhatKyDichVu.Rows[e.RowIndex];
+                string lanDichVu = row.Cells["Landichvu"].Value.ToString();
+                string maChiTietHoaDon = row.Cells["MaChiTietHoaDonBanHang"].Value.ToString();
+                string maPhieuDichVu = row.Cells["MaPhieuDichVu"].Value.ToString();
+
+                txt_LanDichVu.Text = lanDichVu;
+                txt_TenSP.Text = maChiTietHoaDon;
+            }
+        }
+
+        private void Dgv_DanhSachDichVu_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) 
+            {
+           
+                
+                // Lấy thông tin phiếu dịch vụ từ dgv_DanhSachDichVu
+                var row = dgv_DanhSachDichVu.Rows[e.RowIndex];
+                string maPhieuDichVu = row.Cells["MaPhieuDichVu"].Value.ToString();
+                string maKhachHang = row.Cells["MaKhachHang"].Value.ToString();
+                string ghiChu = row.Cells["GhiChu"].Value.ToString();
+                DateTime ngayLap = Convert.ToDateTime(row.Cells["NgayLap"].Value);
+                DateTime ngayCapNhat = Convert.ToDateTime(row.Cells["NgayCapNhat"].Value);
+                decimal tongTien = Convert.ToDecimal(row.Cells["TongTien"].Value);
+                string trangThai = row.Cells["TrangThai"].Value.ToString();
+
+                // Cập nhật vào các ô nhập liệu
+                txt_MaPDV.Text = maPhieuDichVu;
+                txt_TenKH.Text = maKhachHang; // Bạn có thể thay đổi theo logic lấy tên khách hàng
+                txt_GhiChu.Text = ghiChu;
+                txt_TongTien.Text = tongTien.ToString();
+                cb_TrangThai.SelectedItem = trangThai;
+
+                var khachHang = khachHangBll.GetKhachHang(maKhachHang); // Lấy thông tin khách hàng từ mã khách hàng
+
+                if (khachHang != null)
+                {
+                    // Cập nhật tên khách hàng vào textbox
+                    txt_TenKH.Text = khachHang.TenKhachHang; // Hoặc tên trường tên khách hàng trong bảng KhachHang
+                }
+                else
+                {
+                    txt_TenKH.Text = "Không tìm thấy khách hàng";
+                }
+
+                // Lọc nhật ký dịch vụ theo mã phiếu dịch vụ
+                var nhatKyPhieuDichVu = nhatKyDichVus.Where(nk => nk.MaPhieuDichVu == maPhieuDichVu).ToList();
+                dgv_NhatKyDichVu.DataSource = nhatKyPhieuDichVu;
+            }
         }
 
         private void Cb_TimKiem_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,12 +180,6 @@ namespace GUI
 
         private void label13_Click(object sender, EventArgs e)
         {
-            //if (e.RowIndex >= 0) 
-            //{
-            //    string maPhieuDichVu = dgv_DanhSachDichVu.Rows[e.RowIndex].Cells["MaPhieuDichVu"].Value.ToString();
-            //    var nhatKyPhieuDichVu = nhatKyDichVus.Where(nk => nk.MaPhieuDichVu == maPhieuDichVu).ToList();
-            //    dgv_NhatKyDichVu.DataSource = nhatKyPhieuDichVu;
-            //}
         }
 
 
@@ -133,11 +192,12 @@ namespace GUI
             string searchValue = txt_TimKiem.Text.Trim(); // Lấy giá trị tìm kiếm từ TextBox
 
             // Kiểm tra tiêu chí tìm kiếm và lọc danh sách phiếu dịch vụ tương ứng
-            if (string.IsNullOrEmpty(searchValue) && searchCriteria != "Ngày Lập" && searchCriteria != "Trạng thái")
+            if (string.IsNullOrEmpty(searchValue) && searchCriteria != "Ngày lập" && searchCriteria != "Trạng thái")
             {
                 MessageBox.Show("Vui lòng nhập giá trị tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
 
             switch (searchCriteria)
             {
@@ -154,18 +214,28 @@ namespace GUI
                     break;
 
                 case "Ngày lập":
-                    // Kiểm tra ngày bắt đầu và ngày kết thúc
-                    DateTime fromDate = dtpTuNgay.Value.Date; // Lấy ngày bắt đầu từ DateTimePicker
-                    DateTime toDate = dtpDenNgay.Value.Date;   // Lấy ngày kết thúc từ DateTimePicker
+                    // Kiểm tra nếu dtpTuNgay lớn hơn hoặc bằng dtpDenNgay
+                    if (dtpTuNgay.Value.Date > dtpDenNgay.Value.Date)
+                    {
+                        MessageBox.Show("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Dừng việc tìm kiếm
+                    }
+
+                    // Tiếp tục xử lý tìm kiếm khi điều kiện ngày hợp lệ
+                    DateTime fromDate = dtpTuNgay.Value.Date;
+                    DateTime toDate = dtpDenNgay.Value.Date;
 
                     // Lọc danh sách phiếu dịch vụ trong khoảng thời gian
                     filteredPhieuDichVus = phieuDichVus.Where(hd => hd.NgayLap >= fromDate && hd.NgayLap <= toDate).ToList();
                     break;
 
+
                 case "Trạng thái":
-                    string trangThai = cb_TrangThai.SelectedItem.ToString();
-                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai==true).ToList();
+                    // Lấy giá trị trạng thái từ ComboBox và chuyển đổi sang kiểu bool
+                    bool trangThai = cb_TrangThai.SelectedItem.ToString() == "True";
+                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai == trangThai).ToList();
                     break;
+
 
                 default:
                     MessageBox.Show("Tiêu chí tìm kiếm không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
