@@ -13,70 +13,268 @@ namespace GUI
     {
         PhieuNhapBLL phieuNhapBLL = new PhieuNhapBLL();
         ChiTietPhieuNhapBLL chiTietPhieuNhapBLL = new ChiTietPhieuNhapBLL();
+        NhanVienBLL nhanVienBLL = new NhanVienBLL();
+        DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
+        ChiTietDonDatHangBLL chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
         public frm_lapPhieuNhapHang()
         {
             InitializeComponent();
             AddButtonPaintEvent();
             AddButtonPaintEventRecursive(this);
             this.Load += Frm_lapPhieuNhapHang_Load;
-            dgvPhieuNhap.SelectionChanged += DgvPhieuNhap_SelectionChanged;
+            this.dgvPhieuNhap.SelectionChanged += DgvPhieuNhap_SelectionChanged;
+            this.dgvChiTietPhieuNhap.SelectionChanged += DgvChiTietPhieuNhap_SelectionChanged;
+            this.btnNhapLaiCTPN.Click += BtnNhapLai_Click;
+            this.btnNhapLaiPN.Click += BtnNhapLaiPN_Click; ;
+            this.btnThemPN.Click += BtnTaoPhieu_Click;
+            this.btnThemCTPN.Click += BtnThemCTPN_Click;
+            this.txtDonGia.TextChanged += TxtDonGia_TextChanged;
+            this.txtSoLuong.ValueChanged += TxtSoLuong_ValueChanged;
+        }
+
+        private void BtnThemCTPN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maCTPN = txtMaCTPN.Text;
+                // Retrieve selected value safely
+                string maCTDDH = cbbMaCTDDH.SelectedValue != null ? cbbMaCTDDH.SelectedValue.ToString() : string.Empty;
+                if (string.IsNullOrEmpty(maCTPN))
+                {
+                    MessageBox.Show("Vui lòng chọn một mã chi tiết đơn đặt hàng hợp lệ.");
+                    return;
+                }
+
+                // Required fields from textboxes
+                string maPN = txtMaPN.Text;
+                string donViTinh = txtDonViTinh.Text;
+
+                if (!int.TryParse(txtSoLuong.Text, out int soLuong) || soLuong <= 0)
+                {
+                    MessageBox.Show("Số lượng không hợp lệ!");
+                    return;
+                }
+
+                // DonGia with error handling
+                if (!decimal.TryParse(txtDonGia.Text, out decimal donGia) || donGia <= 0)
+                {
+                    MessageBox.Show("Đơn giá không hợp lệ!");
+                    return;
+                }
+
+                // Calculate ThanhTien instead of retrieving from TextBox
+                decimal thanhTien = soLuong * donGia;
+
+                // Optional fields
+                string ghiChu = txtGhiChu.Text;
+
+                // Initialize ChiTietPhieuNhap object
+                ChiTietPhieuNhap newCTPN = new ChiTietPhieuNhap
+                {
+                    MaChiTietPhieuNhap = maCTPN,
+                    MaPhieuNhap = maPN,
+                    DonViTinh = donViTinh,
+                    SoLuong = soLuong,
+                    DonGia = donGia,
+                    ThanhTien = thanhTien,
+                    TrangThai = "Chưa giao",
+                    MaChiTietDonDatHang = maCTDDH,
+                    GhiChu = ghiChu
+                };
+
+                // Attempt to add the new detail
+                bool isSuccessCTPN = chiTietPhieuNhapBLL.AddChiTietPhieuNhap(newCTPN);
+
+                if (isSuccessCTPN)
+                {
+                    MessageBox.Show("Chi tiết phiếu nhập đã được thêm thành công!");
+                    loadChiTietPhieuNhap(maPN);
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi thêm chi tiết phiếu nhập. Vui lòng thử lại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void BtnNhapLaiPN_Click(object sender, EventArgs e)
+        {
+            txtMaPN.Clear();
+            loadCbbNhanVien();
+            loadCbbDonDatHang();
+            txtLanNhap.Clear();
+            txtTrangThai.Clear();
+            dTPNgayLap.Value = DateTime.Now;
+            txtTongTien.Clear();
+            loadDSPhieuNhap();
+        }
+
+        private void TxtSoLuong_ValueChanged(object sender, EventArgs e)
+        {
+            CalculateThanhTien();
+        }
+
+        private void TxtDonGia_TextChanged(object sender, EventArgs e)
+        {
+            CalculateThanhTien();
+        }
+
+        private void CalculateThanhTien()
+        {
            
+            if (decimal.TryParse(txtDonGia.Text, out decimal donGia) && int.TryParse(txtSoLuong.Text, out int soLuong))
+            {
+                decimal thanhTien = donGia * soLuong;
+
+                txtThanhTien.Text = thanhTien.ToString();  
+            }
+            else
+            {
+                txtThanhTien.Text = "0";
+            }
+        }
+
+        private void BtnTaoPhieu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maPN = txtMaPN.Text;
+                string nhanVien = cbbNhanVien.SelectedValue?.ToString();
+                string donDatHang = cbbMaDDH.SelectedValue?.ToString();
+                string chiTietDonDatHang = cbbMaCTDDH.SelectedValue?.ToString();
+                int lanNhap = int.Parse(txtLanNhap.Text);
+                string trangThai = txtTrangThai.Text;
+
+             
+                PhieuNhap newPhieuNhap = new PhieuNhap
+                {
+                    MaPhieuNhap = maPN,
+                    NgayLap = DateTime.Now,
+                    TrangThai = trangThai,
+                    LanNhap = lanNhap,
+                    MaDonDatHang = donDatHang,
+                    MaNhanVien = nhanVien
+                };
+
+              
+                bool isSuccessPN = phieuNhapBLL.AddPhieuNhap(newPhieuNhap);
+
+                if (isSuccessPN)
+                {
+                    MessageBox.Show("Phiếu nhập đã được thêm thành công!");
+                 
+                    maPN = newPhieuNhap.MaPhieuNhap; 
+                    txtMaPN.Text = maPN;
+                    loadDSPhieuNhap();
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi thêm phiếu nhập. Vui lòng thử lại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void BtnNhapLai_Click(object sender, EventArgs e)
+        {
+           
+            txtMaCTPN.Clear();
+            loadChiTietDonDatHang();
+            txtDonViTinh.Clear();
+            txtSoLuong.Value = 0;
+            txtDonGia.Clear();
+            txtThanhTien.Clear();
+            txtGhiChu.Clear();
+           
+        }
+
+        private void DgvChiTietPhieuNhap_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvChiTietPhieuNhap.CurrentRow != null)
+            {
+                DataGridViewRow currentRow = dgvChiTietPhieuNhap.CurrentRow;
+                txtMaCTPN.Text = currentRow.Cells["MaChiTietPhieuNhap"].Value?.ToString();
+                txtDonViTinh.Text = currentRow.Cells["DonViTinh"].Value?.ToString();
+                cbbMaCTDDH.SelectedValue = currentRow.Cells["MaCTDDH"].Value?.ToString();
+                txtTrangThai.Text = currentRow.Cells["TrangThai"].Value?.ToString();
+                txtSoLuong.Text = currentRow.Cells["SoLuong"].Value?.ToString();
+                txtDonGia.Text = currentRow.Cells["DonGia"].Value?.ToString();
+                txtThanhTien.Text = currentRow.Cells["ThanhTien"].Value?.ToString();
+                txtGhiChu.Text = currentRow.Cells["GhiChu"].Value?.ToString();
+
+            }
+            else
+            {
+                Console.WriteLine("Không có dòng nào được chọn.");
+            }
         }
 
         private void DgvPhieuNhap_SelectionChanged(object sender, EventArgs e)
         {
+
             if (dgvPhieuNhap.CurrentRow != null)
             {
                 DataGridViewRow currentRow = dgvPhieuNhap.CurrentRow;
-                txtMaPN.Text = currentRow.Cells["MaPhieuNhap"].Value.ToString();
+                txtMaPN.Text = currentRow.Cells["MaPhieuNhap"].Value?.ToString();
+                txtLanNhap.Text = currentRow.Cells["LanNhap"].Value?.ToString();
+                cbbNhanVien.SelectedValue = currentRow.Cells["MaNhanVien"].Value?.ToString();
+                txtTrangThai.Text = currentRow.Cells["TrangThai"].Value?.ToString();
+                txtTongTien.Text = currentRow.Cells["TongTien"].Value?.ToString();
+                dTPNgayLap.Value = Convert.ToDateTime(currentRow.Cells["NgayLap"].Value);
                 loadChiTietPhieuNhap(txtMaPN.Text);
             }
             else
             {
-                Console.Write("Không có dòng nào được chọn.");
+                Console.WriteLine("Không có dòng nào được chọn.");
             }
         }
 
         private void loadChiTietPhieuNhap(string maPN)
         {
-            dgvChiTietPhieuNhap.DataSource = null;  // Đặt lại DataSource trước khi load dữ liệu mới
+            dgvChiTietPhieuNhap.DataSource = null; 
             try
             {
-                // Lấy danh sách chi tiết phiếu nhập theo mã phiếu nhập
                 List<ChiTietPhieuNhap> dsCPhieuNhap = chiTietPhieuNhapBLL.GetChiTietPhieuNhapByMaPN(maPN);
 
                 if (dsCPhieuNhap != null && dsCPhieuNhap.Count > 0)
                 {
-                    // Dùng LINQ để ánh xạ sang đối tượng ViewModel hoặc DTO nếu cần
                     var dsCPhieuNhapViewModel = from ct in dsCPhieuNhap
                                                 select new
                                                 {
                                                     MaChiTietPhieuNhap = ct.MaChiTietPhieuNhap,
+                                                    TenSanPham = chiTietPhieuNhapBLL.GetProductNameByMaCTDDH(ct.MaChiTietDonDatHang),
                                                     DonViTinh = ct.DonViTinh,
                                                     SoLuong = ct.SoLuong,
                                                     DonGia = ct.DonGia,
                                                     ThanhTien = ct.ThanhTien,
                                                     MaCTDDH = ct.MaChiTietDonDatHang,
-                                                  
+                                                    
+                                                    TrangThai = ct.TrangThai,
+                                                    GhiChu = ct.GhiChu
                                                 };
-
-                    // Gán danh sách ViewModel vào DataGridView
                     dgvChiTietPhieuNhap.DataSource = dsCPhieuNhapViewModel.ToList();
-
-                    // Đặt tiêu đề cho các cột trong DataGridView
                     dgvChiTietPhieuNhap.Columns["MaChiTietPhieuNhap"].HeaderText = "Mã chi tiết phiếu nhập";
                     dgvChiTietPhieuNhap.Columns["DonViTinh"].HeaderText = "Đơn vị tính";
                     dgvChiTietPhieuNhap.Columns["SoLuong"].HeaderText = "Số lượng";
                     dgvChiTietPhieuNhap.Columns["DonGia"].HeaderText = "Đơn giá";
                     dgvChiTietPhieuNhap.Columns["ThanhTien"].HeaderText = "Thành tiền";
-                    dgvChiTietPhieuNhap.Columns["MaCTDDH"].HeaderText = "Mã đơn đặt hàng";
+                    dgvChiTietPhieuNhap.Columns["MaCTDDH"].Visible = false;
+                    dgvChiTietPhieuNhap.Columns["TrangThai"].Visible = false;
+                    dgvChiTietPhieuNhap.Columns["GhiChu"].Visible = false;
 
-                    // Căn giữa tiêu đề cột và chỉnh font chữ
                     foreach (DataGridViewColumn column in dgvChiTietPhieuNhap.Columns)
                     {
                         column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold);
                     }
+                    dgvChiTietPhieuNhap.RowPostPaint += dgv_RowPostPaint;
                 }
                 else
                 {
@@ -93,7 +291,98 @@ namespace GUI
         private void Frm_lapPhieuNhapHang_Load(object sender, EventArgs e)
         {
             loadDSPhieuNhap();
+            loadCbbNhanVien();
+            loadCbbDonDatHang();
+            loadChiTietDonDatHang();
         }
+
+        private void loadChiTietDonDatHang()
+        {
+            try
+            {
+                List<ChiTietDonDatHang> dsCTDDH = chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang();
+                if (dsCTDDH != null && dsCTDDH.Count > 0)
+                {
+                    cbbMaCTDDH.DataSource = null;
+                    cbbMaCTDDH.DataSource = dsCTDDH;
+                    cbbMaCTDDH.ValueMember = "MaChiTietDonDatHang";
+                    cbbMaCTDDH.DisplayMember = "MaChiTietDonDatHang";
+                }
+                else
+                {
+                    MessageBox.Show("Không có đơn đặt hàng nào.");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi khi tải danh sách đơn đặt hàng.");
+            }
+        }
+
+        private void loadCbbDonDatHang()
+        {
+            try
+            {
+                List<DonDatHang> dsDonDatHang = donDatHangBLL.LayDanhSachDonDatHang();
+                if (dsDonDatHang != null && dsDonDatHang.Count > 0)
+                {
+                    cbbMaDDH.DataSource = null; 
+                    cbbMaDDH.DataSource = dsDonDatHang;
+                    cbbMaDDH.ValueMember = "MaDonDatHang";
+                    cbbMaDDH.DisplayMember = "MaDonDatHang"; 
+                }
+                else
+                {
+                    MessageBox.Show("Không có đơn đặt hàng nào.");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi khi tải danh sách đơn đặt hàng.");
+            }
+        }
+
+        private void dgv_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            string rowIdx = (e.RowIndex + 1).ToString();
+
+            System.Drawing.Font rowFont = new System.Drawing.Font("Microsoft Sans Serif", 14, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+
+            var leftFormat = new System.Drawing.StringFormat()
+            {
+                Alignment = System.Drawing.StringAlignment.Near, // Căn trái
+                LineAlignment = System.Drawing.StringAlignment.Center // Giữa theo chiều dọc
+            };
+
+            System.Drawing.Rectangle headerBounds = new System.Drawing.Rectangle(e.RowBounds.Left, e.RowBounds.Top, dgv.Columns[0].Width, e.RowBounds.Height);
+
+            e.Graphics.DrawString(rowIdx, rowFont, System.Drawing.SystemBrushes.ControlText, headerBounds, leftFormat);
+        }
+
+        private void loadCbbNhanVien()
+        {
+            try
+            {
+                List<NhanVien> dsNhanVien = nhanVienBLL.getAllNhanVien();
+                if (dsNhanVien != null && dsNhanVien.Count > 0)
+                {
+                    cbbNhanVien.DataSource = null; // Đặt lại trước khi gán nguồn dữ liệu
+                    cbbNhanVien.DataSource = dsNhanVien;
+                    cbbNhanVien.ValueMember = "MaNhanVien";
+                    cbbNhanVien.DisplayMember = "HoTen";
+                }
+                else
+                {
+                    MessageBox.Show("Không có chức vụ nào.");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi khi tải danh sách dịch vụ.");
+            }
+        }
+
         private void loadDSPhieuNhap()
         {
             dgvPhieuNhap.DataSource = null;
@@ -130,6 +419,7 @@ namespace GUI
                         column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold);
                     }
+                    dgvPhieuNhap.RowPostPaint += dgv_RowPostPaint;
                 }
                 else
                 {

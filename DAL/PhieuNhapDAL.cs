@@ -15,6 +15,19 @@ namespace DAL
         {
             return db.PhieuNhaps.ToList();
         }
-        
+        public bool AddPhieuNhap(PhieuNhap newPhieuNhap)
+        {
+            try
+            {
+                db.PhieuNhaps.InsertOnSubmit(newPhieuNhap);
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

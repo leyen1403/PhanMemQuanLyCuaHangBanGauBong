@@ -15,5 +15,11 @@ namespace BLL
         {
             return phieuNhapDAL.GetListPhieuNhap();
         }
+
+        public bool AddPhieuNhap(PhieuNhap phieuNhap)
+        {
+            return phieuNhapDAL.AddPhieuNhap(phieuNhap);
+        }
+       
     }
 }

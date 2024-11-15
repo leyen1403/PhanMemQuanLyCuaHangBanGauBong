@@ -19,5 +19,21 @@ namespace BLL
         {
             return chiTietPhieuNhapDAL.SearchCTPhieuNhapByMaPN(maPN);
         }
+        public string GetProductNameByMaCTDDH(string maCTDDH)
+        {
+            return chiTietPhieuNhapDAL.LayProductNameByMaCTDDH(maCTDDH);
+        }
+        public string GetChiTietPhieuNhapByCode(string maCTPN)
+        {
+            return chiTietPhieuNhapDAL.GetChiTietPhieuNhapByCode(maCTPN);
+        }
+
+        public bool AddChiTietPhieuNhap(ChiTietPhieuNhap maCTPN)
+        {
+            return chiTietPhieuNhapDAL.AddChiTietPhieuNhap(maCTPN);
+        }
+
+
+
     }
 }
