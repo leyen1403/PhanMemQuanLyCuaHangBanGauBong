@@ -9,6 +9,8 @@ namespace GUI
 {
     public partial class frm_quanLyDichVu : Form
     {
+        List<ChiTietHoaDonBanHang> chiTietHoaDonBanHangs = new List<ChiTietHoaDonBanHang>();  // Danh sách khách hàng
+        ChiTietHoaDonBanHangBLL chiTietHoaDonBanHangBLL = new ChiTietHoaDonBanHangBLL();
         List<KhachHang> khachHangs = new List<KhachHang>();  // Danh sách khách hàng
         KhachHangBLL khachHangBll = new KhachHangBLL();
 
@@ -25,16 +27,21 @@ namespace GUI
             cb_TimKiem.SelectedIndexChanged += Cb_TimKiem_SelectedIndexChanged;
             dgv_DanhSachDichVu.CellClick += Dgv_DanhSachDichVu_CellClick;
             dgv_NhatKyDichVu.CellClick += Dgv_NhatKyDichVu_CellClick;
+            dgv_DanhSachDichVu.DataBindingComplete += Dgv_DanhSachDichVu_DataBindingComplete;
             txt_GhiChu.ReadOnly = true;
             txt_LanDichVu.ReadOnly = true;
             txt_MaPDV.ReadOnly = true;
             txt_TenKH.ReadOnly = true;
             txt_TenSP.ReadOnly = true;
             txt_TongTien.ReadOnly = true;
-            cb_TrangThai.Items.Add("True");
-            cb_TrangThai.Items.Add("False");
+            cb_TrangThai.Items.Add("Đã xong");
+            cb_TrangThai.Items.Add("Chưa xong");
             cb_TrangThai.SelectedIndex = 0;
             cb_TrangThai.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_UpTrangTrai.Items.Add("Chưa xong");
+            cb_UpTrangTrai.Items.Add("Đã xong");
+            cb_UpTrangTrai.SelectedIndex = 0;
+            cb_UpTrangTrai.DropDownStyle = ComboBoxStyle.DropDownList;
             // Thêm các lựa chọn vào ComboBox
             cb_TimKiem.Items.Add("Mã phiếu dịch vụ");
             cb_TimKiem.Items.Add("Mã khách hàng");
@@ -47,6 +54,8 @@ namespace GUI
 
         }
 
+
+
         private void Dgv_NhatKyDichVu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -57,7 +66,18 @@ namespace GUI
                 string maPhieuDichVu = row.Cells["MaPhieuDichVu"].Value.ToString();
 
                 txt_LanDichVu.Text = lanDichVu;
-                txt_TenSP.Text = maChiTietHoaDon;
+
+                var chiTietHoaDonList = chiTietHoaDonBanHangBLL.GetAllChiTietHoaDonBanHang();
+                var chiTietHoaDon = chiTietHoaDonList?.FirstOrDefault(ct => ct.MaChiTietHoaDonBanHang == maChiTietHoaDon);
+
+                if (chiTietHoaDon != null)
+                {
+                    string maSanPham = chiTietHoaDon.MaSanPham;
+                    var sanPhamBLL = new SanPhamBLL();
+                    var sanPham = sanPhamBLL.GetProductById(maSanPham); // Hoặc GetSanPhamByMaSP(maSanPham)
+
+                    txt_TenSP.Text = sanPham?.TenSanPham ?? "Không tìm thấy sản phẩm";
+                }
             }
         }
 
@@ -137,8 +157,20 @@ namespace GUI
         }
         private void LoadPhieuDichVuList()
         {
+            dgv_DanhSachDichVu.DataSource = null;
+            // Gán dữ liệu vào DataGridView
             dgv_DanhSachDichVu.DataSource = phieuDichVus;
 
+            // Thêm cột "Trạng Thái Hiển Thị" vào DataGridView nếu chưa có
+            if (!dgv_DanhSachDichVu.Columns.Contains("TrangThaiHienThi"))
+            {
+                DataGridViewTextBoxColumn trangThaiHienThiColumn = new DataGridViewTextBoxColumn();
+                trangThaiHienThiColumn.Name = "TrangThaiHienThi";
+                trangThaiHienThiColumn.HeaderText = "Trạng thái";
+                dgv_DanhSachDichVu.Columns.Add(trangThaiHienThiColumn);
+            }
+
+            // Thiết lập lại các tiêu đề cột
             dgv_DanhSachDichVu.Columns["MaPhieuDichVu"].HeaderText = "Mã phiếu dịch vụ";
             dgv_DanhSachDichVu.Columns["MaKhachHang"].HeaderText = "Mã khách hàng";
             dgv_DanhSachDichVu.Columns["MaNhanVien"].HeaderText = "Mã nhân viên";
@@ -146,7 +178,7 @@ namespace GUI
             dgv_DanhSachDichVu.Columns["NgayLap"].HeaderText = "Ngày lập";
             dgv_DanhSachDichVu.Columns["NgayCapNhat"].HeaderText = "Ngày cập nhật";
             dgv_DanhSachDichVu.Columns["TongTien"].HeaderText = "Tổng tiền";
-            dgv_DanhSachDichVu.Columns["TrangThai"].HeaderText = "Trạng thái";
+            dgv_DanhSachDichVu.Columns["TrangThai"].Visible = false; // Ẩn cột trạng thái gốc
 
             // Kiểm tra và ẩn các cột không cần thiết
             if (dgv_DanhSachDichVu.Columns.Contains("KhachHang"))
@@ -157,10 +189,27 @@ namespace GUI
             if (dgv_DanhSachDichVu.Columns.Contains("NgayTao"))
                 dgv_DanhSachDichVu.Columns["NgayTao"].Visible = false;
 
-            dgv_DanhSachDichVu.Columns["NgayTao"].DefaultCellStyle.Format = "yyyy-MM-dd";
+            dgv_DanhSachDichVu.Columns["NgayLap"].DefaultCellStyle.Format = "yyyy-MM-dd";
             dgv_DanhSachDichVu.Columns["NgayCapNhat"].DefaultCellStyle.Format = "yyyy-MM-dd";
-
+            dgv_DanhSachDichVu.Columns["TrangThaiHienThi"].DisplayIndex = dgv_DanhSachDichVu.Columns.Count - 1;
         }
+
+        private void Dgv_DanhSachDichVu_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgv_DanhSachDichVu.Rows)
+            {
+                // Kiểm tra cột "TrangThaiHienThi" có tồn tại và cập nhật giá trị
+                if (dgv_DanhSachDichVu.Columns.Contains("TrangThaiHienThi"))
+                {
+                    if (row.Cells["TrangThai"].Value != null)
+                    {
+                        bool trangThai = (bool)row.Cells["TrangThai"].Value;
+                        row.Cells["TrangThaiHienThi"].Value = trangThai ? "Đã xong" : "Chưa xong";
+                    }
+                }
+            }
+        }
+
         private void LoadNhatKyDichVuList()
         {
             dgv_NhatKyDichVu.DataSource = nhatKyDichVus; 
@@ -232,9 +281,26 @@ namespace GUI
 
                 case "Trạng thái":
                     // Lấy giá trị trạng thái từ ComboBox và chuyển đổi sang kiểu bool
-                    bool trangThai = cb_TrangThai.SelectedItem.ToString() == "True";
-                    filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai == trangThai).ToList();
+                    string trangThaiHienThi = cb_TrangThai.SelectedItem.ToString();
+
+                    // Kiểm tra nếu giá trị là "Đã xong" hoặc "Chưa xong" để tìm kiếm theo bool
+                    bool? trangThai = null;
+                    if (trangThaiHienThi == "Đã xong")
+                    {
+                        trangThai = true;
+                    }
+                    else if (trangThaiHienThi == "Chưa xong")
+                    {
+                        trangThai = false;
+                    }
+
+                    // Lọc danh sách theo trạng thái nếu có giá trị
+                    if (trangThai.HasValue)
+                    {
+                        filteredPhieuDichVus = phieuDichVus.Where(hd => hd.TrangThai == trangThai.Value).ToList();
+                    }
                     break;
+
 
 
                 default:
@@ -255,6 +321,47 @@ namespace GUI
             List<NhatKyDichVu> filteredNhatKyDichVus = new List<NhatKyDichVu>();
             filteredNhatKyDichVus = nhatKyDichVus.ToList(); 
             dgv_NhatKyDichVu.DataSource = nhatKyDichVus;
+        }
+
+        private void btn_CapNhat_Click(object sender, EventArgs e)
+        {
+            // Lấy mã phiếu dịch vụ cần cập nhật
+            string maPhieuDichVu = txt_MaPDV.Text;  // Lấy từ TextBox hoặc GridView
+
+            // Kiểm tra xem phiếu dịch vụ có tồn tại hay không
+            PhieuDichVuBLL phieuDichVuBLL = new PhieuDichVuBLL();
+            PhieuDichVu phieuDichVu = phieuDichVuBLL.GetPhieuDichVuById(maPhieuDichVu);
+
+            if (phieuDichVu == null)
+            {
+                MessageBox.Show("Phiếu dịch vụ không tồn tại.");
+                return;
+            }
+
+            // Lấy trạng thái mới từ ComboBox
+            bool trangThaiMoi = cb_UpTrangTrai.SelectedItem.ToString() == "Đã xong";
+
+            // Cập nhật trạng thái cho phiếu dịch vụ
+            phieuDichVu.TrangThai = trangThaiMoi;
+            phieuDichVu.NgayCapNhat = DateTime.Now;
+
+            // Lưu kết quả cập nhật
+            string errorMessage;
+            bool isUpdated = phieuDichVuBLL.UpdatePhieuDichVu(phieuDichVu, out errorMessage);
+
+            if (isUpdated)
+            {
+                MessageBox.Show("Cập nhật trạng thái thành công!");
+
+
+                phieuDichVus = phieuDichVuBLL.GetPhieuDichVuList();
+                // Làm mới DataGridView sau khi cập nhật
+                LoadPhieuDichVuList();  // Gọi phương thức để tải lại dữ liệu vào DataGridView
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại: " + errorMessage);
+            }
         }
     }
 }

@@ -47,7 +47,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btn_xoaMauSac = new System.Windows.Forms.Button();
+            this.cb_UpTrangTrai = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.txt_GhiChu = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.txt_TenKH = new System.Windows.Forms.TextBox();
@@ -59,10 +60,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txt_MaPDV = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnCapNhat = new System.Windows.Forms.Button();
+            this.btn_CapNhat = new System.Windows.Forms.Button();
             this.txt_LanDichVu = new System.Windows.Forms.TextBox();
-            this.cb_UpTrangTrai = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSachDichVu)).BeginInit();
             this.groupbox3.SuspendLayout();
@@ -209,7 +208,7 @@
             // 
             this.btn_TimKiem.Image = global::GUI.Properties.Resources.icons8_find_35;
             this.btn_TimKiem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_TimKiem.Location = new System.Drawing.Point(472, 258);
+            this.btn_TimKiem.Location = new System.Drawing.Point(495, 257);
             this.btn_TimKiem.Name = "btn_TimKiem";
             this.btn_TimKiem.Size = new System.Drawing.Size(51, 54);
             this.btn_TimKiem.TabIndex = 12;
@@ -277,7 +276,6 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox4.Controls.Add(this.cb_UpTrangTrai);
             this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.btn_xoaMauSac);
             this.groupBox4.Controls.Add(this.txt_GhiChu);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.txt_TenKH);
@@ -288,8 +286,8 @@
             this.groupBox4.Controls.Add(this.txt_TongTien);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.txt_MaPDV);
+            this.groupBox4.Controls.Add(this.btn_CapNhat);
             this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.btnCapNhat);
             this.groupBox4.Controls.Add(this.txt_LanDichVu);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(965, 421);
@@ -299,31 +297,35 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Quản lý";
             // 
-            // btn_xoaMauSac
+            // cb_UpTrangTrai
             // 
-            this.btn_xoaMauSac.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_xoaMauSac.BackgroundImage = global::GUI.Properties.Resources.icons8_delete_35;
-            this.btn_xoaMauSac.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_xoaMauSac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xoaMauSac.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_xoaMauSac.Location = new System.Drawing.Point(432, 332);
-            this.btn_xoaMauSac.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_xoaMauSac.Name = "btn_xoaMauSac";
-            this.btn_xoaMauSac.Size = new System.Drawing.Size(47, 41);
-            this.btn_xoaMauSac.TabIndex = 42;
-            this.btn_xoaMauSac.UseVisualStyleBackColor = false;
+            this.cb_UpTrangTrai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_UpTrangTrai.FormattingEnabled = true;
+            this.cb_UpTrangTrai.Location = new System.Drawing.Point(190, 267);
+            this.cb_UpTrangTrai.Name = "cb_UpTrangTrai";
+            this.cb_UpTrangTrai.Size = new System.Drawing.Size(356, 27);
+            this.cb_UpTrangTrai.TabIndex = 43;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 277);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 19);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "Trạng thái:";
             // 
             // txt_GhiChu
             // 
-            this.txt_GhiChu.Location = new System.Drawing.Point(165, 123);
+            this.txt_GhiChu.Location = new System.Drawing.Point(190, 167);
             this.txt_GhiChu.Name = "txt_GhiChu";
-            this.txt_GhiChu.Size = new System.Drawing.Size(382, 27);
+            this.txt_GhiChu.Size = new System.Drawing.Size(356, 27);
             this.txt_GhiChu.TabIndex = 40;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 131);
+            this.label19.Location = new System.Drawing.Point(5, 175);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(69, 19);
             this.label19.TabIndex = 41;
@@ -331,15 +333,15 @@
             // 
             // txt_TenKH
             // 
-            this.txt_TenKH.Location = new System.Drawing.Point(165, 57);
+            this.txt_TenKH.Location = new System.Drawing.Point(190, 69);
             this.txt_TenKH.Name = "txt_TenKH";
-            this.txt_TenKH.Size = new System.Drawing.Size(382, 27);
+            this.txt_TenKH.Size = new System.Drawing.Size(357, 27);
             this.txt_TenKH.TabIndex = 39;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 65);
+            this.label18.Location = new System.Drawing.Point(6, 77);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(133, 19);
             this.label18.TabIndex = 38;
@@ -347,15 +349,15 @@
             // 
             // txt_TenSP
             // 
-            this.txt_TenSP.Location = new System.Drawing.Point(165, 90);
+            this.txt_TenSP.Location = new System.Drawing.Point(190, 116);
             this.txt_TenSP.Name = "txt_TenSP";
-            this.txt_TenSP.Size = new System.Drawing.Size(382, 27);
+            this.txt_TenSP.Size = new System.Drawing.Size(357, 27);
             this.txt_TenSP.TabIndex = 36;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 98);
+            this.label15.Location = new System.Drawing.Point(6, 124);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(116, 19);
             this.label15.TabIndex = 35;
@@ -364,7 +366,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(270, 32);
+            this.label16.Location = new System.Drawing.Point(298, 32);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(96, 19);
             this.label16.TabIndex = 33;
@@ -372,15 +374,15 @@
             // 
             // txt_TongTien
             // 
-            this.txt_TongTien.Location = new System.Drawing.Point(165, 156);
+            this.txt_TongTien.Location = new System.Drawing.Point(190, 219);
             this.txt_TongTien.Name = "txt_TongTien";
-            this.txt_TongTien.Size = new System.Drawing.Size(382, 27);
+            this.txt_TongTien.Size = new System.Drawing.Size(356, 27);
             this.txt_TongTien.TabIndex = 28;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 164);
+            this.label12.Location = new System.Drawing.Point(5, 227);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(83, 19);
             this.label12.TabIndex = 29;
@@ -388,9 +390,9 @@
             // 
             // txt_MaPDV
             // 
-            this.txt_MaPDV.Location = new System.Drawing.Point(165, 24);
+            this.txt_MaPDV.Location = new System.Drawing.Point(190, 24);
             this.txt_MaPDV.Name = "txt_MaPDV";
-            this.txt_MaPDV.Size = new System.Drawing.Size(91, 27);
+            this.txt_MaPDV.Size = new System.Drawing.Size(102, 27);
             this.txt_MaPDV.TabIndex = 25;
             // 
             // label11
@@ -402,41 +404,24 @@
             this.label11.TabIndex = 24;
             this.label11.Text = "Mã phiếu dịch vụ";
             // 
-            // btnCapNhat
+            // btn_CapNhat
             // 
-            this.btnCapNhat.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnCapNhat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCapNhat.Location = new System.Drawing.Point(504, 331);
-            this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(40, 41);
-            this.btnCapNhat.TabIndex = 2;
-            this.btnCapNhat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCapNhat.UseVisualStyleBackColor = true;
+            this.btn_CapNhat.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btn_CapNhat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CapNhat.Location = new System.Drawing.Point(503, 318);
+            this.btn_CapNhat.Name = "btn_CapNhat";
+            this.btn_CapNhat.Size = new System.Drawing.Size(43, 54);
+            this.btn_CapNhat.TabIndex = 2;
+            this.btn_CapNhat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_CapNhat.UseVisualStyleBackColor = true;
+            this.btn_CapNhat.Click += new System.EventHandler(this.btn_CapNhat_Click);
             // 
             // txt_LanDichVu
             // 
-            this.txt_LanDichVu.Location = new System.Drawing.Point(384, 24);
+            this.txt_LanDichVu.Location = new System.Drawing.Point(410, 24);
             this.txt_LanDichVu.Name = "txt_LanDichVu";
-            this.txt_LanDichVu.Size = new System.Drawing.Size(163, 27);
+            this.txt_LanDichVu.Size = new System.Drawing.Size(137, 27);
             this.txt_LanDichVu.TabIndex = 14;
-            // 
-            // cb_UpTrangTrai
-            // 
-            this.cb_UpTrangTrai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_UpTrangTrai.FormattingEnabled = true;
-            this.cb_UpTrangTrai.Location = new System.Drawing.Point(167, 189);
-            this.cb_UpTrangTrai.Name = "cb_UpTrangTrai";
-            this.cb_UpTrangTrai.Size = new System.Drawing.Size(379, 27);
-            this.cb_UpTrangTrai.TabIndex = 43;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 199);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 19);
-            this.label6.TabIndex = 44;
-            this.label6.Text = "Trạng thái:";
             // 
             // frm_quanLyDichVu
             // 
@@ -480,7 +465,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btnCapNhat;
+        private System.Windows.Forms.Button btn_CapNhat;
         private System.Windows.Forms.TextBox txt_LanDichVu;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
@@ -493,7 +478,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txt_GhiChu;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Button btn_xoaMauSac;
         private System.Windows.Forms.ComboBox cb_TrangThai;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

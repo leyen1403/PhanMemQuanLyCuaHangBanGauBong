@@ -30,33 +30,52 @@ namespace DAL
         {
             try
             {
-                // Lưu phiếu dịch vụ vào bảng PhieuDichVu
                 db.PhieuDichVus.InsertOnSubmit(phieuDichVu);
                 db.SubmitChanges();
 
-                // Cập nhật điểm tích lũy cho khách hàng
                 var khachHang = db.KhachHangs.Where(kh => kh.MaKhachHang == phieuDichVu.MaKhachHang).FirstOrDefault();
 
                 if (khachHang != null)
                 {
-                    // Kiểm tra nếu TongTien có giá trị null, nếu có thì thay thế bằng 0
-                    decimal tongTien = phieuDichVu.TongTien ?? 0;  // Sử dụng 0 nếu TongTien null
+                    decimal tongTien = phieuDichVu.TongTien ?? 0;
 
                     // Tính toán điểm tích lũy: DiemTichLuy = TongTien * 0.1
-                    khachHang.DiemTichLuy = khachHang.DiemTichLuy + tongTien * 0.01m;  // sử dụng 0.1m để đảm bảo kiểu decimal
-
-                    // Cập nhật bảng KhachHang với điểm tích lũy mới
+                    khachHang.DiemTichLuy = khachHang.DiemTichLuy + tongTien * 0.01m;  
                     db.SubmitChanges();
                 }
 
-                return "Success";  // Trả về thông báo thành công
+                return "Success";  
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi nếu có
                 return "Lỗi khi lưu phiếu dịch vụ và cập nhật điểm tích lũy: " + ex.Message;
             }
 
+        }
+
+        public string UpdatePhieuDichVu(PhieuDichVu phieuDichVu)
+        {
+            try
+            {
+                var existingPhieuDichVu = db.PhieuDichVus.FirstOrDefault(pdv => pdv.MaPhieuDichVu == phieuDichVu.MaPhieuDichVu);
+
+                if (existingPhieuDichVu != null)
+                {
+                    existingPhieuDichVu.TrangThai = phieuDichVu.TrangThai;
+                    existingPhieuDichVu.NgayCapNhat = phieuDichVu.NgayCapNhat;  // Cập nhật ngày hiện tại
+
+                    db.SubmitChanges();
+                    return "Success";
+                }
+                else
+                {
+                    return "Phiếu dịch vụ không tồn tại.";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Lỗi khi cập nhật phiếu dịch vụ: " + ex.Message;
+            }
         }
 
 

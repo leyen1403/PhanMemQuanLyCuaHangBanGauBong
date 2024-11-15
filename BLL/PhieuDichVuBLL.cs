@@ -27,22 +27,35 @@ namespace BLL
         }
         public string GetLatestMaPhieuDichVu()
         {
-            var list = GetPhieuDichVuList(); // Giả sử phương thức này trả về danh sách tất cả phiếu dịch vụ
+            var list = GetPhieuDichVuList(); 
             var lastMaPhieu = list.OrderByDescending(p => p.MaPhieuDichVu).FirstOrDefault()?.MaPhieuDichVu;
 
             if (lastMaPhieu != null && lastMaPhieu.StartsWith("PDV"))
             {
-                int lastNumber = int.Parse(lastMaPhieu.Substring(3)); // Lấy phần số từ mã cuối cùng
-                return "PDV" + (lastNumber + 1).ToString("D3"); // Tăng số và định dạng lại với 3 chữ số
+                int lastNumber = int.Parse(lastMaPhieu.Substring(3)); 
+                return "PDV" + (lastNumber + 1).ToString("D3"); 
             }
-            return "PDV001"; // Trả về mã đầu tiên nếu chưa có mã nào trong DB
+            return "PDV001"; 
         }
 
 
-        // Lưu phiếu dịch vụ vào cơ sở dữ liệu
         public bool SavePhieuDichVu(PhieuDichVu phieuDichVu, out string errorMessage)
         {
             string result = phieuDichVuDal.SavePhieuDichVu(phieuDichVu);
+            if (result == "Success")
+            {
+                errorMessage = null;
+                return true;
+            }
+            else
+            {
+                errorMessage = result;
+                return false;
+            }
+        }
+        public bool UpdatePhieuDichVu(PhieuDichVu phieuDichVu, out string errorMessage)
+        {
+            string result = phieuDichVuDal.UpdatePhieuDichVu(phieuDichVu);
             if (result == "Success")
             {
                 errorMessage = null;

@@ -357,7 +357,7 @@ namespace GUI
                 MaKhachHang = txt_MaKH.Text.Length > 10 ? txt_MaKH.Text.Substring(0, 10) : txt_MaKH.Text,
                 MaNhanVien = employeeId, 
                 GhiChu = txt_GhiChu.Text.Length > 255 ? txt_GhiChu.Text.Substring(0, 255) : txt_GhiChu.Text,
-                TrangThai = true,
+                TrangThai = false,
                 NgayTao = DateTime.Now,
                 NgayCapNhat = DateTime.Now
             };
