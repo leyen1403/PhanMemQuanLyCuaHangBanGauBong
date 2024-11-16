@@ -142,5 +142,10 @@ namespace GUI
         {
             loadForm(new frm_quanLyNhaCungCap());
         }
+
+        private void btn_LapPhieuDoiTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuDoiTra());
+        }
     }
 }
