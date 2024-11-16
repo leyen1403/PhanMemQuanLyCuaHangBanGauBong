@@ -31,13 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
-            this.btn_thietLapTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
-            this.btn_dangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.label_tenNV = new DevExpress.XtraBars.BarStaticItem();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.pnMain = new System.Windows.Forms.Panel();
             this.pnLeft = new System.Windows.Forms.Panel();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_LapHoaDon = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_LapPhieuDichVu = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -63,8 +62,9 @@
             this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_BackUp = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_Restore = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_thietLapTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_dangXuat = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
             this.pnLeft.SuspendLayout();
@@ -81,30 +81,11 @@
             this.label_tenNV});
             this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
-            this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1661, 39);
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1944, 46);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
-            // 
-            // btn_thietLapTaiKhoan
-            // 
-            this.btn_thietLapTaiKhoan.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.btn_thietLapTaiKhoan.Caption = "barButtonItem1";
-            this.btn_thietLapTaiKhoan.Id = 0;
-            this.btn_thietLapTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_thietLapTaiKhoan.ImageOptions.Image")));
-            this.btn_thietLapTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_thietLapTaiKhoan.ImageOptions.LargeImage")));
-            this.btn_thietLapTaiKhoan.Name = "btn_thietLapTaiKhoan";
-            // 
-            // btn_dangXuat
-            // 
-            this.btn_dangXuat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.btn_dangXuat.Caption = "barButtonItem2";
-            this.btn_dangXuat.Id = 1;
-            this.btn_dangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.Image")));
-            this.btn_dangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.LargeImage")));
-            this.btn_dangXuat.Name = "btn_dangXuat";
-            this.btn_dangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_dangXuat_ItemClick);
             // 
             // label_tenNV
             // 
@@ -129,10 +110,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnMain.BackColor = System.Drawing.Color.GhostWhite;
             this.pnMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnMain.Location = new System.Drawing.Point(322, 41);
-            this.pnMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnMain.Location = new System.Drawing.Point(483, 60);
+            this.pnMain.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(1377, 923);
+            this.pnMain.Size = new System.Drawing.Size(2066, 1349);
             this.pnMain.TabIndex = 3;
             // 
             // pnLeft
@@ -142,10 +123,10 @@
             this.pnLeft.Controls.Add(this.label1);
             this.pnLeft.Controls.Add(this.pictureBox1);
             this.pnLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnLeft.Location = new System.Drawing.Point(0, 39);
-            this.pnLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnLeft.Location = new System.Drawing.Point(0, 46);
+            this.pnLeft.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(320, 854);
+            this.pnLeft.Size = new System.Drawing.Size(480, 1059);
             this.pnLeft.TabIndex = 0;
             // 
             // accordionControl1
@@ -160,14 +141,23 @@
             this.accordionControlElement1,
             this.accordionControlElement2,
             this.accordionControlElement3});
-            this.accordionControl1.Location = new System.Drawing.Point(0, 58);
-            this.accordionControl1.Margin = new System.Windows.Forms.Padding(9, 2, 9, 2);
+            this.accordionControl1.Location = new System.Drawing.Point(0, 85);
+            this.accordionControl1.Margin = new System.Windows.Forms.Padding(14, 3, 14, 3);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Auto;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Auto;
-            this.accordionControl1.Size = new System.Drawing.Size(320, 796);
+            this.accordionControl1.Size = new System.Drawing.Size(480, 974);
             this.accordionControl1.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(3, 83);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(604, 4);
+            this.label1.TabIndex = 17;
             // 
             // accordionControlElement1
             // 
@@ -234,6 +224,7 @@
             this.btn_LapPhieuDoiTra.Name = "btn_LapPhieuDoiTra";
             this.btn_LapPhieuDoiTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_LapPhieuDoiTra.Text = "Lập Phiếu Đổi Trả";
+            this.btn_LapPhieuDoiTra.Click += new System.EventHandler(this.btn_LapPhieuDoiTra_Click);
             // 
             // btn_phieuHoanTra
             // 
@@ -372,39 +363,50 @@
             this.btn_Restore.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_Restore.Text = "Restore";
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(2, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(403, 3);
-            this.label1.TabIndex = 17;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = global::GUI.Properties.Resources.logo_gaubong;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(320, 58);
+            this.pictureBox1.Size = new System.Drawing.Size(480, 85);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // btn_thietLapTaiKhoan
+            // 
+            this.btn_thietLapTaiKhoan.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_thietLapTaiKhoan.Caption = "barButtonItem1";
+            this.btn_thietLapTaiKhoan.Id = 0;
+            this.btn_thietLapTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_thietLapTaiKhoan.ImageOptions.Image")));
+            this.btn_thietLapTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_thietLapTaiKhoan.ImageOptions.LargeImage")));
+            this.btn_thietLapTaiKhoan.Name = "btn_thietLapTaiKhoan";
+            // 
+            // btn_dangXuat
+            // 
+            this.btn_dangXuat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_dangXuat.Caption = "barButtonItem2";
+            this.btn_dangXuat.Id = 1;
+            this.btn_dangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.Image")));
+            this.btn_dangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.LargeImage")));
+            this.btn_dangXuat.Name = "btn_dangXuat";
+            this.btn_dangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_dangXuat_ItemClick);
+            // 
             // frm_main
             // 
             this.Appearance.BackColor = System.Drawing.Color.Navy;
             this.Appearance.Options.UseBackColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1661, 893);
+            this.ClientSize = new System.Drawing.Size(1944, 1105);
             this.Controls.Add(this.pnLeft);
             this.Controls.Add(this.pnMain);
             this.Controls.Add(this.fluentDesignFormControl1);
             this.FluentDesignFormControl = this.fluentDesignFormControl1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frm_main";
             this.Text = "Hệ thống quản lý cửa hàng bán giày";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
