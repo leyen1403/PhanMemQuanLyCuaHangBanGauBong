@@ -57,3 +57,15 @@ D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Core
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CopyComplete
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll.config
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb

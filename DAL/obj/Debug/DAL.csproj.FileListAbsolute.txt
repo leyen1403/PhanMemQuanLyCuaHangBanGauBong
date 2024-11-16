@@ -47,3 +47,13 @@ D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.Core
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CopyComplete
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll.config
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.Up2Date
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb

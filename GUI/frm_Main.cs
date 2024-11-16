@@ -134,5 +134,10 @@ namespace GUI
         {
             pnMain.BackgroundImage =Properties.Resources._01_1;
         }
+
+        private void btn_LapPhieuDoiTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuDoiTra());
+        }
     }
 }

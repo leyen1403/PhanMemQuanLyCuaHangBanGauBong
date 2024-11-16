@@ -31,3 +31,10 @@ D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll.config
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
+D:\Documents\Tai_lieu_HK7\Cong_nghe_phan_mem_Nang_cao\Do_an\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
