@@ -57,3 +57,13 @@ D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CoreCompil
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CopyComplete
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DAL.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\bin\Debug\DTO.dll.config
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.csproj.Up2Date
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DAL\obj\Debug\DAL.pdb

@@ -147,5 +147,21 @@ namespace GUI
         {
             loadForm(new frm_lapPhieuDoiTra());
         }
+
+        public frm_dangNhap frmParent;
+        private void accordionControlElement4_Click(object sender, EventArgs e)
+        {
+            frmParent.xoaTextBox();
+            frmParent.Show();
+            this.Close();
+
+        }
+
+        private void frm_main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmParent.xoaTextBox();
+            frmParent.Show();
+            this.Close();
+        }
     }
 }

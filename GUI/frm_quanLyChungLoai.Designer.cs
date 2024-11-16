@@ -102,7 +102,7 @@
             this.panel2.Location = new System.Drawing.Point(578, 77);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(4, 995);
+            this.panel2.Size = new System.Drawing.Size(4, 887);
             this.panel2.TabIndex = 37;
             // 
             // label2
@@ -209,7 +209,7 @@
             this.dsSanPham.Location = new System.Drawing.Point(17, 197);
             this.dsSanPham.Margin = new System.Windows.Forms.Padding(2);
             this.dsSanPham.Name = "dsSanPham";
-            this.dsSanPham.Size = new System.Drawing.Size(540, 321);
+            this.dsSanPham.Size = new System.Drawing.Size(540, 213);
             this.dsSanPham.TabIndex = 35;
             // 
             // dgv_dsLoaiSanPham
@@ -223,7 +223,7 @@
             this.dgv_dsLoaiSanPham.Name = "dgv_dsLoaiSanPham";
             this.dgv_dsLoaiSanPham.ReadOnly = true;
             this.dgv_dsLoaiSanPham.RowHeadersWidth = 51;
-            this.dgv_dsLoaiSanPham.Size = new System.Drawing.Size(533, 314);
+            this.dgv_dsLoaiSanPham.Size = new System.Drawing.Size(533, 206);
             this.dgv_dsLoaiSanPham.TabIndex = 44;
             this.dgv_dsLoaiSanPham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsLoaiSanPham_CellClick);
             this.dgv_dsLoaiSanPham.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsLoaiSanPham_CellContentClick);
@@ -459,7 +459,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(627, 284);
+            this.groupBox1.Size = new System.Drawing.Size(627, 176);
             this.groupBox1.TabIndex = 41;
             this.groupBox1.TabStop = false;
             // 
@@ -468,7 +468,7 @@
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.BackColor = System.Drawing.Color.Navy;
-            this.label16.Location = new System.Drawing.Point(2, 277);
+            this.label16.Location = new System.Drawing.Point(2, 169);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(620, 4);
             this.label16.TabIndex = 44;
@@ -484,7 +484,7 @@
             this.dgv_dsKichThuoc.Name = "dgv_dsKichThuoc";
             this.dgv_dsKichThuoc.ReadOnly = true;
             this.dgv_dsKichThuoc.RowHeadersWidth = 51;
-            this.dgv_dsKichThuoc.Size = new System.Drawing.Size(537, 76);
+            this.dgv_dsKichThuoc.Size = new System.Drawing.Size(537, 0);
             this.dgv_dsKichThuoc.TabIndex = 41;
             this.dgv_dsKichThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsKichThuoc_CellClick);
             this.dgv_dsKichThuoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_dsKichThuoc_CellContentClick);
@@ -619,7 +619,7 @@
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Controls.Add(this.txt_maLoai);
             this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Location = new System.Drawing.Point(17, 545);
+            this.groupBox4.Location = new System.Drawing.Point(17, 437);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
@@ -807,7 +807,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1240, 857);
+            this.ClientSize = new System.Drawing.Size(1240, 749);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);

@@ -49,6 +49,7 @@
     <Compile Include="ChiTietHoaDonBanHangDAL.cs" />
     <Compile Include="ChiTietPhieuKiemKeDAL.cs" />
     <Compile Include="ChiTietPhieuNhapDAL.cs" />
+    <Compile Include="DangNhapDAL.cs" />
     <Compile Include="DonDatHangDAL.cs" />
     <Compile Include="HoaDonBanHangDAL.cs" />
     <Compile Include="KhachHangDAL.cs" />
