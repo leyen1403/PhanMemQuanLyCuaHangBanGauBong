@@ -15,5 +15,9 @@ namespace BLL
         {
             return dangNhapDAL.kiemTraDangNhap(taiKhoan, matKhau);
         }
+        public List<string> LayDanhSachQuyen(string maNhanVien)
+        {
+            return dangNhapDAL.LayDanhSachQuyen(maNhanVien);
+        }
     }
 }

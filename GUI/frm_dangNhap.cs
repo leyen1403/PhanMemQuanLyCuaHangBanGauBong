@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using DTO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
 {
     public partial class frm_dangNhap : Form
     {
         DangNhapBLL dangNhapBLL = new DangNhapBLL();
+        NhanVien nv;
         public frm_dangNhap()
         {
             InitializeComponent();
@@ -29,28 +32,34 @@ namespace GUI
 
         private void btn_dangNhap_Click(object sender, EventArgs e)
         {
-            isValid();
+            int result = isValid();
             frm_main frm = new frm_main();
             frm.frmParent = this;
-
-            if (isValid())
+            if (result == -1) return;
+            else if (isValid() == 1)
             {
                 frm.Show();
+                frm.nhanVien = nv;
                 this.Hide();
+                return;
             }
+            else
+                MessageBox.Show("Đăng nhập thất bại, tài khoản hoặc mật khẩu chưa chính xác");
         }
         public void xoaTextBox()
         {
             txtMatKhau.Text = string.Empty;
             txtTenDangNhap.Text = string.Empty;
         }
-        private bool isValid()
+        private int isValid()
         {
+            int status = 0;
             // Kiểm tra tên đăng nhập
             if (string.IsNullOrWhiteSpace(txtTenDangNhap.Text))
             {
                 lb_canhBaoTaiKhoan.Visible = true;
                 lb_canhBaoTaiKhoan.Text = "Vui lòng nhập tài khoản!";
+                status = -1;
             }
             else
             {
@@ -62,6 +71,8 @@ namespace GUI
             {
                 lb_canhBaoMatKhau.Visible = true;
                 lb_canhBaoMatKhau.Text = "Vui lòng nhập mật khẩu!";
+                status = -1;
+                return status;
             }
             else
             {
@@ -74,11 +85,11 @@ namespace GUI
                 var nhanVien = dangNhapBLL.kiemTraDangNhap(txtTenDangNhap.Text, txtMatKhau.Text);
                 if (nhanVien != null)
                 {
-                    return true;
+                    return 1;
+                    nv = nhanVien;
                 }
-
             }
-            return false;
+            return 0;
         }
     }
 }

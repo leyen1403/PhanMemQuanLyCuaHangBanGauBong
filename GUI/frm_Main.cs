@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BLL;
+using DevExpress.XtraBars.Navigation;
+using DTO;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -6,6 +10,7 @@ namespace GUI
 {
     public partial class frm_main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
+        public NhanVien nhanVien;
         public frm_main()
         {
             InitializeComponent();
@@ -53,7 +58,33 @@ namespace GUI
             loadForm(new frm_lapHoaDon());
 
         }
+        DangNhapBLL dangNhapBLL = new DangNhapBLL();
+        private void PhanQuyenAccordion(string maNhanVien)
+        {
 
+            var danhSachQuyen = dangNhapBLL.LayDanhSachQuyen(maNhanVien);
+
+            foreach (AccordionControlElement element in accordionControl1.Elements)
+            {
+                PhanQuyenElement(element, danhSachQuyen);
+            }
+        }
+        private void PhanQuyenElement(AccordionControlElement element, List<string> danhSachQuyen)
+        {
+            if (element.Tag != null && danhSachQuyen.Contains(element.Tag.ToString()))
+            {
+                element.Visible = true;
+            }
+            else
+            {
+                element.Visible = false;
+            }
+
+            foreach (AccordionControlElement childElement in element.Elements)
+            {
+                PhanQuyenElement(childElement, danhSachQuyen);
+            }
+        }
         private void Btn_DichVu_Click(object sender, EventArgs e)
         {
             loadForm(new frm_quanLyDichVu());
@@ -151,10 +182,19 @@ namespace GUI
         public frm_dangNhap frmParent;
         private void accordionControlElement4_Click(object sender, EventArgs e)
         {
-            frmParent.xoaTextBox();
-            frmParent.Show();
-            this.Close();
+            DialogResult result = MessageBox.Show(
+                "Bạn có chắc chắn muốn đăng xuất không?",
+                "Xác nhận đăng xuất",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
+            if (result == DialogResult.Yes)
+            {
+                frmParent.xoaTextBox();
+                frmParent.Show();
+                this.Close();
+            }
         }
 
         private void frm_main_FormClosing(object sender, FormClosingEventArgs e)
