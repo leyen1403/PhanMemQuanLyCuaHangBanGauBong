@@ -67,7 +67,7 @@ namespace GUI
             }
 
             // Kiểm tra mật khẩu
-            if (string.IsNullOrWhiteSpace(txtTenDangNhap.Text))
+            if (string.IsNullOrWhiteSpace(txtMatKhau.Text))
             {
                 lb_canhBaoMatKhau.Visible = true;
                 lb_canhBaoMatKhau.Text = "Vui lòng nhập mật khẩu!";
