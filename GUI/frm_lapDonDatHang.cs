@@ -19,7 +19,7 @@ namespace GUI
         private bool _daDatHang = false;
         private string _maNhaCungCap;
         private string _maDonDatHang;
-        private string _maNhanVien = "NV001";
+        public string _maNhanVien;
         private decimal? _tongTien;
         private decimal? _tongTienDonDatHang;
 

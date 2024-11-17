@@ -16,7 +16,7 @@ namespace GUI
     public partial class frm_dangNhap : Form
     {
         DangNhapBLL dangNhapBLL = new DangNhapBLL();
-        NhanVien nv;
+        NhanVien nv = new NhanVien();
         public frm_dangNhap()
         {
             InitializeComponent();
@@ -85,8 +85,8 @@ namespace GUI
                 var nhanVien = dangNhapBLL.kiemTraDangNhap(txtTenDangNhap.Text, txtMatKhau.Text);
                 if (nhanVien != null)
                 {
-                    return 1;
                     nv = nhanVien;
+                    return 1;
                 }
             }
             return 0;

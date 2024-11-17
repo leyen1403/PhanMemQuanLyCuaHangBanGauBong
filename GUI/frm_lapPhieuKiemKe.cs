@@ -11,7 +11,8 @@ namespace GUI
 {
     public partial class frm_lapPhieuKiemKe : Form
     {
-        string _maNhanVien = "NV001";
+        public string _maNhanVien { get; set; }
+
         List<SanPham> sanPhams = new List<SanPham>();
         SanPhamBLL sanPhamBll = new SanPhamBLL();
         LoaiSanPhamBLL loaiSanPhamBLL = new LoaiSanPhamBLL();
@@ -23,6 +24,8 @@ namespace GUI
         NhanVien _nhanVien = new NhanVien();
         List<SanPham> _dsSanPhamTrongPhieuKiemKe = new List<SanPham>();
         List<ChiTietPhieuKiemKe> _dsChiTietPhieuKiemKe = new List<ChiTietPhieuKiemKe>();
+
+
         public frm_lapPhieuKiemKe()
         {
             InitializeComponent();
@@ -262,7 +265,7 @@ namespace GUI
             SetPlaceholder(txtTimTenSanPham, "Nhập tên sản phẩm");
             string maPhieuKiemKe = taoMaPhieuKiemKe();
             _maPhieuKiemKe = maPhieuKiemKe;
-            string tenNhanVien = "Nguyen Van A";
+            string tenNhanVien = new NhanVienBLL().GetNhanVienById(_maNhanVien).HoTen;
             _tenNhanVien = tenNhanVien;
             txtNhanVienLap.Text = tenNhanVien;
             loadProductList();

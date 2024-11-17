@@ -10,7 +10,7 @@ namespace GUI
 {
     public partial class frm_main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
-        public NhanVien nhanVien;
+        public NhanVien nhanVien { get; set; }
         public frm_main()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace GUI
 
         private void Btn_DonDatHang_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_quanLyDonDatHang());
+            loadForm(new frm_quanLyDonDatHang() { _maNhanVien = nhanVien.MaNhanVien});
         }
 
         private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace GUI
 
         private void Btn_LapPhieuKiemKe_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapPhieuKiemKe());
+            loadForm(new frm_lapPhieuKiemKe() { _maNhanVien = nhanVien.MaNhanVien });
         }
 
         private void Frm_main1_Load(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace GUI
 
         private void Btn_LapDonDatHang_Click(object sender, EventArgs e)
         {
-           loadForm(new frm_lapDonDatHang());
+           loadForm(new frm_lapDonDatHang() { MaNhanVien = nhanVien.MaNhanVien});
         }
 
         private void Btn_Loai_Click(object sender, EventArgs e)

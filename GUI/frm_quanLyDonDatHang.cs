@@ -10,7 +10,7 @@ namespace GUI
 {
     public partial class frm_quanLyDonDatHang : Form
     {
-        string _maNhanVien = "NV002";
+        public string _maNhanVien { get; set; }
 
         List<NhaCungCap> _listNhaCungCap = new List<NhaCungCap>();
         NhaCungCapBLL _nhaCungCapBLL = new NhaCungCapBLL();
