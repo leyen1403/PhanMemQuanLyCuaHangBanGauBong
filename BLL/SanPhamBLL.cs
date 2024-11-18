@@ -121,6 +121,10 @@ namespace BLL
         {
             return sanPhamDal.GetUniqueProducts(searchKeyword);
         }
+        public List<SanPham> GetUniqueProductsByCategoryWithPagination(string maLoai = "", string searchKeyword = "", int pageNumber = 1, int pageSize = 10)
+        {
+            return sanPhamDal.GetUniqueProductsByCategoryWithPagination(maLoai, searchKeyword, pageNumber, pageSize);
+        }
         public List<SanPham> GetSanPhamByMaSP(string maSanPham)
         {
             return sanPhamDal.GetSanPhamByMaSP((string) maSanPham);

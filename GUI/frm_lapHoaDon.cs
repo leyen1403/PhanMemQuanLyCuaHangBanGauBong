@@ -13,17 +13,35 @@ namespace GUI
     public partial class frm_lapHoaDon : Form
     {
         ProductItem productSelected = null;
-        private string maNV = "NV001";
+     //   public string maNV { get; set; }
+        public string maNV = "NV001";
         SanPhamBLL _sanPhamBLL = new SanPhamBLL();
         LoaiSanPhamBLL _loaiSanPhamBLL = new LoaiSanPhamBLL();
         KhachHangBLL _khachHangBLL= new KhachHangBLL();
         HoaDonBanHangBLL _hoaDonBanHangBLL = new HoaDonBanHangBLL();
         ChiTietHoaDonBanHangBLL _chiTietHoaDonBanHangBLL = new ChiTietHoaDonBanHangBLL() ;
+        private int currentPage = 1;
+        private int pageSize = 10;    // Số sản phẩm mỗi trang
+        private int totalProducts = 0; // Tổng số sản phẩm
+        private int totalPages = 0;    // Tổng số trang
         public frm_lapHoaDon()
         {
             InitializeComponent();
             this.Load += Frm_lapHoaDon_Load;
             loadNgayHT();
+        }
+        private void CalculateTotalPages()
+        {
+            totalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
+        }
+
+        // Cập nhật các nút phân trang
+        private void UpdatePaginationButtons()
+        {
+            btn_troLai.Enabled = currentPage > 1;
+            btn_keTiep.Enabled = currentPage < totalPages;
+            btn_trangDau.Enabled = currentPage > 1;
+            btn_trangCuoi.Enabled = currentPage < totalPages;
         }
         private void InitializeDataGridView()
         {
@@ -104,12 +122,56 @@ namespace GUI
             this.btn_luuHoaDon.Click += Btn_luuHoaDon_Click;
             txt_TongSL.Enabled =txt_tongTien.Enabled =txt_diemTichLuy.Enabled= false;
             dsSanPham.AutoScroll = true;
-            loadSanPham(_sanPhamBLL.GetUniqueProducts());
             loadComBoxLoai();
+            loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("","", currentPage, pageSize));
             txt_soLuong.Minimum = 1;
             txt_soLuong.Maximum = 100;
             txt_soLuong.Value = 1;
             InitializeDataGridView();
+            this.btn_keTiep.Click += Btn_keTiep_Click;
+            this.btn_troLai.Click += Btn_troLai_Click;
+            this.btn_trangDau.Click += Btn_trangDau_Click;
+            this.btn_trangCuoi.Click += Btn_trangCuoi_Click;
+        }
+
+        private void Btn_trangCuoi_Click(object sender, EventArgs e)
+        {
+            currentPage = totalPages;  // Di chuyển đến trang cuối
+            loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
+            UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
+        }
+
+        private void Btn_trangDau_Click(object sender, EventArgs e)
+        {
+            currentPage = 1;  // Quay lại trang đầu
+            loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
+            UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
+        }
+
+        private void Btn_troLai_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;  // Quay lại trang trước
+                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
+                UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
+            }
+        }
+
+        private void Btn_keTiep_Click(object sender, EventArgs e)
+        {
+            if (currentPage < totalPages)
+            {
+                currentPage++;  // Di chuyển đến trang tiếp theo
+                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
+                UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
+            }
+        }
+        private void SetTotalProducts(int total)
+        {
+            totalProducts = total;
+            CalculateTotalPages();
+            UpdatePaginationButtons();
         }
 
         private decimal CalculateDiemTichLuy(decimal totalAmount)
@@ -495,7 +557,9 @@ namespace GUI
             string ttSanPham = txt_tenSanPham.Text;
             if (ttSanPham != null)
             {
-                loadSanPham(_sanPhamBLL.GetUniqueProducts(ttSanPham));
+                currentPage = 1;  // Quay lại trang đầu
+                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
+                UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
             }
             else
             {
@@ -866,5 +930,6 @@ namespace GUI
                 txt_TongSL.Text = CalculateTotalProducts().ToString();
             }
         }
+
     }
 }

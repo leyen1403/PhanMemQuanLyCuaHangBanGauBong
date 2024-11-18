@@ -92,7 +92,9 @@ namespace GUI
 
         private void Btn_HoaDon_Click(object sender, EventArgs e)
         {
-           loadForm(new frm_quanLyHoaDon());
+            frm_lapHoaDon frm = new frm_lapHoaDon();
+            frm.maNV = nhanVien.MaNhanVien;
+            loadForm(frm);
         }
 
         private void Btn_LapPhieuDichVu_Click(object sender, EventArgs e)
