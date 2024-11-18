@@ -298,6 +298,7 @@
             this.btn_DoiTra.Name = "btn_DoiTra";
             this.btn_DoiTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_DoiTra.Text = "Quản lý đổi trả sản phẩm";
+            this.btn_DoiTra.Click += new System.EventHandler(this.btn_DoiTra_Click);
             // 
             // btn_DichVu
             // 
@@ -376,6 +377,13 @@
             this.btn_Restore.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_Restore.Text = "Restore";
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(3, 83);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(604, 4);
             // btn_DXuat
             // 
             this.btn_DXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_DXuat.ImageOptions.Image")));
