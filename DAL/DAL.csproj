@@ -59,6 +59,7 @@
     <Compile Include="NhanVienDAL.cs" />
     <Compile Include="NhatKyDichVuDAL.cs" />
     <Compile Include="PhieuDichVuDAL.cs" />
+    <Compile Include="PhieuDoiTraDAL.cs" />
     <Compile Include="PhieuKiemKeDAL.cs" />
     <Compile Include="PhieuNhapDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

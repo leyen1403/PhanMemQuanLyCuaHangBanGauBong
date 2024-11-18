@@ -61,6 +61,7 @@
     <Compile Include="NhanVienBLL.cs" />
     <Compile Include="NhatKyDichVuBLL.cs" />
     <Compile Include="PhieuDichVuBLL.cs" />
+    <Compile Include="PhieuDoiTraBLL.cs" />
     <Compile Include="PhieuKiemKeBLL.cs" />
     <Compile Include="PhieuNhapBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

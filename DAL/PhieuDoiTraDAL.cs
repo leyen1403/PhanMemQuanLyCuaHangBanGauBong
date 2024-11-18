@@ -41,6 +41,11 @@ namespace DAL
             return _context.SanPhams.FirstOrDefault(sp => sp.MaSanPham == maSP);
         }
 
+        public ChiTietHoaDonBanHang TimChiTietHDTheoMa(string maCTHD)
+        {
+            return _context.ChiTietHoaDonBanHangs.FirstOrDefault(sp => sp.MaChiTietHoaDonBanHang == maCTHD);
+        }
+
         public int TaoPhieuDoiTra(PhieuDoiTra phieuDoiTra)
         {
             try
@@ -76,6 +81,53 @@ namespace DAL
             }
 
             return "PDT0001";
+        }
+
+        public IEnumerable<PhieuDoiTra> LayDSPhieuDoiTra()
+        {
+            return _context.PhieuDoiTras.ToList();
+        }
+
+        public int Update(PhieuDoiTraUpdate update)
+        {
+            try
+            {
+                var phieuDoiTra = _context.PhieuDoiTras.FirstOrDefault(pdt => pdt.MaPhieuDoiTra == update.MaPhieu);
+                if (phieuDoiTra != null)
+                {
+                    phieuDoiTra.LyDoDoiTra = update.LyDoDoiTra;
+                    phieuDoiTra.TinhTrangSanPham = update.TinhTrangSanPham;
+                    phieuDoiTra.GhiChuThem = update.GhiChu;
+                    phieuDoiTra.NgayCapNhat = DateTime.Now;
+
+                    _context.SubmitChanges();
+                    return 1;
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int Delete(string maPhieu)
+        {
+            try
+            {
+                var phieuDoiTra = _context.PhieuDoiTras.FirstOrDefault(pdt => pdt.MaPhieuDoiTra == maPhieu);
+                if (phieuDoiTra != null)
+                {
+                    _context.PhieuDoiTras.DeleteOnSubmit(phieuDoiTra);
+                    _context.SubmitChanges();
+                    return 1;
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

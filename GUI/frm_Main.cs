@@ -147,5 +147,10 @@ namespace GUI
         {
             loadForm(new frm_lapPhieuDoiTra());
         }
+
+        private void btn_DoiTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyDoiTraSanPham());
+        }
     }
 }
