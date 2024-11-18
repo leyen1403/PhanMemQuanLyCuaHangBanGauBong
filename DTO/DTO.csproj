@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="HoaDonDTO.cs" />
     <Compile Include="PhieuDoiTraDTO.cs" />
+    <Compile Include="PhieuDoiTraUpdate.cs" />
     <Compile Include="PhieuKiemKe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

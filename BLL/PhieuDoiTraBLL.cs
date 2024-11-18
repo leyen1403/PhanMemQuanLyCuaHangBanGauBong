@@ -1,11 +1,11 @@
-﻿using System;
+﻿using DAL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
-using DTO;
 
 namespace BLL
 {
@@ -91,6 +91,75 @@ namespace BLL
             };
 
             return dal.TaoPhieuDoiTra(phieuDoiTra);
+        }
+
+        public ChiTietHoaDonBanHang TimChiTietHDTheoMa(string maCTHD)
+        {
+            return dal.TimChiTietHDTheoMa(maCTHD);
+        }
+
+        public NhanVien TimNhanVienTheoMa(string maNV)
+        {
+            return dal.TimNhanVienTheoMa(maNV);
+        }
+
+        public SanPham TimSanPhamTheoMa(string maSP)
+        {
+            return dal.TimSanPhamTheoMa(maSP);
+        }
+
+        public IEnumerable<PhieuDoiTra> LayDSPhieuDoiTra()
+        {
+            //var phieuDoiTras = dal.LayDSPhieuDoiTra();
+            //if (phieuDoiTras.Any())
+            //{
+            //    List<DanhSachPhieuDoiTraDTO> phieuDoiTraDTOs = new List<DanhSachPhieuDoiTraDTO>();
+            //    DanhSachPhieuDoiTraDTO dto;
+            //    foreach (var item in phieuDoiTras)
+            //    {
+            //        dto = new DanhSachPhieuDoiTraDTO();
+            //        dto.MaPhieu = item.MaPhieuDoiTra;
+            //        dto.MaChiTietHD = item.MaChiTietDonBanHang;
+
+            //        //Tim cthd theo ma
+            //        var cthd = dal.TimChiTietHDTheoMa(item.MaChiTietDonBanHang);
+            //        var sanPham = dal.TimSanPhamTheoMa(cthd.MaSanPham);
+
+            //        dto.MaSanPham = sanPham.MaSanPham;
+            //        dto.TenSanPham = sanPham.TenSanPham;
+            //        dto.LyDoDoiTra = item.LyDoDoiTra;
+            //        dto.TinhTrangSanPham = item.TinhTrangSanPham;
+            //        dto.SoLuongDoi = item.SoLuong;
+            //        dto.TongTienHoan = item.TongTienHoanLai;
+            //        dto.GhiChu = item.GhiChuThem;
+            //    }
+            //}
+
+            return dal.LayDSPhieuDoiTra();
+        }
+
+        public int SuaPhieuDoiTra(PhieuDoiTraUpdate pdt)
+        {
+            try
+            {
+                return dal.Update(pdt);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int XoaPhieuDoiTra(string maPhieu)
+        {
+            try
+            {
+                return dal.Delete(maPhieu);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
