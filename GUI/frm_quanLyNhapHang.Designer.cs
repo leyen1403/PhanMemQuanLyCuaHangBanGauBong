@@ -421,7 +421,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(626, 395);
+            this.groupBox3.Size = new System.Drawing.Size(613, 395);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Danh sách phiếu nhập";
@@ -439,7 +439,7 @@
             this.dgvPhieuNhap.Name = "dgvPhieuNhap";
             this.dgvPhieuNhap.RowHeadersWidth = 51;
             this.dgvPhieuNhap.RowTemplate.Height = 24;
-            this.dgvPhieuNhap.Size = new System.Drawing.Size(640, 368);
+            this.dgvPhieuNhap.Size = new System.Drawing.Size(627, 368);
             this.dgvPhieuNhap.TabIndex = 0;
             // 
             // groupBox4
@@ -453,7 +453,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(702, 395);
+            this.groupBox4.Size = new System.Drawing.Size(689, 395);
             this.groupBox4.TabIndex = 37;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chi tiết phiếu nhập";
@@ -472,7 +472,7 @@
             this.dgvChiTietPhieuNhap.Name = "dgvChiTietPhieuNhap";
             this.dgvChiTietPhieuNhap.RowHeadersWidth = 51;
             this.dgvChiTietPhieuNhap.RowTemplate.Height = 24;
-            this.dgvChiTietPhieuNhap.Size = new System.Drawing.Size(692, 368);
+            this.dgvChiTietPhieuNhap.Size = new System.Drawing.Size(679, 368);
             this.dgvChiTietPhieuNhap.TabIndex = 0;
             // 
             // contextMenuStripDelete
@@ -485,14 +485,14 @@
             // deleteMenuItem
             // 
             this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteMenuItem.Size = new System.Drawing.Size(94, 22);
             this.deleteMenuItem.Text = "Xóa";
             // 
             // frm_quanLyNhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1383, 739);
+            this.ClientSize = new System.Drawing.Size(1370, 739);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);

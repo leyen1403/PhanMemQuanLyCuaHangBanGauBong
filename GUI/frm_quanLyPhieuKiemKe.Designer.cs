@@ -39,10 +39,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnTim = new System.Windows.Forms.Button();
             this.cbbMaNhanVien = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dtpNgayLap = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnTim = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -72,7 +72,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1491, 48);
+            this.label1.Size = new System.Drawing.Size(1370, 48);
             this.label1.TabIndex = 2;
             this.label1.Text = "QUẢN LÝ PHIẾU KIỂM KÊ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -156,7 +156,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(16, 330);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(698, 561);
+            this.groupBox1.Size = new System.Drawing.Size(698, 407);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách phiếu kiểm kê";
@@ -169,7 +169,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 23);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(692, 535);
+            this.dataGridView1.Size = new System.Drawing.Size(692, 381);
             this.dataGridView1.TabIndex = 0;
             // 
             // groupBox2
@@ -190,6 +190,20 @@
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm thông tin phiếu kiểm kê";
+            // 
+            // btnTim
+            // 
+            this.btnTim.AutoSize = true;
+            this.btnTim.BackColor = System.Drawing.Color.Navy;
+            this.btnTim.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTim.ForeColor = System.Drawing.Color.White;
+            this.btnTim.Image = global::GUI.Properties.Resources.icons8_find_35;
+            this.btnTim.Location = new System.Drawing.Point(505, 197);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(68, 57);
+            this.btnTim.TabIndex = 7;
+            this.btnTim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTim.UseVisualStyleBackColor = false;
             // 
             // cbbMaNhanVien
             // 
@@ -220,7 +234,7 @@
             this.groupBox3.Controls.Add(this.txtTenNhanVien);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(720, 51);
+            this.groupBox3.Location = new System.Drawing.Point(599, 51);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(759, 273);
             this.groupBox3.TabIndex = 10;
@@ -244,6 +258,20 @@
             this.label10.Size = new System.Drawing.Size(69, 19);
             this.label10.TabIndex = 3;
             this.label10.Text = "Ghi chú:";
+            // 
+            // btnSave
+            // 
+            this.btnSave.AutoSize = true;
+            this.btnSave.BackColor = System.Drawing.Color.Navy;
+            this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnSave.Location = new System.Drawing.Point(421, 161);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(68, 57);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = false;
             // 
             // label9
             // 
@@ -327,9 +355,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.dataGridView2);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(720, 330);
+            this.groupBox4.Location = new System.Drawing.Point(599, 330);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(759, 561);
+            this.groupBox4.Size = new System.Drawing.Size(759, 407);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chi tiết phiếu kiểm kê";
@@ -342,42 +370,14 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 23);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(753, 535);
+            this.dataGridView2.Size = new System.Drawing.Size(753, 381);
             this.dataGridView2.TabIndex = 0;
-            // 
-            // btnSave
-            // 
-            this.btnSave.AutoSize = true;
-            this.btnSave.BackColor = System.Drawing.Color.Navy;
-            this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnSave.Location = new System.Drawing.Point(421, 161);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(68, 57);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = false;
-            // 
-            // btnTim
-            // 
-            this.btnTim.AutoSize = true;
-            this.btnTim.BackColor = System.Drawing.Color.Navy;
-            this.btnTim.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTim.ForeColor = System.Drawing.Color.White;
-            this.btnTim.Image = global::GUI.Properties.Resources.icons8_find_35;
-            this.btnTim.Location = new System.Drawing.Point(505, 197);
-            this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(68, 57);
-            this.btnTim.TabIndex = 7;
-            this.btnTim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTim.UseVisualStyleBackColor = false;
             // 
             // frm_quanLyPhieuKiemKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1491, 903);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);

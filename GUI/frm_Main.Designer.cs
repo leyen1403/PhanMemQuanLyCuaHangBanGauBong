@@ -342,6 +342,7 @@
             this.btn_HoanTra.Name = "btn_HoanTra";
             this.btn_HoanTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_HoanTra.Text = "Quản lý hoàn sản phẩm";
+            this.btn_HoanTra.Click += new System.EventHandler(this.btn_HoanTra_Click);
             // 
             // btn_Loai
             // 
@@ -377,7 +378,7 @@
             // 
             // btn_DXuat
             // 
-            this.btn_DXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
+            this.btn_DXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_DXuat.ImageOptions.Image")));
             this.btn_DXuat.Name = "btn_DXuat";
             this.btn_DXuat.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_DXuat.Text = "Đăng xuất";

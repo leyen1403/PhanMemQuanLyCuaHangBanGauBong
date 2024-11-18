@@ -38,8 +38,8 @@ namespace GUI
             if (result == -1) return;
             else if (isValid() == 1)
             {
-                frm.Show();
                 frm.nhanVien = nv;
+                frm.Show();
                 this.Hide();
                 return;
             }

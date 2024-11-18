@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ChiTietDonDatHangBLL.cs" />
     <Compile Include="ChiTietHoaDonBanHangBLL.cs" />
+    <Compile Include="ChiTietPhieuHoanTraBLL.cs" />
     <Compile Include="ChiTietPhieuKiemKeBLL.cs" />
     <Compile Include="ChiTietPhieuNhapBLL.cs" />
     <Compile Include="DangNhapBLL.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="NhatKyDichVuBLL.cs" />
     <Compile Include="PhieuDichVuBLL.cs" />
     <Compile Include="PhieuDoiTraBLL.cs" />
+    <Compile Include="PhieuHoanTraBLL.cs" />
     <Compile Include="PhieuKiemKeBLL.cs" />
     <Compile Include="PhieuNhapBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -54,7 +54,7 @@ namespace GUI
             this.btn_LapPhieuDichVu.Click += Btn_LapPhieuDichVu_Click;
             this.btn_HoaDon.Click += Btn_HoaDon_Click;
             this.btn_DichVu.Click += Btn_DichVu_Click;
-            
+            PhanQuyenAccordion(nhanVien.MaNhanVien);
             loadForm(new frm_lapHoaDon());
 
         }
@@ -77,7 +77,7 @@ namespace GUI
             }
             else
             {
-                element.Visible = false;
+                //element.Visible = false;
             }
 
             foreach (AccordionControlElement childElement in element.Elements)
@@ -202,6 +202,11 @@ namespace GUI
             frmParent.xoaTextBox();
             frmParent.Show();
             this.Close();
+        }
+
+        private void btn_HoanTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_QuanLyPhieuHoanTra());
         }
     }
 }
