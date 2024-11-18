@@ -13,6 +13,9 @@ namespace GUI
         private string maNhanVien = "NV001";
         HoaDonBanHangBLL _hoaDonBanHangBLL = new HoaDonBanHangBLL();
         ChiTietHoaDonBanHangBLL _chiTietHoaDonBanHangBLL = new ChiTietHoaDonBanHangBLL();
+
+        List<HoaDonBanHang> _lstHoaDon = null;
+        List<ChiTietHoaDonBanHang> _lstChiTietHoaDon = null;
         public frm_quanLyHoaDon()
         {
             InitializeComponent();
@@ -63,8 +66,8 @@ namespace GUI
                 txt_ghiChu.Text = row.Cells["GhiChu"].Value != DBNull.Value ? row.Cells["GhiChu"].Value.ToString() : string.Empty;
                 txt_diemTichLuy.Text = row.Cells["DiemTichLuySuDung"].Value != DBNull.Value ? row.Cells["DiemTichLuySuDung"].Value.ToString() : string.Empty;
                 string maHoaDon = row.Cells["MaHoaDon"].Value.ToString();
-                //_lstChiTietHoaDon = _chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(maHoaDon);
-                //dgv_dsCTHD.DataSource = _lstChiTietHoaDon;
+                _lstChiTietHoaDon = _chiTietHoaDonBanHangBLL.GetChiTietHoaDonByMaHoaDon(maHoaDon);
+                dgv_dsCTHD.DataSource = _lstChiTietHoaDon;
 
             }
             else
@@ -163,12 +166,12 @@ namespace GUI
                         string key = txt_timKiem.Text;
                         if (key == "")
                         {
-                            //LoadHoaDon();
+                            loadHoaDon();
                         }
                         else
                         {
-                            //_lstHoaDon = _hoaDonBLL.TimHoaDonTheoMaNhanVien(key);
-                            //dgv_dsHoaDon.DataSource = _lstHoaDon;
+                            _lstHoaDon = _hoaDonBanHangBLL.GetHoaDonByMaNhanVien(key);
+                            dgv_dsHoaDon.DataSource = _lstHoaDon;
                         }
                     }
                     catch (Exception ex)
@@ -187,8 +190,8 @@ namespace GUI
                             MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc");
                             return;
                         }
-                        //_lstHoaDon = _hoaDonBLL.TimHoaDonTheoKhoangThoiGian(tuNgay, denNgay);
-                        //dgv_dsHoaDon.DataSource = _lstHoaDon;
+                        _lstHoaDon = _hoaDonBanHangBLL.GetHoaDonByDateRange(tuNgay, denNgay);
+                        dgv_dsHoaDon.DataSource = _lstHoaDon;
                     }
                     catch (Exception ex)
                     {
@@ -203,12 +206,12 @@ namespace GUI
                         string key = txt_timKiem.Text;
                         if (key == "")
                         {
-                            //LoadHoaDon();
+                           loadHoaDon();
                         }
                         else
                         {
-                            //_lstHoaDon = _hoaDonBLL.TimHoaDonTheoMaKhachHang(key);
-                            //dgv_dsHoaDon.DataSource = _lstHoaDon;
+                            _lstHoaDon = _hoaDonBanHangBLL.GetHoaDonByMaKhachHang(key);
+                            dgv_dsHoaDon.DataSource = _lstHoaDon;
                         }
                     }
                     catch (Exception ex)
@@ -224,12 +227,12 @@ namespace GUI
                         string key = txt_timKiem.Text;
                         if (key == "")
                         {
-                            //LoadHoaDon();
+                            loadHoaDon();
                         }
                         else
                         {
-                            //_lstHoaDon = _hoaDonBLL.TimHoaDonTheoMaHoaDon(key);
-                            //dgv_dsHoaDon.DataSource = _lstHoaDon;
+                            _lstHoaDon = _hoaDonBanHangBLL.GetHoaDonByMaHoaDon(key);
+                            dgv_dsHoaDon.DataSource = _lstHoaDon;
                         }
                     }
                     catch (Exception ex)
@@ -245,12 +248,12 @@ namespace GUI
                         string key = txt_timKiem.Text;
                         if (key == "")
                         {
-                            //LoadHoaDon();
+                            loadHoaDon();
                         }
                         else
                         {
-                            //_lstHoaDon = _hoaDonBLL.TimHoaDonTheoTenKhachHangHoacSDT(key);
-                            //dgv_dsHoaDon.DataSource = _lstHoaDon;
+                            _lstHoaDon = _hoaDonBanHangBLL.GetHoaDonByTenKhachHang(key);
+                            dgv_dsHoaDon.DataSource = _lstHoaDon;
                         }
                     }
                     catch (Exception ex)
@@ -266,12 +269,12 @@ namespace GUI
                         string key = txt_timKiem.Text;
                         if (key == "")
                         {
-                            //LoadHoaDon();
+                            loadHoaDon();
                         }
                         else
                         {
-                            //_lstHoaDon = _hoaDonBLL.TimKiemHoaDonTheoTenNhanVien(key);
-                            //dgv_dsHoaDon.DataSource = _lstHoaDon;
+                            _lstHoaDon = _hoaDonBanHangBLL.GetHoaDonByTenNhanVien(key);
+                            dgv_dsHoaDon.DataSource = _lstHoaDon;
                         }
                     }
                     catch (Exception ex)
@@ -282,7 +285,7 @@ namespace GUI
                 case 6:
                     try
                     {
-                        //LoadHoaDon();
+                        loadHoaDon();
                     }
                     catch (Exception ex)
                     {
