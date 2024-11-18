@@ -356,6 +356,24 @@ namespace DAL
                 return new List<SanPham>(); // Trả về danh sách rỗng nếu có lỗi
             }
         }
+        public List<SanPham> GetSanPhamByMaDDH(string maDDH)
+        {
+            try
+            {
+                var sanPhams = (from ctdh in db.ChiTietDonDatHangs
+                                join sp in db.SanPhams on ctdh.MaSanPham equals sp.MaSanPham
+                                where ctdh.MaDonDatHang == maDDH && sp.TrangThai == true
+                                select sp).ToList();
+
+                return sanPhams;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy thông tin sản phẩm: " + ex.Message);
+                return new List<SanPham>(); 
+            }
+        }
+
         public SanPhamGioHangDTO GetSanPhamByMaSanPham(string maSanPham)
         {
             var query = (from sp in db.SanPhams

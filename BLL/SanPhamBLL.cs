@@ -125,6 +125,10 @@ namespace BLL
         {
             return sanPhamDal.GetSanPhamByMaSP((string) maSanPham);
         }
+        public List<SanPham> GetSanPhamByMaDDH(string maDDH)
+        {
+            return sanPhamDal.GetSanPhamByMaDDH(maDDH);
+        }
         public SanPhamGioHangDTO GetSanPhamByMaSanPham(string maSanPham)
         {
             return sanPhamDal.GetSanPhamByMaSanPham(maSanPham);

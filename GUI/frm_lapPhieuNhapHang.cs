@@ -16,6 +16,7 @@ namespace GUI
         NhanVienBLL nhanVienBLL = new NhanVienBLL();
         DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
         ChiTietDonDatHangBLL chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+        SanPhamBLL sanPhamBLL = new SanPhamBLL();
         public frm_lapPhieuNhapHang()
         {
             InitializeComponent();
@@ -23,14 +24,77 @@ namespace GUI
             AddButtonPaintEventRecursive(this);
             this.Load += Frm_lapPhieuNhapHang_Load;
             this.dgvPhieuNhap.SelectionChanged += DgvPhieuNhap_SelectionChanged;
-            this.dgvChiTietPhieuNhap.SelectionChanged += DgvChiTietPhieuNhap_SelectionChanged;
-            this.btnNhapLaiCTPN.Click += BtnNhapLai_Click;
+            this.dgvChiTietPhieuNhap.SelectionChanged += DgvChiTietPhieuNhap_SelectionChanged; ;
             this.btnNhapLaiPN.Click += BtnNhapLaiPN_Click; ;
             this.btnThemPN.Click += BtnTaoPhieu_Click;
-            this.btnThemCTPN.Click += BtnThemCTPN_Click;
-            this.txtDonGia.TextChanged += TxtDonGia_TextChanged;
-            this.txtSoLuong.ValueChanged += TxtSoLuong_ValueChanged;
             this.btnDong.Click += BtnDong_Click;
+            cbbMaDDH.SelectedValueChanged += CbbMaDDH_SelectedValueChanged;
+        }
+
+        private void CbbMaDDH_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbbMaDDH.SelectedValue != null)
+                {
+                    string maDDH = cbbMaDDH.SelectedValue.ToString();
+                    loadDSSanPham(maDDH); 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi xử lý sự kiện SelectedValueChanged: " + ex.Message);
+            }
+        }
+
+        private void loadDSSanPham(string maDDH)
+        {
+            dgvDSSanPham.DataSource = null;
+            try
+            {
+                List<SanPham> dsSanPham = sanPhamBLL.GetSanPhamByMaDDH(maDDH);
+                if (dsSanPham != null)
+                {
+                    var dsSanPhamViewModel = from ct in dsSanPham
+                                                select new
+                                                {
+                                                    MaSanPham = ct.MaSanPham,
+                                                    TenSanPham = ct.TenSanPham,
+                                                    DonViTinh = ct.DonViTinh,
+                                                    SoLuongTon = ct.SoLuongTon,
+                                                    GiaNhap = ct.GiaNhap
+                                                };
+                    dgvDSSanPham.DataSource = dsSanPhamViewModel.ToList();
+                    dgvDSSanPham.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
+                   // dgvDSSanPham.Columns["DonViTinh"].HeaderText = "Đơn vị tính";
+                    dgvDSSanPham.Columns["DonViTinh"].Visible =false;
+
+                    dgvDSSanPham.Columns["SoLuongTon"].HeaderText = "Số lượng";
+                    dgvDSSanPham.Columns["GiaNhap"].HeaderText = "Đơn giá";
+                    dgvDSSanPham.Columns["TenSanPham"].HeaderText = "Tên sản phẩm";
+
+                    foreach (DataGridViewColumn column in dgvDSSanPham.Columns)
+                    {
+                        column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold);
+                    }
+                    dgvDSSanPham.RowPostPaint += dgv_RowPostPaint;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy sản phẩm nào.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
+            }
+        }
+    
+
+        private void DgvChiTietPhieuNhap_SelectionChanged(object sender, EventArgs e)
+        {
+           
         }
 
         private void BtnNhapLaiPN_Click(object sender, EventArgs e)
@@ -50,70 +114,70 @@ namespace GUI
             this.Close();
         }
 
-        private void BtnThemCTPN_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string maCTPN = txtMaCTPN.Text;
+        //private void BtnThemCTPN_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string maCTPN = txtMaCTPN.Text;
           
-                string maCTDDH = cbbMaCTDDH.SelectedValue != null ? cbbMaCTDDH.SelectedValue.ToString() : string.Empty;
-                if (string.IsNullOrEmpty(maCTPN))
-                {
-                    MessageBox.Show("Vui lòng chọn một mã chi tiết đơn đặt hàng hợp lệ.");
-                    return;
-                }
+        //        string maCTDDH = cbbMaCTDDH.SelectedValue != null ? cbbMaCTDDH.SelectedValue.ToString() : string.Empty;
+        //        if (string.IsNullOrEmpty(maCTPN))
+        //        {
+        //            MessageBox.Show("Vui lòng chọn một mã chi tiết đơn đặt hàng hợp lệ.");
+        //            return;
+        //        }
 
-                string maPN = txtMaPN.Text;
-                string donViTinh = txtDonViTinh.Text;
+        //        string maPN = txtMaPN.Text;
+        //        string donViTinh = txtDonViTinh.Text;
 
-                if (!int.TryParse(txtSoLuong.Text, out int soLuong) || soLuong <= 0)
-                {
-                    MessageBox.Show("Số lượng không hợp lệ!");
-                    return;
-                }
+        //        if (!int.TryParse(txtSoLuong.Text, out int soLuong) || soLuong <= 0)
+        //        {
+        //            MessageBox.Show("Số lượng không hợp lệ!");
+        //            return;
+        //        }
 
-                if (!decimal.TryParse(txtDonGia.Text, out decimal donGia) || donGia <= 0)
-                {
-                    MessageBox.Show("Đơn giá không hợp lệ!");
-                    return;
-                }
+        //        if (!decimal.TryParse(txtDonGia.Text, out decimal donGia) || donGia <= 0)
+        //        {
+        //            MessageBox.Show("Đơn giá không hợp lệ!");
+        //            return;
+        //        }
 
-                decimal thanhTien = soLuong * donGia;
+        //        decimal thanhTien = soLuong * donGia;
 
-                string ghiChu = txtGhiChu.Text;
+        //        string ghiChu = txtGhiChu.Text;
 
-                ChiTietPhieuNhap newCTPN = new ChiTietPhieuNhap
-                {
-                    MaChiTietPhieuNhap = maCTPN,
-                    MaPhieuNhap = maPN,
-                    DonViTinh = donViTinh,
-                    SoLuong = soLuong,
-                    DonGia = donGia,
-                    ThanhTien = thanhTien,
-                    TrangThai = "Chưa giao",
-                    MaChiTietDonDatHang = maCTDDH,
-                    GhiChu = ghiChu
-                };
+        //        ChiTietPhieuNhap newCTPN = new ChiTietPhieuNhap
+        //        {
+        //            MaChiTietPhieuNhap = maCTPN,
+        //            MaPhieuNhap = maPN,
+        //            DonViTinh = donViTinh,
+        //            SoLuong = soLuong,
+        //            DonGia = donGia,
+        //            ThanhTien = thanhTien,
+        //            TrangThai = "Chưa giao",
+        //            MaChiTietDonDatHang = maCTDDH,
+        //            GhiChu = ghiChu
+        //        };
 
-                // Attempt to add the new detail
-                bool isSuccessCTPN = chiTietPhieuNhapBLL.AddChiTietPhieuNhap(newCTPN);
+        //        // Attempt to add the new detail
+        //        bool isSuccessCTPN = chiTietPhieuNhapBLL.AddChiTietPhieuNhap(newCTPN);
 
-                if (isSuccessCTPN)
-                {
-                    MessageBox.Show("Chi tiết phiếu nhập đã được thêm thành công!");
-                    UpdateTongTien(maPN);
-                    loadChiTietPhieuNhap(maPN);
-                }
-                else
-                {
-                    MessageBox.Show("Có lỗi khi thêm chi tiết phiếu nhập. Vui lòng thử lại.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
-        }
+        //        if (isSuccessCTPN)
+        //        {
+        //            MessageBox.Show("Chi tiết phiếu nhập đã được thêm thành công!");
+        //            UpdateTongTien(maPN);
+        //            loadChiTietPhieuNhap(maPN);
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Có lỗi khi thêm chi tiết phiếu nhập. Vui lòng thử lại.");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Lỗi: " + ex.Message);
+        //    }
+        //}
 
         private void UpdateTongTien(string maPN)
         {
@@ -143,30 +207,30 @@ namespace GUI
 
       
 
-        private void TxtSoLuong_ValueChanged(object sender, EventArgs e)
-        {
-            CalculateThanhTien();
-        }
+        //private void TxtSoLuong_ValueChanged(object sender, EventArgs e)
+        //{
+        //    CalculateThanhTien();
+        //}
 
-        private void TxtDonGia_TextChanged(object sender, EventArgs e)
-        {
-            CalculateThanhTien();
-        }
+        //private void TxtDonGia_TextChanged(object sender, EventArgs e)
+        //{
+        //    CalculateThanhTien();
+        //}
 
-        private void CalculateThanhTien()
-        {
+        //private void CalculateThanhTien()
+        //{
            
-            if (decimal.TryParse(txtDonGia.Text, out decimal donGia) && int.TryParse(txtSoLuong.Text, out int soLuong))
-            {
-                decimal thanhTien = donGia * soLuong;
+        //    if (decimal.TryParse(txtDonGia.Text, out decimal donGia) && int.TryParse(txtSoLuong.Text, out int soLuong))
+        //    {
+        //        decimal thanhTien = donGia * soLuong;
 
-                txtThanhTien.Text = thanhTien.ToString();  
-            }
-            else
-            {
-                txtThanhTien.Text = "0";
-            }
-        }
+        //        txtThanhTien.Text = thanhTien.ToString();  
+        //    }
+        //    else
+        //    {
+        //        txtThanhTien.Text = "0";
+        //    }
+        //}
 
         private void BtnTaoPhieu_Click(object sender, EventArgs e)
         {
@@ -175,7 +239,7 @@ namespace GUI
                 string maPN = txtMaPN.Text;
                 string nhanVien = cbbNhanVien.SelectedValue?.ToString();
                 string donDatHang = cbbMaDDH.SelectedValue?.ToString();
-                string chiTietDonDatHang = cbbMaCTDDH.SelectedValue?.ToString();
+               // string chiTietDonDatHang = cbbMaCTDDH.SelectedValue?.ToString();
                 int lanNhap = int.Parse(txtLanNhap.Text);
                 string trangThai = txtTrangThai.Text;
 
@@ -215,36 +279,10 @@ namespace GUI
         private void BtnNhapLai_Click(object sender, EventArgs e)
         {
            
-            txtMaCTPN.Clear();
-            loadChiTietDonDatHang();
-            txtDonViTinh.Clear();
-            txtSoLuong.Value = 0;
-            txtDonGia.Clear();
-            txtThanhTien.Clear();
-            txtGhiChu.Clear();
+           
            
         }
 
-        private void DgvChiTietPhieuNhap_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvChiTietPhieuNhap.CurrentRow != null)
-            {
-                DataGridViewRow currentRow = dgvChiTietPhieuNhap.CurrentRow;
-                txtMaCTPN.Text = currentRow.Cells["MaChiTietPhieuNhap"].Value?.ToString();
-                txtDonViTinh.Text = currentRow.Cells["DonViTinh"].Value?.ToString();
-                cbbMaCTDDH.SelectedValue = currentRow.Cells["MaCTDDH"].Value?.ToString();
-                txtTrangThai.Text = currentRow.Cells["TrangThai"].Value?.ToString();
-                txtSoLuong.Text = currentRow.Cells["SoLuong"].Value?.ToString();
-                txtDonGia.Text = currentRow.Cells["DonGia"].Value?.ToString();
-                txtThanhTien.Text = currentRow.Cells["ThanhTien"].Value?.ToString();
-                txtGhiChu.Text = currentRow.Cells["GhiChu"].Value?.ToString();
-
-            }
-            else
-            {
-                Console.WriteLine("Không có dòng nào được chọn.");
-            }
-        }
 
         private void DgvPhieuNhap_SelectionChanged(object sender, EventArgs e)
         {
@@ -323,37 +361,16 @@ namespace GUI
             loadDSPhieuNhap();
             loadCbbNhanVien();
             loadCbbDonDatHang();
-            loadChiTietDonDatHang();
+            
         }
 
-        private void loadChiTietDonDatHang()
-        {
-            try
-            {
-                List<ChiTietDonDatHang> dsCTDDH = chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang();
-                if (dsCTDDH != null && dsCTDDH.Count > 0)
-                {
-                    cbbMaCTDDH.DataSource = null;
-                    cbbMaCTDDH.DataSource = dsCTDDH;
-                    cbbMaCTDDH.ValueMember = "MaChiTietDonDatHang";
-                    cbbMaCTDDH.DisplayMember = "MaChiTietDonDatHang";
-                }
-                else
-                {
-                    MessageBox.Show("Không có đơn đặt hàng nào.");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Lỗi khi tải danh sách đơn đặt hàng.");
-            }
-        }
+        
 
         private void loadCbbDonDatHang()
         {
             try
             {
-                List<DonDatHang> dsDonDatHang = donDatHangBLL.LayDanhSachDonDatHang();
+                List<DonDatHang> dsDonDatHang = donDatHangBLL.LayDanhSachDonDatHang2();
                 if (dsDonDatHang != null && dsDonDatHang.Count > 0)
                 {
                     cbbMaDDH.DataSource = null; 

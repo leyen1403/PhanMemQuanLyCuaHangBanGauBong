@@ -430,41 +430,5 @@ C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.pdb
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_dangNhap.resources
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_dangNhap.resources
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_QuanLyPhieuHoanTra.resources
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.PivotGrid.v22.2.Core.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Map.v22.2.Core.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraReports.v22.2.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraTreeMap.v22.2.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.RichEdit.v22.2.Core.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraCharts.v22.2.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraGauges.v22.2.Core.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Xpo.v22.2.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Charts.v22.2.Core.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.TreeMap.v22.2.Core.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Office.v22.2.Core.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.CodeParser.v22.2.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.DataVisualization.v22.2.Core.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Dashboard.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Data.Desktop.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Data.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.DataAccess.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Pdf.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Pdf.v22.2.Drawing.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Printing.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Sparkline.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Utils.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraBars.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraEditors.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraLayout.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.PivotGrid.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Map.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraReports.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraTreeMap.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.RichEdit.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraCharts.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.XtraGauges.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Xpo.v22.2.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Charts.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.TreeMap.v22.2.Core.xml
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\DevExpress.Office.v22.2.Core.xml
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_dangNhap.resources
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_QuanLyPhieuHoanTra.resources
