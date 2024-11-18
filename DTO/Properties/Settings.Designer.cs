@@ -12,7 +12,7 @@ namespace DTO.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.11.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -118,6 +118,17 @@ namespace DTO.Properties {
         public string db_QLCHBGBConnectionString3 {
             get {
                 return ((string)(this["db_QLCHBGBConnectionString3"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-0QRE0TS\\SQLEXPRESS;Initial Catalog=db_QLCHBGB;Persist Securit" +
+            "y Info=True;User ID=sa;Password=123;Encrypt=True;TrustServerCertificate=True")]
+        public string db_QLCHBGBConnectionString4 {
+            get {
+                return ((string)(this["db_QLCHBGBConnectionString4"]));
             }
         }
     }

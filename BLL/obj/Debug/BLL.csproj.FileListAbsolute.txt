@@ -69,3 +69,15 @@ D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompil
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CopyComplete
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll.config
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb

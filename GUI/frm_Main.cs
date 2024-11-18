@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BLL;
+using DevExpress.XtraBars.Navigation;
+using DTO;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -6,6 +10,7 @@ namespace GUI
 {
     public partial class frm_main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
+        public NhanVien nhanVien { get; set; }
         public frm_main()
         {
             InitializeComponent();
@@ -19,7 +24,7 @@ namespace GUI
 
         private void Btn_DonDatHang_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_quanLyDonDatHang());
+            loadForm(new frm_quanLyDonDatHang() { _maNhanVien = nhanVien.MaNhanVien});
         }
 
         private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
@@ -34,7 +39,7 @@ namespace GUI
 
         private void Btn_LapPhieuKiemKe_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapPhieuKiemKe());
+            loadForm(new frm_lapPhieuKiemKe() { _maNhanVien = nhanVien.MaNhanVien });
         }
 
         private void Frm_main1_Load(object sender, EventArgs e)
@@ -49,11 +54,37 @@ namespace GUI
             this.btn_LapPhieuDichVu.Click += Btn_LapPhieuDichVu_Click;
             this.btn_HoaDon.Click += Btn_HoaDon_Click;
             this.btn_DichVu.Click += Btn_DichVu_Click;
-            
+            PhanQuyenAccordion(nhanVien.MaNhanVien);
             loadForm(new frm_lapHoaDon());
 
         }
+        DangNhapBLL dangNhapBLL = new DangNhapBLL();
+        private void PhanQuyenAccordion(string maNhanVien)
+        {
 
+            var danhSachQuyen = dangNhapBLL.LayDanhSachQuyen(maNhanVien);
+
+            foreach (AccordionControlElement element in accordionControl1.Elements)
+            {
+                PhanQuyenElement(element, danhSachQuyen);
+            }
+        }
+        private void PhanQuyenElement(AccordionControlElement element, List<string> danhSachQuyen)
+        {
+            if (element.Tag != null && danhSachQuyen.Contains(element.Tag.ToString()))
+            {
+                element.Visible = true;
+            }
+            else
+            {
+                //element.Visible = false;
+            }
+
+            foreach (AccordionControlElement childElement in element.Elements)
+            {
+                PhanQuyenElement(childElement, danhSachQuyen);
+            }
+        }
         private void Btn_DichVu_Click(object sender, EventArgs e)
         {
             loadForm(new frm_quanLyDichVu());
@@ -71,7 +102,7 @@ namespace GUI
 
         private void Btn_LapDonDatHang_Click(object sender, EventArgs e)
         {
-           loadForm(new frm_lapDonDatHang());
+           loadForm(new frm_lapDonDatHang() { MaNhanVien = nhanVien.MaNhanVien});
         }
 
         private void Btn_Loai_Click(object sender, EventArgs e)
@@ -151,6 +182,35 @@ namespace GUI
         private void btn_DoiTra_Click(object sender, EventArgs e)
         {
             loadForm(new frm_quanLyDoiTraSanPham());
+        }
+        public frm_dangNhap frmParent;
+        private void accordionControlElement4_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Bạn có chắc chắn muốn đăng xuất không?",
+                "Xác nhận đăng xuất",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                frmParent.xoaTextBox();
+                frmParent.Show();
+                this.Close();
+            }
+        }
+
+        private void frm_main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmParent.xoaTextBox();
+            frmParent.Show();
+            this.Close();
+        }
+
+        private void btn_HoanTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_QuanLyPhieuHoanTra());
         }
     }
 }

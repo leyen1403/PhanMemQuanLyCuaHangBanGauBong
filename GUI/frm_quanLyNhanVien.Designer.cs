@@ -297,6 +297,7 @@
             // 
             // txtHinhAnh
             // 
+            this.txtHinhAnh.Enabled = false;
             this.txtHinhAnh.Location = new System.Drawing.Point(191, 420);
             this.txtHinhAnh.Name = "txtHinhAnh";
             this.txtHinhAnh.Size = new System.Drawing.Size(262, 26);
