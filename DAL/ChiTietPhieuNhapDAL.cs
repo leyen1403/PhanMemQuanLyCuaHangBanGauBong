@@ -131,22 +131,26 @@ namespace DAL
         {
             try
             {
-                var existingDetails = db.ChiTietPhieuNhaps.Where(ct => ct.MaPhieuNhap == maPN).ToList();
+                // Lấy danh sách các chi tiết phiếu nhập hiện tại từ cơ sở dữ liệu
+                var existingDetails = db.ChiTietPhieuNhaps
+                    .Where(ct => ct.MaPhieuNhap == maPN)
+                    .ToList();
 
-                // Tạo HashSet cho các MaChiTietPhieuNhap trong updatedList
+                // Tạo HashSet chứa các mã chi tiết từ danh sách mới (để so sánh)
                 var updatedIds = new HashSet<string>(updatedList.Select(item => item.MaChiTietPhieuNhap));
 
-                // Xóa các mục không còn trong updatedList
+                // Xác định các mục cần xóa (có trong CSDL nhưng không có trong danh sách mới)
                 var itemsToDelete = existingDetails
                     .Where(dbItem => !updatedIds.Contains(dbItem.MaChiTietPhieuNhap))
                     .ToList();
 
-                foreach (var item in itemsToDelete)
+                // Xóa các mục trong CSDL
+                if (itemsToDelete.Any())
                 {
-                    db.ChiTietPhieuNhaps.DeleteOnSubmit(item);
+                    db.ChiTietPhieuNhaps.DeleteAllOnSubmit(itemsToDelete);
                 }
 
-                // Cập nhật hoặc thêm mới các mục
+                // Duyệt qua danh sách mới để cập nhật hoặc thêm mới
                 foreach (var updatedItem in updatedList)
                 {
                     var existingItem = existingDetails
@@ -154,7 +158,7 @@ namespace DAL
 
                     if (existingItem != null)
                     {
-                        // Cập nhật
+                        // Nếu tồn tại, cập nhật dữ liệu
                         existingItem.DonViTinh = updatedItem.DonViTinh;
                         existingItem.SoLuong = updatedItem.SoLuong;
                         existingItem.DonGia = updatedItem.DonGia;
@@ -164,7 +168,7 @@ namespace DAL
                     }
                     else
                     {
-                        // Thêm mới
+                        // Nếu chưa tồn tại, thêm mới
                         db.ChiTietPhieuNhaps.InsertOnSubmit(updatedItem);
                     }
                 }
@@ -175,6 +179,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
+                // Ghi log lỗi hoặc hiển thị thông báo
                 Console.WriteLine("Lỗi khi cập nhật danh sách ChiTietPhieuNhap: " + ex.Message);
                 return false;
             }
@@ -183,6 +188,79 @@ namespace DAL
 
 
         }
+
+        public bool DeleteChiTietPhieuNhap(string maChiTietPhieuNhap)
+        {
+            try
+            {
+                var chiTietPhieuNhap = db.ChiTietPhieuNhaps.FirstOrDefault(ct => ct.MaChiTietPhieuNhap == maChiTietPhieuNhap);
+                if (chiTietPhieuNhap != null)
+                {
+                    db.ChiTietPhieuNhaps.DeleteOnSubmit(chiTietPhieuNhap);
+                    db.SubmitChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi xóa chi tiết phiếu nhập: " + ex.Message);
+            }
+        }
+
+        public bool UpdateAndDeleteChiTietPhieuNhap(List<ChiTietPhieuNhap> updatedList, List<ChiTietPhieuNhap> deletedItems,string maPN)
+        {
+            try
+            {
+                using (var transaction = db.Connection.BeginTransaction())
+                {
+                    // Xóa các mục trong deletedItems
+                    foreach (var item in deletedItems)
+                    {
+                        var dbItem = db.ChiTietPhieuNhaps
+                            .FirstOrDefault(ct => ct.MaChiTietPhieuNhap == item.MaChiTietPhieuNhap);
+                        if (dbItem != null)
+                        {
+                            db.ChiTietPhieuNhaps.DeleteOnSubmit(dbItem);
+                        }
+                    }
+
+                    // Cập nhật hoặc thêm mới các mục trong updatedList
+                    foreach (var updatedItem in updatedList)
+                    {
+                        var dbItem = db.ChiTietPhieuNhaps
+                            .FirstOrDefault(ct => ct.MaChiTietPhieuNhap == updatedItem.MaChiTietPhieuNhap);
+
+                        if (dbItem != null)
+                        {
+                            // Cập nhật
+                            dbItem.DonViTinh = updatedItem.DonViTinh;
+                            dbItem.SoLuong = updatedItem.SoLuong;
+                            dbItem.DonGia = updatedItem.DonGia;
+                            dbItem.ThanhTien = updatedItem.ThanhTien;
+                            dbItem.TrangThai = updatedItem.TrangThai;
+                            dbItem.GhiChu = updatedItem.GhiChu;
+                        }
+                        else
+                        {
+                            // Thêm mới
+                            db.ChiTietPhieuNhaps.InsertOnSubmit(updatedItem);
+                        }
+                    }
+
+                    // Lưu thay đổi
+                    db.SubmitChanges();
+                    transaction.Commit();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return false;
+            }
+        }
+
     }
 
 }

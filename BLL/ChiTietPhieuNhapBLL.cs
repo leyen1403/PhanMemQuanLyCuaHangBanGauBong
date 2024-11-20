@@ -57,11 +57,21 @@ namespace BLL
         {
             return chiTietPhieuNhapDAL.AddChiTietPhieuNhap(maCTPN);
         }
+
+        public bool DeleteChiTietPhieuNhap(string maCTPN)
+        {
+            return chiTietPhieuNhapDAL.DeleteChiTietPhieuNhap(maCTPN) ;
+        }
         public bool UpdateChiTietPhieuNhapList(List<ChiTietPhieuNhap> updatedList, string maPN)
         {
             return chiTietPhieuNhapDAL.UpdateChiTietPhieuNhapList(updatedList, maPN);
         }
 
+
+        public bool UpdateAndDeleteChiTietPhieuNhap(List<ChiTietPhieuNhap> updatedList, List<ChiTietPhieuNhap> deletedItems, string maPN)
+        {
+            return chiTietPhieuNhapDAL.UpdateAndDeleteChiTietPhieuNhap(updatedList, deletedItems, maPN);
+        }
 
 
     }
