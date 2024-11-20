@@ -85,6 +85,47 @@ namespace DAL
                 throw new Exception("Lỗi khi truy vấn tên sản phẩm: " + ex.Message);
             }
         }
+        public string LayProductIdByMaCTDDH(string maCTDDH)
+        {
+            try
+            {
+                var productName = (from ctdh in db.ChiTietDonDatHangs
+                                   join sp in db.SanPhams on ctdh.MaSanPham equals sp.MaSanPham
+                                   where ctdh.MaChiTietDonDatHang == maCTDDH
+                                   select sp.MaSanPham).FirstOrDefault();
+
+                return productName ?? "Unknown";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi truy vấn tên sản phẩm: " + ex.Message);
+            }
+        }
+
+
+        public bool IsExist(string maCTPN)
+        {
+            return db.ChiTietPhieuNhaps.Any(ctpn => ctpn.MaChiTietPhieuNhap == maCTPN);
+        }
+
+
+        public string LayProductIdByMaDDH(string maDDH)
+        {
+            try
+            {
+                var productId = (from ctdh in db.ChiTietDonDatHangs
+                                 join sp in db.SanPhams on ctdh.MaSanPham equals sp.MaSanPham
+                                 join ddh in db.DonDatHangs on ctdh.MaDonDatHang equals ddh.MaDonDatHang
+                                 where ddh.MaDonDatHang == maDDH
+                                 select sp.MaSanPham).FirstOrDefault();
+
+                return productId ?? "Unknown";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi truy vấn mã sản phẩm: " + ex.Message);
+            }
+        }
 
         public bool UpdateChiTietPhieuNhapList(List<ChiTietPhieuNhap> updatedList, string maPN)
         {

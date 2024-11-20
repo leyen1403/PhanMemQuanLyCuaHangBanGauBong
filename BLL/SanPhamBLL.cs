@@ -32,6 +32,10 @@ namespace BLL
         {
            return sanPhamDal.UpdateProduct(sanPham);
         }
+        public bool UpdateProductStock(string maSP, int soLuongNhap)
+        {
+            return sanPhamDal.UpdateProductStock(maSP, soLuongNhap);
+        }
         //hoàng quân
         // Tìm kiếm sản phẩm theo từ khóa bất kỳ
         public List<SanPham> SearchProducts(string keyword)

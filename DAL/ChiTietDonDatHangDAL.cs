@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
@@ -18,6 +19,15 @@ namespace DAL
         public List<ChiTietDonDatHang> LayDanhSachChiTietDonDatHang()
         {
             return db.ChiTietDonDatHangs.ToList();
+        }
+        public string GetMaCTDDHByMaSanPham(string maSanPham)
+        {
+            var result = db.ChiTietDonDatHangs
+                                  .Where(ct => ct.MaSanPham == maSanPham)
+                                  .Select(ct => ct.MaChiTietDonDatHang)
+                                  .FirstOrDefault();
+
+            return result;
         }
 
         public List<ChiTietDonDatHang> LayDanhSachChiTietDonDatHangTheoMaDonDatHang(string id)

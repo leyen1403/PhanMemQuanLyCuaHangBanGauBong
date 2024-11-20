@@ -45,6 +45,7 @@
     <Compile Include="ChiTietDonDatHang.cs" />
     <Compile Include="ChiTietHoaDonDTO.cs" />
     <Compile Include="ChiTietPhieuKiemKe.cs" />
+    <Compile Include="ChiTietPhieuNhapViewModel.cs" />
     <Compile Include="db_QLCHBGB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
