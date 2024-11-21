@@ -256,6 +256,7 @@ namespace GUI
         private void Frm_lapThongKeBaoCao_Load(object sender, EventArgs e)
         {
             loadCbbNhanVien();
+            dtgvThongKe.ReadOnly = true;
             DataTable dt = hoaDonBanHangBLL.GetTongTienTheoNgayDataTable();
             dtgvThongKe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 

@@ -545,21 +545,22 @@ namespace DAL
 
             // Truy vấn LINQ lấy sản phẩm bán chạy
             var query = from hd in db.HoaDonBanHangs
-                        join ct in db.ChiTietHoaDonBanHangs on hd.MaHoaDonBanHang equals ct.MaChiTietHoaDonBanHang
+                        join ct in db.ChiTietHoaDonBanHangs on hd.MaHoaDonBanHang equals ct.MaHoaDon
                         join sp in db.SanPhams on ct.MaSanPham equals sp.MaSanPham
                         group new { ct.SoLuong, sp.MaSanPham, sp.TenSanPham } by new { sp.MaSanPham, sp.TenSanPham } into g
                         select new
                         {
                             g.Key.MaSanPham,
                             g.Key.TenSanPham,
-                            TongSoLuongBan = g.Sum(x => x.SoLuong)
+                            TongSoLuongBan = g.Sum(x => x.SoLuong ?? 0) // Kiểm tra null cho SoLuong
                         };
 
-            // Điền dữ liệu vào DataTable
-            dtSanPhamBanChay.Columns.Add("MaSanPham");
-            dtSanPhamBanChay.Columns.Add("TenSanPham");
+            // Định nghĩa cột cho DataTable
+            dtSanPhamBanChay.Columns.Add("MaSanPham", typeof(string));
+            dtSanPhamBanChay.Columns.Add("TenSanPham", typeof(string));
             dtSanPhamBanChay.Columns.Add("TongSoLuongBan", typeof(int));
 
+            // Thêm dữ liệu từ query vào DataTable
             foreach (var item in query.OrderByDescending(x => x.TongSoLuongBan))
             {
                 DataRow row = dtSanPhamBanChay.NewRow();
