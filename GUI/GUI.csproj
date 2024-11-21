@@ -89,9 +89,24 @@
     <Reference Include="DTO">
       <HintPath>..\DTO\bin\Debug\DTO.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=16.1450.0.37, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\PTUDTM\BT\Buoi10\22_BuiPhuongNam_10\bin\Debug\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChart.Base">
+      <HintPath>..\..\..\..\..\PTUDTM\BT\Buoi10\22_BuiPhuongNam_10\bin\Debug\Syncfusion.OfficeChart.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=16.1450.0.37, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\PTUDTM\BT\Buoi10\22_BuiPhuongNam_10\bin\Debug\Syncfusion.XlsIO.Base.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -110,6 +125,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_dangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_dangNhap.Designer.cs">
+      <DependentUpon>frm_dangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_lapDonDatHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,6 +239,12 @@
     <Compile Include="frm_quanLyNhapHang.Designer.cs">
       <DependentUpon>frm_quanLyNhapHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_QuanLyPhieuHoanTra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_QuanLyPhieuHoanTra.Designer.cs">
+      <DependentUpon>frm_QuanLyPhieuHoanTra.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_quanLyPhieuKiemKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +266,9 @@
     <Compile Include="LuaChonHienThi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frm_dangNhap.resx">
+      <DependentUpon>frm_dangNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_lapDonDatHang.resx">
       <DependentUpon>frm_lapDonDatHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -292,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_quanLyNhapHang.resx">
       <DependentUpon>frm_quanLyNhapHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_QuanLyPhieuHoanTra.resx">
+      <DependentUpon>frm_QuanLyPhieuHoanTra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_quanLyPhieuKiemKe.resx">
       <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
@@ -365,6 +398,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-clear-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-print-32.png" />
+    <None Include="Resources\icons8-macos-close-30.png" />
+    <Content Include="Resources\icons8-print-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

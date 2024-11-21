@@ -22,7 +22,9 @@ namespace GUI
 
         private void frm_quanLyKhachHang_Load(object sender, EventArgs e)
         {
-          
+      
+            lbl_NgayTaoValue.Text = DateTime.Now.ToString();    
+            lbl_NgayCapNhatValue.Text = DateTime.Now.ToString();
             loadKhachHang();
             // Dòng này sẽ bỏ chọn tất cả các dòng trong DataGridView
             dgv_dsKhachHang.ClearSelection();

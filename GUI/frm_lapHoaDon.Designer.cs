@@ -73,10 +73,17 @@
             this.cbo_loai = new System.Windows.Forms.ComboBox();
             this.dgvCart = new System.Windows.Forms.DataGridView();
             this.btn_timSanPham = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_trangDau = new System.Windows.Forms.Button();
+            this.btn_troLai = new System.Windows.Forms.Button();
+            this.btn_trangCuoi = new System.Windows.Forms.Button();
+            this.btn_keTiep = new System.Windows.Forms.Button();
+            this.label_xuaHD = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_soLuong)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -115,7 +122,7 @@
             this.dsSanPham.Location = new System.Drawing.Point(10, 122);
             this.dsSanPham.Margin = new System.Windows.Forms.Padding(2);
             this.dsSanPham.Name = "dsSanPham";
-            this.dsSanPham.Size = new System.Drawing.Size(591, 584);
+            this.dsSanPham.Size = new System.Drawing.Size(591, 520);
             this.dsSanPham.TabIndex = 2;
             this.dsSanPham.Paint += new System.Windows.Forms.PaintEventHandler(this.dsSanPham_Paint);
             // 
@@ -147,7 +154,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cbo_mauSac);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 725);
+            this.groupBox1.Location = new System.Drawing.Point(11, 698);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -310,6 +317,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.groupBox2.Controls.Add(this.label_xuaHD);
             this.groupBox2.Controls.Add(this.chkSuDungDiemTichLuy);
             this.groupBox2.Controls.Add(this.txt_diemDung);
             this.groupBox2.Controls.Add(this.label19);
@@ -424,7 +432,7 @@
             this.btn_luuHoaDon.BackColor = System.Drawing.Color.Navy;
             this.btn_luuHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_luuHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_luuHoaDon.Location = new System.Drawing.Point(177, 351);
+            this.btn_luuHoaDon.Location = new System.Drawing.Point(177, 347);
             this.btn_luuHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_luuHoaDon.Name = "btn_luuHoaDon";
             this.btn_luuHoaDon.Size = new System.Drawing.Size(117, 37);
@@ -438,7 +446,7 @@
             this.btn_inHoaDon.BackColor = System.Drawing.Color.Navy;
             this.btn_inHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_inHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_inHoaDon.Location = new System.Drawing.Point(363, 349);
+            this.btn_inHoaDon.Location = new System.Drawing.Point(363, 345);
             this.btn_inHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_inHoaDon.Name = "btn_inHoaDon";
             this.btn_inHoaDon.Size = new System.Drawing.Size(103, 37);
@@ -600,9 +608,9 @@
             this.cbo_loai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbo_loai.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbo_loai.FormattingEnabled = true;
-            this.cbo_loai.Location = new System.Drawing.Point(501, 64);
+            this.cbo_loai.Location = new System.Drawing.Point(435, 69);
             this.cbo_loai.Name = "cbo_loai";
-            this.cbo_loai.Size = new System.Drawing.Size(121, 26);
+            this.cbo_loai.Size = new System.Drawing.Size(166, 26);
             this.cbo_loai.TabIndex = 12;
             this.cbo_loai.SelectedIndexChanged += new System.EventHandler(this.cbo_loai_SelectedIndexChanged);
             // 
@@ -631,12 +639,90 @@
             this.btn_timSanPham.TabIndex = 4;
             this.btn_timSanPham.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox3.Controls.Add(this.btn_trangDau);
+            this.groupBox3.Controls.Add(this.btn_troLai);
+            this.groupBox3.Controls.Add(this.btn_trangCuoi);
+            this.groupBox3.Controls.Add(this.btn_keTiep);
+            this.groupBox3.Location = new System.Drawing.Point(131, 656);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(305, 43);
+            this.groupBox3.TabIndex = 33;
+            this.groupBox3.TabStop = false;
+            // 
+            // btn_trangDau
+            // 
+            this.btn_trangDau.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_trangDau.BackColor = System.Drawing.Color.Navy;
+            this.btn_trangDau.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_trangDau.ForeColor = System.Drawing.Color.Cornsilk;
+            this.btn_trangDau.Location = new System.Drawing.Point(73, 14);
+            this.btn_trangDau.Name = "btn_trangDau";
+            this.btn_trangDau.Size = new System.Drawing.Size(37, 23);
+            this.btn_trangDau.TabIndex = 28;
+            this.btn_trangDau.Text = "<<";
+            this.btn_trangDau.UseVisualStyleBackColor = false;
+            // 
+            // btn_troLai
+            // 
+            this.btn_troLai.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_troLai.BackColor = System.Drawing.Color.Navy;
+            this.btn_troLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_troLai.ForeColor = System.Drawing.Color.Cornsilk;
+            this.btn_troLai.Location = new System.Drawing.Point(116, 14);
+            this.btn_troLai.Name = "btn_troLai";
+            this.btn_troLai.Size = new System.Drawing.Size(37, 23);
+            this.btn_troLai.TabIndex = 26;
+            this.btn_troLai.Text = "<";
+            this.btn_troLai.UseVisualStyleBackColor = false;
+            // 
+            // btn_trangCuoi
+            // 
+            this.btn_trangCuoi.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_trangCuoi.BackColor = System.Drawing.Color.Navy;
+            this.btn_trangCuoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_trangCuoi.ForeColor = System.Drawing.Color.Cornsilk;
+            this.btn_trangCuoi.Location = new System.Drawing.Point(202, 14);
+            this.btn_trangCuoi.Name = "btn_trangCuoi";
+            this.btn_trangCuoi.Size = new System.Drawing.Size(37, 23);
+            this.btn_trangCuoi.TabIndex = 29;
+            this.btn_trangCuoi.Text = ">>";
+            this.btn_trangCuoi.UseVisualStyleBackColor = false;
+            // 
+            // btn_keTiep
+            // 
+            this.btn_keTiep.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_keTiep.BackColor = System.Drawing.Color.Navy;
+            this.btn_keTiep.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_keTiep.ForeColor = System.Drawing.Color.Cornsilk;
+            this.btn_keTiep.Location = new System.Drawing.Point(159, 14);
+            this.btn_keTiep.Name = "btn_keTiep";
+            this.btn_keTiep.Size = new System.Drawing.Size(37, 23);
+            this.btn_keTiep.TabIndex = 27;
+            this.btn_keTiep.Text = ">";
+            this.btn_keTiep.UseVisualStyleBackColor = false;
+            // 
+            // label_xuaHD
+            // 
+            this.label_xuaHD.AutoSize = true;
+            this.label_xuaHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_xuaHD.ForeColor = System.Drawing.Color.Navy;
+            this.label_xuaHD.Location = new System.Drawing.Point(174, 298);
+            this.label_xuaHD.Name = "label_xuaHD";
+            this.label_xuaHD.Size = new System.Drawing.Size(0, 13);
+            this.label_xuaHD.TabIndex = 22;
+            this.label_xuaHD.Visible = false;
+            // 
             // frm_lapHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1240, 857);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dgvCart);
             this.Controls.Add(this.cbo_loai);
             this.Controls.Add(this.label17);
@@ -660,6 +746,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -712,5 +799,11 @@
         private System.Windows.Forms.TextBox txt_diemDung;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox chkSuDungDiemTichLuy;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btn_trangDau;
+        private System.Windows.Forms.Button btn_troLai;
+        private System.Windows.Forms.Button btn_trangCuoi;
+        private System.Windows.Forms.Button btn_keTiep;
+        private System.Windows.Forms.Label label_xuaHD;
     }
 }

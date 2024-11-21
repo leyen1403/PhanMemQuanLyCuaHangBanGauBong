@@ -18,6 +18,10 @@ namespace BLL
         {
             return ddhDAL.LayDanhSachDonDatHang();
         }
+        public List<DonDatHang> LayDanhSachDonDatHang2()
+        {
+            return ddhDAL.LayDanhSachDonDatHang2();
+        }
         public bool ThemDonDatHang(DonDatHang ddh)
         {
             return ddhDAL.ThemDonDatHang(ddh);

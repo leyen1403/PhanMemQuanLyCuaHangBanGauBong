@@ -120,5 +120,27 @@ namespace DTO.Properties {
                 return ((string)(this["db_QLCHBGBConnectionString3"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-0QRE0TS\\SQLEXPRESS;Initial Catalog=db_QLCHBGB;Persist Securit" +
+            "y Info=True;User ID=sa;Password=123;Encrypt=True;TrustServerCertificate=True")]
+        public string db_QLCHBGBConnectionString4 {
+            get {
+                return ((string)(this["db_QLCHBGBConnectionString4"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN-PC;Initial Catalog=db_QLCHBGB;Integrated Security=True;TrustSer" +
+            "verCertificate=True")]
+        public string db_QLCHBGBConnectionString5 {
+            get {
+                return ((string)(this["db_QLCHBGBConnectionString5"]));
+            }
+        }
     }
 }

@@ -45,11 +45,14 @@
     <Compile Include="ChiTietDonDatHang.cs" />
     <Compile Include="ChiTietHoaDonDTO.cs" />
     <Compile Include="ChiTietPhieuKiemKe.cs" />
+    <Compile Include="ChiTietPhieuNhapViewModel.cs" />
+    <Compile Include="ChiTietPN.cs" />
     <Compile Include="db_QLCHBGB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>db_QLCHBGB.dbml</DependentUpon>
     </Compile>
+    <Compile Include="ExcelExport.cs" />
     <Compile Include="HoaDonDTO.cs" />
     <Compile Include="PhieuDoiTraDTO.cs" />
     <Compile Include="PhieuDoiTraUpdate.cs" />

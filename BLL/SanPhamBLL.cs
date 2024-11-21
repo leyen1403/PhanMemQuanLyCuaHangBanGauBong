@@ -32,6 +32,10 @@ namespace BLL
         {
            return sanPhamDal.UpdateProduct(sanPham);
         }
+        public bool UpdateProductStock(string maSP, int soLuongNhap)
+        {
+            return sanPhamDal.UpdateProductStock(maSP, soLuongNhap);
+        }
         //hoàng quân
         // Tìm kiếm sản phẩm theo từ khóa bất kỳ
         public List<SanPham> SearchProducts(string keyword)
@@ -121,9 +125,17 @@ namespace BLL
         {
             return sanPhamDal.GetUniqueProducts(searchKeyword);
         }
+        public List<SanPham> GetUniqueProductsByCategoryWithPagination(string maLoai , string searchKeyword , int pageNumber , int pageSize , out int totalRecords)
+        {
+            return sanPhamDal.GetUniqueProductsByCategoryWithPagination(maLoai, searchKeyword, pageNumber, pageSize,out totalRecords);
+        }
         public List<SanPham> GetSanPhamByMaSP(string maSanPham)
         {
             return sanPhamDal.GetSanPhamByMaSP((string) maSanPham);
+        }
+        public List<SanPham> GetSanPhamByMaDDH(string maDDH)
+        {
+            return sanPhamDal.GetSanPhamByMaDDH(maDDH);
         }
         public SanPhamGioHangDTO GetSanPhamByMaSanPham(string maSanPham)
         {

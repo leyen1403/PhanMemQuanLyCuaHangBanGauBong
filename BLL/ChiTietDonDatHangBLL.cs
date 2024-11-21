@@ -18,6 +18,10 @@ namespace BLL
         {
             return ctdhDAL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(id);
         }
+        public string GetMaCTDDHByMaSanPham(string maSP)
+        {
+            return ctdhDAL.GetMaCTDDHByMaSanPham(maSP);
+        }
 
         public List<ChiTietDonDatHang> LayDanhSachChiTietDonDatHang()
         {

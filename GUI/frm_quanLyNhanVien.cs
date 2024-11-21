@@ -29,7 +29,59 @@ namespace GUI
             this.btnXoaNhanVien.Click += BtnXoaNhanVien_Click;
             this.btnSuaNhanVien.Click += BtnSuaNhanVien_Click; ;
             this.btnLuuSanPham.Click += BtnLuuSanPham_Click;
+            this.btn_themAnh.Click += Btn_themAnh_Click;
 
+        }
+
+        private void Btn_themAnh_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedImagePath = openFileDialog.FileName;
+                    string newImageName = $"{Path.GetFileName(selectedImagePath)}";
+                    string resourcePath = Path.Combine(Application.StartupPath, "Resources", newImageName);
+                    if (File.Exists(resourcePath))
+                    {
+                        DialogResult result = MessageBox.Show("Ảnh đã tồn tại. Bạn có muốn ghi đè không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+
+                    txtHinhAnh.Text = newImageName;
+                    bool isSaved = SaveImageToResources(selectedImagePath, newImageName);
+
+                    if (isSaved)
+                    {
+                        LoadImageToPictureBox(newImageName);
+                    }
+                }
+            }
+        }
+        private bool SaveImageToResources(string imagePath, string imageName)
+        {
+            try
+            {
+                string resourcePath = Path.Combine(Application.StartupPath, "Resources", imageName);
+                string directoryPath = Path.GetDirectoryName(resourcePath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+                File.Copy(imagePath, resourcePath, true);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu hình ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         private void BtnSuaNhanVien_Click(object sender, EventArgs e)

@@ -47,8 +47,10 @@
   <ItemGroup>
     <Compile Include="ChiTietDonDatHangDAL.cs" />
     <Compile Include="ChiTietHoaDonBanHangDAL.cs" />
+    <Compile Include="ChiTietPhieuHoanTraDAL.cs" />
     <Compile Include="ChiTietPhieuKiemKeDAL.cs" />
     <Compile Include="ChiTietPhieuNhapDAL.cs" />
+    <Compile Include="DangNhapDAL.cs" />
     <Compile Include="DonDatHangDAL.cs" />
     <Compile Include="HoaDonBanHangDAL.cs" />
     <Compile Include="KhachHangDAL.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="NhatKyDichVuDAL.cs" />
     <Compile Include="PhieuDichVuDAL.cs" />
     <Compile Include="PhieuDoiTraDAL.cs" />
+    <Compile Include="PhieuHoanTraDAL.cs" />
     <Compile Include="PhieuKiemKeDAL.cs" />
     <Compile Include="PhieuNhapDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

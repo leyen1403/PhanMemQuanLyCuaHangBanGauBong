@@ -171,5 +171,35 @@ namespace DAL
                 return false;
             }
         }
+        public List<HoaDonBanHang> GetHoaDonByTenKhachHang(string tenKhachHang)
+        {
+            try
+            {
+                return db.HoaDonBanHangs
+                    .Where(hd => hd.KhachHang.TenKhachHang.Contains(tenKhachHang)) // Dùng Contains để tìm kiếm theo tên
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy hóa đơn theo tên khách hàng: " + ex.Message);
+                return new List<HoaDonBanHang>();
+            }
+        }
+        public List<HoaDonBanHang> GetHoaDonByTenNhanVien(string tenNhanVien)
+        {
+            try
+            {
+                return db.HoaDonBanHangs
+                    .Where(hd => hd.NhanVien.HoTen.Contains(tenNhanVien)) // Dùng Contains để tìm kiếm theo tên
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy hóa đơn theo tên nhân viên: " + ex.Message);
+                return new List<HoaDonBanHang>();
+            }
+        }
+
+
     }
 }

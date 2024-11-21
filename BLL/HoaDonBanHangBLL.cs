@@ -100,6 +100,13 @@ namespace BLL
         {
             return _hoaDonBanHangDAL.UpdateHoaDonBanHang(hoaDon);
         }
-
+        public List<HoaDonBanHang> GetHoaDonByTenKhachHang(string tenKhachHang)
+        {
+            return _hoaDonBanHangDAL.GetHoaDonByTenKhachHang(tenKhachHang);
+        }
+        public List<HoaDonBanHang> GetHoaDonByTenNhanVien(string tenNhanVien)
+        {
+            return _hoaDonBanHangDAL.GetHoaDonByTenNhanVien(tenNhanVien);
+        }
     }
 }

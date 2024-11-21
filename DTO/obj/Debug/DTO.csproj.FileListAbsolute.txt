@@ -37,3 +37,10 @@ D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
 D:\BanGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll.config
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
