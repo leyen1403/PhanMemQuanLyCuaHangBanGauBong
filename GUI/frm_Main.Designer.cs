@@ -243,6 +243,7 @@
             this.btn_phieuHoanTra.Name = "btn_phieuHoanTra";
             this.btn_phieuHoanTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_phieuHoanTra.Text = "Lập Phiếu Hoàn Trả NCC";
+            this.btn_phieuHoanTra.Click += new System.EventHandler(this.btn_phieuHoanTra_Click);
             // 
             // accordionControlElement2
             // 
@@ -377,13 +378,6 @@
             this.btn_Restore.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_Restore.Text = "Restore";
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(3, 83);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(604, 4);
             // btn_DXuat
             // 
             this.btn_DXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_DXuat.ImageOptions.Image")));
@@ -396,6 +390,7 @@
             // 
             this.label1.BackColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(2, 57);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(403, 3);
             this.label1.TabIndex = 17;

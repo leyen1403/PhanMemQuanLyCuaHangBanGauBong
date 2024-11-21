@@ -436,3 +436,5 @@ B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGa
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\Syncfusion.Compression.Base.dll
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\Syncfusion.OfficeChart.Base.dll
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\Syncfusion.XlsIO.Base.dll
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_lapPhieuHoanTra.resources
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyDoiTraSanPham.resources

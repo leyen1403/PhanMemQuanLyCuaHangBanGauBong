@@ -212,5 +212,10 @@ namespace GUI
         {
             loadForm(new frm_QuanLyPhieuHoanTra());
         }
+
+        private void btn_phieuHoanTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuHoanTra());
+        }
     }
 }
