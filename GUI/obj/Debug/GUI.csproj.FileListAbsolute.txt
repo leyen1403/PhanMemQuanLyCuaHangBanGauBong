@@ -430,7 +430,18 @@ C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.pdb
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_dangNhap.resources
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_dangNhap.resources
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_QuanLyPhieuHoanTra.resources
+<<<<<<< Updated upstream
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_dangNhap.resources
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_QuanLyPhieuHoanTra.resources
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyDoiTraSanPham.resources
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\Syncfusion.Compression.Base.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\Syncfusion.OfficeChart.Base.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\GUI\bin\Debug\Syncfusion.XlsIO.Base.dll
+=======
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_dangNhap.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhapHang.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_QuanLyPhieuHoanTra.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyDoiTraSanPham.resources
+>>>>>>> Stashed changes
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_lapPhieuHoanTra.resources
+C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyDoiTraSanPham.resources
