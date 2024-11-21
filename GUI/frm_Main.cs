@@ -212,5 +212,19 @@ namespace GUI
         {
             loadForm(new frm_QuanLyPhieuHoanTra());
         }
+<<<<<<< Updated upstream
+=======
+
+        private void btn_Khoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+            frm_dangNhap frm = new frm_dangNhap();
+            frm.Show();
+        }
+        private void btn_phieuHoanTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuHoanTra());
+        }
+>>>>>>> Stashed changes
     }
 }
