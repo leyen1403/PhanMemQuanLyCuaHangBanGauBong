@@ -31,10 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.btnDong = new System.Windows.Forms.Button();
-            this.btnNhapLaiPN = new System.Windows.Forms.Button();
             this.txtTongTien = new System.Windows.Forms.TextBox();
-            this.btnThemPN = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dTPNgayLap = new System.Windows.Forms.DateTimePicker();
@@ -56,6 +53,9 @@
             this.dgvDSSanPham = new System.Windows.Forms.DataGridView();
             this.Chon = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnLuu = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.btnNhapLaiPN = new System.Windows.Forms.Button();
+            this.btnThemPN = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuNhap)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -116,30 +116,12 @@
             this.dgvPhieuNhap.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPhieuNhap.Location = new System.Drawing.Point(5, 248);
-            this.dgvPhieuNhap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvPhieuNhap.Margin = new System.Windows.Forms.Padding(2);
             this.dgvPhieuNhap.Name = "dgvPhieuNhap";
             this.dgvPhieuNhap.RowHeadersWidth = 51;
             this.dgvPhieuNhap.RowTemplate.Height = 24;
             this.dgvPhieuNhap.Size = new System.Drawing.Size(563, 170);
             this.dgvPhieuNhap.TabIndex = 52;
-            // 
-            // btnDong
-            // 
-            this.btnDong.Location = new System.Drawing.Point(478, 163);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(83, 41);
-            this.btnDong.TabIndex = 51;
-            this.btnDong.Text = "Đóng";
-            this.btnDong.UseVisualStyleBackColor = true;
-            // 
-            // btnNhapLaiPN
-            // 
-            this.btnNhapLaiPN.Image = global::GUI.Properties.Resources.icons8_load_32;
-            this.btnNhapLaiPN.Location = new System.Drawing.Point(479, 107);
-            this.btnNhapLaiPN.Name = "btnNhapLaiPN";
-            this.btnNhapLaiPN.Size = new System.Drawing.Size(74, 34);
-            this.btnNhapLaiPN.TabIndex = 50;
-            this.btnNhapLaiPN.UseVisualStyleBackColor = true;
             // 
             // txtTongTien
             // 
@@ -148,15 +130,6 @@
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.Size = new System.Drawing.Size(248, 26);
             this.txtTongTien.TabIndex = 36;
-            // 
-            // btnThemPN
-            // 
-            this.btnThemPN.Image = global::GUI.Properties.Resources.icons8_add_35;
-            this.btnThemPN.Location = new System.Drawing.Point(479, 48);
-            this.btnThemPN.Name = "btnThemPN";
-            this.btnThemPN.Size = new System.Drawing.Size(74, 35);
-            this.btnThemPN.TabIndex = 49;
-            this.btnThemPN.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
@@ -286,9 +259,9 @@
             this.groupBox3.Controls.Add(this.btnLuu);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(563, 517);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(562, 236);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
@@ -303,7 +276,7 @@
             this.dgvChiTietPhieuNhap.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvChiTietPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietPhieuNhap.Location = new System.Drawing.Point(5, 54);
-            this.dgvChiTietPhieuNhap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvChiTietPhieuNhap.Margin = new System.Windows.Forms.Padding(2);
             this.dgvChiTietPhieuNhap.Name = "dgvChiTietPhieuNhap";
             this.dgvChiTietPhieuNhap.RowHeadersWidth = 51;
             this.dgvChiTietPhieuNhap.RowTemplate.Height = 24;
@@ -316,9 +289,9 @@
             this.groupBox2.Controls.Add(this.dgvDSSanPham);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(21, 130);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(516, 630);
             this.groupBox2.TabIndex = 37;
             this.groupBox2.TabStop = false;
@@ -326,13 +299,16 @@
             // 
             // btnChuyenSP
             // 
+            this.btnChuyenSP.BackColor = System.Drawing.Color.Navy;
+            this.btnChuyenSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChuyenSP.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnChuyenSP.Location = new System.Drawing.Point(230, 581);
-            this.btnChuyenSP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnChuyenSP.Margin = new System.Windows.Forms.Padding(2);
             this.btnChuyenSP.Name = "btnChuyenSP";
             this.btnChuyenSP.Size = new System.Drawing.Size(70, 31);
             this.btnChuyenSP.TabIndex = 54;
             this.btnChuyenSP.Text = ">>";
-            this.btnChuyenSP.UseVisualStyleBackColor = true;
+            this.btnChuyenSP.UseVisualStyleBackColor = false;
             // 
             // dgvDSSanPham
             // 
@@ -344,7 +320,7 @@
             this.dgvDSSanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Chon});
             this.dgvDSSanPham.Location = new System.Drawing.Point(4, 20);
-            this.dgvDSSanPham.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvDSSanPham.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDSSanPham.Name = "dgvDSSanPham";
             this.dgvDSSanPham.RowHeadersWidth = 51;
             this.dgvDSSanPham.RowTemplate.Height = 24;
@@ -363,12 +339,46 @@
             // btnLuu
             // 
             this.btnLuu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLuu.BackColor = System.Drawing.Color.Transparent;
+            this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLuu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
             this.btnLuu.Location = new System.Drawing.Point(456, 17);
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(83, 32);
+            this.btnLuu.Size = new System.Drawing.Size(47, 35);
             this.btnLuu.TabIndex = 51;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.UseVisualStyleBackColor = false;
+            // 
+            // btnDong
+            // 
+            this.btnDong.BackColor = System.Drawing.Color.White;
+            this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDong.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDong.Image = global::GUI.Properties.Resources.icons8_macos_close_30;
+            this.btnDong.Location = new System.Drawing.Point(479, 163);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(47, 35);
+            this.btnDong.TabIndex = 51;
+            this.btnDong.UseVisualStyleBackColor = false;
+            // 
+            // btnNhapLaiPN
+            // 
+            this.btnNhapLaiPN.Image = global::GUI.Properties.Resources.icons8_load_32;
+            this.btnNhapLaiPN.Location = new System.Drawing.Point(479, 107);
+            this.btnNhapLaiPN.Name = "btnNhapLaiPN";
+            this.btnNhapLaiPN.Size = new System.Drawing.Size(47, 34);
+            this.btnNhapLaiPN.TabIndex = 50;
+            this.btnNhapLaiPN.UseVisualStyleBackColor = true;
+            this.btnNhapLaiPN.Click += new System.EventHandler(this.btnNhapLaiPN_Click_1);
+            // 
+            // btnThemPN
+            // 
+            this.btnThemPN.Image = global::GUI.Properties.Resources.icons8_add_35;
+            this.btnThemPN.Location = new System.Drawing.Point(479, 50);
+            this.btnThemPN.Name = "btnThemPN";
+            this.btnThemPN.Size = new System.Drawing.Size(47, 35);
+            this.btnThemPN.TabIndex = 49;
+            this.btnThemPN.UseVisualStyleBackColor = true;
             // 
             // frm_lapPhieuNhapHang
             // 
@@ -381,7 +391,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbbMaDDH);
             this.Controls.Add(this.label7);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frm_lapPhieuNhapHang";
             this.Text = "frm_lapPhieuNhapHang";
             this.groupBox1.ResumeLayout(false);
