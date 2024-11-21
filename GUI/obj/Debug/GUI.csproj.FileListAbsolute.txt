@@ -433,3 +433,4 @@ C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_Qu
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_dangNhap.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyNhapHang.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_QuanLyPhieuHoanTra.resources
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\GUI\obj\Debug\GUI.frm_quanLyDoiTraSanPham.resources

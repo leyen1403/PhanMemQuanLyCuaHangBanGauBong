@@ -19,7 +19,8 @@ namespace GUI
             this.btn_NhanVien.Click += Btn_NhanVien_Click1;
             this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
             this.btn_DonDatHang.Click += Btn_DonDatHang_Click;
-           
+            this.btn_dangXuat.ItemClick += btn_dangXuat_ItemClick;
+
         }
 
         private void Btn_DonDatHang_Click(object sender, EventArgs e)
@@ -56,6 +57,7 @@ namespace GUI
             this.btn_DichVu.Click += Btn_DichVu_Click;
             PhanQuyenAccordion(nhanVien.MaNhanVien);
             loadForm(new frm_lapHoaDon());
+            txt_tenNV.Caption = nhanVien.HoTen.ToString();
 
         }
         DangNhapBLL dangNhapBLL = new DangNhapBLL();
@@ -92,9 +94,7 @@ namespace GUI
 
         private void Btn_HoaDon_Click(object sender, EventArgs e)
         {
-            frm_lapHoaDon frm = new frm_lapHoaDon();
-            frm.maNV = nhanVien.MaNhanVien;
-            loadForm(frm);
+           loadForm(new frm_quanLyHoaDon());
         }
 
         private void Btn_LapPhieuDichVu_Click(object sender, EventArgs e)
@@ -146,18 +146,17 @@ namespace GUI
 
         private void btn_LapHoaDon_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapHoaDon());
+            loadForm(new frm_lapHoaDon() { _maNhanVien = nhanVien.MaNhanVien });
         }
 
         private void btn_LapHoaDon_Click_1(object sender, EventArgs e)
         {
-            loadForm(new frm_lapHoaDon());
+            loadForm(new frm_lapHoaDon() { _maNhanVien = nhanVien.MaNhanVien });
         }
 
        
         private void btn_dangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.Close();
 
         }
 
@@ -213,6 +212,13 @@ namespace GUI
         private void btn_HoanTra_Click(object sender, EventArgs e)
         {
             loadForm(new frm_QuanLyPhieuHoanTra());
+        }
+
+        private void btn_Khoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+            frm_dangNhap frm = new frm_dangNhap();
+            frm.Show();
         }
     }
 }

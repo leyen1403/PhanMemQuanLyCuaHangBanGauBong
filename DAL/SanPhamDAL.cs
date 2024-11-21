@@ -372,7 +372,7 @@ namespace DAL
                 return new List<SanPham>();  
             }
         }
-        public List<SanPham> GetUniqueProductsByCategoryWithPagination(string maLoai = "", string searchKeyword = "", int pageNumber = 1, int pageSize = 10)
+        public List<SanPham> GetUniqueProductsByCategoryWithPagination(string maLoai , string searchKeyword , int pageNumber, int pageSize , out int totalRecords)
         {
             try
             {
@@ -400,6 +400,9 @@ namespace DAL
                     .Select(g => g.First())        // Lấy sản phẩm đầu tiên trong mỗi nhóm
                     .AsQueryable();
 
+                // Tính tổng số bản ghi sau khi lọc và loại bỏ trùng lặp
+                totalRecords = uniqueProducts.Count();
+
                 // Áp dụng phân trang
                 var pagedQuery = uniqueProducts
                     .Skip((pageNumber - 1) * pageSize)  // Bỏ qua các bản ghi của các trang trước
@@ -410,9 +413,11 @@ namespace DAL
             catch (Exception ex)
             {
                 Console.WriteLine("Lỗi khi lấy danh sách sản phẩm không trùng tên: " + ex.Message);
+                totalRecords = 0;  // Nếu có lỗi, đặt số bản ghi về 0
                 return new List<SanPham>();  // Trả về danh sách rỗng nếu có lỗi
             }
         }
+
 
         public List<SanPham> GetSanPhamByMaSP(string maSanPham)
         {

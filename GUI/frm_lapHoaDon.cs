@@ -13,31 +13,33 @@ namespace GUI
     public partial class frm_lapHoaDon : Form
     {
         ProductItem productSelected = null;
-     //   public string maNV { get; set; }
-        public string maNV = "NV001";
+        public string _maNhanVien { get; set; }
+        //    public string maNV = "NV001";
         SanPhamBLL _sanPhamBLL = new SanPhamBLL();
         LoaiSanPhamBLL _loaiSanPhamBLL = new LoaiSanPhamBLL();
         KhachHangBLL _khachHangBLL= new KhachHangBLL();
         HoaDonBanHangBLL _hoaDonBanHangBLL = new HoaDonBanHangBLL();
         ChiTietHoaDonBanHangBLL _chiTietHoaDonBanHangBLL = new ChiTietHoaDonBanHangBLL() ;
-        private int currentPage = 1;
-        private int pageSize = 10;    // Số sản phẩm mỗi trang
-        private int totalProducts = 0; // Tổng số sản phẩm
-        private int totalPages = 0;    // Tổng số trang
+        NhanVienBLL _nhanVienBLL = new NhanVienBLL();
+        int currentPage = 1;
+        int pageSize = 15;
+        int totalRecords;
+
+        private string _maHD;
         public frm_lapHoaDon()
         {
             InitializeComponent();
             this.Load += Frm_lapHoaDon_Load;
             loadNgayHT();
+
         }
-        private void CalculateTotalPages()
-        {
-            totalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
-        }
+        
 
         // Cập nhật các nút phân trang
         private void UpdatePaginationButtons()
         {
+            int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
             btn_troLai.Enabled = currentPage > 1;
             btn_keTiep.Enabled = currentPage < totalPages;
             btn_trangDau.Enabled = currentPage > 1;
@@ -112,6 +114,14 @@ namespace GUI
         {
             txt_tenSanPham.Text = "Nhập thông tin sản phẩm";
             txt_tenSanPham.ForeColor = Color.Gray;
+            txt_TongSL.Enabled = txt_tongTien.Enabled = txt_diemTichLuy.Enabled = false;
+            dsSanPham.AutoScroll = true;
+            loadComBoxLoai();
+            LoadSanPhamPage();
+            txt_soLuong.Minimum = 1;
+            txt_soLuong.Maximum = 100;
+            txt_soLuong.Value = 1;
+            InitializeDataGridView();
             this.txt_tenSanPham.Enter += Txt_tenSanPham_Enter;
             this.txt_tenSanPham.Leave += Txt_tenSanPham_Leave;
             this.btn_timSanPham.Click += Btn_timSanPham_Click;
@@ -120,14 +130,6 @@ namespace GUI
             this.btn_Clear.Click += Btn_Clear_Click;
             this.btn_inHoaDon.Click += Btn_inHoaDon_Click;
             this.btn_luuHoaDon.Click += Btn_luuHoaDon_Click;
-            txt_TongSL.Enabled =txt_tongTien.Enabled =txt_diemTichLuy.Enabled= false;
-            dsSanPham.AutoScroll = true;
-            loadComBoxLoai();
-            loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("","", currentPage, pageSize));
-            txt_soLuong.Minimum = 1;
-            txt_soLuong.Maximum = 100;
-            txt_soLuong.Value = 1;
-            InitializeDataGridView();
             this.btn_keTiep.Click += Btn_keTiep_Click;
             this.btn_troLai.Click += Btn_troLai_Click;
             this.btn_trangDau.Click += Btn_trangDau_Click;
@@ -136,42 +138,40 @@ namespace GUI
 
         private void Btn_trangCuoi_Click(object sender, EventArgs e)
         {
-            currentPage = totalPages;  // Di chuyển đến trang cuối
-            loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
-            UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
+            int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+            if (currentPage < totalPages)
+            {
+                currentPage = totalPages;
+                LoadSanPhamPage();
+            }
         }
 
         private void Btn_trangDau_Click(object sender, EventArgs e)
         {
-            currentPage = 1;  // Quay lại trang đầu
-            loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
-            UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
+            if (currentPage > 1)
+            {
+                currentPage = 1;
+                LoadSanPhamPage();
+            }
+        }
+
+        private void Btn_keTiep_Click(object sender, EventArgs e)
+        {
+            int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+            if (currentPage < totalPages)
+            {
+                currentPage++;
+                LoadSanPhamPage();
+            }
         }
 
         private void Btn_troLai_Click(object sender, EventArgs e)
         {
             if (currentPage > 1)
             {
-                currentPage--;  // Quay lại trang trước
-                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
-                UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
+                currentPage--;
+                LoadSanPhamPage();
             }
-        }
-
-        private void Btn_keTiep_Click(object sender, EventArgs e)
-        {
-            if (currentPage < totalPages)
-            {
-                currentPage++;  // Di chuyển đến trang tiếp theo
-                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
-                UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
-            }
-        }
-        private void SetTotalProducts(int total)
-        {
-            totalProducts = total;
-            CalculateTotalPages();
-            UpdatePaginationButtons();
         }
 
         private decimal CalculateDiemTichLuy(decimal totalAmount)
@@ -239,6 +239,12 @@ namespace GUI
             string sdt = txt_soDienThoai.Text;
             string diaChi = txt_diaChi.Text;
             decimal diemTichLuy = 0;
+            string maNV = _maNhanVien;
+            if(string.IsNullOrEmpty(maNV))
+            {
+                MessageBox.Show("Vui lòng đăng nhập để thực hiện chức năng này.");
+                return;
+            }
 
             // Tính tổng tiền và điểm tích lũy
             decimal tongTien = CalculateTotalAmount();
@@ -366,8 +372,11 @@ namespace GUI
                 }
 
                 MessageBox.Show("Hóa đơn đã được lưu thành công!");
+                _maHD= hoaDon.MaHoaDonBanHang;
                 dgvCart.Rows.Clear();
                 clearAll();
+                label_xuaHD.Text= "Có thể xuất hóa đơn";
+                label_xuaHD.Visible = true;
             }
             catch (Exception ex)
             {
@@ -424,9 +433,97 @@ namespace GUI
 
         private void Btn_inHoaDon_Click(object sender, EventArgs e)
         {
-            
+            XuatHoaDon();
+            label_xuaHD.Visible = false;
         }
+        private void XuatHoaDon()
+        {
+            // Hiển thị thông báo xác nhận
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xuất file Word?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Word Documents (*.docx)|*.docx",
+                    FileName = "Hoa-Don-(" + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss") + ").docx"
+                };
 
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Mở tài liệu Word mẫu sẵn
+                        var wordApp = new Microsoft.Office.Interop.Word.Application();
+                        string url = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                        var document = wordApp.Documents.Open(url + @"\Resources\hoa-don-ban-hang-file-word.docx");
+                        string maHoaDon = _maHD;
+                        HoaDonBanHang hd = _hoaDonBanHangBLL.GetHoaDonByMaHoaDon(maHoaDon).FirstOrDefault();
+                        if (hd == null)
+                        {
+                            MessageBox.Show("Không tìm thấy hóa đơn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        KhachHang kh = _khachHangBLL.GetKhachHang(hd.MaKhachHang, string.Empty, string.Empty);
+                        NhanVien nv = _nhanVienBLL.GetNhanVienById(hd.MaNhanVien);
+                        if (kh == null || nv == null)
+                        {
+                            MessageBox.Show("Không tìm thấy thông tin khách hàng hoặc nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        string tenNhanVien = nv.HoTen;
+                        string tenKhachHang = kh.TenKhachHang;
+                        string DiaChi = kh.DiaChi;
+                        string soDienThoai = kh.SoDienThoai;
+
+                        // Thay thế các thông tin trong tài liệu Word
+                        document.Bookmarks["NgayLap"].Range.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                        document.Bookmarks["TenNhanVien"].Range.Text = tenNhanVien;
+                        document.Bookmarks["MaHoaDonBanHang"].Range.Text = maHoaDon;
+                        document.Bookmarks["TenKhachHang"].Range.Text = tenKhachHang;
+                        document.Bookmarks["DiaChi"].Range.Text = DiaChi;
+                        document.Bookmarks["SDT"].Range.Text = soDienThoai;
+
+                        // Lấy bảng đầu tiên trong tài liệu (giả sử bảng đã được định dạng sẵn)
+                        var table = document.Tables[1];
+
+                        var lstCTHD = from cthd in new ChiTietHoaDonBanHangBLL().GetChiTietHoaDonByMaHoaDon(maHoaDon)
+                                      select new
+                                      {
+                                          cthd.SanPham.TenSanPham,
+                                          cthd.SoLuong,
+                                          cthd.DonGia,
+                                          cthd.ThanhTien
+                                      };
+
+                        DataGridView dgvTemp = new DataGridView();
+                        dgvTemp.Name = "dgvTemp";
+                        dgvTemp.DataSource = lstCTHD.ToList();
+                        this.Controls.Add(dgvTemp);
+                        for (int i = 0; i < dgvTemp.Rows.Count; i++)
+                        {
+                            var newRow = table.Rows.Add();
+                            newRow.Cells[1].Range.Text = (i + 1).ToString();
+                            newRow.Cells[2].Range.Text = dgvTemp.Rows[i].Cells["TenSanPham"].Value.ToString();
+                            newRow.Cells[3].Range.Text = dgvTemp.Rows[i].Cells["SoLuong"].Value.ToString();
+                            newRow.Cells[4].Range.Text = Convert.ToDecimal(dgvTemp.Rows[i].Cells["DonGia"].Value).ToString("N0") + " VNĐ";
+                            newRow.Cells[5].Range.Text = Convert.ToDecimal(dgvTemp.Rows[i].Cells["ThanhTien"].Value).ToString("N0") + " VNĐ";
+                        }
+                        var tongTien = (decimal)lstCTHD.Sum(x => x.ThanhTien);
+                        document.Bookmarks["TongTien"].Range.Text = tongTien.ToString("N0") + " VNĐ";
+                        // Lưu tài liệu sau khi thêm dữ liệu
+                        document.SaveAs2(saveFileDialog.FileName);
+                        document.Close();
+                        wordApp.Quit();
+                        MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Controls.Remove(dgvTemp);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Xuất báo cáo thất bại: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
         private void Btn_Clear_Click(object sender, EventArgs e)
         {
            clearAll();
@@ -558,7 +655,7 @@ namespace GUI
             if (ttSanPham != null)
             {
                 currentPage = 1;  // Quay lại trang đầu
-                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize));
+                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", ttSanPham, currentPage, pageSize,out totalRecords));
                 UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
             }
             else
@@ -604,7 +701,12 @@ namespace GUI
                 Console.WriteLine(ex.Message);
             }
         }
-
+        private void LoadSanPhamPage()
+        {
+            List<SanPham> ListSanPham = _sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize, out totalRecords);
+            loadSanPham(ListSanPham);
+            UpdatePaginationButtons();
+        }
         private void loadSanPham(List<SanPham> ListSanPham)
         {
             dsSanPham.Controls.Clear();  // Xóa tất cả các điều khiển cũ
@@ -843,14 +945,18 @@ namespace GUI
             if (cbo_loai.SelectedItem != null)
             {
                 var selectedLoai = (LoaiSanPham)cbo_loai.SelectedItem;
+                string maLoai= selectedLoai.MaLoai;
 
                 if (selectedLoai.MaLoai == "ALL")
                 {
-                    loadSanPham(_sanPhamBLL.GetUniqueProducts());
+                    currentPage = 1;
+                    LoadSanPhamPage();
                 }
                 else
                 {
-                    loadSanPhamTheoMa();
+                    currentPage = 1;  // Quay lại trang đầu
+                    loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination(maLoai, "", currentPage, pageSize, out totalRecords));
+                    UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
                 }
             }
         }
