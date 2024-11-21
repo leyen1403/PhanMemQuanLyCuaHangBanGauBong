@@ -3,6 +3,7 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 
 namespace BLL
 {
@@ -99,6 +100,22 @@ namespace BLL
         public bool UpdateHoaDonBanHang(HoaDonBanHang hoaDon)
         {
             return _hoaDonBanHangDAL.UpdateHoaDonBanHang(hoaDon);
+        }
+
+        //Nam viết thêm 
+        public DataTable GetTongTienTheoNgayDataTable(DateTime startDate, DateTime endDate)
+        {
+            return _hoaDonBanHangDAL.GetTongTienTheoNgayDataTable(startDate, endDate);
+        }
+
+        public DataTable GetTongTienTheoNgayDataTable()
+        {
+            return _hoaDonBanHangDAL.GetTongTienTheoNgayDataTable();
+        }
+
+        public List<PhieuBaoCao> LayPhieuBaoCaoTheoKhoangThoiGian(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            return _hoaDonBanHangDAL.LayPhieuBaoCaoTheoKhoangThoiGian(ngayBatDau, ngayKetThuc);
         }
 
     }

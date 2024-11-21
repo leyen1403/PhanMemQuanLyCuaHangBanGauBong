@@ -38,20 +38,6 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.cspro
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.pdb
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.pdb
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll.config
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.AssemblyReference.cache
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.ProductItem.resources
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.Properties.Resources.resources
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.GenerateResource.cache
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll.licenses
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.CoreCompileInputs.cache
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.dll
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.pdb
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DevExpress.Data.Desktop.v22.2.dll
@@ -142,3 +128,17 @@ C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.C
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\UC.pdb
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.pdb
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\bin\Debug\DTO.dll.config
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.AssemblyReference.cache
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.ProductItem.resources
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.Properties.Resources.resources
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.GenerateResource.cache
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll.licenses
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.CoreCompileInputs.cache
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.csproj.Up2Date
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\UC\obj\Debug\UC.pdb

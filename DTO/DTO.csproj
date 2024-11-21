@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="ExcelExport.cs" />
     <Compile Include="HoaDonDTO.cs" />
+    <Compile Include="PhieuBaoCao.cs" />
     <Compile Include="PhieuDoiTraDTO.cs" />
     <Compile Include="PhieuDoiTraUpdate.cs" />
     <Compile Include="PhieuKiemKe.cs" />
