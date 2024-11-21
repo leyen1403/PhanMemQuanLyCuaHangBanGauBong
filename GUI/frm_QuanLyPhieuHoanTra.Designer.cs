@@ -38,31 +38,30 @@
             this.btnLuuPhieu = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbbNhanVien = new System.Windows.Forms.ComboBox();
+            this.dTPNgayCapNhat = new System.Windows.Forms.DateTimePicker();
+            this.btnHuyPhieu = new System.Windows.Forms.Button();
+            this.btnThemPHT = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dTPNgayLap = new System.Windows.Forms.DateTimePicker();
             this.txtTongSoLuong = new System.Windows.Forms.TextBox();
             this.txtMaPHT = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpTuNgay = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnTim = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpDenNgay = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.cbbMaPhieuHT = new System.Windows.Forms.ComboBox();
             this.cbbLuaChonHienThi = new System.Windows.Forms.ComboBox();
-            this.btnTim = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.dTPNgayLap = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbbTinhTrang = new System.Windows.Forms.ComboBox();
-            this.dTPNgayCapNhat = new System.Windows.Forms.DateTimePicker();
-            this.cbbNhanVien = new System.Windows.Forms.ComboBox();
-            this.btnThemPHT = new System.Windows.Forms.Button();
-            this.btnHuyPhieu = new System.Windows.Forms.Button();
-            this.btnInPhieu = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietPhieuHoanTra)).BeginInit();
             this.contextMenuStripDelete.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -174,9 +173,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.cbbNhanVien);
             this.groupBox1.Controls.Add(this.dTPNgayCapNhat);
-            this.groupBox1.Controls.Add(this.btnInPhieu);
             this.groupBox1.Controls.Add(this.btnHuyPhieu);
             this.groupBox1.Controls.Add(this.btnLuuPhieu);
             this.groupBox1.Controls.Add(this.btnThemPHT);
@@ -184,7 +183,6 @@
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.dTPNgayLap);
             this.groupBox1.Controls.Add(this.txtTongSoLuong);
-            this.groupBox1.Controls.Add(this.cbbTinhTrang);
             this.groupBox1.Controls.Add(this.txtMaPHT);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label1);
@@ -199,9 +197,72 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu hoàn trả";
             // 
+            // cbbNhanVien
+            // 
+            this.cbbNhanVien.FormattingEnabled = true;
+            this.cbbNhanVien.Location = new System.Drawing.Point(197, 258);
+            this.cbbNhanVien.Name = "cbbNhanVien";
+            this.cbbNhanVien.Size = new System.Drawing.Size(248, 28);
+            this.cbbNhanVien.TabIndex = 55;
+            // 
+            // dTPNgayCapNhat
+            // 
+            this.dTPNgayCapNhat.CustomFormat = "dd/MM/yyyy";
+            this.dTPNgayCapNhat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dTPNgayCapNhat.Location = new System.Drawing.Point(197, 191);
+            this.dTPNgayCapNhat.Name = "dTPNgayCapNhat";
+            this.dTPNgayCapNhat.Size = new System.Drawing.Size(248, 26);
+            this.dTPNgayCapNhat.TabIndex = 54;
+            // 
+            // btnHuyPhieu
+            // 
+            this.btnHuyPhieu.BackColor = System.Drawing.Color.Navy;
+            this.btnHuyPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHuyPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnHuyPhieu.Image = global::GUI.Properties.Resources.icons8_delete_35;
+            this.btnHuyPhieu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHuyPhieu.Location = new System.Drawing.Point(495, 155);
+            this.btnHuyPhieu.Name = "btnHuyPhieu";
+            this.btnHuyPhieu.Size = new System.Drawing.Size(148, 46);
+            this.btnHuyPhieu.TabIndex = 51;
+            this.btnHuyPhieu.Text = "Hủy phiếu";
+            this.btnHuyPhieu.UseVisualStyleBackColor = false;
+            // 
+            // btnThemPHT
+            // 
+            this.btnThemPHT.BackColor = System.Drawing.Color.Navy;
+            this.btnThemPHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemPHT.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnThemPHT.Image = global::GUI.Properties.Resources.icons8_add_35;
+            this.btnThemPHT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThemPHT.Location = new System.Drawing.Point(495, 53);
+            this.btnThemPHT.Name = "btnThemPHT";
+            this.btnThemPHT.Size = new System.Drawing.Size(148, 41);
+            this.btnThemPHT.TabIndex = 49;
+            this.btnThemPHT.Text = "Tạo phiếu";
+            this.btnThemPHT.UseVisualStyleBackColor = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(35, 258);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(103, 20);
+            this.label16.TabIndex = 35;
+            this.label16.Text = "Mã nhân viên";
+            // 
+            // dTPNgayLap
+            // 
+            this.dTPNgayLap.CustomFormat = "dd/MM/yyyy";
+            this.dTPNgayLap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dTPNgayLap.Location = new System.Drawing.Point(197, 225);
+            this.dTPNgayLap.Name = "dTPNgayLap";
+            this.dTPNgayLap.Size = new System.Drawing.Size(248, 26);
+            this.dTPNgayLap.TabIndex = 11;
+            // 
             // txtTongSoLuong
             // 
-            this.txtTongSoLuong.Location = new System.Drawing.Point(197, 126);
+            this.txtTongSoLuong.Location = new System.Drawing.Point(197, 155);
             this.txtTongSoLuong.Name = "txtTongSoLuong";
             this.txtTongSoLuong.Size = new System.Drawing.Size(248, 26);
             this.txtTongSoLuong.TabIndex = 9;
@@ -213,10 +274,19 @@
             this.txtMaPHT.Size = new System.Drawing.Size(248, 26);
             this.txtMaPHT.TabIndex = 6;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(35, 90);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 20);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Tình trạng";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 126);
+            this.label1.Location = new System.Drawing.Point(35, 155);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 20);
             this.label1.TabIndex = 3;
@@ -225,11 +295,20 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(35, 162);
+            this.label8.Location = new System.Drawing.Point(35, 191);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 20);
             this.label8.TabIndex = 2;
             this.label8.Text = "Ngày cập nhật";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(35, 227);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 20);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Ngày lập";
             // 
             // label10
             // 
@@ -278,6 +357,20 @@
             this.label2.Size = new System.Drawing.Size(74, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "Từ ngày:";
+            // 
+            // btnTim
+            // 
+            this.btnTim.AutoSize = true;
+            this.btnTim.BackColor = System.Drawing.Color.Navy;
+            this.btnTim.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTim.ForeColor = System.Drawing.Color.White;
+            this.btnTim.Image = global::GUI.Properties.Resources.icons8_find_35;
+            this.btnTim.Location = new System.Drawing.Point(504, 47);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(68, 52);
+            this.btnTim.TabIndex = 7;
+            this.btnTim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTim.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -346,123 +439,13 @@
             this.cbbLuaChonHienThi.Size = new System.Drawing.Size(306, 27);
             this.cbbLuaChonHienThi.TabIndex = 4;
             // 
-            // btnTim
+            // textBox1
             // 
-            this.btnTim.AutoSize = true;
-            this.btnTim.BackColor = System.Drawing.Color.Navy;
-            this.btnTim.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTim.ForeColor = System.Drawing.Color.White;
-            this.btnTim.Image = global::GUI.Properties.Resources.icons8_find_35;
-            this.btnTim.Location = new System.Drawing.Point(504, 47);
-            this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(68, 52);
-            this.btnTim.TabIndex = 7;
-            this.btnTim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTim.UseVisualStyleBackColor = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(35, 198);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 20);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Ngày lập";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(35, 229);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(103, 20);
-            this.label16.TabIndex = 35;
-            this.label16.Text = "Mã nhân viên";
-            // 
-            // dTPNgayLap
-            // 
-            this.dTPNgayLap.CustomFormat = "dd/MM/yyyy";
-            this.dTPNgayLap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPNgayLap.Location = new System.Drawing.Point(197, 196);
-            this.dTPNgayLap.Name = "dTPNgayLap";
-            this.dTPNgayLap.Size = new System.Drawing.Size(248, 26);
-            this.dTPNgayLap.TabIndex = 11;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(35, 90);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 20);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Tình trạng";
-            // 
-            // cbbTinhTrang
-            // 
-            this.cbbTinhTrang.FormattingEnabled = true;
-            this.cbbTinhTrang.Items.AddRange(new object[] {
-            "Đã hoàn trả",
-            "Đang hoàn trả"});
-            this.cbbTinhTrang.Location = new System.Drawing.Point(197, 89);
-            this.cbbTinhTrang.Name = "cbbTinhTrang";
-            this.cbbTinhTrang.Size = new System.Drawing.Size(248, 28);
-            this.cbbTinhTrang.TabIndex = 8;
-            // 
-            // dTPNgayCapNhat
-            // 
-            this.dTPNgayCapNhat.CustomFormat = "dd/MM/yyyy";
-            this.dTPNgayCapNhat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPNgayCapNhat.Location = new System.Drawing.Point(197, 162);
-            this.dTPNgayCapNhat.Name = "dTPNgayCapNhat";
-            this.dTPNgayCapNhat.Size = new System.Drawing.Size(248, 26);
-            this.dTPNgayCapNhat.TabIndex = 54;
-            // 
-            // cbbNhanVien
-            // 
-            this.cbbNhanVien.FormattingEnabled = true;
-            this.cbbNhanVien.Location = new System.Drawing.Point(197, 229);
-            this.cbbNhanVien.Name = "cbbNhanVien";
-            this.cbbNhanVien.Size = new System.Drawing.Size(248, 28);
-            this.cbbNhanVien.TabIndex = 55;
-            // 
-            // btnThemPHT
-            // 
-            this.btnThemPHT.BackColor = System.Drawing.Color.Navy;
-            this.btnThemPHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemPHT.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnThemPHT.Image = global::GUI.Properties.Resources.icons8_add_35;
-            this.btnThemPHT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThemPHT.Location = new System.Drawing.Point(495, 53);
-            this.btnThemPHT.Name = "btnThemPHT";
-            this.btnThemPHT.Size = new System.Drawing.Size(148, 41);
-            this.btnThemPHT.TabIndex = 49;
-            this.btnThemPHT.Text = "Tạo phiếu";
-            this.btnThemPHT.UseVisualStyleBackColor = false;
-            // 
-            // btnHuyPhieu
-            // 
-            this.btnHuyPhieu.BackColor = System.Drawing.Color.Navy;
-            this.btnHuyPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHuyPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnHuyPhieu.Image = global::GUI.Properties.Resources.icons8_delete_35;
-            this.btnHuyPhieu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHuyPhieu.Location = new System.Drawing.Point(495, 155);
-            this.btnHuyPhieu.Name = "btnHuyPhieu";
-            this.btnHuyPhieu.Size = new System.Drawing.Size(148, 46);
-            this.btnHuyPhieu.TabIndex = 51;
-            this.btnHuyPhieu.Text = "Hủy phiếu";
-            this.btnHuyPhieu.UseVisualStyleBackColor = false;
-            // 
-            // btnInPhieu
-            // 
-            this.btnInPhieu.BackColor = System.Drawing.Color.Navy;
-            this.btnInPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInPhieu.Location = new System.Drawing.Point(495, 207);
-            this.btnInPhieu.Name = "btnInPhieu";
-            this.btnInPhieu.Size = new System.Drawing.Size(148, 42);
-            this.btnInPhieu.TabIndex = 53;
-            this.btnInPhieu.Text = "In phiếu";
-            this.btnInPhieu.UseVisualStyleBackColor = false;
+            this.textBox1.Location = new System.Drawing.Point(197, 90);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(248, 52);
+            this.textBox1.TabIndex = 56;
             // 
             // frm_QuanLyPhieuHoanTra
             // 
@@ -516,13 +499,12 @@
         private System.Windows.Forms.ComboBox cbbLuaChonHienThi;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DateTimePicker dTPNgayLap;
-        private System.Windows.Forms.ComboBox cbbTinhTrang;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dTPNgayCapNhat;
         private System.Windows.Forms.ComboBox cbbNhanVien;
-        private System.Windows.Forms.Button btnInPhieu;
         private System.Windows.Forms.Button btnHuyPhieu;
         private System.Windows.Forms.Button btnThemPHT;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
