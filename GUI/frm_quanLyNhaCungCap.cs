@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DTO;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -21,6 +22,9 @@ namespace GUI
         private void LoadNCC()
         {
             var lst_ncc = NhaCungCapBLL.LayDanhSachNhaCungCap();
+            lbl_NgayCapNhap.Font = new System.Drawing.Font("Arial", 10.2f);
+            lbl_NgayTao.Font = new System.Drawing.Font("Arial", 10.2f);
+
             dgv_NhaCC.DataSource = lst_ncc;
         }
         private void dgv_NhaCC_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
