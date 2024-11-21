@@ -1142,6 +1142,9 @@ namespace GUI
             btn.ForeColor = Color.White; // Đổi màu chữ nếu cần
         }
 
-      
+        private void btnNhapLaiPN_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
