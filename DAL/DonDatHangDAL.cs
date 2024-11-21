@@ -17,6 +17,10 @@ namespace DAL
         {
             return db.DonDatHangs.OrderByDescending(ddh => ddh.MaDonDatHang).ToList();
         }
+        public List<DonDatHang> LayDanhSachDonDatHang2()
+        {
+            return db.DonDatHangs.ToList();
+        }
 
         public bool ThemDonDatHang(DonDatHang ddh)
         {

@@ -24,6 +24,40 @@ namespace DAL
         {
             return db.SanPhams.Where(sp => sp.TenSanPham == name).ToList<SanPham>();
         }
+
+        public bool UpdateProductStock(string maSanPham, int soLuongNhap)
+        {
+            try
+            {
+                if (soLuongNhap <= 0)
+                {
+                    throw new ArgumentException("Số lượng nhập phải lớn hơn 0.");
+                }
+
+                var product = db.SanPhams.FirstOrDefault(p => p.MaSanPham == maSanPham);
+                if (product != null)
+                {
+                    product.SoLuongTon = (product.SoLuongTon ?? 0) + soLuongNhap;
+
+                    if (product.SoLuongTon < 0)
+                    {
+                        throw new InvalidOperationException("Số lượng tồn không thể nhỏ hơn 0.");
+                    }
+
+                    db.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Sản phẩm không tồn tại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi cập nhật số lượng tồn: {ex.Message}");
+                return false;
+            }
+        }
         public List<SanPham> GetProductByType(string typeId)
         {
             return db.SanPhams.Where(sp => sp.MaLoai == typeId).ToList<SanPham>();
@@ -398,6 +432,24 @@ namespace DAL
                 return new List<SanPham>(); // Trả về danh sách rỗng nếu có lỗi
             }
         }
+        public List<SanPham> GetSanPhamByMaDDH(string maDDH)
+        {
+            try
+            {
+                var sanPhams = (from ctdh in db.ChiTietDonDatHangs
+                                join sp in db.SanPhams on ctdh.MaSanPham equals sp.MaSanPham
+                                where ctdh.MaDonDatHang == maDDH && sp.TrangThai == true
+                                select sp).ToList();
+
+                return sanPhams;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy thông tin sản phẩm: " + ex.Message);
+                return new List<SanPham>(); 
+            }
+        }
+
         public SanPhamGioHangDTO GetSanPhamByMaSanPham(string maSanPham)
         {
             var query = (from sp in db.SanPhams

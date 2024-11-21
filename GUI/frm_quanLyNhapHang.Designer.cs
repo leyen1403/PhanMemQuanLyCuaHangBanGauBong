@@ -64,15 +64,14 @@
             this.dgvPhieuNhap = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvChiTietPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.contextMenuStripDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aa = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnLuu = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuNhap)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietPhieuNhap)).BeginInit();
-            this.contextMenuStripDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -224,6 +223,7 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu nhập";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnInPhieu
             // 
@@ -244,7 +244,7 @@
             this.btnHuyPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnHuyPhieu.Location = new System.Drawing.Point(486, 185);
             this.btnHuyPhieu.Name = "btnHuyPhieu";
-            this.btnHuyPhieu.Size = new System.Drawing.Size(148, 46);
+            this.btnHuyPhieu.Size = new System.Drawing.Size(148, 42);
             this.btnHuyPhieu.TabIndex = 51;
             this.btnHuyPhieu.Text = "Hủy phiếu nhập";
             this.btnHuyPhieu.UseVisualStyleBackColor = false;
@@ -256,9 +256,9 @@
             this.btnLuuPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnLuuPhieu.Location = new System.Drawing.Point(486, 133);
             this.btnLuuPhieu.Name = "btnLuuPhieu";
-            this.btnLuuPhieu.Size = new System.Drawing.Size(148, 39);
+            this.btnLuuPhieu.Size = new System.Drawing.Size(148, 42);
             this.btnLuuPhieu.TabIndex = 51;
-            this.btnLuuPhieu.Text = "Lưu phiếu";
+            this.btnLuuPhieu.Text = "Lưu phiếu nhập";
             this.btnLuuPhieu.UseVisualStyleBackColor = false;
             // 
             // btnTaoMoi
@@ -268,7 +268,7 @@
             this.btnTaoMoi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnTaoMoi.Location = new System.Drawing.Point(486, 81);
             this.btnTaoMoi.Name = "btnTaoMoi";
-            this.btnTaoMoi.Size = new System.Drawing.Size(148, 38);
+            this.btnTaoMoi.Size = new System.Drawing.Size(148, 42);
             this.btnTaoMoi.TabIndex = 50;
             this.btnTaoMoi.Text = "Tạo mới";
             this.btnTaoMoi.UseVisualStyleBackColor = false;
@@ -288,9 +288,9 @@
             this.btnThemPN.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnThemPN.Location = new System.Drawing.Point(486, 26);
             this.btnThemPN.Name = "btnThemPN";
-            this.btnThemPN.Size = new System.Drawing.Size(148, 41);
+            this.btnThemPN.Size = new System.Drawing.Size(148, 42);
             this.btnThemPN.TabIndex = 49;
-            this.btnThemPN.Text = "Tạo phiếu";
+            this.btnThemPN.Text = "Tạo phiếu nhập";
             this.btnThemPN.UseVisualStyleBackColor = false;
             // 
             // label16
@@ -421,25 +421,24 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(613, 395);
+            this.groupBox3.Size = new System.Drawing.Size(626, 395);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Danh sách phiếu nhập";
             // 
             // dgvPhieuNhap
             // 
-            this.dgvPhieuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvPhieuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvPhieuNhap.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPhieuNhap.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPhieuNhap.Location = new System.Drawing.Point(5, 23);
+            this.dgvPhieuNhap.Location = new System.Drawing.Point(5, 33);
             this.dgvPhieuNhap.Margin = new System.Windows.Forms.Padding(2);
             this.dgvPhieuNhap.Name = "dgvPhieuNhap";
             this.dgvPhieuNhap.RowHeadersWidth = 51;
             this.dgvPhieuNhap.RowTemplate.Height = 24;
-            this.dgvPhieuNhap.Size = new System.Drawing.Size(627, 368);
+            this.dgvPhieuNhap.Size = new System.Drawing.Size(617, 358);
             this.dgvPhieuNhap.TabIndex = 0;
             // 
             // groupBox4
@@ -448,12 +447,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.dgvChiTietPhieuNhap);
+            this.groupBox4.Controls.Add(this.btnLuu);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(661, 333);
+            this.groupBox4.Location = new System.Drawing.Point(644, 333);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(689, 395);
+            this.groupBox4.Size = new System.Drawing.Size(706, 395);
             this.groupBox4.TabIndex = 37;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chi tiết phiếu nhập";
@@ -466,27 +466,32 @@
             this.dgvChiTietPhieuNhap.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvChiTietPhieuNhap.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvChiTietPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvChiTietPhieuNhap.ContextMenuStrip = this.contextMenuStripDelete;
-            this.dgvChiTietPhieuNhap.Location = new System.Drawing.Point(5, 23);
+            this.dgvChiTietPhieuNhap.ContextMenuStrip = this.aa;
+            this.dgvChiTietPhieuNhap.Location = new System.Drawing.Point(5, 74);
             this.dgvChiTietPhieuNhap.Margin = new System.Windows.Forms.Padding(2);
             this.dgvChiTietPhieuNhap.Name = "dgvChiTietPhieuNhap";
             this.dgvChiTietPhieuNhap.RowHeadersWidth = 51;
             this.dgvChiTietPhieuNhap.RowTemplate.Height = 24;
-            this.dgvChiTietPhieuNhap.Size = new System.Drawing.Size(679, 368);
+            this.dgvChiTietPhieuNhap.Size = new System.Drawing.Size(696, 317);
             this.dgvChiTietPhieuNhap.TabIndex = 0;
             // 
-            // contextMenuStripDelete
+            // aa
             // 
-            this.contextMenuStripDelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteMenuItem});
-            this.contextMenuStripDelete.Name = "contextMenuStripDelete";
-            this.contextMenuStripDelete.Size = new System.Drawing.Size(95, 26);
+            this.aa.Name = "contextMenuStripDelete";
+            this.aa.Size = new System.Drawing.Size(181, 26);
             // 
-            // deleteMenuItem
+            // btnLuu
             // 
-            this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(94, 22);
-            this.deleteMenuItem.Text = "Xóa";
+            this.btnLuu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLuu.BackColor = System.Drawing.Color.Navy;
+            this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLuu.Location = new System.Drawing.Point(590, 23);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(81, 42);
+            this.btnLuu.TabIndex = 50;
+            this.btnLuu.Text = "Lưu ";
+            this.btnLuu.UseVisualStyleBackColor = false;
             // 
             // frm_quanLyNhapHang
             // 
@@ -507,7 +512,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuNhap)).EndInit();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietPhieuNhap)).EndInit();
-            this.contextMenuStripDelete.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -549,7 +553,7 @@
         private System.Windows.Forms.Button btnInPhieu;
         private System.Windows.Forms.Button btnLuuPhieu;
         private System.Windows.Forms.Button btnHuyPhieu;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripDelete;
-        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private System.Windows.Forms.ContextMenuStrip aa;
+        private System.Windows.Forms.Button btnLuu;
     }
 }

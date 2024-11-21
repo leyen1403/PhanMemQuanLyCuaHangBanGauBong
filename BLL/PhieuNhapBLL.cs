@@ -15,6 +15,18 @@ namespace BLL
         {
             return phieuNhapDAL.GetListPhieuNhap();
         }
+        public List<string> GetAllMaPhieuNhap()
+        {
+            List<PhieuNhap> danhSachPhieuNhap = getAllPhieuNhap();
+
+            // Trích xuất danh sách mã phiếu nhập
+            List<string> danhSachMaPN = danhSachPhieuNhap
+                .Select(pn => pn.MaPhieuNhap) 
+                .ToList();
+
+            return danhSachMaPN;
+        }
+
 
         public bool AddPhieuNhap(PhieuNhap phieuNhap)
         {
@@ -27,6 +39,10 @@ namespace BLL
         public List<PhieuNhap> GetListPhieuNhapByNhanVien(string maNV)
         {
             return phieuNhapDAL.GetListPhieuNhapByNhanVien(maNV);
+        }
+        public List<PhieuNhap> GetListPhieuNhapByDonDatHang(string maDDH)
+        {
+            return phieuNhapDAL.GetListPhieuNhapByDonDatHang(maDDH);
         }
         public bool UpdateTongTien(string maPN, decimal tongTien)
         {

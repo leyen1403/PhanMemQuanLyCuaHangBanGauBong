@@ -37,6 +37,11 @@ namespace DAL
         {
             return db.PhieuNhaps.Where(x => x.MaNhanVien == maNhanVien).ToList();
         }
+        public List<PhieuNhap> GetListPhieuNhapByDonDatHang(string maDDH)
+        {
+            return db.PhieuNhaps.Where(x => x.MaDonDatHang == maDDH).ToList();
+        }
+
         public bool UpdateTongTien(string maPN, decimal tongTien)
         {
             try

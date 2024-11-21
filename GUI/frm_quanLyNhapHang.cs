@@ -1,10 +1,13 @@
 ﻿using BLL;
+using DevExpress.XtraPrinting.Native;
 using DTO;
+using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +24,11 @@ namespace GUI
         ChiTietPhieuNhapBLL chiTietPhieuNhapBLL = new ChiTietPhieuNhapBLL();
         DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
         NhanVienBLL nhanVienBLL = new NhanVienBLL();
-        private BindingList<ChiTietPhieuNhap> bindingList;
+        SanPhamBLL sanPhamBLL = new SanPhamBLL();
+        private db_QLCHBGBDataContext db = new db_QLCHBGBDataContext();
+
+        private List<ChiTietPhieuNhap> dsCTPN;
+        //private BindingList<ChiTietPhieuNhap> bindingList;
         public frm_quanLyNhapHang()
         {
             InitializeComponent();
@@ -32,36 +39,510 @@ namespace GUI
             this.btnTaoMoi.Click += BtnTaoMoi_Click;
             this.btnHuyPhieu.Click += BtnHuyPhieu_Click;
             this.btnLuuPhieu.Click += BtnLuuPhieu_Click;
-            this.deleteMenuItem.Click += DeleteMenuItem_Click;
+            //this.deleteMenuItem.Click += DeleteMenuItem_Click;
+            this.btnLuu.Click += BtnLuu_Click;
+            dgvChiTietPhieuNhap.CellValidating += DgvChiTietPhieuNhap_CellValidating;
+            dgvChiTietPhieuNhap.CellValueChanged += DgvChiTietPhieuNhap_CellValueChanged;
+            dgvChiTietPhieuNhap.RowContextMenuStripNeeded += DgvChiTietPhieuNhap_RowContextMenuStripNeeded1;
+            btnInPhieu.Click += BtnInPhieu_Click;
             
         }
 
-        private void DeleteMenuItem_Click(object sender, EventArgs e)
-        {
-            if (dgvChiTietPhieuNhap.CurrentRow != null)
-            {
-                // Lấy MaChiTietPhieuNhap của dòng hiện tại
-                string maChiTietPhieuNhap = dgvChiTietPhieuNhap.CurrentRow.Cells["MaChiTietPhieuNhap"].Value.ToString();
 
-                // Tìm và xóa sản phẩm trong BindingList dựa trên MaChiTietPhieuNhap
-                var itemToRemove = bindingList.FirstOrDefault(ct => ct.MaChiTietPhieuNhap == maChiTietPhieuNhap);
-                if (itemToRemove != null)
+
+
+        private void BtnInPhieu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (db == null)
                 {
-                    bindingList.Remove(itemToRemove); // Xóa từ BindingList
+                    MessageBox.Show("Đối tượng kết nối cơ sở dữ liệu chưa được khởi tạo!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                // Để DataGridView cập nhật, gán lại DataSource của dgvChiTietPhieuNhap với bindingList
-                dgvChiTietPhieuNhap.DataSource = null;
-                dgvChiTietPhieuNhap.DataSource = bindingList;
+                // Kiểm tra mã phiếu nhập
+                if (string.IsNullOrWhiteSpace(txtMaPN.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập mã phiếu nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                // Cập nhật lại giao diện
-                dgvChiTietPhieuNhap.Refresh();
+                // Tìm phiếu nhập theo mã
+                PhieuNhap pn = db.PhieuNhaps.FirstOrDefault(t => t.MaPhieuNhap == txtMaPN.Text);
+                if (pn == null)
+                {
+                    MessageBox.Show("Không tìm thấy phiếu nhập với mã đã nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                MessageBox.Show("Sản phẩm đã được xóa khỏi chi tiết phiếu nhập.");
+                // Kiểm tra thông tin liên quan đến phiếu nhập
+                var ddh = db.DonDatHangs.FirstOrDefault(d => d.MaDonDatHang == pn.MaDonDatHang);
+                if (ddh == null)
+                {
+                    MessageBox.Show("Không tìm thấy đơn đặt hàng liên quan đến phiếu nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var ncc = db.NhaCungCaps.FirstOrDefault(n => n.MaNhaCungCap == ddh.MaNhaCungCap);
+                if (ncc == null)
+                {
+                    MessageBox.Show("Không tìm thấy nhà cung cấp cho đơn đặt hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Khởi tạo đối tượng xuất Excel
+                ExcelExport excel = new ExcelExport();
+                string path = string.Empty;
+                excel.ExportPhieuNhap(pn, ref path, false);
+
+
+                // Tạo dictionary để thay thế dữ liệu trong file Excel
+                Dictionary<string, string> replacer = new Dictionary<string, string>();
+
+                string ngay = "Ngày " + pn.NgayLap.Value.Day + " tháng " + pn.NgayLap.Value.Month + " năm " + pn.NgayLap.Value.Year;
+                replacer.Add("%NgayThangNam", ngay);
+                replacer.Add("%MaPN", pn.MaPhieuNhap);
+                replacer.Add("%TongTien", String.Format("{0:0,0.00}", pn.TongTien));
+
+                // Thêm thông tin nhà cung cấp vào replacer
+                replacer.Add("%NCC", ncc.TenNhaCungCap);
+                replacer.Add("%DiaChi", ncc.DiaChi);
+                replacer.Add("%DienThoai", ncc.SoDienThoai);
+
+                // Thêm số tiền bằng chữ
+
+                //string tongTienChung = ConvertNumberToWords(pn.TongTien ?? 0);
+                //replacer.Add("%BangChu", tongTienChung);
+
+                // Thêm thông tin nhân viên
+                var nv = db.NhanViens.FirstOrDefault(n => n.MaNhanVien == pn.MaNhanVien);
+                replacer.Add("%TenNV", nv?.HoTen ?? "Không xác định");
+
+                // Đọc file mẫu Excel
+                MemoryStream stream = null;
+                byte[] arrByte = File.ReadAllBytes("Phieunhaphang.xlsx");
+                if (arrByte.Length > 0)
+                {
+                    stream = new MemoryStream(arrByte);
+                }
+
+                // Tạo đối tượng Excel Engine
+                ExcelEngine engine = new ExcelEngine();
+                IWorkbook workBook = engine.Excel.Workbooks.Open(stream);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                ITemplateMarkersProcessor markProcessor = workSheet.CreateTemplateMarkersProcessor();
+
+                // Thay thế các biến trong file Excel
+                if (replacer.Count > 0)
+                {
+                    foreach (var repl in replacer)
+                    {
+                        Replace(workSheet, repl.Key, repl.Value);
+                    }
+                }
+
+                // Lấp đầy chi tiết phiếu nhập
+                List<ChiTietPhieuNhap> ctpns = pn.ChiTietPhieuNhaps.Where(t => t.MaPhieuNhap == pn.MaPhieuNhap).ToList();
+                if (ctpns == null || ctpns.Count == 0)
+                {
+                    MessageBox.Show("Không có chi tiết phiếu nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Danh sách chi tiết phiếu nhập với STT
+                List<ChiTietPN> ctpnSTT = new List<ChiTietPN>();
+                int stt = 1;
+
+                foreach (ChiTietPhieuNhap ct in ctpns)
+                {
+                    try
+                    {
+                        ChiTietPN ctstt = new ChiTietPN(ct, stt++, db);
+                        ctpnSTT.Add(ctstt);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Lỗi khi xử lý chi tiết phiếu nhập: {ex.Message}", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                // Thêm dữ liệu chi tiết vào Excel
+                string viewName = "Phieunhaphang";
+                markProcessor.AddVariable(viewName, ctpnSTT);
+                markProcessor.ApplyMarkers(UnknownVariableAction.ReplaceBlank);
+
+                // Xóa dòng đánh dấu [TMP] trong Excel
+                IRange range = workSheet.FindFirst("[TMP]", ExcelFindType.Text);
+                if (range != null)
+                {
+                    workSheet.DeleteRow(range.Row);
+                }
+
+                //// Tìm cột %BangChu trong Excel và thay thế giá trị
+                //IRange bangChuRange = workSheet.FindFirst("%BangChu", ExcelFindType.Text);
+                //if (bangChuRange == null)
+                //{
+                //    MessageBox.Show("Không tìm thấy ô chứa %BangChu trong file Excel.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return; // Dừng quá trình nếu không tìm thấy ô
+                //}
+                //else
+                //{
+                //    // Thay thế %BangChu nếu tìm thấy
+                //    bangChuRange.Text = tongTienChung;
+                //}
+
+                // Lưu file Excel
+
+                //Lưu file
+                //string fileName = "";
+                //string file = Path.Combine(Path.GetTempPath(), "PhieuNhapHang_" + Guid.NewGuid() + "xlsx");
+                //fileName = file;
+                //Output file
+
+                string fileName = Path.Combine(Path.GetTempPath(), "PhieuNhapHang_" + Guid.NewGuid().ToString() + ".xlsx");
+                try
+                {
+                    workBook.SaveAs(fileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi lưu tệp: " + ex.Message);
+                    return;
+                }
+
+                // Đóng workbook và giải phóng tài nguyên
+                workBook.Close();
+                engine.Dispose();
+
+                MessageBox.Show("Xuất xong");
+
+                // Mở file nếu người dùng đồng ý
+                if (!string.IsNullOrEmpty(fileName) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(fileName);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng chọn một sản phẩm để xóa.");
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static string ConvertNumberToWords(decimal number)
+        {
+            string[] ones = { "", "Một", "Hai", "Ba", "Bốn", "Năm", "Sáu", "Bảy", "Tám", "Chín" };
+            string[] tens = { "", "Mười", "Hai mươi", "Ba mươi", "Bốn mươi", "Năm mươi", "Sáu mươi", "Bảy mươi", "Tám mươi", "Chín mươi" };
+            string[] hundreds = { "", "Một trăm", "Hai trăm", "Ba trăm", "Bốn trăm", "Năm trăm", "Sáu trăm", "Bảy trăm", "Tám trăm", "Chín trăm" };
+
+            if (number == 0) return "Không đồng";
+
+            string result = "";
+            int intNumber = (int)number;
+            int hundred = intNumber / 100;
+            int ten = (intNumber % 100) / 10;
+            int one = intNumber % 10;
+
+            // Kiểm tra xem giá trị có hợp lệ trong phạm vi mảng không
+            if (hundred >= 0 && hundred < hundreds.Length)
+            {
+                result += hundreds[hundred] + " ";
+            }
+
+            if (ten >= 0 && ten < tens.Length)
+            {
+                if (ten > 1)
+                {
+                    result += tens[ten] + " ";
+                    if (one >= 0 && one < ones.Length)
+                    {
+                        result += ones[one];
+                    }
+                }
+                else if (ten == 1)
+                {
+                    result += tens[ten] + " ";
+                    if (one >= 0 && one < ones.Length)
+                    {
+                        result += ones[one];
+                    }
+                }
+            }
+            else if (one >= 0 && one < ones.Length)
+            {
+                result += ones[one];
+            }
+
+            // Xử lý "một" đặc biệt với hàng mười
+            if (ten == 0 && one == 1)
+            {
+                result = "Một";
+            }
+
+            // Thêm "đồng" vào cuối
+            result += " đồng";
+
+            return result.Trim();
+        }
+
+
+
+        private void Replace(IWorksheet workSheet, string p1, string p2)
+        {
+
+            workSheet.Replace(p1, p2);
+        }
+
+        private void DgvChiTietPhieuNhap_RowContextMenuStripNeeded1(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                e.ContextMenuStrip = dgvChiTietPhieuNhap.ContextMenuStrip;
+            }
+        }
+
+        private void SetupContextMenu()
+        {
+            ContextMenuStrip contextMenu = new ContextMenuStrip();
+
+            ToolStripMenuItem deleteMenuItem = new ToolStripMenuItem("Xóa");
+            deleteMenuItem.Click += DeleteMenuItem_Click;
+
+            contextMenu.Items.Add(deleteMenuItem);
+
+            dgvChiTietPhieuNhap.ContextMenuStrip = contextMenu;
+        }
+
+        private void DgvChiTietPhieuNhap_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var changedColumn = dgvChiTietPhieuNhap.Columns[e.ColumnIndex].Name;
+
+                if (changedColumn == "SoLuong")
+                {
+                    // Cập nhật lại giá trị Thành Tiền khi Số Lượng thay đổi
+                    var row = dgvChiTietPhieuNhap.Rows[e.RowIndex];
+                    int soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
+                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value);
+                    row.Cells["ThanhTien"].Value = soLuong * donGia;
+                }
+            }
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var changedColumn = dgvChiTietPhieuNhap.Columns[e.ColumnIndex].Name;
+
+                if (changedColumn == "DonGia")
+                {
+                    // Cập nhật lại giá trị Thành Tiền khi Số Lượng thay đổi
+                    var row = dgvChiTietPhieuNhap.Rows[e.RowIndex];
+                    int soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
+                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value);
+                    row.Cells["ThanhTien"].Value = soLuong * donGia;
+                }
+            }
+            btnLuu.Enabled = false; 
+        }
+
+        private void DgvChiTietPhieuNhap_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            string columnName = dgvChiTietPhieuNhap.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "SoLuong")
+            {
+                if (!int.TryParse(e.FormattedValue.ToString(), out int value) || value <= 0)
+                {
+                    MessageBox.Show("Số lượng phải là số nguyên dương.");
+                    e.Cancel = true; 
+                }
+            }
+            else if (columnName == "DonGia")
+            {
+                if (!decimal.TryParse(e.FormattedValue.ToString(), out decimal donGia) || donGia <= 0)
+                {
+                    MessageBox.Show("Đơn giá phải là số thập phân dương.");
+                    e.Cancel = true; 
+                }
+            }
+
+        }
+
+        private void BtnLuu_Click(object sender, EventArgs e)
+        {
+
+
+            string maPN = txtMaPN.Text;
+
+            try
+            {
+                List<ChiTietPhieuNhap> updatedList = new List<ChiTietPhieuNhap>();
+
+                var originalList = chiTietPhieuNhapBLL.GetChiTietPhieuNhapByMaPN(maPN);
+
+                foreach (DataGridViewRow row in dgvChiTietPhieuNhap.Rows)
+                {
+                    if (row.IsNewRow) 
+                        continue;
+
+                    string maCTPN = row.Cells["MaChiTietPhieuNhap"].Value?.ToString();
+                    string maCTDDH = row.Cells["MaCTDDH"].Value?.ToString();
+                    string donViTinh = row.Cells["DonViTinh"].Value?.ToString();
+                    string ghiChu = row.Cells["GhiChu"].Value?.ToString();
+                    string trangThai = row.Cells["TrangThai"].Value?.ToString();
+                    string maSanPham = row.Cells["MaSanPham"].Value?.ToString();
+
+                    if (!int.TryParse(row.Cells["SoLuong"].Value?.ToString(), out int soLuong) || soLuong <= 0)
+                    {
+                        MessageBox.Show($"Số lượng không hợp lệ ở mã chi tiết {maCTPN}. Vui lòng kiểm tra lại.");
+                        return;
+                    }
+
+                    if (!decimal.TryParse(row.Cells["DonGia"].Value?.ToString(), out decimal donGia) || donGia <= 0)
+                    {
+                        MessageBox.Show($"Đơn giá không hợp lệ ở mã chi tiết {maCTPN}. Vui lòng kiểm tra lại.");
+                        return;
+                    }
+
+                    decimal thanhTien = soLuong * donGia;
+
+                    ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap
+                    {
+                        MaChiTietPhieuNhap = maCTPN,
+                        MaPhieuNhap = maPN,
+                        DonViTinh = donViTinh,
+                        SoLuong = soLuong,
+                        DonGia = donGia,
+                        ThanhTien = thanhTien,
+                        TrangThai = trangThai,
+                        GhiChu = ghiChu,
+                        MaChiTietDonDatHang = maCTDDH
+                    };
+
+                    updatedList.Add(ctpn);
+
+                    if (!string.IsNullOrEmpty(maSanPham))
+                    {
+                        bool isSuccessUpdateStock = sanPhamBLL.UpdateProductStock(maSanPham, soLuong);
+                        if (!isSuccessUpdateStock)
+                        {
+                            MessageBox.Show($"Có lỗi khi cập nhật số lượng tồn cho sản phẩm {maSanPham}.");
+                            return;
+                        }
+                    }
+                }
+
+                var deletedItems = originalList
+                    .Where(orig => updatedList.All(updated => updated.MaChiTietPhieuNhap != orig.MaChiTietPhieuNhap))
+                    .ToList();
+
+                bool isSuccess = chiTietPhieuNhapBLL.UpdateAndDeleteChiTietPhieuNhap(updatedList, deletedItems, maPN);
+                if (isSuccess)
+                {
+                    MessageBox.Show("Cập nhật thành công!");
+                    UpdateTongTien(maPN); 
+                    loadChiTietPhieuNhap(maPN); 
+                    btnLuu.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi xảy ra khi lưu dữ liệu.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}");
+            }
+
+        }
+
+        private void UpdateTongTien(string maPN)
+        {
+            try
+            {
+
+                var chiTietPhieuNhaps = chiTietPhieuNhapBLL.GetChiTietPhieuNhapByMaPN(maPN);
+
+                decimal tongTien = chiTietPhieuNhaps.Sum(ct => ct.ThanhTien ?? 0);
+
+                bool isUpdated = phieuNhapBLL.UpdateTongTien(maPN, tongTien);
+                string maDDH = cbbMaDDH.SelectedValue.ToString();
+
+                if (isUpdated)
+                {
+                    anhXaPhieuNhap();
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật tổng tiền thất bại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật tổng tiền: " + ex.Message);
+            }
+        }
+
+
+
+        private void DeleteMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dsCTPN == null)
+                {
+                    dsCTPN = chiTietPhieuNhapBLL.GetChiTietPhieuNhapByMaPN(txtMaPN.Text);  // Khởi tạo lại dsCTPN nếu chưa có dữ liệu
+                }
+
+                if (dsCTPN == null || dsCTPN.Count == 0)
+                {
+                    MessageBox.Show("Danh sách chi tiết phiếu nhập trống hoặc chưa được khởi tạo.");
+                    return;
+                }
+                if (dgvChiTietPhieuNhap.CurrentRow != null && !dgvChiTietPhieuNhap.CurrentRow.IsNewRow)
+                {
+                    DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa dòng này?",
+                                                          "Xác nhận xóa",
+                                                          MessageBoxButtons.YesNo,
+                                                          MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        string maChiTietPhieuNhap = dgvChiTietPhieuNhap.CurrentRow.Cells["MaChiTietPhieuNhap"].Value?.ToString();
+
+                        if (string.IsNullOrEmpty(maChiTietPhieuNhap))
+                        {
+                            MessageBox.Show("Không tìm thấy mã chi tiết phiếu nhập.");
+                            return;
+                        }
+
+                        bool isSuccess = chiTietPhieuNhapBLL.DeleteChiTietPhieuNhap(maChiTietPhieuNhap);
+                        if (isSuccess)
+                        {
+                            //var itemToRemove = dsCTPN.FirstOrDefault(ct => ct.MaChiTietPhieuNhap == maChiTietPhieuNhap);
+                            //if (itemToRemove != null)
+                            //{
+                            //    dsCTPN.Remove(itemToRemove); 
+                            //}
+
+                            //dgvChiTietPhieuNhap.Rows.Remove(dgvChiTietPhieuNhap.CurrentRow);
+                            loadChiTietPhieuNhap(txtMaPN.Text);
+                            btnLuu.Enabled = false;
+                            MessageBox.Show("Đã xóa dòng thành công.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không thể xóa chi tiết phiếu nhập từ cơ sở dữ liệu.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn một dòng hợp lệ để xóa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xóa dòng: {ex.Message}");
             }
 
         }
@@ -70,7 +551,6 @@ namespace GUI
         {
             string maPN = txtMaPN.Text;
 
-            // Tạo danh sách `ChiTietPhieuNhap` từ `dgvChiTietPhieuNhap`
             List<ChiTietPhieuNhap> updatedList = new List<ChiTietPhieuNhap>();
 
             foreach (DataGridViewRow row in dgvChiTietPhieuNhap.Rows)
@@ -94,11 +574,10 @@ namespace GUI
                 }
             }
 
-            // Gọi lớp BLL để lưu vào cơ sở dữ liệu
             try
             {
-                var bll = new ChiTietPhieuNhapBLL();  // Khởi tạo lớp BLL
-                bll.UpdateChiTietPhieuNhapList(updatedList, maPN); // Cập nhật dữ liệu vào cơ sở dữ liệu
+                var bll = new ChiTietPhieuNhapBLL();  
+                bll.UpdateChiTietPhieuNhapList(updatedList, maPN); 
                 MessageBox.Show("Phiếu nhập đã được lưu thành công.");
             }
             catch (Exception ex)
@@ -220,6 +699,7 @@ namespace GUI
         }
         private void loadChiTietPhieuNhap(string maPN)
         {
+
             dgvChiTietPhieuNhap.DataSource = null;
             try
             {
@@ -227,28 +707,57 @@ namespace GUI
 
                 if (dsCPhieuNhap != null && dsCPhieuNhap.Count > 0)
                 {
-                    var dsCPhieuNhapViewModel = from ct in dsCPhieuNhap
-                                                select new
-                                                {
-                                                    MaChiTietPhieuNhap = ct.MaChiTietPhieuNhap,
-                                                    TenSanPham = chiTietPhieuNhapBLL.GetProductNameByMaCTDDH(ct.MaChiTietDonDatHang),
-                                                    DonViTinh = ct.DonViTinh,
-                                                    SoLuong = ct.SoLuong,
-                                                    DonGia = ct.DonGia,
-                                                    ThanhTien = ct.ThanhTien,
-                                                    MaCTDDH = ct.MaChiTietDonDatHang,
-                                                    TrangThai = ct.TrangThai,
-                                                    GhiChu = ct.GhiChu
-                                                };
+
+                    //var dsCPhieuNhapViewModel = from ct in dsCPhieuNhap
+                    //                            select new
+                    //                            {
+                    //                                MaChiTietPhieuNhap = ct.MaChiTietPhieuNhap,
+                    //                                // Ánh xạ mã sản phẩm từ MaChiTietDonDatHang
+                    //                                MaSanPham = chiTietPhieuNhapBLL.GetProductIdByMaCTDDH(ct.MaChiTietDonDatHang),
+                    //                                DonViTinh = ct.DonViTinh,
+                    //                                SoLuong = ct.SoLuong,
+                    //                                DonGia = ct.DonGia,
+                    //                                ThanhTien = ct.ThanhTien,
+                    //                                MaCTDDH = ct.MaChiTietDonDatHang,
+                    //                                TrangThai = ct.TrangThai,
+                    //                                GhiChu = ct.GhiChu
+                    //                            };
+                    var dsCPhieuNhapViewModel = dsCPhieuNhap.Select(ct => new ChiTietPhieuNhapViewModel
+                    {
+                        MaChiTietPhieuNhap = ct.MaChiTietPhieuNhap,
+                        MaSanPham = chiTietPhieuNhapBLL.GetProductIdByMaCTDDH(ct.MaChiTietDonDatHang),
+                        DonViTinh = ct.DonViTinh,
+                        SoLuong = ct.SoLuong ?? 0,
+                        DonGia = ct.DonGia ?? 0,
+                        ThanhTien = (ct.SoLuong ?? 0) * (ct.DonGia ?? 0),
+                        MaCTDDH = ct.MaChiTietDonDatHang,
+                        TrangThai = ct.TrangThai,
+                        GhiChu = ct.GhiChu
+                    });
+
                     dgvChiTietPhieuNhap.DataSource = dsCPhieuNhapViewModel.ToList();
+
+                    // Đặt tên cho các cột
                     dgvChiTietPhieuNhap.Columns["MaChiTietPhieuNhap"].HeaderText = "Mã chi tiết phiếu nhập";
+                    dgvChiTietPhieuNhap.Columns["MaSanPham"].HeaderText = "Mã sản phẩm"; // Hiển thị cột MaSanPham
                     dgvChiTietPhieuNhap.Columns["DonViTinh"].HeaderText = "Đơn vị tính";
                     dgvChiTietPhieuNhap.Columns["SoLuong"].HeaderText = "Số lượng";
                     dgvChiTietPhieuNhap.Columns["DonGia"].HeaderText = "Đơn giá";
                     dgvChiTietPhieuNhap.Columns["ThanhTien"].HeaderText = "Thành tiền";
-                    dgvChiTietPhieuNhap.Columns["MaCTDDH"].Visible = false;
-                    dgvChiTietPhieuNhap.Columns["TrangThai"].Visible = false;
-                    dgvChiTietPhieuNhap.Columns["GhiChu"].Visible = false;
+                    dgvChiTietPhieuNhap.Columns["MaCTDDH"].HeaderText = "Mã chi tiết DDH";
+                    dgvChiTietPhieuNhap.Columns["TrangThai"].HeaderText = "Trạng thái";
+                    dgvChiTietPhieuNhap.Columns["GhiChu"].HeaderText = "Ghi chú";
+
+                    dgvChiTietPhieuNhap.Columns["MaChiTietPhieuNhap"].ReadOnly = true;
+                    dgvChiTietPhieuNhap.Columns["MaSanPham"].ReadOnly = true;
+                    dgvChiTietPhieuNhap.Columns["DonViTinh"].ReadOnly = false;
+                    dgvChiTietPhieuNhap.Columns["DonGia"].ReadOnly = false;
+                    dgvChiTietPhieuNhap.Columns["TrangThai"].ReadOnly = false;
+                    dgvChiTietPhieuNhap.Columns["GhiChu"].ReadOnly = false;
+                    dgvChiTietPhieuNhap.Columns["ThanhTien"].ReadOnly = true;
+                    dgvChiTietPhieuNhap.Columns["MaCTDDH"].ReadOnly = true;
+
+
 
                     foreach (DataGridViewColumn column in dgvChiTietPhieuNhap.Columns)
                     {
@@ -259,7 +768,7 @@ namespace GUI
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy chi tiết phiếu nhập nào.");
+                    MessageBox.Show("Không có chi tiết phiếu nhập nào.");
                 }
             }
             catch (Exception ex)
@@ -277,9 +786,13 @@ namespace GUI
                     dgvPhieuNhap.Columns["LanNhap"].HeaderText = "Lần nhập";
                     dgvPhieuNhap.Columns["MaDonDatHang"].HeaderText = "Mã đơn đặt hàng";
                     dgvPhieuNhap.Columns["MaNhanVien"].HeaderText = "Mã nhân viên";
+                    dgvPhieuNhap.Columns["MaDonDatHang"].Visible = false;
+                    dgvPhieuNhap.Columns["MaNhanVien"].Visible = false;
 
-                    // Căn giữa tiêu đề cột và chỉnh font chữ
-                    foreach (DataGridViewColumn column in dgvPhieuNhap.Columns)
+
+
+            // Căn giữa tiêu đề cột và chỉnh font chữ
+            foreach (DataGridViewColumn column in dgvPhieuNhap.Columns)
                     {
                         column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold);
@@ -354,9 +867,13 @@ namespace GUI
             loadCbbDonDatHang();
             cbbLuaChonHienThi.SelectedIndex = 0;
             loadCbbMaNhanVien();
-            bindingList = new BindingList<ChiTietPhieuNhap>(listCTPhieuNhap);
+            SetupContextMenu();
+            txtMaPN.Enabled = false;
+            btnLuu.Enabled = false;
 
-            dgvChiTietPhieuNhap.DataSource = bindingList;
+           // bindingList = new BindingList<ChiTietPhieuNhap>(listCTPhieuNhap);
+
+            //dgvChiTietPhieuNhap.DataSource = bindingList;
         }
         private void loadCbbMaNhanVien()
         {
@@ -381,5 +898,9 @@ namespace GUI
             }
         }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
