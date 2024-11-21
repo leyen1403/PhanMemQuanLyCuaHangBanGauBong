@@ -118,5 +118,15 @@ namespace BLL
             return _hoaDonBanHangDAL.LayPhieuBaoCaoTheoKhoangThoiGian(ngayBatDau, ngayKetThuc);
         }
 
+
+        public List<HoaDonBanHang> GetHoaDonByTenKhachHang(string tenKhachHang)
+        {
+            return _hoaDonBanHangDAL.GetHoaDonByTenKhachHang(tenKhachHang);
+        }
+        public List<HoaDonBanHang> GetHoaDonByTenNhanVien(string tenNhanVien)
+        {
+            return _hoaDonBanHangDAL.GetHoaDonByTenNhanVien(tenNhanVien);
+        }
+
     }
 }

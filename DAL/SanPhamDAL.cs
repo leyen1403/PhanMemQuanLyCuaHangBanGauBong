@@ -375,6 +375,53 @@ namespace DAL
                 return new List<SanPham>();  
             }
         }
+        public List<SanPham> GetUniqueProductsByCategoryWithPagination(string maLoai , string searchKeyword , int pageNumber, int pageSize , out int totalRecords)
+        {
+            try
+            {
+                // Lấy tất cả sản phẩm từ cơ sở dữ liệu với các điều kiện tìm kiếm
+                var allProducts = db.SanPhams
+                    .Where(sp => sp.TrangThai == true)
+                    .AsQueryable();
+
+                // Nếu có mã loại, thêm điều kiện lọc theo mã loại
+                if (!string.IsNullOrEmpty(maLoai))
+                {
+                    allProducts = allProducts.Where(sp => sp.MaLoai == maLoai);
+                }
+
+                // Nếu có từ khóa tìm kiếm, thêm điều kiện lọc theo tên sản phẩm hoặc mã sản phẩm
+                if (!string.IsNullOrEmpty(searchKeyword))
+                {
+                    allProducts = allProducts
+                        .Where(sp => sp.TenSanPham.Contains(searchKeyword) || sp.MaSanPham.Contains(searchKeyword));
+                }
+
+                // Lọc ra các sản phẩm không trùng tên
+                var uniqueProducts = allProducts
+                    .GroupBy(sp => sp.TenSanPham)  // Nhóm theo tên sản phẩm
+                    .Select(g => g.First())        // Lấy sản phẩm đầu tiên trong mỗi nhóm
+                    .AsQueryable();
+
+                // Tính tổng số bản ghi sau khi lọc và loại bỏ trùng lặp
+                totalRecords = uniqueProducts.Count();
+
+                // Áp dụng phân trang
+                var pagedQuery = uniqueProducts
+                    .Skip((pageNumber - 1) * pageSize)  // Bỏ qua các bản ghi của các trang trước
+                    .Take(pageSize);  // Lấy số lượng bản ghi của trang hiện tại
+
+                return pagedQuery.ToList();  // Trả về danh sách sản phẩm trên trang
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách sản phẩm không trùng tên: " + ex.Message);
+                totalRecords = 0;  // Nếu có lỗi, đặt số bản ghi về 0
+                return new List<SanPham>();  // Trả về danh sách rỗng nếu có lỗi
+            }
+        }
+
+
         public List<SanPham> GetSanPhamByMaSP(string maSanPham)
         {
             try

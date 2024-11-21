@@ -109,7 +109,7 @@ namespace GUI
                 txtMaPHT.Text = currentRow.Cells["MaPhieuHoanTra"].Value?.ToString();
                 txtTongSoLuong.Text = currentRow.Cells["LanNhap"].Value?.ToString();
                 cbbNhanVien.SelectedValue = currentRow.Cells["MaNhanVien"].Value?.ToString();
-                //cbbTinhTrang.SelectedValue = currentRow.Cells["TinhTrang"].Value?.ToString(); // bị lỗi nha
+                //cbbTinhTrang.SelectedValue = currentRow.Cells["TinhTrang"].Value?.ToString();
                 dTPNgayLap.Value = Convert.ToDateTime(currentRow.Cells["NgayLap"].Value);
                 dTPNgayCapNhat.Value = Convert.ToDateTime(currentRow.Cells["NgayCapNhat"].Value);
                 loadChiTietPhieuHoanTra(txtMaPHT.Text);
