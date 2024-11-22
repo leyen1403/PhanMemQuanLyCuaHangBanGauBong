@@ -111,6 +111,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -154,6 +155,12 @@
     </Compile>
     <Compile Include="frm_lapPhieuDoiTra.Designer.cs">
       <DependentUpon>frm_lapPhieuDoiTra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_lapPhieuHoanTra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapPhieuHoanTra.Designer.cs">
+      <DependentUpon>frm_lapPhieuHoanTra.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_lapPhieuKiemKe.cs">
       <SubType>Form</SubType>
@@ -280,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_lapPhieuDoiTra.resx">
       <DependentUpon>frm_lapPhieuDoiTra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapPhieuHoanTra.resx">
+      <DependentUpon>frm_lapPhieuHoanTra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_lapPhieuKiemKe.resx">
       <DependentUpon>frm_lapPhieuKiemKe.cs</DependentUpon>

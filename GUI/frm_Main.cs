@@ -220,5 +220,9 @@ namespace GUI
             frm_dangNhap frm = new frm_dangNhap();
             frm.Show();
         }
+        private void btn_phieuHoanTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuHoanTra());
+        }
     }
 }

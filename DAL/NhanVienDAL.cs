@@ -129,7 +129,39 @@ namespace DAL
             }
         }
 
+        public string GetTenNhanVienByMaNhanVien(string maNhanVien)
+        {
+            // Sử dụng LINQ để tìm tên nhân viên dựa trên mã nhân viên
+            var nhanVien = db.NhanViens
+                .Where(nv => nv.MaNhanVien == maNhanVien)
+                .Select(nv => nv.HoTen)
+                .FirstOrDefault(); // Trả về tên nhân viên đầu tiên hoặc null nếu không tìm thấy
 
+            return nhanVien; // Trả về tên nhân viên (hoặc null nếu không tìm thấy)
+        }
+
+
+        public string GetSDTNhanVienByMaNhanVien(string maNhanVien)
+        {
+            // Sử dụng LINQ để tìm tên nhân viên dựa trên mã nhân viên
+            var nhanVien = db.NhanViens
+                .Where(nv => nv.MaNhanVien == maNhanVien)
+                .Select(nv => nv.SoDienThoai)
+                .FirstOrDefault(); // Trả về tên nhân viên đầu tiên hoặc null nếu không tìm thấy
+
+            return nhanVien; // Trả về tên nhân viên (hoặc null nếu không tìm thấy)
+        }
+
+        public string GetDiaChiByMaNhanVien(string maNhanVien)
+        {
+            // Sử dụng LINQ để tìm tên nhân viên dựa trên mã nhân viên
+            var nhanVien = db.NhanViens
+                .Where(nv => nv.MaNhanVien == maNhanVien)
+                .Select(nv => nv.DiaChi)
+                .FirstOrDefault(); // Trả về tên nhân viên đầu tiên hoặc null nếu không tìm thấy
+
+            return nhanVien; // Trả về tên nhân viên (hoặc null nếu không tìm thấy)
+        }
 
 
     }

@@ -255,6 +255,7 @@
             this.btn_phieuHoanTra.Name = "btn_phieuHoanTra";
             this.btn_phieuHoanTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_phieuHoanTra.Text = "Lập Phiếu Hoàn Trả NCC";
+            this.btn_phieuHoanTra.Click += new System.EventHandler(this.btn_phieuHoanTra_Click);
             // 
             // accordionControlElement2
             // 

@@ -16,6 +16,8 @@ namespace BLL
         {
             return nhanVienDAL.GetNhanVienById(id);
         }
+
+
         public string GetEmployeeByCode(string maNV)
         {
             return nhanVienDAL.GetEmployeeByCode(maNV);
@@ -63,6 +65,25 @@ namespace BLL
         private bool ValidateProduct(NhanVien nhanVien)
         {
             return !string.IsNullOrEmpty(nhanVien.MaNhanVien);
+        }
+
+        //Nam viết thêm
+        public string GetTenNhanVienByMaNhanVien(string maNhanVien)
+        {
+            return nhanVienDAL.GetTenNhanVienByMaNhanVien(maNhanVien);
+        }
+
+        public string GetSDTByMaNhanVien(string maNhanVien)
+        {
+            return nhanVienDAL.GetSDTNhanVienByMaNhanVien(maNhanVien);
+        }
+
+
+        public string GetDiaChiByMaNhanVien(string maNhanVien)
+        {
+          
+           
+            return nhanVienDAL.GetDiaChiByMaNhanVien(maNhanVien); 
         }
     }
 }
