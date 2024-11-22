@@ -21,18 +21,6 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csp
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.pdb
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.pdb
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll.config
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
-B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
 D:\Github\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
@@ -81,3 +69,15 @@ C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
 C:\Users\HK-2203\Project\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\BLL.pdb
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DAL.pdb
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.pdb
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\bin\Debug\DTO.dll.config
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.csproj.Up2Date
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.dll
+B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\BLL\obj\Debug\BLL.pdb

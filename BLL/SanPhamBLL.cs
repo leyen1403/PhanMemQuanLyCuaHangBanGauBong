@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
+using System.Data;
 
 namespace BLL
 {
@@ -170,5 +171,18 @@ namespace BLL
                 return new List<MauSac>(); // Trả về danh sách rỗng nếu có lỗi
             }
         }
+        // Nam viết thêm thống kê
+        public DataTable GetSanPhamBanChayDataTable()
+        {
+            return sanPhamDal.GetSanPhamBanChayDataTable();
+        }
+        public DataTable GetSanPhamTonKho()
+        {
+            return sanPhamDal.GetSanPhamTonKho();
+        }
+
     }
+
+
+  
 }
