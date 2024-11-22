@@ -439,6 +439,7 @@
             // dgv_ChiTietHoaDon
             // 
             this.dgv_ChiTietHoaDon.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_ChiTietHoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv_ChiTietHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_ChiTietHoaDon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_ChiTietHoaDon.Location = new System.Drawing.Point(3, 22);
@@ -467,10 +468,10 @@
             // cb_TimKiem
             // 
             this.cb_TimKiem.FormattingEnabled = true;
-            this.cb_TimKiem.Location = new System.Drawing.Point(201, 46);
+            this.cb_TimKiem.Location = new System.Drawing.Point(216, 46);
             this.cb_TimKiem.Margin = new System.Windows.Forms.Padding(4);
             this.cb_TimKiem.Name = "cb_TimKiem";
-            this.cb_TimKiem.Size = new System.Drawing.Size(216, 27);
+            this.cb_TimKiem.Size = new System.Drawing.Size(201, 27);
             this.cb_TimKiem.TabIndex = 75;
             // 
             // groupBox3
@@ -492,6 +493,7 @@
             // dgv_HoaDon
             // 
             this.dgv_HoaDon.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_HoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv_HoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_HoaDon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_HoaDon.Location = new System.Drawing.Point(3, 22);
@@ -530,7 +532,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(33, 105);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(878, 255);
+            this.groupBox4.Size = new System.Drawing.Size(820, 255);
             this.groupBox4.TabIndex = 78;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tìm thông tin đơn hàng";
@@ -538,9 +540,9 @@
             // 
             // txt_TimKiem
             // 
-            this.txt_TimKiem.Location = new System.Drawing.Point(201, 107);
+            this.txt_TimKiem.Location = new System.Drawing.Point(216, 107);
             this.txt_TimKiem.Name = "txt_TimKiem";
-            this.txt_TimKiem.Size = new System.Drawing.Size(216, 27);
+            this.txt_TimKiem.Size = new System.Drawing.Size(201, 27);
             this.txt_TimKiem.TabIndex = 76;
             // 
             // dtpDenNgay
@@ -564,36 +566,44 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Navy;
             this.label12.Location = new System.Drawing.Point(446, 114);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(82, 19);
+            this.label12.Size = new System.Drawing.Size(91, 19);
             this.label12.TabIndex = 9;
             this.label12.Text = "Đến ngày:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Navy;
             this.label13.Location = new System.Drawing.Point(446, 54);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(74, 19);
+            this.label13.Size = new System.Drawing.Size(81, 19);
             this.label13.TabIndex = 8;
             this.label13.Text = "Từ ngày:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Navy;
             this.label14.Location = new System.Drawing.Point(9, 112);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(178, 19);
+            this.label14.Size = new System.Drawing.Size(201, 19);
             this.label14.TabIndex = 7;
             this.label14.Text = "Nhập thông tin cần tìm:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Navy;
             this.label15.Location = new System.Drawing.Point(9, 48);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(147, 19);
+            this.label15.Size = new System.Drawing.Size(165, 19);
             this.label15.TabIndex = 6;
             this.label15.Text = "Lựa chọn tìm kiếm:";
             // 
