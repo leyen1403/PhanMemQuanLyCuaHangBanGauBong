@@ -19,7 +19,6 @@ namespace GUI
             this.btn_NhanVien.Click += Btn_NhanVien_Click1;
             this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
             this.btn_DonDatHang.Click += Btn_DonDatHang_Click;
-           
         }
 
         private void Btn_DonDatHang_Click(object sender, EventArgs e)
@@ -62,7 +61,8 @@ namespace GUI
         private void PhanQuyenAccordion(string maNhanVien)
         {
 
-            var danhSachQuyen = dangNhapBLL.LayDanhSachQuyen(maNhanVien);
+            var danhSachQuyen = dangNhapBLL.LayDanhSachQuyen(maNhanVien).Select(q => q.Trim())
+                               .ToList();
 
             foreach (AccordionControlElement element in accordionControl1.Elements)
             {
@@ -71,19 +71,26 @@ namespace GUI
         }
         private void PhanQuyenElement(AccordionControlElement element, List<string> danhSachQuyen)
         {
+            bool hasVisibleChild = false;
+            foreach (AccordionControlElement childElement in element.Elements)
+            {
+                PhanQuyenElement(childElement, danhSachQuyen);
+                if (childElement.Visible)
+                {
+                    hasVisibleChild = true;
+                }
+            }
+
             if (element.Tag != null && danhSachQuyen.Contains(element.Tag.ToString()))
             {
                 element.Visible = true;
             }
             else
             {
-                element.Visible = false;
-            }
 
-            foreach (AccordionControlElement childElement in element.Elements)
-            {
-                PhanQuyenElement(childElement, danhSachQuyen);
+                element.Visible = hasVisibleChild;
             }
+           
         }
         private void Btn_DichVu_Click(object sender, EventArgs e)
         {
@@ -192,6 +199,7 @@ namespace GUI
             if (result == DialogResult.Yes)
             {
                 frmParent.xoaTextBox();
+                frmParent.logout();
                 frmParent.Show();
                 this.Close();
             }
@@ -200,8 +208,14 @@ namespace GUI
         private void frm_main_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmParent.xoaTextBox();
+            frmParent.logout();
             frmParent.Show();
             this.Close();
+        }
+
+        private void frm_main_Load(object sender, EventArgs e)
+        {
+             PhanQuyenAccordion(nhanVien.MaNhanVien);
         }
     }
 }
