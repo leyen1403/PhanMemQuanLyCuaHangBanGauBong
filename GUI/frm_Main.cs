@@ -19,11 +19,8 @@ namespace GUI
             this.btn_NhanVien.Click += Btn_NhanVien_Click1;
             this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
             this.btn_DonDatHang.Click += Btn_DonDatHang_Click;
-<<<<<<< HEAD
             this.btn_dangXuat.ItemClick += btn_dangXuat_ItemClick;
 
-=======
->>>>>>> Kiet_DangNhap
         }
 
         private void Btn_DonDatHang_Click(object sender, EventArgs e)
@@ -67,8 +64,7 @@ namespace GUI
         private void PhanQuyenAccordion(string maNhanVien)
         {
 
-            var danhSachQuyen = dangNhapBLL.LayDanhSachQuyen(maNhanVien).Select(q => q.Trim())
-                               .ToList();
+            var danhSachQuyen = dangNhapBLL.LayDanhSachQuyen(maNhanVien);
 
             foreach (AccordionControlElement element in accordionControl1.Elements)
             {
@@ -77,31 +73,19 @@ namespace GUI
         }
         private void PhanQuyenElement(AccordionControlElement element, List<string> danhSachQuyen)
         {
-            bool hasVisibleChild = false;
-            foreach (AccordionControlElement childElement in element.Elements)
-            {
-                PhanQuyenElement(childElement, danhSachQuyen);
-                if (childElement.Visible)
-                {
-                    hasVisibleChild = true;
-                }
-            }
-
             if (element.Tag != null && danhSachQuyen.Contains(element.Tag.ToString()))
             {
                 element.Visible = true;
             }
             else
             {
-<<<<<<< HEAD
                 //element.Visible = false;
             }
-=======
->>>>>>> Kiet_DangNhap
 
-                element.Visible = hasVisibleChild;
+            foreach (AccordionControlElement childElement in element.Elements)
+            {
+                PhanQuyenElement(childElement, danhSachQuyen);
             }
-           
         }
         private void Btn_DichVu_Click(object sender, EventArgs e)
         {
@@ -213,7 +197,6 @@ namespace GUI
             if (result == DialogResult.Yes)
             {
                 frmParent.xoaTextBox();
-                frmParent.logout();
                 frmParent.Show();
                 this.Close();
             }
@@ -222,12 +205,10 @@ namespace GUI
         private void frm_main_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmParent.xoaTextBox();
-            frmParent.logout();
             frmParent.Show();
             this.Close();
         }
 
-<<<<<<< HEAD
         private void btn_HoanTra_Click(object sender, EventArgs e)
         {
             loadForm(new frm_QuanLyPhieuHoanTra());
@@ -242,11 +223,6 @@ namespace GUI
         private void btn_phieuHoanTra_Click(object sender, EventArgs e)
         {
             loadForm(new frm_lapPhieuHoanTra());
-=======
-        private void frm_main_Load(object sender, EventArgs e)
-        {
-             PhanQuyenAccordion(nhanVien.MaNhanVien);
->>>>>>> Kiet_DangNhap
         }
     }
 }

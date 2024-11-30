@@ -17,7 +17,6 @@ namespace GUI
     {
         DangNhapBLL dangNhapBLL = new DangNhapBLL();
         NhanVien nv = new NhanVien();
-        bool isRemember = false;
         public frm_dangNhap()
         {
             InitializeComponent();
@@ -28,16 +27,9 @@ namespace GUI
 
         private void frm_dangNhap_Load(object sender, EventArgs e)
         {
-            
+
         }
-        public void logout()
-        {
-            if (isRemember)
-            {
-                txtTenDangNhap.Text = nv.TaiKhoan;
-                txtMatKhau.Text = nv.MatKhau;
-            }
-        }
+
         private void btn_dangNhap_Click(object sender, EventArgs e)
         {
             int result = isValid();
@@ -98,11 +90,6 @@ namespace GUI
                 }
             }
             return 0;
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            isRemember = checkBox1.Checked;
         }
     }
 }

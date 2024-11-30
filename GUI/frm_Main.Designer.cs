@@ -282,7 +282,6 @@
             this.btn_HoaDon.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_HoaDon.ImageOptions.Image")));
             this.btn_HoaDon.Name = "btn_HoaDon";
             this.btn_HoaDon.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_HoaDon.Tag = "";
             this.btn_HoaDon.Text = "Quản lý hoá đơn";
             // 
             // btn_DonDatHang
@@ -460,7 +459,6 @@
             this.Text = "Hệ thống quản lý cửa hàng bán giày";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_main_FormClosing);
-            this.Load += new System.EventHandler(this.frm_main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).EndInit();
             this.pnLeft.ResumeLayout(false);
