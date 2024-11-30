@@ -13,6 +13,7 @@ namespace GUI
         public frm_quanLyKhachHang()
         {
             InitializeComponent();
+            btn_luu.Enabled = false;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -47,8 +48,8 @@ namespace GUI
                     dtp_NgaySinh.Text = khachHang.NgaySinh.ToString();
                     txt_TaiKhoan.Text = khachHang.TaiKhoan;
                     txt_MatKhau.Text = khachHang.MatKhau;
-                    lbl_NgayCapNhatValue.Text = khachHang.NgayCapNhat.ToString();
-                    lbl_NgayTaoValue.Text = khachHang.NgayTao.ToString();
+                    lbl_NgayCapNhatValue.Text = khachHang.NgayCapNhat.Value.ToShortDateString();
+                    lbl_NgayTaoValue.Text = khachHang.NgayTao.Value.ToShortDateString();
                     lbl_DiemTichLuyValue.Text = khachHang.DiemTichLuy.ToString();
                     pb_img.ImageLocation = khachHang.HinhAnh;
                     txt_DiaChi.Text = khachHang.DiaChi;
@@ -86,92 +87,28 @@ namespace GUI
         {
 
         }
-
+        int them = 0;
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Kiểm tra số điện thoại
-                if (txt_SoDienThoai.Text.Length == 0)
-                {
-                    
-                    MessageBox.Show("Vui lòng nhập số điện thoại ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    if (bll.isPhoneExits(txt_SoDienThoai.Text))
-                    {
-                        MessageBox.Show("Số điện thoại đã được đăng ký", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    
-                }
-                // Kiểm tra tên khách hàng
-                if (txt_TenKH.Text.Length == 0)
-                {
-                    MessageBox.Show("Vui lòng tên khách hàng ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                // Kiểm tra mật khẩu
-                if (txt_MatKhau.Text.Length == 0)
-                {
-                    MessageBox.Show("Vui lòng nhập mật khẩu ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (txt_Email.Text.Length > 0) {
-                    if (bll.isEmailExits(txt_Email.Text))
-                    {
-                        MessageBox.Show("Email đã được đăng ký", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+            them = 1;
+            btn_CapNhat.Enabled = false;
+            btn_Them.Enabled = false;
+            btn_Xoa.Enabled = false;
+            btn_luu.Enabled = true;
 
-                }
-                // gán giá trị
-                KhachHang kh = new KhachHang();
-              
-                kh.TenKhachHang = txt_TenKH.Text;
-                kh.SoDienThoai = txt_SoDienThoai.Text;
-                kh.Email = txt_Email.Text ?? null;
-                kh.NgaySinh = dtp_NgaySinh.Value;
-                if (cb_GioiTinh.Checked == true)
-                {
-                    kh.GioiTinh = "Nam";
-                }
-                else
-                {
-                    kh.GioiTinh = "Nữ";
-                }
-                kh.TaiKhoan =txt_SoDienThoai.Text;
-                kh.MatKhau = txt_MatKhau.Text;
-                
-                    kh.TrangThai = true;
-               
-                if (cb_DangKy.Checked == true)
-                {
-                    kh.ThanhVien = true;
-                }
-                else
-                {
-                    kh.ThanhVien = false;
-                }
-                kh.DiemTichLuy = 0;
-                kh.NgayTao = DateTime.Now;
-                kh.NgayCapNhat = DateTime.Now;
-                kh.HinhAnh = img_url;
-                kh.DiaChi = txt_DiaChi.Text ?? null;
-                bll.CreateKhachHang(kh);
-                upload_img(kh.MaKhachHang);
-                // Loại lại table
-                loadKhachHang();
-                MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
+            txt_TenKH.Clear();
+            txt_SoDienThoai.Clear();
+            txt_Email.Clear();
+            txt_DiaChi.Clear();
+            txt_TaiKhoan.Clear();
+            txt_DiaChi.Clear();
+            txt_DiaChi.Clear();
+            txt_MaKH.Clear();
+            txt_MatKhau.Clear();
+            lbl_DiemTichLuyValue.Text = "0";
+            lbl_NgayCapNhatValue.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            lbl_NgayTaoValue.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            dgv_dsKhachHang.ClearSelection();
         }
 
         public void loadKhachHang()
@@ -179,7 +116,7 @@ namespace GUI
             var lst_kh = bll.GetAllKhachHangs();
         
             dgv_dsKhachHang.DataSource = lst_kh;
-            dgv_dsKhachHang.Refresh();
+            //dgv_dsKhachHang.Refresh();
             dgv_dsKhachHang.ClearSelection();
         }
         string img_url = "";
@@ -247,113 +184,40 @@ namespace GUI
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-            if (dgv_dsKhachHang.SelectedRows.Count == 0)
+            DialogResult kq = MessageBox.Show(
+       "Bạn có chắc muốn xóa khách hàng này ?",
+       "Thông báo",
+       MessageBoxButtons.YesNo,
+       MessageBoxIcon.Question,
+       MessageBoxDefaultButton.Button1
+   );
+
+            if (kq == DialogResult.Yes)
             {
-                MessageBox.Show("Bạn chưa chọn nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // Thực hiện làm mới
+                if (dgv_dsKhachHang.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Bạn chưa chọn nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                var row = dgv_dsKhachHang.SelectedRows[0];
+                string makh = row.Cells["MaKhachHang"].Value.ToString();
+                string result = bll.deleteKhachHang(makh);
+                MessageBox.Show(result, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadKhachHang();
             }
-            var row = dgv_dsKhachHang.SelectedRows[0];
-            string makh = row.Cells["MaKhachHang"].Value.ToString();
-            string result = bll.deleteKhachHang(makh);
-            MessageBox.Show(result,"Thông báo" , MessageBoxButtons.OK, MessageBoxIcon.Information);
-            loadKhachHang();
+           
         }
-        
+        int capnhat = 0;
         private void btn_CapNhat_Click(object sender, EventArgs e)
         {
-            if (dgv_dsKhachHang.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Bạn chưa chọn nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (txt_Email.Text.Length > 0)
-            {
-                if (isNewEmail())
-                {
-                    if (bll.isEmailExits(txt_Email.Text))
-                    {
-                        MessageBox.Show("Email đã tồn tại trong hệ thống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return ;
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng nhập email ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            // Kiểm tra số điện thoại
-            if (txt_SoDienThoai.Text.Length == 0)
-            {
-
-                MessageBox.Show("Vui lòng nhập số điện thoại ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                if (isNewPhone())
-                {
-                    if (bll.isPhoneExits(txt_SoDienThoai.Text))
-                    {
-                        MessageBox.Show("Số điện thoại đã được đăng ký", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-
-            }
-            // Kiểm tra tên khách hàng
-            if (txt_TenKH.Text.Length == 0)
-            {
-                MessageBox.Show("Vui lòng tên khách hàng ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            
-            // Kiểm tra mật khẩu
-            if (txt_MatKhau.Text.Length == 0)
-            {
-                MessageBox.Show("Vui lòng nhập mật khẩu ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            // gán giá trị
-            KhachHang kh = new KhachHang();
-            kh.MaKhachHang = txt_MaKH.Text;
-            kh.TenKhachHang = txt_TenKH.Text;
-            kh.SoDienThoai = txt_SoDienThoai.Text;
-            kh.Email = txt_Email.Text ?? null;
-            kh.NgaySinh = dtp_NgaySinh.Value;
-            if (cb_GioiTinh.Checked == true)
-            {
-                kh.GioiTinh = "Nam";
-            }
-            else
-            {
-                kh.GioiTinh = "Nữ";
-            }
-            kh.TaiKhoan = txt_SoDienThoai.Text;
-            kh.MatKhau = txt_MatKhau.Text;
-            if (cb_Khoa.Checked == true)
-            {
-                kh.TrangThai = true;
-            }
-            else
-            {
-                kh.TrangThai = false;
-            }
-            if (cb_DangKy.Checked == true)
-            {
-                kh.ThanhVien = true;
-            }
-            else
-            {
-                kh.ThanhVien = false;
-            }
-       
-            kh.NgayCapNhat = DateTime.Now;
-            kh.HinhAnh = img_url;
-            kh.DiaChi = txt_DiaChi.Text ?? null;
-            bll.updateKhachHang(kh);
-            loadKhachHang() ;
-            upload_img(kh.MaKhachHang);
-            MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            capnhat = 1;
+            btn_luu.Enabled = true;
+            btn_Them.Enabled = false;
+            btn_Xoa.Enabled = false;
+            btn_CapNhat.Enabled = false;
+            txt_TenKH.Focus();
+            txt_TaiKhoan.Enabled = false;
         }
 
       
@@ -429,6 +293,42 @@ namespace GUI
 
         private void btn_TaiLai_Click(object sender, EventArgs e)
         {
+            dgv_dsKhachHang.ClearSelection();
+            if(them == 1 || capnhat == 1)
+            {
+                DialogResult result = MessageBox.Show(
+                "Bạn chưa cập nhật thông tin , bạn có chắc muốn làm mới ?",
+                "Thông báo",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    dgv_dsKhachHang.ClearSelection();
+                    txt_TenKH.Clear();
+                    txt_SoDienThoai.Clear();
+                    txt_Email.Clear();
+                    txt_DiaChi.Clear();
+                    txt_TaiKhoan.Clear();
+                    txt_DiaChi.Clear();
+                    txt_DiaChi.Clear();
+                    txt_MaKH.Clear();
+                    txt_MatKhau.Clear();
+                    lbl_DiemTichLuyValue.Text = "0";
+                    lbl_NgayCapNhatValue.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    lbl_NgayTaoValue.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    txt_Seach.Clear();
+                    //loadKhachHang();
+                    txt_TaiKhoan.Enabled = true;
+                    btn_CapNhat.Enabled = true;
+                    btn_luu.Enabled = false;
+                    btn_Them.Enabled =true;
+                    btn_Xoa.Enabled = true;
+                    return;
+                }
+            }
             txt_TenKH.Clear();
             txt_SoDienThoai.Clear();
             txt_Email.Clear();
@@ -438,18 +338,22 @@ namespace GUI
             txt_DiaChi.Clear();
             txt_MaKH.Clear();
             txt_MatKhau.Clear();
-            lbl_DiemTichLuyValue.Text = DateTime.Now.ToString();
-            lbl_NgayCapNhatValue.Text = DateTime.Now.ToString();
-
-            loadKhachHang();
-            
+            lbl_DiemTichLuyValue.Text = "0";
+            lbl_NgayCapNhatValue.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            lbl_NgayTaoValue.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txt_Seach.Clear() ;
+            //loadKhachHang();
+            btn_CapNhat.Enabled = true;
+            btn_luu.Enabled = false;
+            btn_Them.Enabled = true;
+            btn_Xoa.Enabled = true;
 
         }
 
         private void btn_Timkiem_Click(object sender, EventArgs e)
         {
             // Lấy giá trị tìm kiếm từ TextBox
-            string searchValue = txt_SoDienThoai.Text.Trim().ToLower();
+            string searchValue = txt_Seach.Text.Trim().ToLower();
 
             // Kiểm tra nếu người dùng không nhập gì
             if (string.IsNullOrEmpty(searchValue))
@@ -486,6 +390,232 @@ namespace GUI
             {
                 MessageBox.Show("Không tìm thấy kết quả.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btn_luu_Click(object sender, EventArgs e)
+        {
+            if(them == 1)
+            {
+               
+                    // Thực hiện làm mới
+                    try
+                    {
+                        // Kiểm tra số điện thoại
+                        if (txt_SoDienThoai.Text.Length == 0)
+                        {
+
+                            MessageBox.Show("Vui lòng nhập số điện thoại ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        else
+                        {
+                            if (bll.isPhoneExits(txt_SoDienThoai.Text))
+                            {
+                                MessageBox.Show("Số điện thoại đã được đăng ký", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+
+                        }
+                        // Kiểm tra tên khách hàng
+                        if (txt_TenKH.Text.Length == 0)
+                        {
+                            MessageBox.Show("Vui lòng tên khách hàng ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        // Kiểm tra mật khẩu
+                        if (txt_MatKhau.Text.Length == 0)
+                        {
+                            MessageBox.Show("Vui lòng nhập mật khẩu ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        if (txt_Email.Text.Length > 0)
+                        {
+                            if (bll.isEmailExits(txt_Email.Text))
+                            {
+                                MessageBox.Show("Email đã được đăng ký", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+
+                        }
+                    DialogResult result = MessageBox.Show(
+                    "Bạn có chắc muốn thêm nhân viên",
+                    "Thông báo",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                    
+                    }
+                    // gán giá trị
+                    KhachHang kh = new KhachHang();
+
+                    kh.TenKhachHang = txt_TenKH.Text;
+                    kh.SoDienThoai = txt_SoDienThoai.Text;
+                    kh.Email = txt_Email.Text ?? null;
+                    kh.NgaySinh = dtp_NgaySinh.Value;
+                    if (cb_GioiTinh.Checked == true)
+                    {
+                        kh.GioiTinh = "Nam";
+                    }
+                    else
+                    {
+                        kh.GioiTinh = "Nữ";
+                    }
+                    kh.TaiKhoan = txt_SoDienThoai.Text;
+                    kh.MatKhau = txt_MatKhau.Text;
+
+                    kh.TrangThai = true;
+
+                    if (cb_DangKy.Checked == true)
+                    {
+                        kh.ThanhVien = true;
+                    }
+                    else
+                    {
+                        kh.ThanhVien = false;
+                    }
+                    kh.DiemTichLuy = 0;
+                    kh.NgayTao = DateTime.Now;
+                    kh.NgayCapNhat = DateTime.Now;
+                    kh.HinhAnh = img_url;
+                    kh.DiaChi = txt_DiaChi.Text ?? null;
+                    bll.CreateKhachHang(kh);
+                    upload_img(kh.MaKhachHang);
+                    // Loại lại table
+                    loadKhachHang();
+                    MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    them = 0;
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+
+                    
+                
+             
+            }
+            else if(capnhat ==1) {
+                
+                    // Thực hiện làm mới
+                    if (dgv_dsKhachHang.SelectedRows.Count == 0)
+                    {
+                        MessageBox.Show("Bạn chưa chọn nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (txt_Email.Text.Length > 0)
+                    {
+                        if (isNewEmail())
+                        {
+                            if (bll.isEmailExits(txt_Email.Text))
+                            {
+                                MessageBox.Show("Email đã tồn tại trong hệ thống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui lòng nhập email ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    // Kiểm tra số điện thoại
+                    if (txt_SoDienThoai.Text.Length == 0)
+                    {
+
+                        MessageBox.Show("Vui lòng nhập số điện thoại ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        if (isNewPhone())
+                        {
+                            if (bll.isPhoneExits(txt_SoDienThoai.Text))
+                            {
+                                MessageBox.Show("Số điện thoại đã được đăng ký", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+
+                    }
+                    // Kiểm tra tên khách hàng
+                    if (txt_TenKH.Text.Length == 0)
+                    {
+                        MessageBox.Show("Vui lòng tên khách hàng ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Kiểm tra mật khẩu
+                    if (txt_MatKhau.Text.Length == 0)
+                    {
+                        MessageBox.Show("Vui lòng nhập mật khẩu ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                DialogResult result = MessageBox.Show(
+                "Bạn có chắc muốn sửa thông tin",
+                "Thông báo",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1
+                 );
+
+                if (result == DialogResult.Yes)
+                {
+                    // gán giá trị
+                    KhachHang kh = new KhachHang();
+                    kh.MaKhachHang = txt_MaKH.Text;
+                    kh.TenKhachHang = txt_TenKH.Text;
+                    kh.SoDienThoai = txt_SoDienThoai.Text;
+                    kh.Email = txt_Email.Text ?? null;
+                    kh.NgaySinh = dtp_NgaySinh.Value;
+                    if (cb_GioiTinh.Checked == true)
+                    {
+                        kh.GioiTinh = "Nam";
+                    }
+                    else
+                    {
+                        kh.GioiTinh = "Nữ";
+                    }
+                    kh.TaiKhoan = txt_SoDienThoai.Text;
+                    kh.MatKhau = txt_MatKhau.Text;
+                    if (cb_Khoa.Checked == true)
+                    {
+                        kh.TrangThai = true;
+                    }
+                    else
+                    {
+                        kh.TrangThai = false;
+                    }
+                    if (cb_DangKy.Checked == true)
+                    {
+                        kh.ThanhVien = true;
+                    }
+                    else
+                    {
+                        kh.ThanhVien = false;
+                    }
+                    kh.MatKhau = txt_MatKhau.Text;
+                    kh.NgayCapNhat = DateTime.Now;
+                    kh.HinhAnh = img_url;
+                    kh.DiaChi = txt_DiaChi.Text ?? null;
+                    bll.updateKhachHang(kh);
+                    loadKhachHang();
+                    upload_img(kh.MaKhachHang);
+                    MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    capnhat = 0;
+                }
+                    
+                }
+               
+            
+            btn_CapNhat.Enabled = true;
+            btn_luu.Enabled = false;
+            btn_Them.Enabled = true;
+            btn_Xoa.Enabled = true;
         }
     }
 }

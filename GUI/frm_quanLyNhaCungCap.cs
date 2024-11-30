@@ -26,7 +26,6 @@ namespace GUI
             var lst_ncc = NhaCungCapBLL.LayDanhSachNhaCungCap();
             lbl_NgayCapNhap.Font = new System.Drawing.Font("Arial", 10.2f);
             lbl_NgayTao.Font = new System.Drawing.Font("Arial", 10.2f);
-
             dgv_NhaCC.DataSource = lst_ncc;
         }
         private void dgv_NhaCC_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -307,8 +306,15 @@ namespace GUI
             button1.Enabled = false;
             btnSuaNhanVien.Enabled = false;
             btnLuu.Enabled = true;
-
-
+            txt_DiaChi.Clear();
+            txt_Email.Clear();
+            txt_NguoiDaiDien.Clear();
+            txt_SoDienThoai.Clear();
+            txt_TenNhaCungCap.Clear();
+            lbl_MaNCC.Text = string.Empty;
+            lbl_NgayCapNhap.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            lbl_NgayTao.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            dgv_NhaCC.ClearSelection();
         }
 
         private void btnTaoMoi_Click(object sender, EventArgs e)
@@ -571,7 +577,7 @@ namespace GUI
             btnXoa.Enabled = false;
             btnSuaNhanVien.Enabled = false;
             button1.Enabled = false;
-            
+            txt_NguoiDaiDien.Focus();
         }
 
         private void btn_timKiem_Click(object sender, EventArgs e)
