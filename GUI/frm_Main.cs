@@ -215,7 +215,6 @@ namespace GUI
 
         private void frm_main_Load(object sender, EventArgs e)
         {
-            //đặt tên Tag của menu là mã của màn hình tương ứng với menu đó
              PhanQuyenAccordion(nhanVien.MaNhanVien);
         }
     }
