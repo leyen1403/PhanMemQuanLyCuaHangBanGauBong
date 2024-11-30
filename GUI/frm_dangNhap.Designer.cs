@@ -86,7 +86,7 @@
             this.btn_dangNhap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_dangNhap.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_dangNhap.ForeColor = System.Drawing.Color.White;
-            this.btn_dangNhap.Location = new System.Drawing.Point(587, 325);
+            this.btn_dangNhap.Location = new System.Drawing.Point(587, 333);
             this.btn_dangNhap.Margin = new System.Windows.Forms.Padding(0);
             this.btn_dangNhap.Name = "btn_dangNhap";
             this.btn_dangNhap.Size = new System.Drawing.Size(364, 45);
