@@ -63,35 +63,28 @@ namespace GUI
         DangNhapBLL dangNhapBLL = new DangNhapBLL();
         private void PhanQuyenAccordion(string maNhanVien)
         {
-            var danhSachQuyen = dangNhapBLL.LayDanhSachQuyen(maNhanVien)
-                                           .Select(q => q.Trim())
-                                           .ToList();
+
+            var danhSachQuyen = dangNhapBLL.LayDanhSachQuyen(maNhanVien);
 
             foreach (AccordionControlElement element in accordionControl1.Elements)
             {
                 PhanQuyenElement(element, danhSachQuyen);
             }
         }
-
         private void PhanQuyenElement(AccordionControlElement element, List<string> danhSachQuyen)
         {
-            bool hasVisibleChild = false;
-            foreach (AccordionControlElement childElement in element.Elements)
-            {
-                PhanQuyenElement(childElement, danhSachQuyen);
-                if (childElement.Visible)
-                {
-                    hasVisibleChild = true;
-                }
-            }
-
             if (element.Tag != null && danhSachQuyen.Contains(element.Tag.ToString()))
             {
                 element.Visible = true;
             }
             else
-            { 
-                element.Visible = hasVisibleChild;
+            {
+                //element.Visible = false;
+            }
+
+            foreach (AccordionControlElement childElement in element.Elements)
+            {
+                PhanQuyenElement(childElement, danhSachQuyen);
             }
         }
         private void Btn_DichVu_Click(object sender, EventArgs e)
@@ -230,11 +223,6 @@ namespace GUI
         private void btn_phieuHoanTra_Click(object sender, EventArgs e)
         {
             loadForm(new frm_lapPhieuHoanTra());
-        }
-
-        private void frm_main_Load(object sender, EventArgs e)
-        {
-            PhanQuyenAccordion(nhanVien.MaNhanVien);
         }
     }
 }
