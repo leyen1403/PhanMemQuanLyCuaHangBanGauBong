@@ -114,7 +114,7 @@ namespace DAL
                 var ncc = db.NhaCungCaps.FirstOrDefault(kh => kh.MaNhaCungCap== mancc);
                 if (ncc!= null)
                 {
-                    ncc.TrangThai = false;
+                    db.NhaCungCaps.DeleteOnSubmit(ncc);
                     db.SubmitChanges();
                     return "Xóa thành công";
                 }

@@ -48,8 +48,11 @@ namespace GUI
         }
         public void xoaTextBox()
         {
-            txtMatKhau.Text = string.Empty;
-            txtTenDangNhap.Text = string.Empty;
+            if (!checkBox1.Checked)
+            {
+                txtMatKhau.Text = string.Empty;
+                txtTenDangNhap.Text = string.Empty;
+            }
         }
         private int isValid()
         {

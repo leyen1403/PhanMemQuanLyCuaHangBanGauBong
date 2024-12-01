@@ -34,6 +34,9 @@
             this.btn_thietLapTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
             this.btn_dangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.label_tenNV = new DevExpress.XtraBars.BarStaticItem();
+            this.txt_tenNV = new DevExpress.XtraBars.BarStaticItem();
+            this.btn_Khoa = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_thietLap = new DevExpress.XtraBars.BarButtonItem();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.pnMain = new System.Windows.Forms.Panel();
             this.pnLeft = new System.Windows.Forms.Panel();
@@ -66,9 +69,6 @@
             this.btn_DXuat = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txt_tenNV = new DevExpress.XtraBars.BarStaticItem();
-            this.btn_Khoa = new DevExpress.XtraBars.BarButtonItem();
-            this.btn_thietLap = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
             this.pnLeft.SuspendLayout();
@@ -122,6 +122,29 @@
             this.label_tenNV.Caption = "Nhân viên: Tên nhân viên";
             this.label_tenNV.Id = 2;
             this.label_tenNV.Name = "label_tenNV";
+            // 
+            // txt_tenNV
+            // 
+            this.txt_tenNV.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.txt_tenNV.Id = 3;
+            this.txt_tenNV.Name = "txt_tenNV";
+            // 
+            // btn_Khoa
+            // 
+            this.btn_Khoa.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_Khoa.Id = 4;
+            this.btn_Khoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Khoa.ImageOptions.Image")));
+            this.btn_Khoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_Khoa.ImageOptions.LargeImage")));
+            this.btn_Khoa.Name = "btn_Khoa";
+            this.btn_Khoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Khoa_ItemClick);
+            // 
+            // btn_thietLap
+            // 
+            this.btn_thietLap.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_thietLap.Id = 5;
+            this.btn_thietLap.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_thietLap.ImageOptions.Image")));
+            this.btn_thietLap.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_thietLap.ImageOptions.LargeImage")));
+            this.btn_thietLap.Name = "btn_thietLap";
             // 
             // fluentFormDefaultManager1
             // 
@@ -419,29 +442,6 @@
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // txt_tenNV
-            // 
-            this.txt_tenNV.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.txt_tenNV.Id = 3;
-            this.txt_tenNV.Name = "txt_tenNV";
-            // 
-            // btn_Khoa
-            // 
-            this.btn_Khoa.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.btn_Khoa.Id = 4;
-            this.btn_Khoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btn_Khoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.btn_Khoa.Name = "btn_Khoa";
-            this.btn_Khoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Khoa_ItemClick);
-            // 
-            // btn_thietLap
-            // 
-            this.btn_thietLap.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.btn_thietLap.Id = 5;
-            this.btn_thietLap.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image1")));
-            this.btn_thietLap.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage1")));
-            this.btn_thietLap.Name = "btn_thietLap";
             // 
             // frm_main
             // 
