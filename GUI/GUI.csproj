@@ -126,6 +126,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_TaoDDH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_TaoDDH.Designer.cs">
+      <DependentUpon>frm_TaoDDH.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_dangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_quanLyPhieuKiemKe.resx">
       <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_TaoDDH.resx">
+      <DependentUpon>frm_TaoDDH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_thietLapTaiKhoan.resx">
       <DependentUpon>frm_thietLapTaiKhoan.cs</DependentUpon>

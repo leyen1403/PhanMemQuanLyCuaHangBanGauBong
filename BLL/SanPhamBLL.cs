@@ -181,6 +181,10 @@ namespace BLL
             return sanPhamDal.GetSanPhamTonKho();
         }
 
+        public List<SanPham> LayDanhSachSanPham()
+        {
+            return sanPhamDal.GetProductList();
+        }
     }
 
 

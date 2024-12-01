@@ -85,5 +85,10 @@ namespace BLL
            
             return nhanVienDAL.GetDiaChiByMaNhanVien(maNhanVien); 
         }
+
+        public List<NhanVien> LayDanhSachNhanVien()
+        {
+            return nhanVienDAL.GetListNhanVien();
+        }
     }
 }

@@ -40,5 +40,20 @@ namespace BLL
         {
             return ctdhDAL.CapNhatChiTietDonDatHang(ctddh);
         }
+
+        public string LayMaChiTietDonDatHangCuoi()
+        {
+            var danhSachChiTiet = ctdhDAL.LayDanhSachChiTietDonDatHang();
+            if (!danhSachChiTiet.Any())
+            {
+                return null; // Or handle it in another appropriate way
+            }
+            return danhSachChiTiet.Last().MaChiTietDonDatHang;
+        }
+
+        public ChiTietDonDatHang LayChiTietDOnDatHangBangMaCTDDH(string maCTDDH)
+        {
+            return ctdhDAL.LayDanhSachChiTietDonDatHang().Where(ct => ct.MaChiTietDonDatHang == maCTDDH).FirstOrDefault();
+        }
     }
 }

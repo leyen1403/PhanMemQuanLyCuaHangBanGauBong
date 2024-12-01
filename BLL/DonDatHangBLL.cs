@@ -41,5 +41,45 @@ namespace BLL
         {
             return ddhDAL.XoaDonDatHang(maDonDatHang);
         }
+
+        public string LayMaDonDatHangCuoiCung()
+        {
+            var lastOrder = LayDanhSachDonDatHang2().LastOrDefault();
+            if (lastOrder != null)
+            {
+                return lastOrder.MaDonDatHang;
+            }
+            return null; // or handle the case where there is no last order
+        }
+
+        public bool LuuDonDatHangVoiDanhSachChiTietDonDatHang(DonDatHang donDatHang, List<ChiTietDonDatHang> lstChiTietDonDatHang)
+        {
+            // Tạo đơn đặt hàng
+            if (ThemDonDatHang(donDatHang))
+            {
+                // Lấy mã đơn đặt hàng cuối cùng
+                string maDonDatHang = LayMaDonDatHangCuoiCung();
+
+                // Lưu danh sách chi tiết đơn đặt hàng
+                ChiTietDonDatHangBLL chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+                foreach (ChiTietDonDatHang chiTietDonDatHang in lstChiTietDonDatHang)
+                {
+                    chiTietDonDatHang.MaDonDatHang = maDonDatHang;
+                    if (!chiTietDonDatHangBLL.ThemChiTietDonDatHang(chiTietDonDatHang))
+                    {
+                        // Nếu một chi tiết đơn đặt hàng không thể thêm, trả về false
+                        return false;
+                    }
+                }
+                // Nếu tất cả chi tiết đơn đặt hàng được lưu thành công
+                return true;
+            }
+            else
+            {
+                // Nếu không thể thêm đơn đặt hàng, trả về false
+                return false;
+            }
+        }
+
     }
 }

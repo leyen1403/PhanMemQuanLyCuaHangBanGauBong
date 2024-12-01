@@ -56,7 +56,7 @@ namespace GUI
             this.btn_HoaDon.Click += Btn_HoaDon_Click;
             this.btn_DichVu.Click += Btn_DichVu_Click;
             PhanQuyenAccordion(nhanVien.MaNhanVien);
-            loadForm(new frm_lapHoaDon());
+            loadForm(new frm_quanLyDonDatHang() { _maNhanVien = nhanVien.MaNhanVien });
             txt_tenNV.Caption = nhanVien.HoTen.ToString();
 
         }
