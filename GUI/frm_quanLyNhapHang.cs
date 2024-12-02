@@ -344,7 +344,7 @@ namespace GUI
                     row.Cells["ThanhTien"].Value = soLuong * donGia;
                 }
             }
-            btnLuu.Enabled = false; 
+            //btnLuu.Enabled = true; 
         }
 
         private void DgvChiTietPhieuNhap_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -367,6 +367,7 @@ namespace GUI
                     e.Cancel = true; 
                 }
             }
+            btnLuu.Enabled = true;
 
         }
 
@@ -438,7 +439,7 @@ namespace GUI
                     .Where(orig => updatedList.All(updated => updated.MaChiTietPhieuNhap != orig.MaChiTietPhieuNhap))
                     .ToList();
 
-                bool isSuccess = chiTietPhieuNhapBLL.UpdateAndDeleteChiTietPhieuNhap(updatedList, deletedItems, maPN);
+                bool isSuccess = chiTietPhieuNhapBLL.UpdateChiTietPhieuNhapList(updatedList, maPN);
                 if (isSuccess)
                 {
                     MessageBox.Show("Cập nhật thành công!");
@@ -551,41 +552,61 @@ namespace GUI
 
         private void BtnLuuPhieu_Click(object sender, EventArgs e)
         {
-            string maPN = txtMaPN.Text;
-
-            List<ChiTietPhieuNhap> updatedList = new List<ChiTietPhieuNhap>();
-
-            foreach (DataGridViewRow row in dgvChiTietPhieuNhap.Rows)
-            {
-                if (row.Cells["MaChiTietPhieuNhap"].Value != null)
-                {
-                    ChiTietPhieuNhap ct = new ChiTietPhieuNhap
-                    {
-                        MaChiTietPhieuNhap = row.Cells["MaChiTietPhieuNhap"].Value.ToString(),
-                        MaPhieuNhap = maPN,
-                        DonViTinh = row.Cells["DonViTinh"].Value?.ToString(),
-                        SoLuong = row.Cells["SoLuong"].Value != null ? Convert.ToInt32(row.Cells["SoLuong"].Value) : 0,
-                        DonGia = row.Cells["DonGia"].Value != null ? Convert.ToDecimal(row.Cells["DonGia"].Value) : 0,
-                        ThanhTien = row.Cells["ThanhTien"].Value != null ? Convert.ToDecimal(row.Cells["ThanhTien"].Value) : 0,
-                        TrangThai = row.Cells["TrangThai"].Value?.ToString(),
-                        GhiChu = row.Cells["GhiChu"].Value?.ToString(),
-                        MaChiTietDonDatHang = row.Cells["MaCTDDH"].Value?.ToString()
-                    };
-
-                    updatedList.Add(ct);
-                }
-            }
-
             try
             {
-                var bll = new ChiTietPhieuNhapBLL();  
-                bll.UpdateChiTietPhieuNhapList(updatedList, maPN); 
-                MessageBox.Show("Phiếu nhập đã được lưu thành công.");
+            
+                if (string.IsNullOrWhiteSpace(txtMaPN.Text))
+                {
+                    MessageBox.Show("Mã phiếu nhập không được để trống.");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtLanNhap.Text) || !int.TryParse(txtLanNhap.Text, out int lanNhap))
+                {
+                    MessageBox.Show("Vui lòng nhập số nguyên hợp lệ cho lần nhập.");
+                    return;
+                }
+
+                string nhanVien = cbbNhanVien.SelectedValue?.ToString();
+
+                if (string.IsNullOrEmpty(nhanVien))
+                {
+                    MessageBox.Show("Vui lòng chọn nhân viên .");
+                    return;
+                }
+
+                DateTime ngayLap = dTPNgayLap.Value;
+                if (ngayLap > DateTime.Now)
+                {
+                    MessageBox.Show("Ngày lập không được lớn hơn ngày hiện tại.");
+                    return;
+                }
+
+                PhieuNhap newPhieuNhap = new PhieuNhap
+                {
+                    MaPhieuNhap = txtMaPN.Text,
+                    NgayLap = ngayLap,
+                    TrangThai = txtTrangThai.Text,
+                    LanNhap = lanNhap,
+                    MaNhanVien = nhanVien,
+                };
+                bool isSuccessPN = phieuNhapBLL.UpdatePhieuNhap(newPhieuNhap);
+
+                if (isSuccessPN)
+                {
+                    MessageBox.Show("Phiếu nhập đã được cập nhật thành công!");
+                    anhXaPhieuNhap();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể cập nhật phiếu nhập. Vui lòng kiểm tra dữ liệu nhập vào.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu phiếu nhập: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
+
         }
 
         private void BtnHuyPhieu_Click(object sender, EventArgs e)

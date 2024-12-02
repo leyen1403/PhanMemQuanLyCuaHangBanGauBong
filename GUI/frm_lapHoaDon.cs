@@ -476,9 +476,9 @@ namespace GUI
                     TongTien = tongTien,
                     DiemCongTichLuy = diemTichLuyCong,
                     DiemTichLuy = diemTichLuyMoi,
-                    HinhThucGiaoHang = hinhThucGiaoHang,
-                    PhuongThucThanhToan = hinhThucThanhToan,
-                    TrangThaiDonHang = trangThaiDonHang
+                    //HinhThucGiaoHang = hinhThucGiaoHang,
+                    //PhuongThucThanhToan = hinhThucThanhToan,
+                    //TrangThaiDonHang = trangThaiDonHang
                 };
 
                 bool isHoaDonAdded = _hoaDonBanHangBLL.AddHoaDonBanHang(hoaDon);

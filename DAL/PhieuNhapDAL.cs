@@ -60,6 +60,50 @@ namespace DAL
                 return false;
             }
         }
+
+
+        public bool UpdatePhieuNhap(PhieuNhap updatedPhieuNhap)
+        {
+            try
+            {
+                var phieuNhap = db.PhieuNhaps.FirstOrDefault(pn => pn.MaPhieuNhap == updatedPhieuNhap.MaPhieuNhap);
+
+                if (phieuNhap == null)
+                {
+                    Console.WriteLine($"Không tìm thấy phiếu nhập với mã: {updatedPhieuNhap.MaPhieuNhap}");
+                    return false;
+                }
+
+                phieuNhap.NgayLap = updatedPhieuNhap.NgayLap;
+                phieuNhap.TrangThai = updatedPhieuNhap.TrangThai;
+                phieuNhap.LanNhap = updatedPhieuNhap.LanNhap;
+
+                if (phieuNhap.MaNhanVien != updatedPhieuNhap.MaNhanVien)
+                {
+                    var nhanVien = db.NhanViens.FirstOrDefault(nv => nv.MaNhanVien == updatedPhieuNhap.MaNhanVien);
+                    if (nhanVien != null)
+                    {
+                        phieuNhap.NhanVien = nhanVien; 
+                    }
+                    else
+                    {
+                        throw new Exception("Mã nhân viên không hợp lệ.");
+                    }
+                }
+
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi cập nhật phiếu nhập: {ex.Message}");
+                return false;
+            }
+        }
+
+
+
+
         public bool DeletePhieuNhap(string maPhieuNhap)
         {
             try
