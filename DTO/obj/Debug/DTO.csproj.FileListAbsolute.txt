@@ -11,13 +11,6 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csp
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll.config
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
-D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll.config
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll
 D:\MonCoLy\LamLaiNe\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
@@ -44,3 +37,10 @@ B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGa
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
 B:\Hoc tap\HK7\CNPMNC\DoAn\PhanMemQuanLyCuaHangGauBong\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll.config
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\bin\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.dll
+D:\Github\PhanMemQuanLyCuaHangBanGauBong\DTO\obj\Debug\DTO.pdb
