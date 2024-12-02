@@ -1,4 +1,6 @@
-﻿namespace GUI
+﻿using System.Windows.Forms;
+
+namespace GUI
 {
     partial class frm_main
     {
@@ -13,12 +15,28 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                if (this.InvokeRequired)
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        DisposeResources();
+                    });
+                }
+                else
+                {
+                    DisposeResources();
+                }
             }
             base.Dispose(disposing);
         }
+
+        private void DisposeResources()
+        {
+            // Dispose managed resources here
+        }
+        
 
         #region Windows Form Designer generated code
 

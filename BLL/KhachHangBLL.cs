@@ -37,9 +37,9 @@ namespace BLL
         {
             return _khachHangDAL.GetAllKhachHangs();
         }
-        public bool AddDiemCongTichLuy(string maKhachHang, decimal diemCong)
+        public bool UpdateDiemTichLuy(string maKhachHang, decimal diemTichLuyMoi)
         {
-            return _khachHangDAL.AddDiemCongTichLuy(maKhachHang, diemCong);
+            return _khachHangDAL.UpdateDiemTichLuy(maKhachHang, diemTichLuyMoi);
         }
 
         public string CreateKhachHang(KhachHang kh)

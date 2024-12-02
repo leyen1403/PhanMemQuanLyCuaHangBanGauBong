@@ -278,6 +278,7 @@
       <DependentUpon>frm_wait.cs</DependentUpon>
     </Compile>
     <Compile Include="LuaChonHienThi.cs" />
+    <Compile Include="PlaceHoder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frm_dangNhap.resx">
@@ -422,6 +423,7 @@
   <ItemGroup>
     <None Include="Resources\icons8-print-32.png" />
     <None Include="Resources\icons8-macos-close-30.png" />
+    <None Include="Resources\hethang1.png" />
     <Content Include="Resources\icons8-print-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
