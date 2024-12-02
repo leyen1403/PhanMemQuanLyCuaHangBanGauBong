@@ -73,33 +73,25 @@ namespace DAL
                 return new List<KhachHang>(); 
             }
         }
-        public bool AddDiemCongTichLuy(string maKhachHang, decimal diemCong)
+        public bool UpdateDiemTichLuy(string maKhachHang, decimal diemTichLuyMoi)
         {
             try
             {
-                // Kiểm tra xem khách hàng có tồn tại hay không
                 var khachHang = db.KhachHangs.FirstOrDefault(kh => kh.MaKhachHang == maKhachHang);
-                if (khachHang == null)
-                {
-                    Console.WriteLine("Khách hàng không tồn tại.");
-                    return false; // Trả về false nếu khách hàng không tồn tại
-                }
+                if (khachHang == null) return false;
 
-                // Cập nhật điểm tích lũy mới
-                khachHang.DiemTichLuy = (khachHang.DiemTichLuy ?? 0) + diemCong;
-
-                // Lưu lại thay đổi vào cơ sở dữ liệu
+                khachHang.DiemTichLuy = diemTichLuyMoi;
                 db.SubmitChanges();
-
-                Console.WriteLine($"Thêm {diemCong} điểm cộng cho khách hàng {maKhachHang}. Điểm tích lũy hiện tại: {khachHang.DiemTichLuy}");
-                return true; // Trả về true nếu việc thêm điểm thành công
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Lỗi: {ex.Message}");
-                return false; // Trả về false nếu có lỗi
+                return false;
             }
         }
+
+
         public string CreateKhachHang(KhachHang kh)
         {
             try
