@@ -81,5 +81,31 @@ namespace BLL
             }
         }
 
+        public bool CapNhatChiTietDonDatHangDuaTrenDDHVaDSCTDDH(DonDatHang ddhTemp, List<ChiTietDonDatHang> lstTemp)
+        {
+            // Cập nhật thông tin đơn đặt hàng
+            if (!CapNhatDonDatHang(ddhTemp))
+            {
+                // Nếu cập nhật đơn đặt hàng thất bại, trả về false
+                return false;
+            }
+
+            // Cập nhật chi tiết đơn đặt hàng
+            ChiTietDonDatHangBLL chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+
+            foreach (ChiTietDonDatHang ctddh in lstTemp)
+            {
+                // Cập nhật chi tiết đơn đặt hàng
+                if (!chiTietDonDatHangBLL.CapNhatChiTietDonDatHang(ctddh))
+                {
+                    // Nếu có chi tiết không cập nhật được, trả về false
+                    return false;
+                }
+            }
+
+            // Nếu tất cả các chi tiết được cập nhật thành công, trả về true
+            return true;
+        }
+
     }
 }

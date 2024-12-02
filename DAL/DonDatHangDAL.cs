@@ -54,6 +54,7 @@ namespace DAL
                 ddhNew.MaNhanVien = ddh.MaNhanVien;
                 ddhNew.MaNhaCungCap = ddh.MaNhaCungCap;
                 ddhNew.MaNhanVien = ddh.MaNhanVien;
+                ddhNew.NgayCapNhat = DateTime.Now;
                 db.SubmitChanges();
                 return true;
             }
