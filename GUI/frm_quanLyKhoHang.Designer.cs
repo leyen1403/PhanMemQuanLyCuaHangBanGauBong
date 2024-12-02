@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_xoaLuon = new System.Windows.Forms.Button();
+            this.btn_clear = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.txt_soLuongToiThieu = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.txt_trangThai = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txt_ngayCapNhat = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -53,6 +52,11 @@
             this.txt_soLuongTon = new System.Windows.Forms.TextBox();
             this.txt_giaBan = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btn_luuSanPham = new System.Windows.Forms.Button();
+            this.btn_suaSanPham = new System.Windows.Forms.Button();
+            this.btn_xoaSanPham = new System.Windows.Forms.Button();
+            this.btn_themSanPham = new System.Windows.Forms.Button();
+            this.img_sanPham = new System.Windows.Forms.PictureBox();
             this.txt_giaNhap = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txt_donViTinh = new System.Windows.Forms.TextBox();
@@ -77,18 +81,12 @@
             this.btn_load = new System.Windows.Forms.Button();
             this.btn_timDK = new System.Windows.Forms.Button();
             this.btn_timKiem = new System.Windows.Forms.Button();
-            this.btn_clear = new System.Windows.Forms.Button();
-            this.btn_khoiPhuc = new System.Windows.Forms.Button();
-            this.btn_luuSanPham = new System.Windows.Forms.Button();
-            this.btn_suaSanPham = new System.Windows.Forms.Button();
-            this.btn_xoaSanPham = new System.Windows.Forms.Button();
-            this.btn_themSanPham = new System.Windows.Forms.Button();
-            this.img_sanPham = new System.Windows.Forms.PictureBox();
+            this.cbo_trangThai = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_sanPham)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsSanPham)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.img_sanPham)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -96,13 +94,11 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.groupBox2.Controls.Add(this.cbo_trangThai);
             this.groupBox2.Controls.Add(this.btn_clear);
-            this.groupBox2.Controls.Add(this.btn_xoaLuon);
-            this.groupBox2.Controls.Add(this.btn_khoiPhuc);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.txt_soLuongToiThieu);
             this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.txt_trangThai);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.txt_ngayCapNhat);
             this.groupBox2.Controls.Add(this.label16);
@@ -142,25 +138,25 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(584, 709);
+            this.groupBox2.Size = new System.Drawing.Size(584, 723);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thông tin nhân viên";
+            this.groupBox2.Text = "Thông tin sản phẩm";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // btn_xoaLuon
+            // btn_clear
             // 
-            this.btn_xoaLuon.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_xoaLuon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_xoaLuon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xoaLuon.ForeColor = System.Drawing.Color.Navy;
-            this.btn_xoaLuon.Location = new System.Drawing.Point(498, 614);
-            this.btn_xoaLuon.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_xoaLuon.Name = "btn_xoaLuon";
-            this.btn_xoaLuon.Size = new System.Drawing.Size(69, 40);
-            this.btn_xoaLuon.TabIndex = 50;
-            this.btn_xoaLuon.Text = "Xoá luôn";
-            this.btn_xoaLuon.UseVisualStyleBackColor = false;
+            this.btn_clear.BackColor = System.Drawing.Color.Navy;
+            this.btn_clear.BackgroundImage = global::GUI.Properties.Resources.icons8_clear_32;
+            this.btn_clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_clear.Location = new System.Drawing.Point(424, 668);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(47, 41);
+            this.btn_clear.TabIndex = 51;
+            this.btn_clear.UseVisualStyleBackColor = false;
             // 
             // label21
             // 
@@ -195,16 +191,6 @@
             this.label20.Size = new System.Drawing.Size(90, 20);
             this.label20.TabIndex = 46;
             this.label20.Text = "Trạng thái";
-            // 
-            // txt_trangThai
-            // 
-            this.txt_trangThai.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_trangThai.Location = new System.Drawing.Point(191, 621);
-            this.txt_trangThai.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_trangThai.Name = "txt_trangThai";
-            this.txt_trangThai.ReadOnly = true;
-            this.txt_trangThai.Size = new System.Drawing.Size(232, 26);
-            this.txt_trangThai.TabIndex = 13;
             // 
             // label17
             // 
@@ -420,6 +406,75 @@
             this.label5.TabIndex = 23;
             this.label5.Text = "Giá bán";
             // 
+            // btn_luuSanPham
+            // 
+            this.btn_luuSanPham.BackColor = System.Drawing.Color.Navy;
+            this.btn_luuSanPham.BackgroundImage = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btn_luuSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_luuSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_luuSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_luuSanPham.Location = new System.Drawing.Point(363, 668);
+            this.btn_luuSanPham.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_luuSanPham.Name = "btn_luuSanPham";
+            this.btn_luuSanPham.Size = new System.Drawing.Size(47, 41);
+            this.btn_luuSanPham.TabIndex = 22;
+            this.btn_luuSanPham.UseVisualStyleBackColor = false;
+            // 
+            // btn_suaSanPham
+            // 
+            this.btn_suaSanPham.BackColor = System.Drawing.Color.Navy;
+            this.btn_suaSanPham.BackgroundImage = global::GUI.Properties.Resources.icons8_update_32;
+            this.btn_suaSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_suaSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_suaSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_suaSanPham.Location = new System.Drawing.Point(221, 668);
+            this.btn_suaSanPham.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_suaSanPham.Name = "btn_suaSanPham";
+            this.btn_suaSanPham.Size = new System.Drawing.Size(47, 41);
+            this.btn_suaSanPham.TabIndex = 21;
+            this.btn_suaSanPham.UseVisualStyleBackColor = false;
+            // 
+            // btn_xoaSanPham
+            // 
+            this.btn_xoaSanPham.BackColor = System.Drawing.Color.Navy;
+            this.btn_xoaSanPham.BackgroundImage = global::GUI.Properties.Resources.icons8_delete_35;
+            this.btn_xoaSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_xoaSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_xoaSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_xoaSanPham.Location = new System.Drawing.Point(292, 668);
+            this.btn_xoaSanPham.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_xoaSanPham.Name = "btn_xoaSanPham";
+            this.btn_xoaSanPham.Size = new System.Drawing.Size(47, 41);
+            this.btn_xoaSanPham.TabIndex = 20;
+            this.btn_xoaSanPham.UseVisualStyleBackColor = false;
+            // 
+            // btn_themSanPham
+            // 
+            this.btn_themSanPham.BackColor = System.Drawing.Color.Navy;
+            this.btn_themSanPham.BackgroundImage = global::GUI.Properties.Resources.icons8_add_35;
+            this.btn_themSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_themSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_themSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_themSanPham.Location = new System.Drawing.Point(150, 668);
+            this.btn_themSanPham.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_themSanPham.Name = "btn_themSanPham";
+            this.btn_themSanPham.Size = new System.Drawing.Size(47, 41);
+            this.btn_themSanPham.TabIndex = 19;
+            this.btn_themSanPham.UseVisualStyleBackColor = false;
+            this.btn_themSanPham.Click += new System.EventHandler(this.btn_themSanPham_Click_1);
+            // 
+            // img_sanPham
+            // 
+            this.img_sanPham.BackgroundImage = global::GUI.Properties.Resources.gaucute;
+            this.img_sanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.img_sanPham.Location = new System.Drawing.Point(447, 24);
+            this.img_sanPham.Margin = new System.Windows.Forms.Padding(2);
+            this.img_sanPham.Name = "img_sanPham";
+            this.img_sanPham.Size = new System.Drawing.Size(101, 131);
+            this.img_sanPham.TabIndex = 13;
+            this.img_sanPham.TabStop = false;
+            this.img_sanPham.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // txt_giaNhap
             // 
             this.txt_giaNhap.Location = new System.Drawing.Point(191, 192);
@@ -468,7 +523,7 @@
             this.txt_moTa.Margin = new System.Windows.Forms.Padding(2);
             this.txt_moTa.Multiline = true;
             this.txt_moTa.Name = "txt_moTa";
-            this.txt_moTa.Size = new System.Drawing.Size(258, 70);
+            this.txt_moTa.Size = new System.Drawing.Size(235, 70);
             this.txt_moTa.TabIndex = 6;
             // 
             // label11
@@ -531,7 +586,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.Navy;
-            this.panel2.Location = new System.Drawing.Point(614, 107);
+            this.panel2.Location = new System.Drawing.Point(628, 94);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(4, 752);
@@ -674,6 +729,7 @@
             // 
             // btn_load
             // 
+            this.btn_load.BackColor = System.Drawing.Color.Navy;
             this.btn_load.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_load.Image = global::GUI.Properties.Resources.icons8_load_32;
             this.btn_load.Location = new System.Drawing.Point(222, 20);
@@ -681,11 +737,12 @@
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(42, 38);
             this.btn_load.TabIndex = 23;
-            this.btn_load.UseVisualStyleBackColor = true;
+            this.btn_load.UseVisualStyleBackColor = false;
             // 
             // btn_timDK
             // 
             this.btn_timDK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_timDK.BackColor = System.Drawing.Color.Navy;
             this.btn_timDK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_timDK.Image = global::GUI.Properties.Resources.icons8_find_35;
             this.btn_timDK.Location = new System.Drawing.Point(552, 20);
@@ -693,10 +750,11 @@
             this.btn_timDK.Name = "btn_timDK";
             this.btn_timDK.Size = new System.Drawing.Size(42, 38);
             this.btn_timDK.TabIndex = 22;
-            this.btn_timDK.UseVisualStyleBackColor = true;
+            this.btn_timDK.UseVisualStyleBackColor = false;
             // 
             // btn_timKiem
             // 
+            this.btn_timKiem.BackColor = System.Drawing.Color.Navy;
             this.btn_timKiem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_timKiem.Image = global::GUI.Properties.Resources.icons8_find_35;
             this.btn_timKiem.Location = new System.Drawing.Point(176, 20);
@@ -704,109 +762,22 @@
             this.btn_timKiem.Name = "btn_timKiem";
             this.btn_timKiem.Size = new System.Drawing.Size(42, 38);
             this.btn_timKiem.TabIndex = 16;
-            this.btn_timKiem.UseVisualStyleBackColor = true;
+            this.btn_timKiem.UseVisualStyleBackColor = false;
             // 
-            // btn_clear
+            // cbo_trangThai
             // 
-            this.btn_clear.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_clear.BackgroundImage = global::GUI.Properties.Resources.icons8_clear_32;
-            this.btn_clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_clear.Location = new System.Drawing.Point(447, 570);
-            this.btn_clear.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(47, 37);
-            this.btn_clear.TabIndex = 51;
-            this.btn_clear.UseVisualStyleBackColor = false;
-            // 
-            // btn_khoiPhuc
-            // 
-            this.btn_khoiPhuc.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_khoiPhuc.BackgroundImage = global::GUI.Properties.Resources.icons8_load_32;
-            this.btn_khoiPhuc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_khoiPhuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_khoiPhuc.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_khoiPhuc.Location = new System.Drawing.Point(447, 618);
-            this.btn_khoiPhuc.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_khoiPhuc.Name = "btn_khoiPhuc";
-            this.btn_khoiPhuc.Size = new System.Drawing.Size(47, 37);
-            this.btn_khoiPhuc.TabIndex = 49;
-            this.btn_khoiPhuc.UseVisualStyleBackColor = false;
-            // 
-            // btn_luuSanPham
-            // 
-            this.btn_luuSanPham.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_luuSanPham.BackgroundImage = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btn_luuSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_luuSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_luuSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_luuSanPham.Location = new System.Drawing.Point(406, 664);
-            this.btn_luuSanPham.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_luuSanPham.Name = "btn_luuSanPham";
-            this.btn_luuSanPham.Size = new System.Drawing.Size(47, 37);
-            this.btn_luuSanPham.TabIndex = 22;
-            this.btn_luuSanPham.UseVisualStyleBackColor = false;
-            // 
-            // btn_suaSanPham
-            // 
-            this.btn_suaSanPham.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_suaSanPham.BackgroundImage = global::GUI.Properties.Resources.icons8_update_32;
-            this.btn_suaSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_suaSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_suaSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_suaSanPham.Location = new System.Drawing.Point(264, 664);
-            this.btn_suaSanPham.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_suaSanPham.Name = "btn_suaSanPham";
-            this.btn_suaSanPham.Size = new System.Drawing.Size(47, 37);
-            this.btn_suaSanPham.TabIndex = 21;
-            this.btn_suaSanPham.UseVisualStyleBackColor = false;
-            // 
-            // btn_xoaSanPham
-            // 
-            this.btn_xoaSanPham.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_xoaSanPham.BackgroundImage = global::GUI.Properties.Resources.icons8_delete_35;
-            this.btn_xoaSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_xoaSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xoaSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_xoaSanPham.Location = new System.Drawing.Point(335, 664);
-            this.btn_xoaSanPham.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_xoaSanPham.Name = "btn_xoaSanPham";
-            this.btn_xoaSanPham.Size = new System.Drawing.Size(47, 37);
-            this.btn_xoaSanPham.TabIndex = 20;
-            this.btn_xoaSanPham.UseVisualStyleBackColor = false;
-            // 
-            // btn_themSanPham
-            // 
-            this.btn_themSanPham.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_themSanPham.BackgroundImage = global::GUI.Properties.Resources.icons8_add_35;
-            this.btn_themSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_themSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_themSanPham.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_themSanPham.Location = new System.Drawing.Point(193, 664);
-            this.btn_themSanPham.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_themSanPham.Name = "btn_themSanPham";
-            this.btn_themSanPham.Size = new System.Drawing.Size(47, 37);
-            this.btn_themSanPham.TabIndex = 19;
-            this.btn_themSanPham.UseVisualStyleBackColor = false;
-            this.btn_themSanPham.Click += new System.EventHandler(this.btn_themSanPham_Click_1);
-            // 
-            // img_sanPham
-            // 
-            this.img_sanPham.BackgroundImage = global::GUI.Properties.Resources.gaucute;
-            this.img_sanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.img_sanPham.Location = new System.Drawing.Point(447, 24);
-            this.img_sanPham.Margin = new System.Windows.Forms.Padding(2);
-            this.img_sanPham.Name = "img_sanPham";
-            this.img_sanPham.Size = new System.Drawing.Size(101, 131);
-            this.img_sanPham.TabIndex = 13;
-            this.img_sanPham.TabStop = false;
-            this.img_sanPham.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.cbo_trangThai.FormattingEnabled = true;
+            this.cbo_trangThai.Location = new System.Drawing.Point(194, 623);
+            this.cbo_trangThai.Margin = new System.Windows.Forms.Padding(2);
+            this.cbo_trangThai.Name = "cbo_trangThai";
+            this.cbo_trangThai.Size = new System.Drawing.Size(232, 28);
+            this.cbo_trangThai.TabIndex = 52;
             // 
             // frm_quanLyKhoHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1240, 857);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -820,11 +791,11 @@
             this.Text = "frm_quanLyKhoHang";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_sanPham)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsSanPham)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.img_sanPham)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -872,11 +843,8 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txt_ngayCapNhat;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txt_trangThai;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txt_soLuongToiThieu;
-        private System.Windows.Forms.Button btn_khoiPhuc;
-        private System.Windows.Forms.Button btn_xoaLuon;
         private System.Windows.Forms.Button btn_clear;
         private System.Windows.Forms.PictureBox img_sanPham;
         private System.Windows.Forms.TextBox txt_timSanPham;
@@ -887,5 +855,6 @@
         private System.Windows.Forms.Button btn_timDK;
         private System.Windows.Forms.Button btn_load;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox cbo_trangThai;
     }
 }
