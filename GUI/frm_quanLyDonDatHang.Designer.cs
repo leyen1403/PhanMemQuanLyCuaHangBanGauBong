@@ -34,6 +34,7 @@
             this.nudSLT = new System.Windows.Forms.NumericUpDown();
             this.nudSLCC = new System.Windows.Forms.NumericUpDown();
             this.txtGhiChuCTDDH = new System.Windows.Forms.TextBox();
+            this.cboNhaCungCap = new System.Windows.Forms.ComboBox();
             this.cboTrangThaiDonHang = new System.Windows.Forms.ComboBox();
             this.cboTrangThaiCTDDH = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -63,7 +64,6 @@
             this.dgvDDH = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvCTDDH = new System.Windows.Forms.DataGridView();
-            this.cboNhaCungCap = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSLYC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSLT)).BeginInit();
@@ -134,6 +134,11 @@
             // nudSLYC
             // 
             this.nudSLYC.Location = new System.Drawing.Point(1029, 40);
+            this.nudSLYC.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nudSLYC.Name = "nudSLYC";
             this.nudSLYC.Size = new System.Drawing.Size(120, 26);
             this.nudSLYC.TabIndex = 4;
@@ -141,6 +146,11 @@
             // nudSLT
             // 
             this.nudSLT.Location = new System.Drawing.Point(1029, 134);
+            this.nudSLT.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nudSLT.Minimum = new decimal(new int[] {
             100,
             0,
@@ -153,6 +163,11 @@
             // nudSLCC
             // 
             this.nudSLCC.Location = new System.Drawing.Point(1029, 87);
+            this.nudSLCC.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nudSLCC.Name = "nudSLCC";
             this.nudSLCC.Size = new System.Drawing.Size(120, 26);
             this.nudSLCC.TabIndex = 4;
@@ -164,6 +179,14 @@
             this.txtGhiChuCTDDH.Name = "txtGhiChuCTDDH";
             this.txtGhiChuCTDDH.Size = new System.Drawing.Size(175, 61);
             this.txtGhiChuCTDDH.TabIndex = 3;
+            // 
+            // cboNhaCungCap
+            // 
+            this.cboNhaCungCap.FormattingEnabled = true;
+            this.cboNhaCungCap.Location = new System.Drawing.Point(275, 39);
+            this.cboNhaCungCap.Name = "cboNhaCungCap";
+            this.cboNhaCungCap.Size = new System.Drawing.Size(269, 28);
+            this.cboNhaCungCap.TabIndex = 2;
             // 
             // cboTrangThaiDonHang
             // 
@@ -455,14 +478,6 @@
             this.dgvCTDDH.Name = "dgvCTDDH";
             this.dgvCTDDH.Size = new System.Drawing.Size(1461, 232);
             this.dgvCTDDH.TabIndex = 0;
-            // 
-            // cboNhaCungCap
-            // 
-            this.cboNhaCungCap.FormattingEnabled = true;
-            this.cboNhaCungCap.Location = new System.Drawing.Point(275, 39);
-            this.cboNhaCungCap.Name = "cboNhaCungCap";
-            this.cboNhaCungCap.Size = new System.Drawing.Size(269, 28);
-            this.cboNhaCungCap.TabIndex = 2;
             // 
             // frm_quanLyDonDatHang
             // 

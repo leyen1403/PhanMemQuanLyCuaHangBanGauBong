@@ -90,7 +90,7 @@
             this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
             this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(923, 31);
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1195, 31);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
             this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_thietLap);
@@ -133,8 +133,6 @@
             // 
             this.btn_Khoa.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.btn_Khoa.Id = 4;
-            this.btn_Khoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Khoa.ImageOptions.Image")));
-            this.btn_Khoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_Khoa.ImageOptions.LargeImage")));
             this.btn_Khoa.Name = "btn_Khoa";
             this.btn_Khoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Khoa_ItemClick);
             // 
@@ -142,8 +140,6 @@
             // 
             this.btn_thietLap.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.btn_thietLap.Id = 5;
-            this.btn_thietLap.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_thietLap.ImageOptions.Image")));
-            this.btn_thietLap.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_thietLap.ImageOptions.LargeImage")));
             this.btn_thietLap.Name = "btn_thietLap";
             // 
             // fluentFormDefaultManager1
@@ -168,7 +164,7 @@
             this.pnMain.Location = new System.Drawing.Point(322, 41);
             this.pnMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(1377, 923);
+            this.pnMain.Size = new System.Drawing.Size(1649, 1194);
             this.pnMain.TabIndex = 3;
             // 
             // pnLeft
@@ -181,7 +177,7 @@
             this.pnLeft.Location = new System.Drawing.Point(0, 31);
             this.pnLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(320, 507);
+            this.pnLeft.Size = new System.Drawing.Size(320, 778);
             this.pnLeft.TabIndex = 0;
             // 
             // accordionControl1
@@ -202,7 +198,7 @@
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Auto;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Auto;
-            this.accordionControl1.Size = new System.Drawing.Size(320, 449);
+            this.accordionControl1.Size = new System.Drawing.Size(320, 720);
             this.accordionControl1.TabIndex = 18;
             // 
             // accordionControlElement1
@@ -242,6 +238,7 @@
             this.btn_PhieuNhapHang.Name = "btn_PhieuNhapHang";
             this.btn_PhieuNhapHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_PhieuNhapHang.Text = "Lập phiếu nhập hàng";
+            this.btn_PhieuNhapHang.Click += new System.EventHandler(this.btn_PhieuNhapHang_Click);
             // 
             // btn_LapThongKeBaoCao
             // 
@@ -320,6 +317,7 @@
             this.btn_NhapHang.Name = "btn_NhapHang";
             this.btn_NhapHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_NhapHang.Text = "Quản lý nhập hàng ";
+            this.btn_NhapHang.Click += new System.EventHandler(this.btn_NhapHang_Click);
             // 
             // btnQuanLyPhieuKiemKe
             // 
@@ -449,7 +447,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 538);
+            this.ClientSize = new System.Drawing.Size(1195, 809);
             this.Controls.Add(this.pnLeft);
             this.Controls.Add(this.pnMain);
             this.Controls.Add(this.fluentDesignFormControl1);

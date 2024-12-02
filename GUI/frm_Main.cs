@@ -224,5 +224,15 @@ namespace GUI
         {
             loadForm(new frm_lapPhieuHoanTra());
         }
+
+        private void btn_PhieuNhapHang_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuNhapHang());
+        }
+
+        private void btn_NhapHang_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyNhapHang());
+        }
     }
 }
