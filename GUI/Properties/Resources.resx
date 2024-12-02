@@ -142,6 +142,9 @@
   <data name="icons8-load-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-load-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="hethang" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hethang1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-add-shopping-cart-35" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-add-shopping-cart-35.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -166,7 +169,7 @@
   <data name="gaucute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gaucute.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hethang" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hethang1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-tick-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-tick-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
