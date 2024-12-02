@@ -278,6 +278,7 @@ namespace GUI
             this.btn_LapDonDatHang.Name = "btn_LapDonDatHang";
             this.btn_LapDonDatHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_LapDonDatHang.Text = "Lập Đơn Đặt Hàng";
+            this.btn_LapDonDatHang.Click += new System.EventHandler(this.btn_LapDonDatHang_Click_1);
             // 
             // btn_LapPhieuDoiTra
             // 

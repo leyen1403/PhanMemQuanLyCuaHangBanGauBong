@@ -145,6 +145,7 @@
             // 
             // nudSLT
             // 
+            this.nudSLT.Enabled = false;
             this.nudSLT.Location = new System.Drawing.Point(1029, 134);
             this.nudSLT.Maximum = new decimal(new int[] {
             1000,
@@ -162,6 +163,7 @@
             // 
             // nudSLCC
             // 
+            this.nudSLCC.Enabled = false;
             this.nudSLCC.Location = new System.Drawing.Point(1029, 87);
             this.nudSLCC.Maximum = new decimal(new int[] {
             1000,

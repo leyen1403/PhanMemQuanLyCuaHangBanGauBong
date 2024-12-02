@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -31,10 +32,17 @@ namespace GUI
             dgvCTDDH.CellValueChanged += DgvCTDDH_CellValueChanged;
             nudSLYC.ValueChanged += NudSLYC_ValueChanged;
             nudSLCC.ValueChanged += NudSLCC_ValueChanged;
+            dgvCTDDH.CellBeginEdit += DgvCTDDH_CellBeginEdit;
         }
 
         private void NudSLCC_ValueChanged(object sender, EventArgs e)
         {
+            // Số lượng yêu cầu không được bé hơn số lượng cung cấp
+            if (nudSLYC.Value < nudSLCC.Value)
+            {
+                nudSLYC.Value = nudSLCC.Value;
+                return;
+            }
             dgvCTDDH.CurrentRow.Cells["SoLuongCungCap"].Value = (int)nudSLCC.Value;
             nudSLYC.Value = Convert.ToDecimal(dgvCTDDH.CurrentRow.Cells["SoLuongYeuCau"].Value);
             nudSLT.Value = Convert.ToDecimal(dgvCTDDH.CurrentRow.Cells["SoLuongThieu"].Value);
@@ -42,6 +50,12 @@ namespace GUI
 
         private void NudSLYC_ValueChanged(object sender, EventArgs e)
         {
+            // Số lượng yêu cầu không được bé hơn số lượng cung cấp
+            if (nudSLYC.Value < nudSLCC.Value)
+            {
+                nudSLYC.Value = nudSLCC.Value;
+                return;
+            }
             dgvCTDDH.CurrentRow.Cells["SoLuongYeuCau"].Value = (int)nudSLYC.Value;
             nudSLCC.Value = Convert.ToDecimal(dgvCTDDH.CurrentRow.Cells["SoLuongCungCap"].Value);
             nudSLT.Value = Convert.ToDecimal(dgvCTDDH.CurrentRow.Cells["SoLuongThieu"].Value);
@@ -49,44 +63,49 @@ namespace GUI
 
         private void DgvCTDDH_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            // Kiểm tra nếu thay đổi xảy ra tại cột SoLuongYeuCau
-            if (e.RowIndex >= 0 && dgvCTDDH.Columns[e.ColumnIndex].Name == "SoLuongYeuCau")
+            if (e.RowIndex >= 0)
             {
                 var currentRow = dgvCTDDH.Rows[e.RowIndex];
 
-                // Lấy giá trị cần thiết
-                int soLuongYeuCau = Convert.ToInt32(currentRow.Cells["SoLuongYeuCau"].Value ?? 0);
-                int soLuongCungCap = Convert.ToInt32(currentRow.Cells["SoLuongCungCap"].Value ?? 0);
-                decimal donGia = Convert.ToDecimal(currentRow.Cells["DonGia"].Value ?? 0);
+                // Xử lý khi thay đổi tại cột SoLuongYeuCau
+                if (dgvCTDDH.Columns[e.ColumnIndex].Name == "SoLuongYeuCau")
+                {
+                    int soLuongCungCap = Convert.ToInt32(currentRow.Cells["SoLuongCungCap"].Value ?? 0);
+                    int soLuongYeuCau = Convert.ToInt32(currentRow.Cells["SoLuongYeuCau"].Value ?? 0);
 
-                // Tính toán
-                int soLuongThieu = soLuongYeuCau - soLuongCungCap;
-                decimal thanhTien = soLuongYeuCau * donGia;
+                    // Kiểm tra số lượng yêu cầu không nhỏ hơn số lượng cung cấp
+                    if (soLuongYeuCau < soLuongCungCap)
+                    {
+                        MessageBox.Show("Số lượng yêu cầu không được nhỏ hơn số lượng cung cấp.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        // Khôi phục giá trị cũ nếu không hợp lệ
+                        currentRow.Cells["SoLuongYeuCau"].Value = soLuongCungCap;
+                        return;
+                    }
 
-                // Cập nhật giá trị
-                currentRow.Cells["SoLuongThieu"].Value = soLuongThieu;
-                currentRow.Cells["ThanhTien"].Value = thanhTien;
+                    decimal donGia = Convert.ToDecimal(currentRow.Cells["DonGia"].Value ?? 0);
+                    int soLuongThieu = soLuongYeuCau - soLuongCungCap;
+                    decimal thanhTien = soLuongYeuCau * donGia;
 
-                // Cập nhật tổng tiền cho ô TongTien trong dgvDDH
-                CapNhatTongTien();
-            }
-            if(e.RowIndex >= 0 && dgvCTDDH.Columns[e.ColumnIndex].Name == "SoLuongCungCap")
-            {
-                var currentRow = dgvCTDDH.Rows[e.RowIndex];
-                // Lấy giá trị cần thiết
-                int soLuongYeuCau = Convert.ToInt32(currentRow.Cells["SoLuongYeuCau"].Value ?? 0);
-                int soLuongCungCap = Convert.ToInt32(currentRow.Cells["SoLuongCungCap"].Value ?? 0);
-                decimal donGia = Convert.ToDecimal(currentRow.Cells["DonGia"].Value ?? 0);
-                // Tính toán
-                int soLuongThieu = soLuongYeuCau - soLuongCungCap;
-                decimal thanhTien = soLuongYeuCau * donGia;
-                // Cập nhật giá trị
-                currentRow.Cells["SoLuongThieu"].Value = soLuongThieu;
-                currentRow.Cells["ThanhTien"].Value = thanhTien;
-                // Cập nhật tổng tiền cho ô TongTien trong dgvDDH
-                CapNhatTongTien();
+                    // Cập nhật giá trị
+                    currentRow.Cells["SoLuongThieu"].Value = soLuongThieu;
+                    currentRow.Cells["ThanhTien"].Value = thanhTien;
+
+                    // Cập nhật tổng tiền
+                    CapNhatTongTien();
+                }
             }
         }
+
+        private void DgvCTDDH_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            // Chỉ cho phép chỉnh sửa cột SoLuongYeuCau và GhiChu
+            string columnName = dgvCTDDH.Columns[e.ColumnIndex].Name;
+            if (columnName != "SoLuongYeuCau" && columnName != "GhiChu")
+            {
+                e.Cancel = true;
+            }
+        }
+
         private void CapNhatTongTien()
         {
             // Tính tổng tiền từ dgvCTDDH
@@ -395,7 +414,7 @@ namespace GUI
                 ddhTemp.MaNhanVien = _maNhanVien;
                 ddhTemp.TongTien = Convert.ToDecimal(lblTongTien.Text);
                 ddhTemp.TrangThai = dgvDDH.CurrentRow.Cells["TrangThai"].Value.ToString();
-                ddhTemp.NgayTao = Convert.ToDateTime(lblNgayTaoDDH.Text);
+                ddhTemp.NgayTao = DateTime.ParseExact(lblNgayTaoDDH.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 ddhTemp.NgayDat = ddhTemp.NgayTao;
 
                 List<ChiTietDonDatHang> lstTemp = new List<ChiTietDonDatHang>();

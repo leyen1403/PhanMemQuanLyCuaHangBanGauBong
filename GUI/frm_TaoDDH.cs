@@ -635,8 +635,9 @@ namespace GUI
                 {
                     // Lọc danh sách sản phẩm theo từ khóa
                     var filteredList = lstSanPham
-                        .Where(sp => sp.TenSanPham.ToLower().Contains(keyword) ||
-                                     sp.MaSanPham.ToLower().Contains(keyword))
+                        .Where(sp => sp != null &&
+                                     (sp.TenSanPham.ToLower().Contains(keyword) ||
+                                      sp.MaSanPham.ToLower().Contains(keyword)))
                         .ToList();
 
                     dgvSP.DataSource = filteredList;
