@@ -185,6 +185,11 @@ namespace BLL
         {
             return sanPhamDal.GetProductList();
         }
+
+        public SanPham LaySanPhamTheoMa(string maSP)
+        {
+            return sanPhamDal.GetProductById(maSP);
+        }
     }
 
 

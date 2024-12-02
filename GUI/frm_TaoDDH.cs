@@ -31,9 +31,33 @@ namespace GUI
             dgvCTDDH.CellValidating += DgvCTDDH_CellValidating;
             dgvCTDDH.CellValidated += DgvCTDDH_CellValidated;
             btnHoanTat.Click += BtnHoanTat_Click;
+            btnDatSPMoi.Click += BtnDatSPMoi_Click;
+            txtTimKiemSP.KeyDown += TxtTimKiemSP_KeyDown;
+            txtTimKiemSP.Enter += TxtTimKiemSP_Enter;
+            txtTimKiemSP.Leave += TxtTimKiemSP_Leave;
+            btnDatToanBo.Click += BtnDatToanBo_Click;
+            btnXoaToanBo.Click += BtnXoaToanBo_Click;
         }
 
+ 
 
+        private void TxtTimKiemSP_Leave(object sender, EventArgs e)
+        {
+            if (txtTimKiemSP.Text == string.Empty)
+            {
+                txtTimKiemSP.Text = "Tìm kiếm sản phẩm...";
+                txtTimKiemSP.ForeColor = Color.Gray;
+            }
+        }
+
+        private void TxtTimKiemSP_Enter(object sender, EventArgs e)
+        {
+            if (txtTimKiemSP.Text == "Tìm kiếm sản phẩm...")
+            {
+                txtTimKiemSP.Text = string.Empty; // Xóa nội dung placeholder
+                txtTimKiemSP.ForeColor = Color.Black; // Đặt lại màu chữ mặc định
+            }
+        }
 
         private void DinhDangDGVSP()
         {
@@ -131,16 +155,28 @@ namespace GUI
             dgvSP.DataSource = lstSanPham;
 
             DinhDangDGVSP();
-        }        
+
+            // Thêm placeholder cho textbox tìm kiếm
+            txtTimKiemSP.ForeColor = Color.Gray;
+            txtTimKiemSP.Text = "Tìm kiếm sản phẩm...";
+              
+        }
 
         private void DgvSP_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvSP.CurrentCell != null)
+            if (dgvSP.CurrentCell != null && dgvSP.CurrentRow != null)
             {
-                txtMaSanPham.Text = dgvSP.CurrentRow.Cells["MaSanPham"].Value.ToString();
-                txtTenSanPham.Text = dgvSP.CurrentRow.Cells["TenSanPham"].Value.ToString();
-                nudSoLuongYeuCau.Value = 1;
-                txtDonGia.Text = Convert.ToInt32(dgvSP.CurrentRow.Cells["GiaNhap"].Value).ToString("N0");
+                var cellMaSanPham = dgvSP.CurrentRow.Cells["MaSanPham"];
+                var cellTenSanPham = dgvSP.CurrentRow.Cells["TenSanPham"];
+                var cellGiaNhap = dgvSP.CurrentRow.Cells["GiaNhap"];
+
+                if (cellMaSanPham != null && cellTenSanPham != null && cellGiaNhap != null)
+                {
+                    txtMaSanPham.Text = cellMaSanPham.Value?.ToString() ?? string.Empty;
+                    txtTenSanPham.Text = cellTenSanPham.Value?.ToString() ?? string.Empty;
+                    nudSoLuongYeuCau.Value = 1;
+                    txtDonGia.Text = Convert.ToInt32(cellGiaNhap.Value).ToString("N0");
+                }
             }
         }
 
@@ -313,14 +349,30 @@ namespace GUI
 
         private void DgvCTDDH_SelectionChanged(object sender, EventArgs e)
         {
-           if(dgvCTDDH.CurrentCell != null)
+            if (dgvCTDDH.CurrentCell != null && dgvCTDDH.CurrentRow != null)
             {
-                SanPhamBLL sanPhamBLL = new SanPhamBLL();
-                txtMaSanPham.Text = dgvCTDDH.CurrentRow.Cells["MaSanPham"].Value.ToString();
-                txtTenSanPham.Text = sanPhamBLL.GetProductById(txtMaSanPham.Text).TenSanPham;
-                nudSoLuongYeuCau.Value = (int)dgvCTDDH.CurrentRow.Cells["SoLuongYeuCau"].Value;
-                txtDonGia.Text = Convert.ToInt32(dgvCTDDH.CurrentRow.Cells["DonGia"].Value).ToString("N0");
-                txtThanhTien.Text = Convert.ToInt32(dgvCTDDH.CurrentRow.Cells["ThanhTien"].Value).ToString("N0");
+                var cellMaSanPham = dgvCTDDH.CurrentRow.Cells["MaSanPham"];
+                if (cellMaSanPham?.Value != null)
+                {
+                    SanPhamBLL sanPhamBLL = new SanPhamBLL();
+                    txtMaSanPham.Text = cellMaSanPham.Value.ToString();
+                    txtTenSanPham.Text = sanPhamBLL.GetProductById(txtMaSanPham.Text).TenSanPham;
+                    var cellSoLuongYeuCau = dgvCTDDH.CurrentRow.Cells["SoLuongYeuCau"];
+                    if (cellSoLuongYeuCau?.Value != null)
+                    {
+                        nudSoLuongYeuCau.Value = (int)cellSoLuongYeuCau.Value;
+                    }
+                    var cellDonGia = dgvCTDDH.CurrentRow.Cells["DonGia"];
+                    if (cellDonGia?.Value != null)
+                    {
+                        txtDonGia.Text = Convert.ToInt32(cellDonGia.Value).ToString("N0");
+                    }
+                    var cellThanhTien = dgvCTDDH.CurrentRow.Cells["ThanhTien"];
+                    if (cellThanhTien?.Value != null)
+                    {
+                        txtThanhTien.Text = Convert.ToInt32(cellThanhTien.Value).ToString("N0");
+                    }
+                }
             }
         }
 
@@ -473,5 +525,268 @@ namespace GUI
                 }
             }
         }
+
+        private void BtnDatSPMoi_Click(object sender, EventArgs e)
+        {
+            if (lstSanPham == null || lstSanPham.Count == 0)
+            {
+                MessageBox.Show("Không có sản phẩm nào để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Lọc danh sách sản phẩm có NgayTao trong vòng 3 ngày gần đây
+            var spMoi = lstSanPham.Where(sp => sp.NgayTao >= DateTime.Now.AddDays(-3)).ToList();
+
+            if (spMoi.Count == 0)
+            {
+                MessageBox.Show("Không có sản phẩm mới nào trong vòng 3 ngày gần đây.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Yêu cầu người dùng nhập số lượng áp dụng
+            string input = Microsoft.VisualBasic.Interaction.InputBox(
+                "Nhập số lượng áp dụng cho tất cả sản phẩm mới:",
+                "Nhập số lượng",
+                "1");
+
+            if (!int.TryParse(input, out int soLuong) || soLuong <= 0)
+            {
+                MessageBox.Show("Số lượng không hợp lệ. Vui lòng nhập một số nguyên dương.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Xác định mã chi tiết đơn đặt hàng cuối cùng
+            int soMoi = 1; // Mặc định nếu không có mã cuối trong DB hoặc danh sách
+
+            if (lstChiTietDonDatHang.Count > 0)
+            {
+                // Lấy mã cuối trong danh sách tạm
+                string maCTDDHCuoiTrongDS = lstChiTietDonDatHang.Last().MaChiTietDonDatHang;
+                string soCuoiStr = maCTDDHCuoiTrongDS.Substring(5); // Lấy phần số sau "CTDDH"
+                if (int.TryParse(soCuoiStr, out int soCuoi))
+                {
+                    soMoi = soCuoi + 1;
+                }
+            }
+            else
+            {
+                // Lấy mã cuối trong cơ sở dữ liệu
+                ChiTietDonDatHangBLL chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+                string maCTDDHCuoiTrongDB = chiTietDonDatHangBLL.LayMaChiTietDonDatHangCuoi();
+
+                if (!string.IsNullOrEmpty(maCTDDHCuoiTrongDB))
+                {
+                    string soCuoiStr = maCTDDHCuoiTrongDB.Substring(5); // Lấy phần số sau "CTDDH"
+                    if (int.TryParse(soCuoiStr, out int soCuoi))
+                    {
+                        soMoi = soCuoi + 1;
+                    }
+                }
+            }
+
+            foreach (SanPham sp in spMoi)
+            {
+                ChiTietDonDatHang ctddh = new ChiTietDonDatHang();
+
+                // Tạo mã chi tiết đơn đặt hàng mới
+                ctddh.MaChiTietDonDatHang = "CTDDH" + soMoi.ToString("D3");
+                soMoi++; // Tăng số cho lần tiếp theo
+
+                // Gán các giá trị cho đối tượng ChiTietDonDatHang
+                ctddh.MaDonDatHang = txtMaDonDatHang.Text;
+                ctddh.DonViTinh = sp.DonViTinh;
+                ctddh.SoLuongYeuCau = soLuong;
+                ctddh.SoLuongCungCap = 0;
+                ctddh.SoLuongThieu = ctddh.SoLuongYeuCau;
+                ctddh.DonGia = sp.GiaNhap;
+                ctddh.ThanhTien = ctddh.DonGia * ctddh.SoLuongYeuCau;
+                ctddh.TrangThai = "Chưa xác nhận";
+                ctddh.GhiChu = string.Empty;
+                ctddh.MaSanPham = sp.MaSanPham;
+
+                // Thêm vào danh sách tạm
+                lstChiTietDonDatHang.Add(ctddh);
+
+                // Xoá sản phẩm khỏi danh sách sản phẩm
+                lstSanPham.Remove(sp);
+            }
+
+            // Cập nhật lại danh sách DataGridView sản phẩm
+            ReloadDGVSP();
+
+            // Cập nhật lại danh sách chi tiết đơn đặt hàng
+            ReloadDGVCTDDH();
+
+            MessageBox.Show("Các sản phẩm mới đã được thêm vào đơn đặt hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void TxtTimKiemSP_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string keyword = txtTimKiemSP.Text.Trim().ToLower();
+
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    // Hiển thị toàn bộ danh sách nếu ô tìm kiếm trống
+                    dgvSP.DataSource = lstSanPham;
+                }
+                else
+                {
+                    // Lọc danh sách sản phẩm theo từ khóa
+                    var filteredList = lstSanPham
+                        .Where(sp => sp.TenSanPham.ToLower().Contains(keyword) ||
+                                     sp.MaSanPham.ToLower().Contains(keyword))
+                        .ToList();
+
+                    dgvSP.DataSource = filteredList;
+
+                    if (filteredList.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy sản phẩm nào phù hợp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+
+                e.Handled = true; // Ngăn chặn xử lý mặc định của phím Enter
+                e.SuppressKeyPress = true; // Không phát âm thanh "ding"
+            }
+        }
+        private void BtnDatToanBo_Click(object sender, EventArgs e)
+        {
+            if (lstSanPham == null || lstSanPham.Count == 0)
+            {
+                MessageBox.Show("Không có sản phẩm nào để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Lọc danh sách sản phẩm có NgayTao trong vòng 3 ngày gần đây
+            var spMoi = lstSanPham.ToList();
+
+            if (spMoi.Count == 0)
+            {
+                MessageBox.Show("Không có sản phẩm mới nào trong vòng 3 ngày gần đây.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Yêu cầu người dùng nhập số lượng áp dụng
+            string input = Microsoft.VisualBasic.Interaction.InputBox(
+                "Nhập số lượng áp dụng cho tất cả sản phẩm mới:",
+                "Nhập số lượng",
+                "1");
+
+            if (!int.TryParse(input, out int soLuong) || soLuong <= 0)
+            {
+                MessageBox.Show("Số lượng không hợp lệ. Vui lòng nhập một số nguyên dương.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Xác định mã chi tiết đơn đặt hàng cuối cùng
+            int soMoi = 1; // Mặc định nếu không có mã cuối trong DB hoặc danh sách
+
+            if (lstChiTietDonDatHang.Count > 0)
+            {
+                // Lấy mã cuối trong danh sách tạm
+                string maCTDDHCuoiTrongDS = lstChiTietDonDatHang.Last().MaChiTietDonDatHang;
+                string soCuoiStr = maCTDDHCuoiTrongDS.Substring(5); // Lấy phần số sau "CTDDH"
+                if (int.TryParse(soCuoiStr, out int soCuoi))
+                {
+                    soMoi = soCuoi + 1;
+                }
+            }
+            else
+            {
+                // Lấy mã cuối trong cơ sở dữ liệu
+                ChiTietDonDatHangBLL chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+                string maCTDDHCuoiTrongDB = chiTietDonDatHangBLL.LayMaChiTietDonDatHangCuoi();
+
+                if (!string.IsNullOrEmpty(maCTDDHCuoiTrongDB))
+                {
+                    string soCuoiStr = maCTDDHCuoiTrongDB.Substring(5); // Lấy phần số sau "CTDDH"
+                    if (int.TryParse(soCuoiStr, out int soCuoi))
+                    {
+                        soMoi = soCuoi + 1;
+                    }
+                }
+            }
+
+            foreach (SanPham sp in spMoi)
+            {
+                ChiTietDonDatHang ctddh = new ChiTietDonDatHang();
+
+                // Tạo mã chi tiết đơn đặt hàng mới
+                ctddh.MaChiTietDonDatHang = "CTDDH" + soMoi.ToString("D3");
+                soMoi++; // Tăng số cho lần tiếp theo
+
+                // Gán các giá trị cho đối tượng ChiTietDonDatHang
+                ctddh.MaDonDatHang = txtMaDonDatHang.Text;
+                ctddh.DonViTinh = sp.DonViTinh;
+                ctddh.SoLuongYeuCau = soLuong;
+                ctddh.SoLuongCungCap = 0;
+                ctddh.SoLuongThieu = ctddh.SoLuongYeuCau;
+                ctddh.DonGia = sp.GiaNhap;
+                ctddh.ThanhTien = ctddh.DonGia * ctddh.SoLuongYeuCau;
+                ctddh.TrangThai = "Chưa xác nhận";
+                ctddh.GhiChu = string.Empty;
+                ctddh.MaSanPham = sp.MaSanPham;
+
+                // Thêm vào danh sách tạm
+                lstChiTietDonDatHang.Add(ctddh);
+
+                // Xoá sản phẩm khỏi danh sách sản phẩm
+                lstSanPham.Remove(sp);
+            }
+
+            // Cập nhật lại danh sách DataGridView sản phẩm
+            ReloadDGVSP();
+
+            // Cập nhật lại danh sách chi tiết đơn đặt hàng
+            ReloadDGVCTDDH();
+
+            MessageBox.Show("Các sản phẩm mới đã được thêm vào đơn đặt hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void BtnXoaToanBo_Click(object sender, EventArgs e)
+        {
+            if (lstChiTietDonDatHang == null || lstChiTietDonDatHang.Count == 0)
+            {
+                MessageBox.Show("Không có sản phẩm nào trong chi tiết đơn đặt hàng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Xác nhận từ người dùng
+            DialogResult result = MessageBox.Show(
+                "Bạn có chắc chắn muốn xóa toàn bộ sản phẩm trong chi tiết đơn đặt hàng?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                // Trả lại các sản phẩm từ lstChiTietDonDatHang về lstSanPham
+                foreach (var chiTiet in lstChiTietDonDatHang)
+                {
+                    // Tìm sản phẩm tương ứng trong lstSanPham
+                    SanPham sanPham = lstSanPham.FirstOrDefault(sp => sp.MaSanPham == chiTiet.MaSanPham);
+
+                    if (sanPham == null)
+                    {
+                        string maSP = chiTiet.MaSanPham;
+                        SanPhamBLL sanPhamBLL = new SanPhamBLL();
+                        sanPham = sanPhamBLL.GetProductById(maSP);
+                        lstSanPham.Add(sanPham);
+                    }
+                }
+
+                // Xóa toàn bộ danh sách chi tiết đơn đặt hàng
+                lstChiTietDonDatHang.Clear();
+
+                // Làm mới giao diện
+                ReloadDGVSP();    // Cập nhật lại DataGridView sản phẩm
+                ReloadDGVCTDDH(); // Cập nhật lại DataGridView chi tiết đơn đặt hàng
+
+                MessageBox.Show("Đã xóa toàn bộ sản phẩm trong chi tiết đơn đặt hàng và trả về danh sách sản phẩm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }
