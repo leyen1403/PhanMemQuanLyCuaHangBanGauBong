@@ -14,7 +14,7 @@ namespace GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_dangNhap());
+            Application.Run(new frm_quanLyNhapHang());
         }
     }
 }

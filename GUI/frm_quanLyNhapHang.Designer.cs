@@ -32,6 +32,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpTuNgay = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnTim = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpDenNgay = new System.Windows.Forms.DateTimePicker();
@@ -39,7 +40,12 @@
             this.cbbMaNhanVien = new System.Windows.Forms.ComboBox();
             this.cbbLuaChonHienThi = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnInPhieu = new System.Windows.Forms.Button();
+            this.btnHuyPhieu = new System.Windows.Forms.Button();
+            this.btnLuuPhieu = new System.Windows.Forms.Button();
+            this.btnTaoMoi = new System.Windows.Forms.Button();
             this.txtTongTien = new System.Windows.Forms.TextBox();
+            this.btnThemPN = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dTPNgayLap = new System.Windows.Forms.DateTimePicker();
@@ -60,12 +66,6 @@
             this.dgvChiTietPhieuNhap = new System.Windows.Forms.DataGridView();
             this.aa = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnLuu = new System.Windows.Forms.Button();
-            this.btnInPhieu = new System.Windows.Forms.Button();
-            this.btnHuyPhieu = new System.Windows.Forms.Button();
-            this.btnLuuPhieu = new System.Windows.Forms.Button();
-            this.btnTaoMoi = new System.Windows.Forms.Button();
-            this.btnThemPN = new System.Windows.Forms.Button();
-            this.btnTim = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -112,6 +112,20 @@
             this.label2.Size = new System.Drawing.Size(74, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "Từ ngày:";
+            // 
+            // btnTim
+            // 
+            this.btnTim.AutoSize = true;
+            this.btnTim.BackColor = System.Drawing.Color.White;
+            this.btnTim.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTim.ForeColor = System.Drawing.Color.White;
+            this.btnTim.Image = global::GUI.Properties.Resources.icons8_find_35;
+            this.btnTim.Location = new System.Drawing.Point(504, 47);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(54, 42);
+            this.btnTim.TabIndex = 7;
+            this.btnTim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTim.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -213,6 +227,58 @@
             this.groupBox1.Text = "Thông tin phiếu nhập";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // btnInPhieu
+            // 
+            this.btnInPhieu.BackColor = System.Drawing.Color.White;
+            this.btnInPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnInPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnInPhieu.Image = global::GUI.Properties.Resources.icons8_print_32;
+            this.btnInPhieu.Location = new System.Drawing.Point(486, 236);
+            this.btnInPhieu.Name = "btnInPhieu";
+            this.btnInPhieu.Size = new System.Drawing.Size(47, 35);
+            this.btnInPhieu.TabIndex = 53;
+            this.btnInPhieu.UseVisualStyleBackColor = false;
+            // 
+            // btnHuyPhieu
+            // 
+            this.btnHuyPhieu.BackColor = System.Drawing.Color.White;
+            this.btnHuyPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHuyPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHuyPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnHuyPhieu.Image = global::GUI.Properties.Resources.icons8_delete_35;
+            this.btnHuyPhieu.Location = new System.Drawing.Point(486, 183);
+            this.btnHuyPhieu.Name = "btnHuyPhieu";
+            this.btnHuyPhieu.Size = new System.Drawing.Size(47, 35);
+            this.btnHuyPhieu.TabIndex = 51;
+            this.btnHuyPhieu.UseVisualStyleBackColor = false;
+            // 
+            // btnLuuPhieu
+            // 
+            this.btnLuuPhieu.BackColor = System.Drawing.Color.White;
+            this.btnLuuPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLuuPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuuPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLuuPhieu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuPhieu.Location = new System.Drawing.Point(486, 130);
+            this.btnLuuPhieu.Name = "btnLuuPhieu";
+            this.btnLuuPhieu.Size = new System.Drawing.Size(47, 35);
+            this.btnLuuPhieu.TabIndex = 51;
+            this.btnLuuPhieu.UseVisualStyleBackColor = false;
+            // 
+            // btnTaoMoi
+            // 
+            this.btnTaoMoi.BackColor = System.Drawing.Color.White;
+            this.btnTaoMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnTaoMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaoMoi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnTaoMoi.Image = global::GUI.Properties.Resources.icons8_clear_32;
+            this.btnTaoMoi.Location = new System.Drawing.Point(486, 77);
+            this.btnTaoMoi.Name = "btnTaoMoi";
+            this.btnTaoMoi.Size = new System.Drawing.Size(47, 35);
+            this.btnTaoMoi.TabIndex = 50;
+            this.btnTaoMoi.UseVisualStyleBackColor = false;
+            // 
             // txtTongTien
             // 
             this.txtTongTien.Enabled = false;
@@ -220,6 +286,20 @@
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.Size = new System.Drawing.Size(248, 26);
             this.txtTongTien.TabIndex = 36;
+            // 
+            // btnThemPN
+            // 
+            this.btnThemPN.BackColor = System.Drawing.Color.White;
+            this.btnThemPN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnThemPN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemPN.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnThemPN.Image = global::GUI.Properties.Resources.icons8_add_35;
+            this.btnThemPN.Location = new System.Drawing.Point(486, 33);
+            this.btnThemPN.Name = "btnThemPN";
+            this.btnThemPN.Size = new System.Drawing.Size(47, 35);
+            this.btnThemPN.TabIndex = 49;
+            this.btnThemPN.UseVisualStyleBackColor = false;
+            this.btnThemPN.Click += new System.EventHandler(this.btnThemPN_Click_1);
             // 
             // label16
             // 
@@ -263,6 +343,7 @@
             // 
             // cbbMaDDH
             // 
+            this.cbbMaDDH.Enabled = false;
             this.cbbMaDDH.FormattingEnabled = true;
             this.cbbMaDDH.Location = new System.Drawing.Point(197, 124);
             this.cbbMaDDH.Name = "cbbMaDDH";
@@ -420,86 +501,6 @@
             this.btnLuu.Size = new System.Drawing.Size(52, 42);
             this.btnLuu.TabIndex = 50;
             this.btnLuu.UseVisualStyleBackColor = false;
-            // 
-            // btnInPhieu
-            // 
-            this.btnInPhieu.BackColor = System.Drawing.Color.White;
-            this.btnInPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnInPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInPhieu.Image = global::GUI.Properties.Resources.icons8_print_32;
-            this.btnInPhieu.Location = new System.Drawing.Point(486, 236);
-            this.btnInPhieu.Name = "btnInPhieu";
-            this.btnInPhieu.Size = new System.Drawing.Size(47, 35);
-            this.btnInPhieu.TabIndex = 53;
-            this.btnInPhieu.UseVisualStyleBackColor = false;
-            // 
-            // btnHuyPhieu
-            // 
-            this.btnHuyPhieu.BackColor = System.Drawing.Color.White;
-            this.btnHuyPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHuyPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHuyPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnHuyPhieu.Image = global::GUI.Properties.Resources.icons8_delete_35;
-            this.btnHuyPhieu.Location = new System.Drawing.Point(486, 183);
-            this.btnHuyPhieu.Name = "btnHuyPhieu";
-            this.btnHuyPhieu.Size = new System.Drawing.Size(47, 35);
-            this.btnHuyPhieu.TabIndex = 51;
-            this.btnHuyPhieu.UseVisualStyleBackColor = false;
-            // 
-            // btnLuuPhieu
-            // 
-            this.btnLuuPhieu.BackColor = System.Drawing.Color.White;
-            this.btnLuuPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnLuuPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuuPhieu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLuuPhieu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuPhieu.Location = new System.Drawing.Point(486, 130);
-            this.btnLuuPhieu.Name = "btnLuuPhieu";
-            this.btnLuuPhieu.Size = new System.Drawing.Size(47, 35);
-            this.btnLuuPhieu.TabIndex = 51;
-            this.btnLuuPhieu.UseVisualStyleBackColor = false;
-            // 
-            // btnTaoMoi
-            // 
-            this.btnTaoMoi.BackColor = System.Drawing.Color.White;
-            this.btnTaoMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnTaoMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaoMoi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnTaoMoi.Image = global::GUI.Properties.Resources.icons8_clear_32;
-            this.btnTaoMoi.Location = new System.Drawing.Point(486, 77);
-            this.btnTaoMoi.Name = "btnTaoMoi";
-            this.btnTaoMoi.Size = new System.Drawing.Size(47, 35);
-            this.btnTaoMoi.TabIndex = 50;
-            this.btnTaoMoi.UseVisualStyleBackColor = false;
-            // 
-            // btnThemPN
-            // 
-            this.btnThemPN.BackColor = System.Drawing.Color.White;
-            this.btnThemPN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnThemPN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemPN.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnThemPN.Image = global::GUI.Properties.Resources.icons8_add_35;
-            this.btnThemPN.Location = new System.Drawing.Point(486, 33);
-            this.btnThemPN.Name = "btnThemPN";
-            this.btnThemPN.Size = new System.Drawing.Size(47, 35);
-            this.btnThemPN.TabIndex = 49;
-            this.btnThemPN.UseVisualStyleBackColor = false;
-            this.btnThemPN.Click += new System.EventHandler(this.btnThemPN_Click_1);
-            // 
-            // btnTim
-            // 
-            this.btnTim.AutoSize = true;
-            this.btnTim.BackColor = System.Drawing.Color.White;
-            this.btnTim.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTim.ForeColor = System.Drawing.Color.White;
-            this.btnTim.Image = global::GUI.Properties.Resources.icons8_find_35;
-            this.btnTim.Location = new System.Drawing.Point(504, 47);
-            this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(54, 42);
-            this.btnTim.TabIndex = 7;
-            this.btnTim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTim.UseVisualStyleBackColor = false;
             // 
             // frm_quanLyNhapHang
             // 
