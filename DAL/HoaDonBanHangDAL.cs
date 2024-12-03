@@ -162,6 +162,8 @@ namespace DAL
                 existingHoaDon.DiemCongTichLuy= hoaDon.DiemCongTichLuy;
                 existingHoaDon.DiemTichLuy = hoaDon.DiemTichLuy;
                 existingHoaDon.TongTien = hoaDon.TongTien;
+                existingHoaDon.NgayLap = hoaDon.NgayLap;
+                existingHoaDon.TrangThaiDonHang = hoaDon.TrangThaiDonHang;
 
                 db.SubmitChanges();
                 return true;
@@ -322,7 +324,28 @@ namespace DAL
                 return new List<HoaDonBanHang>();
             }
         }
+        //cập nhật trạng thái đơn hàng
+        public bool CapNhatDonHang(string maHD, string DonHang)
+        {
+            try
+            {
+                var donHang = db.HoaDonBanHangs.FirstOrDefault(hd => hd.MaHoaDonBanHang == maHD);
+                if (donHang == null)
+                {
+                    Console.WriteLine("Không tìm thấy hóa đơn để cập nhật.");
+                    return false;
+                }
+                donHang.TrangThaiDonHang = DonHang;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi cập nhật hóa đơn: " + ex.Message);
+                return false;
 
+            }
+        }
 
     }
 

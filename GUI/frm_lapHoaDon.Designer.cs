@@ -38,6 +38,7 @@
             this.txt_soLuong = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
             this.txt_giaBan = new System.Windows.Forms.TextBox();
+            this.btn_addCart = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cbo_kichThuoc = new System.Windows.Forms.ComboBox();
@@ -61,6 +62,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txt_diemTichLuy = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.btn_Clear = new System.Windows.Forms.Button();
+            this.btn_timKhachHang = new System.Windows.Forms.Button();
+            this.btn_luuHoaDon = new System.Windows.Forms.Button();
+            this.btn_inHoaDon = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.txt_tongTien = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -83,11 +88,6 @@
             this.btn_trangCuoi = new System.Windows.Forms.Button();
             this.btn_keTiep = new System.Windows.Forms.Button();
             this.txt_tenSanPham = new System.Windows.Forms.ComboBox();
-            this.btn_Clear = new System.Windows.Forms.Button();
-            this.btn_timKhachHang = new System.Windows.Forms.Button();
-            this.btn_luuHoaDon = new System.Windows.Forms.Button();
-            this.btn_inHoaDon = new System.Windows.Forms.Button();
-            this.btn_addCart = new System.Windows.Forms.Button();
             this.btn_timSanPham = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_soLuong)).BeginInit();
@@ -231,6 +231,19 @@
             this.txt_giaBan.ReadOnly = true;
             this.txt_giaBan.Size = new System.Drawing.Size(104, 24);
             this.txt_giaBan.TabIndex = 11;
+            // 
+            // btn_addCart
+            // 
+            this.btn_addCart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btn_addCart.BackColor = System.Drawing.Color.Navy;
+            this.btn_addCart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_addCart.Image = global::GUI.Properties.Resources.icons8_add_shopping_cart_35;
+            this.btn_addCart.Location = new System.Drawing.Point(818, 21);
+            this.btn_addCart.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_addCart.Name = "btn_addCart";
+            this.btn_addCart.Size = new System.Drawing.Size(55, 49);
+            this.btn_addCart.TabIndex = 9;
+            this.btn_addCart.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -528,6 +541,58 @@
             this.label18.TabIndex = 17;
             this.label18.Text = "Điểm tích luỹ";
             // 
+            // btn_Clear
+            // 
+            this.btn_Clear.BackColor = System.Drawing.Color.Navy;
+            this.btn_Clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_Clear.Image = global::GUI.Properties.Resources.icons8_clear_32;
+            this.btn_Clear.Location = new System.Drawing.Point(551, 92);
+            this.btn_Clear.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(42, 38);
+            this.btn_Clear.TabIndex = 16;
+            this.btn_Clear.UseVisualStyleBackColor = false;
+            // 
+            // btn_timKhachHang
+            // 
+            this.btn_timKhachHang.BackColor = System.Drawing.Color.Navy;
+            this.btn_timKhachHang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_timKhachHang.Image = global::GUI.Properties.Resources.icons8_find_35;
+            this.btn_timKhachHang.Location = new System.Drawing.Point(551, 41);
+            this.btn_timKhachHang.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_timKhachHang.Name = "btn_timKhachHang";
+            this.btn_timKhachHang.Size = new System.Drawing.Size(42, 38);
+            this.btn_timKhachHang.TabIndex = 14;
+            this.btn_timKhachHang.UseVisualStyleBackColor = false;
+            // 
+            // btn_luuHoaDon
+            // 
+            this.btn_luuHoaDon.AutoSize = true;
+            this.btn_luuHoaDon.BackColor = System.Drawing.Color.Navy;
+            this.btn_luuHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_luuHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_luuHoaDon.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btn_luuHoaDon.Location = new System.Drawing.Point(551, 141);
+            this.btn_luuHoaDon.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_luuHoaDon.Name = "btn_luuHoaDon";
+            this.btn_luuHoaDon.Size = new System.Drawing.Size(46, 40);
+            this.btn_luuHoaDon.TabIndex = 15;
+            this.btn_luuHoaDon.UseVisualStyleBackColor = false;
+            // 
+            // btn_inHoaDon
+            // 
+            this.btn_inHoaDon.AutoSize = true;
+            this.btn_inHoaDon.BackColor = System.Drawing.Color.Navy;
+            this.btn_inHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_inHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_inHoaDon.Image = global::GUI.Properties.Resources.icons8_print_32;
+            this.btn_inHoaDon.Location = new System.Drawing.Point(551, 189);
+            this.btn_inHoaDon.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_inHoaDon.Name = "btn_inHoaDon";
+            this.btn_inHoaDon.Size = new System.Drawing.Size(46, 43);
+            this.btn_inHoaDon.TabIndex = 14;
+            this.btn_inHoaDon.UseVisualStyleBackColor = false;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -777,71 +842,6 @@
             this.txt_tenSanPham.Size = new System.Drawing.Size(254, 26);
             this.txt_tenSanPham.TabIndex = 34;
             // 
-            // btn_Clear
-            // 
-            this.btn_Clear.BackColor = System.Drawing.Color.Navy;
-            this.btn_Clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_Clear.Image = global::GUI.Properties.Resources.icons8_clear_32;
-            this.btn_Clear.Location = new System.Drawing.Point(551, 92);
-            this.btn_Clear.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_Clear.Name = "btn_Clear";
-            this.btn_Clear.Size = new System.Drawing.Size(42, 38);
-            this.btn_Clear.TabIndex = 16;
-            this.btn_Clear.UseVisualStyleBackColor = false;
-            // 
-            // btn_timKhachHang
-            // 
-            this.btn_timKhachHang.BackColor = System.Drawing.Color.Navy;
-            this.btn_timKhachHang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_timKhachHang.Image = global::GUI.Properties.Resources.icons8_find_35;
-            this.btn_timKhachHang.Location = new System.Drawing.Point(551, 41);
-            this.btn_timKhachHang.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_timKhachHang.Name = "btn_timKhachHang";
-            this.btn_timKhachHang.Size = new System.Drawing.Size(42, 38);
-            this.btn_timKhachHang.TabIndex = 14;
-            this.btn_timKhachHang.UseVisualStyleBackColor = false;
-            // 
-            // btn_luuHoaDon
-            // 
-            this.btn_luuHoaDon.AutoSize = true;
-            this.btn_luuHoaDon.BackColor = System.Drawing.Color.Navy;
-            this.btn_luuHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_luuHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_luuHoaDon.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btn_luuHoaDon.Location = new System.Drawing.Point(551, 141);
-            this.btn_luuHoaDon.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_luuHoaDon.Name = "btn_luuHoaDon";
-            this.btn_luuHoaDon.Size = new System.Drawing.Size(46, 40);
-            this.btn_luuHoaDon.TabIndex = 15;
-            this.btn_luuHoaDon.UseVisualStyleBackColor = false;
-            // 
-            // btn_inHoaDon
-            // 
-            this.btn_inHoaDon.AutoSize = true;
-            this.btn_inHoaDon.BackColor = System.Drawing.Color.Navy;
-            this.btn_inHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_inHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_inHoaDon.Image = global::GUI.Properties.Resources.icons8_print_32;
-            this.btn_inHoaDon.Location = new System.Drawing.Point(551, 189);
-            this.btn_inHoaDon.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_inHoaDon.Name = "btn_inHoaDon";
-            this.btn_inHoaDon.Size = new System.Drawing.Size(46, 43);
-            this.btn_inHoaDon.TabIndex = 14;
-            this.btn_inHoaDon.UseVisualStyleBackColor = false;
-            // 
-            // btn_addCart
-            // 
-            this.btn_addCart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btn_addCart.BackColor = System.Drawing.Color.Navy;
-            this.btn_addCart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_addCart.Image = global::GUI.Properties.Resources.icons8_add_shopping_cart_35;
-            this.btn_addCart.Location = new System.Drawing.Point(818, 21);
-            this.btn_addCart.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_addCart.Name = "btn_addCart";
-            this.btn_addCart.Size = new System.Drawing.Size(55, 49);
-            this.btn_addCart.TabIndex = 9;
-            this.btn_addCart.UseVisualStyleBackColor = false;
-            // 
             // btn_timSanPham
             // 
             this.btn_timSanPham.BackColor = System.Drawing.Color.Navy;
@@ -860,6 +860,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1536, 857);
+            this.Controls.Add(this.dsSanPham);
             this.Controls.Add(this.txt_tenSanPham);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dgvCart);
@@ -870,7 +871,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_timSanPham);
-            this.Controls.Add(this.dsSanPham);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
