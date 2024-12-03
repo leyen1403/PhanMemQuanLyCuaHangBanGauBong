@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="ChiTietDonDatHang.cs" />
     <Compile Include="ChiTietHoaDonDTO.cs" />
-    <Compile Include="ChiTietPhieuKiemKe.cs" />
     <Compile Include="ChiTietPhieuNhapViewModel.cs" />
     <Compile Include="ChiTietPN.cs" />
     <Compile Include="db_QLCHBGB.designer.cs">
@@ -57,7 +56,6 @@
     <Compile Include="PhieuBaoCao.cs" />
     <Compile Include="PhieuDoiTraDTO.cs" />
     <Compile Include="PhieuDoiTraUpdate.cs" />
-    <Compile Include="PhieuKiemKe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

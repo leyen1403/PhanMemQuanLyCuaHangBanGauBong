@@ -46,6 +46,7 @@
             this.txtThanhTien = new System.Windows.Forms.TextBox();
             this.txtDonGia = new System.Windows.Forms.TextBox();
             this.nudSoLuongYeuCau = new System.Windows.Forms.NumericUpDown();
+            this.txtTimKiemSP = new System.Windows.Forms.TextBox();
             this.txtMaSanPham = new System.Windows.Forms.TextBox();
             this.txtTenSanPham = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -53,14 +54,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnDatSPMoi = new System.Windows.Forms.Button();
+            this.btnXoaToanBo = new System.Windows.Forms.Button();
+            this.btnDatToanBo = new System.Windows.Forms.Button();
             this.btnHoanTat = new System.Windows.Forms.Button();
             this.btnLuuCTDDH = new System.Windows.Forms.Button();
             this.btnXoaCTDDH = new System.Windows.Forms.Button();
             this.btnThemCTDDH = new System.Windows.Forms.Button();
-            this.btnDatSPMoi = new System.Windows.Forms.Button();
-            this.txtTimKiemSP = new System.Windows.Forms.TextBox();
-            this.btnDatToanBo = new System.Windows.Forms.Button();
-            this.btnXoaToanBo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSP)).BeginInit();
@@ -248,7 +248,7 @@
             this.groupBox4.Size = new System.Drawing.Size(1336, 235);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "groupBox4";
+            this.groupBox4.Text = "Thông tin đặt hàng";
             // 
             // txtThanhTien
             // 
@@ -272,6 +272,13 @@
             this.nudSoLuongYeuCau.Name = "nudSoLuongYeuCau";
             this.nudSoLuongYeuCau.Size = new System.Drawing.Size(228, 26);
             this.nudSoLuongYeuCau.TabIndex = 7;
+            // 
+            // txtTimKiemSP
+            // 
+            this.txtTimKiemSP.Location = new System.Drawing.Point(373, 176);
+            this.txtTimKiemSP.Name = "txtTimKiemSP";
+            this.txtTimKiemSP.Size = new System.Drawing.Size(320, 26);
+            this.txtTimKiemSP.TabIndex = 6;
             // 
             // txtMaSanPham
             // 
@@ -334,6 +341,36 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Mã sản phẩm";
             // 
+            // btnDatSPMoi
+            // 
+            this.btnDatSPMoi.AutoSize = true;
+            this.btnDatSPMoi.Location = new System.Drawing.Point(93, 167);
+            this.btnDatSPMoi.Name = "btnDatSPMoi";
+            this.btnDatSPMoi.Size = new System.Drawing.Size(274, 41);
+            this.btnDatSPMoi.TabIndex = 1;
+            this.btnDatSPMoi.Text = "Đặt các sản phẩm được tạo gần đây";
+            this.btnDatSPMoi.UseVisualStyleBackColor = true;
+            // 
+            // btnXoaToanBo
+            // 
+            this.btnXoaToanBo.AutoSize = true;
+            this.btnXoaToanBo.Location = new System.Drawing.Point(1136, 75);
+            this.btnXoaToanBo.Name = "btnXoaToanBo";
+            this.btnXoaToanBo.Size = new System.Drawing.Size(184, 41);
+            this.btnXoaToanBo.TabIndex = 1;
+            this.btnXoaToanBo.Text = "Xoá toàn bộ danh sách";
+            this.btnXoaToanBo.UseVisualStyleBackColor = true;
+            // 
+            // btnDatToanBo
+            // 
+            this.btnDatToanBo.AutoSize = true;
+            this.btnDatToanBo.Location = new System.Drawing.Point(1136, 24);
+            this.btnDatToanBo.Name = "btnDatToanBo";
+            this.btnDatToanBo.Size = new System.Drawing.Size(177, 41);
+            this.btnDatToanBo.TabIndex = 1;
+            this.btnDatToanBo.Text = "Đặt toàn bộ sản phẩm";
+            this.btnDatToanBo.UseVisualStyleBackColor = true;
+            // 
             // btnHoanTat
             // 
             this.btnHoanTat.AutoSize = true;
@@ -373,43 +410,6 @@
             this.btnThemCTDDH.Size = new System.Drawing.Size(75, 41);
             this.btnThemCTDDH.TabIndex = 4;
             this.btnThemCTDDH.UseVisualStyleBackColor = true;
-            // 
-            // btnDatSPMoi
-            // 
-            this.btnDatSPMoi.AutoSize = true;
-            this.btnDatSPMoi.Location = new System.Drawing.Point(93, 167);
-            this.btnDatSPMoi.Name = "btnDatSPMoi";
-            this.btnDatSPMoi.Size = new System.Drawing.Size(274, 41);
-            this.btnDatSPMoi.TabIndex = 1;
-            this.btnDatSPMoi.Text = "Đặt các sản phẩm được tạo gần đây";
-            this.btnDatSPMoi.UseVisualStyleBackColor = true;
-            // 
-            // txtTimKiemSP
-            // 
-            this.txtTimKiemSP.Location = new System.Drawing.Point(373, 176);
-            this.txtTimKiemSP.Name = "txtTimKiemSP";
-            this.txtTimKiemSP.Size = new System.Drawing.Size(320, 26);
-            this.txtTimKiemSP.TabIndex = 6;
-            // 
-            // btnDatToanBo
-            // 
-            this.btnDatToanBo.AutoSize = true;
-            this.btnDatToanBo.Location = new System.Drawing.Point(1136, 24);
-            this.btnDatToanBo.Name = "btnDatToanBo";
-            this.btnDatToanBo.Size = new System.Drawing.Size(177, 41);
-            this.btnDatToanBo.TabIndex = 1;
-            this.btnDatToanBo.Text = "Đặt toàn bộ sản phẩm";
-            this.btnDatToanBo.UseVisualStyleBackColor = true;
-            // 
-            // btnXoaToanBo
-            // 
-            this.btnXoaToanBo.AutoSize = true;
-            this.btnXoaToanBo.Location = new System.Drawing.Point(1136, 75);
-            this.btnXoaToanBo.Name = "btnXoaToanBo";
-            this.btnXoaToanBo.Size = new System.Drawing.Size(184, 41);
-            this.btnXoaToanBo.TabIndex = 1;
-            this.btnXoaToanBo.Text = "Xoá toàn bộ danh sách";
-            this.btnXoaToanBo.UseVisualStyleBackColor = true;
             // 
             // frm_TaoDDH
             // 

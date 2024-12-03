@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -25,7 +26,7 @@ namespace GUI
             btnTaoDonDatHang.Click += BtnTaoDonDatHang_Click;
             btnXoaDonDatHang.Click += BtnXoaDonDatHang_Click;
             dgvCTDDH.SelectionChanged += DgvCTDDH_SelectionChanged;
-            btnLuuDuLieu.Click += BtnLuuDuLieu_Click;                        
+            btnLuuDuLieu.Click += BtnLuuDuLieu_Click;
             cboNhaCungCap.SelectedIndexChanged += cboNhaCungCap_SelectedIndexChanged;
             cboTrangThaiDonHang.SelectedIndexChanged += CboTrangThaiDonHang_SelectedIndexChanged;
             cboTrangThaiCTDDH.SelectedIndexChanged += CboTrangThaiCTDDH_SelectedIndexChanged;
@@ -33,7 +34,120 @@ namespace GUI
             nudSLYC.ValueChanged += NudSLYC_ValueChanged;
             nudSLCC.ValueChanged += NudSLCC_ValueChanged;
             dgvCTDDH.CellBeginEdit += DgvCTDDH_CellBeginEdit;
+            btnWord.Click += BtnWord_Click;
         }
+
+        private void BtnWord_Click(object sender, EventArgs e)
+        {
+            // Xác nhận hành động
+            if (MessageBox.Show("Bạn có chắc chắn muốn xuất file Word không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            // Kiểm tra lựa chọn đơn đặt hàng
+            if (dgvDDH.CurrentCell == null)
+            {
+                MessageBox.Show("Vui lòng chọn một đơn đặt hàng để xuất file Word!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Lấy mã đơn đặt hàng
+            string maDDH = dgvDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
+
+            // Lấy dữ liệu đơn đặt hàng
+            var donDatHangBLL = new DonDatHangBLL();
+            var donDatHang = donDatHangBLL.LayDonDayHang(maDDH);
+
+            if (donDatHang == null)
+            {
+                MessageBox.Show("Không tìm thấy thông tin đơn đặt hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Lấy chi tiết đơn đặt hàng
+            var chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+            var lstCTDDH = chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(maDDH);
+
+            if (lstCTDDH == null || lstCTDDH.Count == 0)
+            {
+                MessageBox.Show("Không có chi tiết đơn đặt hàng nào!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Lấy thông tin nhà cung cấp
+            var nhaCungCapBLL = new NhaCungCapBLL();
+            var nhaCungCap = nhaCungCapBLL.LayNhaCungCapTheoMa(donDatHang.MaNhaCungCap);
+
+            // Chuẩn bị hộp thoại lưu file
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Word Documents (*.docx)|*.docx",
+                FileName = "Bao_cao_don_dat_hang_" + DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss") + ".docx"
+            };
+
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            // Xử lý xuất file Word
+            try
+            {
+                // Mở ứng dụng Word
+                var wordApp = new Microsoft.Office.Interop.Word.Application();
+                string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "mau_bao_cao_don_dat_hang.docx");
+                var document = wordApp.Documents.Open(templatePath);
+
+                // Điền dữ liệu vào bookmark
+                FillBookmarks(document, donDatHang, nhaCungCap);
+
+                // Điền dữ liệu vào bảng
+                FillTable(document.Tables[1], lstCTDDH);
+
+                // Lưu tài liệu
+                document.SaveAs2(saveFileDialog.FileName);
+                document.Close();
+                wordApp.Quit();
+
+                MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Xuất báo cáo thất bại: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Phương thức điền dữ liệu vào bookmark
+        private void FillBookmarks(Microsoft.Office.Interop.Word.Document document, DonDatHang donDatHang, NhaCungCap nhaCungCap)
+        {
+            document.Bookmarks["ChucVu"].Range.Text = donDatHang.NhanVien.ChucVu;
+            document.Bookmarks["DiaChiNCC"].Range.Text = nhaCungCap?.DiaChi ?? string.Empty;
+            document.Bookmarks["EmailNCC"].Range.Text = nhaCungCap?.Email ?? string.Empty;
+            document.Bookmarks["EmailNV"].Range.Text = donDatHang.NhanVien.Email;
+            document.Bookmarks["HoTenNV"].Range.Text = donDatHang.NhanVien.HoTen;
+            document.Bookmarks["MaNV"].Range.Text = donDatHang.MaNhanVien;
+            document.Bookmarks["NgayDat"].Range.Text = donDatHang.NgayDat?.ToString("dd/MM/yyyy") ?? string.Empty;
+            document.Bookmarks["NguoiDaiDien"].Range.Text = nhaCungCap?.NguoiDaiDien ?? string.Empty;
+            document.Bookmarks["SDTNCC"].Range.Text = nhaCungCap?.SoDienThoai ?? string.Empty;
+            document.Bookmarks["SDTNV"].Range.Text = donDatHang.NhanVien.SoDienThoai;
+            document.Bookmarks["TenNCC"].Range.Text = nhaCungCap?.TenNhaCungCap ?? string.Empty;
+            document.Bookmarks["TongTienHang"].Range.Text = donDatHang.TongTien?.ToString("#,0", CultureInfo.GetCultureInfo("vi-VN")) ?? "0";
+            document.Bookmarks["TrangThaiDDH"].Range.Text = donDatHang.TrangThai;
+        }
+
+        // Phương thức điền dữ liệu vào bảng
+        private void FillTable(Microsoft.Office.Interop.Word.Table table, List<ChiTietDonDatHang> lstCTDDH)
+        {
+            for (int i = 0; i < lstCTDDH.Count; i++)
+            {
+                var newRow = table.Rows.Add();
+                newRow.Cells[1].Range.Text = (i + 1).ToString();
+                newRow.Cells[2].Range.Text = lstCTDDH[i].MaSanPham;
+                newRow.Cells[3].Range.Text = lstCTDDH[i].DonViTinh;
+                newRow.Cells[4].Range.Text = lstCTDDH[i].SoLuongYeuCau.ToString();
+                newRow.Cells[5].Range.Text = lstCTDDH[i].DonGia?.ToString("#,0", CultureInfo.GetCultureInfo("vi-VN")) ?? "0";
+                newRow.Cells[6].Range.Text = lstCTDDH[i].ThanhTien?.ToString("#,0", CultureInfo.GetCultureInfo("vi-VN")) ?? "0";
+                newRow.Cells[7].Range.Text = lstCTDDH[i].GhiChu;
+            }
+        }
+
 
         private void NudSLCC_ValueChanged(object sender, EventArgs e)
         {
@@ -189,7 +303,7 @@ namespace GUI
         }
 
         private void loadDataChiTiet(string maDDH)
-        {            
+        {
             ChiTietDonDatHangBLL chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
             lstCTDDH = chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(maDDH);
 
@@ -396,7 +510,7 @@ namespace GUI
                 nudSLCC.Value = soLuongCungCap;
                 nudSLT.Value = soLuongThieu;
                 lblDonGia.Text = donGia.ToString("N0");
-                lblThanhTien.Text = thanhTien.ToString("N0");                
+                lblThanhTien.Text = thanhTien.ToString("N0");
             }
         }
 
@@ -406,7 +520,7 @@ namespace GUI
             int index = dgvDDH.CurrentRow.Index;
             // Hỏi xác nhận trước khi lưu
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn lưu dữ liệu không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 DonDatHang ddhTemp = new DonDatHang();
                 ddhTemp.MaDonDatHang = dgvDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
@@ -447,7 +561,7 @@ namespace GUI
                 }
             }
 
-            
+
         }
 
 
@@ -462,7 +576,7 @@ namespace GUI
 
         private void CboTrangThaiDonHang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboTrangThaiDonHang.SelectedItem == null)
+            if (cboTrangThaiDonHang.SelectedItem == null)
             {
                 return;
             }
@@ -472,7 +586,7 @@ namespace GUI
 
         private void CboTrangThaiCTDDH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboTrangThaiCTDDH.SelectedItem == null)
+            if (cboTrangThaiCTDDH.SelectedItem == null)
             {
                 return;
             }

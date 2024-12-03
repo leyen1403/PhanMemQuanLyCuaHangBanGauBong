@@ -11,6 +11,10 @@ namespace DAL
     {
         db_QLCHBGBDataContext db = new db_QLCHBGBDataContext();
         public ChiTietPhieuKiemKeDAL() { }
+        public List<ChiTietPhieuKiemKe> LayDanhSachChiTietPhieuKiemKe()
+        {
+            return db.ChiTietPhieuKiemKes.ToList();
+        }
         public bool InsertChiTietPhieuKiemKe(ChiTietPhieuKiemKe chiTietPhieuKiemKe)
         {
             try
@@ -34,10 +38,26 @@ namespace DAL
             if (ct != null)
             {
                 ct.SoLuongThucTe = chiTietPhieuKiemKe.SoLuongThucTe;
+                ct.LyDoChenhLech = chiTietPhieuKiemKe.LyDoChenhLech;
                 db.SubmitChanges();
                 return true;
             }
             return false;
+        }
+        public bool XoaDanhSach(string maPKK)
+        {
+            try
+            {
+                var lstCTPKK = db.ChiTietPhieuKiemKes.Where(ct => ct.MaPhieuKiemKe == maPKK).ToList();
+                db.ChiTietPhieuKiemKes.DeleteAllOnSubmit(lstCTPKK);
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+
+                return false;
+            }
         }
     }
 }

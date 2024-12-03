@@ -56,14 +56,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnLamMoi = new System.Windows.Forms.Button();
-            this.btnLuuDuLieu = new System.Windows.Forms.Button();
-            this.btnXoaDonDatHang = new System.Windows.Forms.Button();
-            this.btnTaoDonDatHang = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvDDH = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvCTDDH = new System.Windows.Forms.DataGridView();
+            this.btnWord = new System.Windows.Forms.Button();
+            this.btnLamMoi = new System.Windows.Forms.Button();
+            this.btnLuuDuLieu = new System.Windows.Forms.Button();
+            this.btnXoaDonDatHang = new System.Windows.Forms.Button();
+            this.btnTaoDonDatHang = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSLYC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSLT)).BeginInit();
@@ -92,6 +93,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnWord);
             this.groupBox1.Controls.Add(this.nudSLYC);
             this.groupBox1.Controls.Add(this.nudSLT);
             this.groupBox1.Controls.Add(this.nudSLCC);
@@ -391,46 +393,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Nhà cung cấp";
             // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.AutoSize = true;
-            this.btnLamMoi.Image = global::GUI.Properties.Resources.icons8_update_32;
-            this.btnLamMoi.Location = new System.Drawing.Point(6, 173);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(75, 41);
-            this.btnLamMoi.TabIndex = 0;
-            this.btnLamMoi.UseVisualStyleBackColor = true;
-            // 
-            // btnLuuDuLieu
-            // 
-            this.btnLuuDuLieu.AutoSize = true;
-            this.btnLuuDuLieu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuDuLieu.Location = new System.Drawing.Point(6, 126);
-            this.btnLuuDuLieu.Name = "btnLuuDuLieu";
-            this.btnLuuDuLieu.Size = new System.Drawing.Size(75, 41);
-            this.btnLuuDuLieu.TabIndex = 0;
-            this.btnLuuDuLieu.UseVisualStyleBackColor = true;
-            // 
-            // btnXoaDonDatHang
-            // 
-            this.btnXoaDonDatHang.AutoSize = true;
-            this.btnXoaDonDatHang.Image = global::GUI.Properties.Resources.icons8_delete_35;
-            this.btnXoaDonDatHang.Location = new System.Drawing.Point(6, 79);
-            this.btnXoaDonDatHang.Name = "btnXoaDonDatHang";
-            this.btnXoaDonDatHang.Size = new System.Drawing.Size(75, 41);
-            this.btnXoaDonDatHang.TabIndex = 0;
-            this.btnXoaDonDatHang.UseVisualStyleBackColor = true;
-            // 
-            // btnTaoDonDatHang
-            // 
-            this.btnTaoDonDatHang.AutoSize = true;
-            this.btnTaoDonDatHang.Image = global::GUI.Properties.Resources.icons8_add_35;
-            this.btnTaoDonDatHang.Location = new System.Drawing.Point(6, 32);
-            this.btnTaoDonDatHang.Name = "btnTaoDonDatHang";
-            this.btnTaoDonDatHang.Size = new System.Drawing.Size(75, 41);
-            this.btnTaoDonDatHang.TabIndex = 0;
-            this.btnTaoDonDatHang.UseVisualStyleBackColor = true;
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -480,6 +442,56 @@
             this.dgvCTDDH.Name = "dgvCTDDH";
             this.dgvCTDDH.Size = new System.Drawing.Size(1461, 232);
             this.dgvCTDDH.TabIndex = 0;
+            // 
+            // btnWord
+            // 
+            this.btnWord.AutoSize = true;
+            this.btnWord.Image = global::GUI.Properties.Resources.icons8_word_32;
+            this.btnWord.Location = new System.Drawing.Point(1203, 129);
+            this.btnWord.Name = "btnWord";
+            this.btnWord.Size = new System.Drawing.Size(75, 38);
+            this.btnWord.TabIndex = 5;
+            this.btnWord.UseVisualStyleBackColor = true;
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.AutoSize = true;
+            this.btnLamMoi.Image = global::GUI.Properties.Resources.icons8_update_32;
+            this.btnLamMoi.Location = new System.Drawing.Point(6, 173);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(75, 41);
+            this.btnLamMoi.TabIndex = 0;
+            this.btnLamMoi.UseVisualStyleBackColor = true;
+            // 
+            // btnLuuDuLieu
+            // 
+            this.btnLuuDuLieu.AutoSize = true;
+            this.btnLuuDuLieu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuDuLieu.Location = new System.Drawing.Point(6, 126);
+            this.btnLuuDuLieu.Name = "btnLuuDuLieu";
+            this.btnLuuDuLieu.Size = new System.Drawing.Size(75, 41);
+            this.btnLuuDuLieu.TabIndex = 0;
+            this.btnLuuDuLieu.UseVisualStyleBackColor = true;
+            // 
+            // btnXoaDonDatHang
+            // 
+            this.btnXoaDonDatHang.AutoSize = true;
+            this.btnXoaDonDatHang.Image = global::GUI.Properties.Resources.icons8_delete_35;
+            this.btnXoaDonDatHang.Location = new System.Drawing.Point(6, 79);
+            this.btnXoaDonDatHang.Name = "btnXoaDonDatHang";
+            this.btnXoaDonDatHang.Size = new System.Drawing.Size(75, 41);
+            this.btnXoaDonDatHang.TabIndex = 0;
+            this.btnXoaDonDatHang.UseVisualStyleBackColor = true;
+            // 
+            // btnTaoDonDatHang
+            // 
+            this.btnTaoDonDatHang.AutoSize = true;
+            this.btnTaoDonDatHang.Image = global::GUI.Properties.Resources.icons8_add_35;
+            this.btnTaoDonDatHang.Location = new System.Drawing.Point(6, 32);
+            this.btnTaoDonDatHang.Name = "btnTaoDonDatHang";
+            this.btnTaoDonDatHang.Size = new System.Drawing.Size(75, 41);
+            this.btnTaoDonDatHang.TabIndex = 0;
+            this.btnTaoDonDatHang.UseVisualStyleBackColor = true;
             // 
             // frm_quanLyDonDatHang
             // 
@@ -544,5 +556,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboNhaCungCap;
+        private System.Windows.Forms.Button btnWord;
     }
 }
