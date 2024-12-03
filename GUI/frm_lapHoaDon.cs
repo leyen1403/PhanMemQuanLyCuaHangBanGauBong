@@ -46,6 +46,34 @@ namespace GUI
             // Gán sự kiện trong phần khởi tạo
             txt_soDienThoai.KeyPress += Txt_soDienThoai_KeyPress;
             txt_soDienThoai.TextChanged += Txt_soDienThoai_TextChanged;
+            xuLySoLuong();
+            
+        }
+        private void xuLySoLuong()
+        {
+            txt_soLuong.ValueChanged += (sender, e) =>
+            {
+                // Chuyển đổi giá trị từ TextBox sang số (double hoặc int tùy theo kiểu dữ liệu của bạn)
+                double textBoxValue = 0;
+                double numericUpDownValue = (double)txt_soLuong.Value;
+
+                if (double.TryParse(txt_SLTon.Text, out textBoxValue))
+                {
+                    // Kiểm tra nếu giá trị của NumericUpDown lớn hơn giá trị trong TextBox
+                    if (numericUpDownValue > textBoxValue)
+                    {
+                        // Nếu NumericUpDown lớn hơn TextBox, hãy đưa ra thông báo hoặc điều chỉnh lại giá trị
+                        MessageBox.Show("Số lượng không thể lớn hơn số lượng tồn!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        // Hoặc có thể đặt lại giá trị NumericUpDown về giá trị trong TextBox
+                        txt_soLuong.Value = (decimal)textBoxValue;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Giá trị trong TextBox không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            };
         }
         private void Frm_lapHoaDon_Load(object sender, EventArgs e)
         {
@@ -72,7 +100,45 @@ namespace GUI
             txt_tenKhachHang.KeyPress += Txt_tenKhachHang_KeyPress;
             txt_tenKhachHang.TextChanged += Txt_tenKhachHang_TextChanged;
 
+            txt_diemDung.KeyPress += Txt_diemDung_KeyPress;
+            txt_diemDung.TextChanged += Txt_diemDung_TextChanged;
+
         }
+        private void Txt_diemDung_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            {
+                e.Handled = true; // Nếu không phải số hoặc phím điều khiển, ngừng xử lý ký tự
+            }
+
+        }
+        private void Txt_diemDung_TextChanged(object sender, EventArgs e)
+        {
+            //lấy textbox điểm tích luỹ
+            int maxNumber; // Giới hạn tối đa là 100
+            if (int.TryParse(txt_diemTichLuy.Text, out maxNumber))
+            {
+                txt_diemTichLuy.Text = maxNumber.ToString();
+            }
+            int number;
+
+            // Kiểm tra nếu TextBox có giá trị và giá trị là số
+            if (int.TryParse(txt_diemDung.Text, out number))
+            {
+                if (number > maxNumber)
+                {
+                    // Nếu giá trị nhập vào lớn hơn maxNumber, set lại TextBox
+                    txt_diemDung.Text = maxNumber.ToString();
+                    MessageBox.Show($"Giá trị không thể lớn hơn {maxNumber}.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                // Nếu không phải là số hợp lệ, clear TextBox hoặc xử lý khác
+                txt_diemDung.Text = string.Empty;
+            }
+        }
+
         private void Txt_tenKhachHang_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Chỉ cho phép nhập chữ cái, khoảng trắng và dấu gạch ngang
@@ -85,8 +151,8 @@ namespace GUI
 
         private void Txt_tenKhachHang_TextChanged(object sender, EventArgs e)
         {
-            // Loại bỏ ký tự không hợp lệ
-            string allowedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -";
+            // Loại bỏ ký tự không hợp lệ 
+            string allowedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -áàảãạăắằẳẵạâấầẩẫậêếềểễệôốồổỗộơớờởỡợưứừửữựíìỉĩịýỳỷỹỵúùủũụđĐ";
             string input = txt_tenKhachHang.Text;
             string filtered = new string(input.Where(c => allowedCharacters.Contains(c)).ToArray());
 
@@ -567,6 +633,18 @@ namespace GUI
 
         private void Btn_addCart_Click(object sender, EventArgs e)
         {
+            // lấy số lượng tồn 
+            int sl;
+            if (!int.TryParse(txt_SLTon.Text, out sl))
+            {
+                MessageBox.Show("Số lượng tồn không hợp lệ.");
+                return;
+            }
+            if (sl <= 0)
+            {
+                MessageBox.Show("Sản phẩm đã hết hàng");
+                return;
+            }
             if (cbo_mauSac.SelectedItem != null && cbo_kichThuoc.SelectedItem != null)
             {
                 string tenSanPham = productSelected?.TenSanPham; // Sử dụng toán tử null conditional để tránh NullReferenceException
@@ -745,8 +823,8 @@ namespace GUI
                 int slTon = _sanPhamBLL.GetSanPhamByMaSP(maSP).FirstOrDefault()?.SoLuongTon ?? 0;
                 if (slTon <= 0)
                 {
-                    MessageBox.Show("Sản phẩm đã hết hàng.");
-                    return;
+                    //MessageBox.Show("Sản phẩm đã hết hàng.");
+                    txt_SLTon.Text="0";
                 }
                 else
                 {
@@ -1386,10 +1464,6 @@ namespace GUI
                 if (anhSanPham != null)
                 {
                     LoadImageToPictureBox(sp.HinhAnh, anhSanPham);  // Thay thế sp.HinhAnh với đường dẫn hình ảnh
-                }
-                if(sp.SoLuongTon <= 0)
-                {
-                    anhSanPham.Image = Properties.Resources.hethang;
                 }
 
                 dsSanPham.Controls.Add(myControl);
