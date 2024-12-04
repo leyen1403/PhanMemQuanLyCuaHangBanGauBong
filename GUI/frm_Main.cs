@@ -172,7 +172,9 @@ namespace GUI
 
         private void btn_LapPhieuDoiTra_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapPhieuDoiTra());
+            frm_lapPhieuDoiTra frm = new frm_lapPhieuDoiTra();
+            frm.nhanVien = nhanVien;
+            loadForm(frm);
         }
 
         private void btn_DoiTra_Click(object sender, EventArgs e)

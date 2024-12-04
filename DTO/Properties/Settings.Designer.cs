@@ -142,5 +142,16 @@ namespace DTO.Properties {
                 return ((string)(this["db_QLCHBGBConnectionString5"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=admin\\sqlexpress;Initial Catalog=db_QLCHBGB;Persist Security Info=Tru" +
+            "e;User ID=sa;Password=123;TrustServerCertificate=True")]
+        public string db_QLCHBGBConnectionString6 {
+            get {
+                return ((string)(this["db_QLCHBGBConnectionString6"]));
+            }
+        }
     }
 }
