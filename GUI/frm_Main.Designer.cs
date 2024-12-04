@@ -29,7 +29,7 @@ namespace GUI
                     DisposeResources();
                 }
             }
-            base.Dispose(disposing);
+            //base.Dispose(disposing);
         }
 
         private void DisposeResources()

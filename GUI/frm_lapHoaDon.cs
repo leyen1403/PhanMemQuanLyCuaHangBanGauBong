@@ -17,15 +17,15 @@ namespace GUI
         //    public string maNV = "NV001";
         SanPhamBLL _sanPhamBLL = new SanPhamBLL();
         LoaiSanPhamBLL _loaiSanPhamBLL = new LoaiSanPhamBLL();
-        KhachHangBLL _khachHangBLL= new KhachHangBLL();
+        KhachHangBLL _khachHangBLL = new KhachHangBLL();
         HoaDonBanHangBLL _hoaDonBanHangBLL = new HoaDonBanHangBLL();
-        ChiTietHoaDonBanHangBLL _chiTietHoaDonBanHangBLL = new ChiTietHoaDonBanHangBLL() ;
+        ChiTietHoaDonBanHangBLL _chiTietHoaDonBanHangBLL = new ChiTietHoaDonBanHangBLL();
         NhanVienBLL _nhanVienBLL = new NhanVienBLL();
         int currentPage = 1;
         int pageSize = 15;
         int totalRecords;
 
-        private string _maHD=string.Empty;
+        private string _maHD = string.Empty;
         public frm_lapHoaDon()
         {
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace GUI
             txt_soDienThoai.KeyPress += Txt_soDienThoai_KeyPress;
             txt_soDienThoai.TextChanged += Txt_soDienThoai_TextChanged;
             xuLySoLuong();
-            
+
         }
         private void xuLySoLuong()
         {
@@ -205,7 +205,7 @@ namespace GUI
                 var kh = _khachHangBLL.GetKhachHang(maKhachHang);
 
                 // Kiểm tra nếu khách hàng không tồn tại hoặc không phải là thành viên
-                if (kh == null || kh.ThanhVien==true)
+                if (kh == null || kh.ThanhVien == true)
                 {
                     MessageBox.Show("Chỉ khách hàng thành viên mới có thể sử dụng điểm tích lũy.");
                     chkSuDungDiemTichLuy.Checked = false; // Bỏ chọn CheckBox
@@ -251,9 +251,9 @@ namespace GUI
                 txt_diemDung.Enabled = true;
                 chkSuDungDiemTichLuy.Enabled = true;
                 btn_timKhachHang.Enabled = true;
-                rdo_diaChiHienTai.Checked= true;
+                rdo_diaChiHienTai.Checked = true;
                 rdo_diaChiMoi.Checked = false;
-                rdo_diaChiHienTai.Enabled= true;
+                rdo_diaChiHienTai.Enabled = true;
                 rdo_diaChiMoi.Enabled = true;
             }
             else if (loaiKhachHang == "Khách hàng đăng kí thành viên")
@@ -353,7 +353,7 @@ namespace GUI
                 string maNV = _maNhanVien;
                 string hinhThucGiaoHang = cbo_giaoHang.SelectedItem?.ToString();
                 string hinhThucThanhToan = cbo_hinhThucThanhToan.SelectedItem?.ToString();
-                string trangThaiDonHang=string.Empty;
+                string trangThaiDonHang = string.Empty;
                 decimal diemTichLuyCong = 0;
                 decimal diemSuDung = 0;
                 decimal diemTichLuyMoi = 0;
@@ -365,7 +365,7 @@ namespace GUI
                 }
                 else
                 {
-                    if(hinhThucGiaoHang == "Giao hàng tận nơi")
+                    if (hinhThucGiaoHang == "Giao hàng tận nơi")
                     {
                         trangThaiDonHang = "Đang giao hàng";
                     }
@@ -441,13 +441,20 @@ namespace GUI
                     {
                         MaKhachHang = taoMaKhachHang(),
                         TenKhachHang = tenKhachHang,
+                        NgaySinh = DateTime.Now.AddYears(-18),
+                        GioiTinh = "Nam",
                         SoDienThoai = sdt,
+                        Email = "Chưa có",
+                        DiemTichLuy = 0,
+                        TaiKhoan = maKhachHang,
+                        MatKhau = maKhachHang,
+                        HinhAnh = "default.png",
                         DiaChi = diaChi,
                         TrangThai = true,
                         ThanhVien = true,
-                        NgayTao= DateTime.Now,
+                        NgayTao = DateTime.Now,
                         NgayCapNhat = DateTime.Now,
-                        DiemTichLuy = 0
+
                     };
 
                     // Lưu vào cơ sở dữ liệu
@@ -479,7 +486,7 @@ namespace GUI
                 // 4. Tính toán tổng tiền và điểm tích lũy
                 decimal tongTien = CalculateTotalAmount();
 
-                if (chkSuDungDiemTichLuy.Checked && kh?.ThanhVien == true)
+                if (chkSuDungDiemTichLuy.Checked && kh?.ThanhVien == true && loaiKhachHang != "Khách hàng vãng lai")
                 {
                     // Kiểm tra điểm sử dụng hợp lệ
                     if (!decimal.TryParse(txt_diemDung.Text, out diemSuDung) || diemSuDung < 0)
@@ -516,12 +523,12 @@ namespace GUI
                         MessageBox.Show("Có lỗi xảy ra khi cập nhật điểm tích lũy.");
                         return;
                     }
+                    diemTichLuyCong = CalculateDiemTichLuy(tongTien);
+                    diemKhachHangHienTai = _khachHangBLL.GetKhachHang(maKhachHang)?.DiemTichLuy ?? 0;
+                    diemTichLuyMoi = diemKhachHangHienTai + diemTichLuyCong;
                 }
                 else
                 {
-                    diemTichLuyCong = CalculateDiemTichLuy(tongTien);
-                    decimal diemKhachHangHienTai = _khachHangBLL.GetKhachHang(maKhachHang)?.DiemTichLuy ?? 0;
-                    diemTichLuyMoi = diemKhachHangHienTai+diemTichLuyCong;
                 }
 
                 if (tongTien <= 0)
@@ -594,7 +601,7 @@ namespace GUI
 
         private void Btn_Clear_Click(object sender, EventArgs e)
         {
-           clearAll();
+            clearAll();
         }
 
         private void Btn_timKhachHang_Click(object sender, EventArgs e)
@@ -605,7 +612,7 @@ namespace GUI
             if (string.IsNullOrEmpty(maKhachHang) && string.IsNullOrEmpty(tenKhachHang) && string.IsNullOrEmpty(sdt))
             {
                 MessageBox.Show("Vui lòng nhập ít nhất một trong các thông tin: Mã khách hàng, Tên khách hàng hoặc Số điện thoại.");
-                return; 
+                return;
             }
             KhachHang kh = _khachHangBLL.GetKhachHang(maKhachHang, tenKhachHang, sdt);
 
@@ -617,11 +624,11 @@ namespace GUI
                 txt_diaChi.Text = kh.DiaChi;
                 if (kh.DiemTichLuy.HasValue)
                 {
-                    txt_diemTichLuy.Text = kh.DiemTichLuy.Value.ToString("0.##"); 
+                    txt_diemTichLuy.Text = kh.DiemTichLuy.Value.ToString("0.##");
                 }
                 else
                 {
-                    txt_diemTichLuy.Text = "0";  
+                    txt_diemTichLuy.Text = "0";
                 }
             }
             else
@@ -714,7 +721,7 @@ namespace GUI
             if (ttSanPham != null)
             {
                 currentPage = 1;  // Quay lại trang đầu
-                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", ttSanPham, currentPage, pageSize,out totalRecords));
+                loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", ttSanPham, currentPage, pageSize, out totalRecords));
                 UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
             }
             else
@@ -796,7 +803,7 @@ namespace GUI
                 txt_tenSanPham.ForeColor = Color.Gray;
             }
         }
-        public void PlaceHoder(TextBox textBox,string noiDung)
+        public void PlaceHoder(TextBox textBox, string noiDung)
         {
             if (textBox.Text == noiDung)
             {
@@ -824,7 +831,7 @@ namespace GUI
                 if (slTon <= 0)
                 {
                     //MessageBox.Show("Sản phẩm đã hết hàng.");
-                    txt_SLTon.Text="0";
+                    txt_SLTon.Text = "0";
                 }
                 else
                 {
@@ -860,7 +867,7 @@ namespace GUI
             if (cbo_loai.SelectedItem != null)
             {
                 var selectedLoai = (LoaiSanPham)cbo_loai.SelectedItem;
-                string maLoai= selectedLoai.MaLoai;
+                string maLoai = selectedLoai.MaLoai;
 
                 if (selectedLoai.MaLoai == "ALL")
                 {
@@ -891,9 +898,9 @@ namespace GUI
 
         private void txt_soLuong_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)  
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
             {
-                e.Handled = true; 
+                e.Handled = true;
             }
             string tongTien = CalculateTotalAmount().ToString();
             txt_tongTien.Text = tongTien;
@@ -909,7 +916,7 @@ namespace GUI
 
                 if (!int.TryParse(inputValue, out int soLuong) || soLuong < 1 || soLuong > 100)
                 {
-                    e.Cancel = true; 
+                    e.Cancel = true;
                 }
                 string tongTien = CalculateTotalAmount().ToString();
                 txt_tongTien.Text = tongTien;
@@ -963,7 +970,7 @@ namespace GUI
                 foreach (var chiTiet in chiTietHoaDonList)
                 {
                     string maSanPham = chiTiet.MaSanPham;
-                    int soLuongBan = chiTiet.SoLuong??0;
+                    int soLuongBan = chiTiet.SoLuong ?? 0;
 
                     // Lấy thông tin sản phẩm từ cơ sở dữ liệu
                     var sanPham = _sanPhamBLL.GetProductById(maSanPham);
