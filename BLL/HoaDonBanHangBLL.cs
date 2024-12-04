@@ -127,6 +127,10 @@ namespace BLL
         {
             return _hoaDonBanHangDAL.GetHoaDonByTenNhanVien(tenNhanVien);
         }
+        public bool CapNhatDonHang(string maHD, string DonHang)
+        {
+            return _hoaDonBanHangDAL.CapNhatDonHang(maHD, DonHang);
+        }
 
     }
 }

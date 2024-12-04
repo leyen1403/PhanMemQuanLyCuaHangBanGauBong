@@ -156,7 +156,37 @@ namespace GUI
             btn_suaKichThuoc.Click += Btn_suaKichThuoc_Click;
             txt_timKiem.TextChanged += Txt_timKiem_TextChanged;
             btn_themAnhMauSac.Click += Btn_themAnhMauSac_Click;
+            dgv_dsLoaiSanPham.SelectionChanged += Dgv_dsLoaiSanPham_SelectionChanged;
+            dgv_dsKichThuoc.SelectionChanged += Dgv_dsKichThuoc_SelectionChanged;
+            dgv_dsMauSac.SelectionChanged += Dgv_dsMauSac_SelectionChanged;
         }
+
+        private void Dgv_dsMauSac_SelectionChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void Dgv_dsKichThuoc_SelectionChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void Dgv_dsLoaiSanPham_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgv_dsLoaiSanPham.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgv_dsLoaiSanPham.SelectedRows[0];
+                LoaiSanPham selectedLoaiSanPham = selectedRow.DataBoundItem as LoaiSanPham;
+
+                if (selectedLoaiSanPham != null)
+                {
+                    txt_maLoai.Text = selectedLoaiSanPham.MaLoai;
+                    txt_tenLoai.Text = selectedLoaiSanPham.TenLoai;
+                    txt_moTa.Text = selectedLoaiSanPham.MoTa;
+                    string imageName = selectedLoaiSanPham.HinhAnh;
+                    LoadImageToPictureBox(imageName);
+                }
+            }
+        }
+
         private void LoadImageToPictureBoxMauSac(string imageName)
         {
             try

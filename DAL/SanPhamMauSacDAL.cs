@@ -28,22 +28,52 @@ namespace DAL
                 return false;
             }
         }
-        // Sửa màu sắc của sản phẩm (thay đổi mã màu)
         public bool UpdateProductColor(string maSanPham, string oldMaMau, string newMaMau)
         {
             try
             {
+                // Check if the old color and new color are the same
+                if (oldMaMau == newMaMau)
+                {
+                    return true; // No need to update if the color is the same
+                }
+
+                // Ensure the old color exists for the product
                 var spMauSac = db.SanPham_MauSacs.FirstOrDefault(s => s.MaSanPham == maSanPham && s.MaMau == oldMaMau);
+
+                // Check if the product and old color were found
                 if (spMauSac != null)
                 {
-                    spMauSac.MaMau = newMaMau;
+                    // Remove the old color from the product
+                    db.SanPham_MauSacs.DeleteOnSubmit(spMauSac);
+
+                    // Ensure the new color is not already set for this product
+                    var existingColor = db.SanPham_MauSacs.FirstOrDefault(s => s.MaSanPham == maSanPham && s.MaMau == newMaMau);
+                    if (existingColor != null)
+                    {
+                        // If the new color already exists for this product, return false
+                        return false;
+                    }
+
+                    // Add the new color for the product
+                    var newSpMauSac = new SanPham_MauSac
+                    {
+                        MaSanPham = maSanPham,
+                        MaMau = newMaMau
+                    };
+                    db.SanPham_MauSacs.InsertOnSubmit(newSpMauSac);
+
+                    // Commit changes to the database
                     db.SubmitChanges();
                     return true;
                 }
-                return false;
+
+                return false; // Product or old color not found
             }
-            catch
+            catch (Exception ex)
             {
+                // Log the exception message for better debugging
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }

@@ -52,5 +52,9 @@ namespace BLL
         {
             return phieuNhapDAL.DeletePhieuNhap(maPN);
         }
+        public bool UpdatePhieuNhap(PhieuNhap updatedPhieuNhap)
+        {
+            return phieuNhapDAL.UpdatePhieuNhap(updatedPhieuNhap);
+        }
     }
 }

@@ -43,5 +43,81 @@ namespace BLL
         {
             return phieuKiemKeDAL.GetListPhieuKiemKeByNhanVien(maNhanVien);
         }
+
+        public string LayMaPhieuKiemKeCuoiCung()
+        {
+            var lastPhieuKiemKe = phieuKiemKeDAL.LayDanhSachPhieuKiemKe().LastOrDefault();
+            return lastPhieuKiemKe?.MaPhieuKiemKe;
+        }
+
+        public bool TaoPhieuKiemKe(PhieuKiemKe pkk, List<ChiTietPhieuKiemKe> lstPKK)
+        {
+            try
+            {
+                if (!InsertPhieuKiemKe(pkk))
+                {
+                    return false;
+                }
+                foreach (var item in lstPKK)
+                {
+                    ChiTietPhieuKiemKeBLL chiTietPhieuKiemKeBLL = new ChiTietPhieuKiemKeBLL();
+                    if (!chiTietPhieuKiemKeBLL.InsertChiTietPhieuKiemKe(item))
+                    {
+                        return false;
+                    }
+                    SanPhamBLL sanPhamBLL = new SanPhamBLL();
+                    SanPham sp = sanPhamBLL.LaySanPhamTheoMa(item.MaSanPham);
+                    sp.SoLuongTon = item.SoLuongThucTe;
+                    sp.NgayCapNhat = DateTime.Now;
+                    if (!sanPhamBLL.UpdateProduct(sp))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<PhieuKiemKe> LayDanhSachPhieuKiemKe()
+        {
+            return phieuKiemKeDAL.LayDanhSachPhieuKiemKe();
+        }
+
+        public bool XoaPhieuKiemKe(string maPhieuKiemKe)
+        {
+            PhieuKiemKe phieuKiemKe = GetPhieuKiemKeById(maPhieuKiemKe);
+            List<ChiTietPhieuKiemKe> lstCTPKK = new ChiTietPhieuKiemKeBLL().GetListChiTietPhieuKiemKeByMaPhieuKiemKe(maPhieuKiemKe);
+            if(!new ChiTietPhieuKiemKeBLL().Xoa(maPhieuKiemKe))
+            {
+                return false;
+            }
+            if (!phieuKiemKeDAL.XoaPhieuKiemKe1(maPhieuKiemKe))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool CapNhatPhieuKiemKeDuaTrenPhieuKiemKeVaDSCTPKK(PhieuKiemKe pkk, List<ChiTietPhieuKiemKe> lstTemp)
+        {
+            PhieuKiemKeBLL phieuKiemKeBLL = new PhieuKiemKeBLL();
+            if (phieuKiemKeBLL.UpdatePhieuKiemKe(pkk))
+            {
+                foreach(ChiTietPhieuKiemKe item in lstTemp)
+                {
+                    ChiTietPhieuKiemKeBLL chiTietPhieuKiemKeBLL = new ChiTietPhieuKiemKeBLL();
+                    if (!chiTietPhieuKiemKeBLL.UpdateChiTietPhieuKiemKe(item))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
     }
 }

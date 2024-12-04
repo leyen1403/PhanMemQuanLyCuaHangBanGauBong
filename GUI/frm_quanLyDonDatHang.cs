@@ -3,6 +3,9 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,529 +14,585 @@ namespace GUI
     public partial class frm_quanLyDonDatHang : Form
     {
         public string _maNhanVien { get; set; }
-
-        List<NhaCungCap> _listNhaCungCap = new List<NhaCungCap>();
-        NhaCungCapBLL _nhaCungCapBLL = new NhaCungCapBLL();
-
-        List<NhanVien> _listNhanVien = new List<NhanVien>();
-        NhanVienBLL _nhanVienBLL = new NhanVienBLL();
-
-        List<DonDatHang> _listDonDatHang = new List<DonDatHang>();
-        DonDatHangBLL _donDatHangBLL = new DonDatHangBLL();
-
-        List<ChiTietDonDatHang> _listCTDDH = new List<ChiTietDonDatHang>();
-        ChiTietDonDatHangBLL _chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
-
-        SanPhamBLL _sanPhamBLL = new SanPhamBLL();
+        List<DonDatHang> lstDonDatHang = new List<DonDatHang>();
+        List<ChiTietDonDatHang> lstCTDDH = new List<ChiTietDonDatHang>();
 
         public frm_quanLyDonDatHang()
         {
             InitializeComponent();
-            this.Load += Frm_quanLyDonDatHang_Load;
-            this.cbbLuaChonHienThi.SelectedIndexChanged += CbbLuaChonHienThi_SelectedIndexChanged;
-            this.dgvDanhSachDonDatHang.DataBindingComplete += dgvDanhSachDonDatHang_DataBindingComplete;
-            this.btnTim.Click += BtnTim_Click;
-            this.dgvDanhSachDonDatHang.SelectionChanged += dgvDanhSachDonDatHang_SelectionChanged;
-            this.dgvChiTietDDH.DataBindingComplete += dgvChiTietDDH_DataBindingComplete;
-            this.dgvChiTietDDH.SelectionChanged += dgvChiTietDDH_SelectionChanged;
-            this.txtDonGia.KeyPress += TxtDonGia_KeyPress;
-            this.txtDonGia.TextChanged += TxtDonGia_TextChanged;
-            this.txtSoLuongCungCap.ValueChanged += TxtSoLuongCungCap_ValueChanged;
-            this.btnCapNhat.Click += BtnCapNhat_Click;
-            this.txtSoLuongYeuCau.ValueChanged += TxtSoLuongCungCap_ValueChanged;
+            btnLamMoi.Click += BtnLamMoi_Click;
+            dgvDDH.RowPostPaint += DgvDDH_RowPostPaint;
+            dgvDDH.SelectionChanged += DgvDDH_SelectionChanged;
+            btnTaoDonDatHang.Click += BtnTaoDonDatHang_Click;
+            btnXoaDonDatHang.Click += BtnXoaDonDatHang_Click;
+            dgvCTDDH.SelectionChanged += DgvCTDDH_SelectionChanged;
+            btnLuuDuLieu.Click += BtnLuuDuLieu_Click;
+            cboNhaCungCap.SelectedIndexChanged += cboNhaCungCap_SelectedIndexChanged;
+            cboTrangThaiDonHang.SelectedIndexChanged += CboTrangThaiDonHang_SelectedIndexChanged;
+            cboTrangThaiCTDDH.SelectedIndexChanged += CboTrangThaiCTDDH_SelectedIndexChanged;
+            dgvCTDDH.CellValueChanged += DgvCTDDH_CellValueChanged;
+            nudSLYC.ValueChanged += NudSLYC_ValueChanged;
+            nudSLCC.ValueChanged += NudSLCC_ValueChanged;
+            dgvCTDDH.CellBeginEdit += DgvCTDDH_CellBeginEdit;
+            btnWord.Click += BtnWord_Click;
         }
 
-        private void BtnCapNhat_Click(object sender, EventArgs e)
+        private void BtnWord_Click(object sender, EventArgs e)
         {
-            SanPham sp = new SanPham();
-            ChiTietDonDatHang ctddh = new ChiTietDonDatHang();
-            DonDatHang ddh = new DonDatHang();
-            if (dgvChiTietDDH.Rows.Count > 0)
+            // Xác nhận hành động
+            if (MessageBox.Show("Bạn có chắc chắn muốn xuất file Word không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            // Kiểm tra lựa chọn đơn đặt hàng
+            if (dgvDDH.CurrentCell == null)
             {
-                string maSP = dgvChiTietDDH.CurrentRow.Cells["MaSanPham"].Value.ToString();
-                sp = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang().Where(ct => ct.MaSanPham == maSP).FirstOrDefault().SanPham;
-                sp.GiaNhap = Convert.ToDecimal(txtDonGia.Text.Replace(",", ""));
-                sp.NgayCapNhat = DateTime.Now;
-                if (!_sanPhamBLL.UpdateProduct(sp))
-                {
-                    MessageBox.Show("Cập nhật sản phẩm thất bại");
-                }
-                string maDDH = dgvChiTietDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
-                ddh = _donDatHangBLL.LayDonDayHang(maDDH);
-                ddh.TongTien = Convert.ToDecimal(txtTongTien.Text.Replace(",", ""));
-                ddh.NgayCapNhat = DateTime.Now;
-                ddh.TrangThai = cbbTrangThaiCTDDH.SelectedValue.ToString();
-                ddh.MaNhanVien = _maNhanVien;
-                if (!_donDatHangBLL.CapNhatDonDatHang(ddh))
-                {
-                    MessageBox.Show("Cập nhật đơn đặt hàng thất bại");
-                    return;
-                }
-                ctddh = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(maDDH).Where(ct => ct.MaSanPham == maSP).FirstOrDefault();
-                ctddh.SoLuongYeuCau = Convert.ToInt32(txtSoLuongYeuCau.Value.ToString());
-                ctddh.SoLuongCungCap = Convert.ToInt32(txtSoLuongCungCap.Value.ToString());
-                ctddh.SoLuongThieu = int.Parse(txtSoLuongThieu.Text);
-                ctddh.DonGia = Convert.ToDecimal(txtDonGia.Text.Replace(",", ""));
-                ctddh.ThanhTien = Convert.ToDecimal(txtThanhTien.Text.Replace(",", ""));
-                if (cbbTrangThaiCTDDH.SelectedValue != null)
-                {
-                    ctddh.TrangThai = cbbTrangThaiCTDDH.SelectedValue.ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Hãy chọn trạng thái.");
-                    return;
-                }
-                ctddh.TrangThai = cbbTrangThaiCTDDH.SelectedValue.ToString();
-                if (!_chiTietDonDatHangBLL.CapNhatChiTietDonDatHang(ctddh))
-                {
-                    MessageBox.Show("Cập nhật chi tiết đơn đặt hàng thất bại");
-                    return;
-                }
-                MessageBox.Show("Cập nhật thành công");
-                hienThiDanhSachDonDatHang();
+                MessageBox.Show("Vui lòng chọn một đơn đặt hàng để xuất file Word!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else
-            {
-                MessageBox.Show("Chưa chọn đúng");
-            }
-        }
-        void hienThiDanhSachDonDatHang()
-        {
-            string luaChon = cbbLuaChonHienThi.SelectedValue.ToString();
-            switch (luaChon)
-            {
-                case "TatCa":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                case "NhanVien":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(d => d.MaNhanVien == cbbNhanVien.SelectedValue.ToString()).ToList();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                case "NgayDatHang":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(d => d.NgayDat >= dtpTuNgay.Value && d.NgayDat <= dtpDenNgay.Value).ToList();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                case "TrangThai":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(d => d.TrangThai == cbbTrangThai.SelectedValue.ToString()).ToList();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                case "NhaCungCap":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(d => d.MaNhaCungCap == cbbNhaCungCap.SelectedValue.ToString()).ToList();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                default:
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-            }
-        }
 
-        private void TxtSoLuongCungCap_ValueChanged(object sender, EventArgs e)
-        {
+            // Lấy mã đơn đặt hàng
+            string maDDH = dgvDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
+
+            // Lấy dữ liệu đơn đặt hàng
+            var donDatHangBLL = new DonDatHangBLL();
+            var donDatHang = donDatHangBLL.LayDonDayHang(maDDH);
+
+            if (donDatHang == null)
+            {
+                MessageBox.Show("Không tìm thấy thông tin đơn đặt hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Lấy chi tiết đơn đặt hàng
+            var chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+            var lstCTDDH = chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(maDDH);
+
+            if (lstCTDDH == null || lstCTDDH.Count == 0)
+            {
+                MessageBox.Show("Không có chi tiết đơn đặt hàng nào!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Lấy thông tin nhà cung cấp
+            var nhaCungCapBLL = new NhaCungCapBLL();
+            var nhaCungCap = nhaCungCapBLL.LayNhaCungCapTheoMa(donDatHang.MaNhaCungCap);
+
+            // Chuẩn bị hộp thoại lưu file
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Word Documents (*.docx)|*.docx",
+                FileName = "Bao_cao_don_dat_hang_" + DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss") + ".docx"
+            };
+
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            // Xử lý xuất file Word
             try
             {
-                tinhToanTien();
-            }
-            catch
-            {
+                // Mở ứng dụng Word
+                var wordApp = new Microsoft.Office.Interop.Word.Application();
+                string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "mau_bao_cao_don_dat_hang.docx");
+                var document = wordApp.Documents.Open(templatePath);
 
-            }
-        }
+                // Điền dữ liệu vào bookmark
+                FillBookmarks(document, donDatHang, nhaCungCap);
 
-        private void TxtDonGia_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                string input = txtDonGia.Text.Replace(",", "");
-                if (string.IsNullOrEmpty(txtDonGia.Text))
-                {
-                    txtDonGia.Text = "0";
-                    return;
-                }
-                if (decimal.TryParse(input, out decimal result))
-                {
-                    txtDonGia.Text = result.ToString("N0");
-                    txtDonGia.SelectionStart = txtDonGia.Text.Length;
-                }
-                tinhToanTien();
+                // Điền dữ liệu vào bảng
+                FillTable(document.Tables[1], lstCTDDH);
+
+                // Lưu tài liệu
+                document.SaveAs2(saveFileDialog.FileName);
+                document.Close();
+                wordApp.Quit();
+
+                MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show($"Xuất báo cáo thất bại: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void tinhToanTien()
+        // Phương thức điền dữ liệu vào bookmark
+        private void FillBookmarks(Microsoft.Office.Interop.Word.Document document, DonDatHang donDatHang, NhaCungCap nhaCungCap)
         {
-
-            int soLuong = int.Parse(txtSoLuongCungCap.Text);
-            decimal donGia = decimal.Parse(txtDonGia.Text.Replace(",", ""));
-            decimal thanhTienMoi = soLuong * donGia;
-
-            if (dgvDanhSachDonDatHang.CurrentRow != null && dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value != null)
-            {
-                decimal tongTienCu = Convert.ToDecimal(dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value.ToString());
-                decimal thanhTienCu = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["ThanhTien"].Value.ToString());
-                decimal tongTienMoi = tongTienCu - thanhTienCu + thanhTienMoi;
-                int soLuongThieu = (int)(txtSoLuongYeuCau.Value - txtSoLuongCungCap.Value);
-                txtSoLuongThieu.Text = soLuongThieu.ToString();
-                txtTongTien.Text = tongTienMoi.ToString("N0");
-                txtThanhTien.Text = thanhTienMoi.ToString("N0");
-            }
-            else
-            {
-                clearAll();
-            }
-
-
+            document.Bookmarks["ChucVu"].Range.Text = donDatHang.NhanVien.ChucVu;
+            document.Bookmarks["DiaChiNCC"].Range.Text = nhaCungCap?.DiaChi ?? string.Empty;
+            document.Bookmarks["EmailNCC"].Range.Text = nhaCungCap?.Email ?? string.Empty;
+            document.Bookmarks["EmailNV"].Range.Text = donDatHang.NhanVien.Email;
+            document.Bookmarks["HoTenNV"].Range.Text = donDatHang.NhanVien.HoTen;
+            document.Bookmarks["MaNV"].Range.Text = donDatHang.MaNhanVien;
+            document.Bookmarks["NgayDat"].Range.Text = donDatHang.NgayDat?.ToString("dd/MM/yyyy") ?? string.Empty;
+            document.Bookmarks["NguoiDaiDien"].Range.Text = nhaCungCap?.NguoiDaiDien ?? string.Empty;
+            document.Bookmarks["SDTNCC"].Range.Text = nhaCungCap?.SoDienThoai ?? string.Empty;
+            document.Bookmarks["SDTNV"].Range.Text = donDatHang.NhanVien.SoDienThoai;
+            document.Bookmarks["TenNCC"].Range.Text = nhaCungCap?.TenNhaCungCap ?? string.Empty;
+            document.Bookmarks["TongTienHang"].Range.Text = donDatHang.TongTien?.ToString("#,0", CultureInfo.GetCultureInfo("vi-VN")) ?? "0";
+            document.Bookmarks["TrangThaiDDH"].Range.Text = donDatHang.TrangThai;
         }
 
-        private void clearAll()
+        // Phương thức điền dữ liệu vào bảng
+        private void FillTable(Microsoft.Office.Interop.Word.Table table, List<ChiTietDonDatHang> lstCTDDH)
         {
-            txtSoLuongCungCap.Text = "0";
-            txtDonGia.Text = "0";
-            txtThanhTien.Text = "0";
-            txtTongTien.Text = "0";
-            txtTenLoai.Text = "";
-            txtTenSP.Text = "";
-            txtSoLuongYeuCau.Text = "";
-            txtSoLuongThieu.Text = "";
-        }
-
-        private void TxtDonGia_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 46)
+            for (int i = 0; i < lstCTDDH.Count; i++)
             {
-                e.Handled = true;
+                var newRow = table.Rows.Add();
+                newRow.Cells[1].Range.Text = (i + 1).ToString();
+                newRow.Cells[2].Range.Text = lstCTDDH[i].MaSanPham;
+                newRow.Cells[3].Range.Text = lstCTDDH[i].DonViTinh;
+                newRow.Cells[4].Range.Text = lstCTDDH[i].SoLuongYeuCau.ToString();
+                newRow.Cells[5].Range.Text = lstCTDDH[i].DonGia?.ToString("#,0", CultureInfo.GetCultureInfo("vi-VN")) ?? "0";
+                newRow.Cells[6].Range.Text = lstCTDDH[i].ThanhTien?.ToString("#,0", CultureInfo.GetCultureInfo("vi-VN")) ?? "0";
+                newRow.Cells[7].Range.Text = lstCTDDH[i].GhiChu;
             }
         }
 
-        private void dgvChiTietDDH_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvChiTietDDH.DataSource != null)
-            {
-                string maSP = dgvChiTietDDH.CurrentRow.Cells["MaSanPham"].Value.ToString();
-                SanPham sp = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHang().Where(ct => ct.MaSanPham == maSP).FirstOrDefault().SanPham;
-                txtTenSP.Text = sp.TenSanPham;
-                txtTenLoai.Text = sp.LoaiSanPham.TenLoai;
-                txtSoLuongYeuCau.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongYeuCau"].Value.ToString();
-                txtSoLuongCungCap.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongCungCap"].Value.ToString();
-                txtSoLuongThieu.Text = dgvChiTietDDH.CurrentRow.Cells["SoLuongThieu"].Value.ToString();
-                txtDonGia.Text = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["DonGia"].Value).ToString("N0");
-                txtThanhTien.Text = Convert.ToDecimal(dgvChiTietDDH.CurrentRow.Cells["ThanhTien"].Value).ToString("N0");
-                string trangThai = dgvChiTietDDH.CurrentRow.Cells["TrangThai"].Value.ToString();
-                cbbTrangThaiCTDDH.SelectedValue = trangThai;
-                if (dgvDanhSachDonDatHang.CurrentRow != null && dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value != null)
-                {
-                    txtTongTien.Text = Convert.ToDecimal(dgvDanhSachDonDatHang.CurrentRow.Cells["TongTien"].Value).ToString("N0");
-                }
-                string tenMau = new SanPhamMauSacBLL().GetOldProductColor(maSP);
-                string tenKichThuoc = new SanPhamKichThuocBLL().GetOldSize(maSP);
-                if(tenMau != null || tenKichThuoc != null)
-                {
-                    tenMau = new BLL.MauSacBLL().GetAllMauSac().Where(x => x.MaMau == tenMau).FirstOrDefault().TenMau;
-                    tenKichThuoc = new BLL.KichThuocBLL().GetAll().Where(x => x.MaKichThuoc == tenKichThuoc).FirstOrDefault().TenKichThuoc;
-                    txtMau.Text = tenMau;
-                    txtKichThuoc.Text = tenKichThuoc;
-                }
 
-            }
-            
-        }
-
-        private void dgvDanhSachDonDatHang_SelectionChanged(object sender, EventArgs e)
+        private void NudSLCC_ValueChanged(object sender, EventArgs e)
         {
-            string maDonDatHang = dgvDanhSachDonDatHang.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
-            _listCTDDH = _chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(maDonDatHang);
-            if(_listCTDDH.Count < 0)
+            // Số lượng yêu cầu không được bé hơn số lượng cung cấp
+            if (nudSLYC.Value < nudSLCC.Value)
             {
-                dgvChiTietDDH.DataSource = null;
+                nudSLYC.Value = nudSLCC.Value;
                 return;
             }
-            ThemCotSoThuTu(dgvChiTietDDH);
-            dgvChiTietDDH.DataSource = _listCTDDH;
-            suaTieuDeCotDSCTDDH();
-            string trangThaiDonHang = dgvDanhSachDonDatHang.CurrentRow.Cells["TrangThai"].Value.ToString();
-            foreach(var item in cbbTrangThaiCTDDH.Items)
+            dgvCTDDH.CurrentRow.Cells["SoLuongCungCap"].Value = (int)nudSLCC.Value;
+            nudSLYC.Value = Convert.ToDecimal(dgvCTDDH.CurrentRow.Cells["SoLuongYeuCau"].Value);
+            nudSLT.Value = Convert.ToDecimal(dgvCTDDH.CurrentRow.Cells["SoLuongThieu"].Value);
+        }
+
+        private void NudSLYC_ValueChanged(object sender, EventArgs e)
+        {
+            // Số lượng yêu cầu không được bé hơn số lượng cung cấp
+            if (nudSLYC.Value < nudSLCC.Value)
             {
-                if (item.ToString() == trangThaiDonHang)
+                nudSLYC.Value = nudSLCC.Value;
+                return;
+            }
+            dgvCTDDH.CurrentRow.Cells["SoLuongYeuCau"].Value = (int)nudSLYC.Value;
+            nudSLCC.Value = Convert.ToDecimal(dgvCTDDH.CurrentRow.Cells["SoLuongCungCap"].Value);
+            nudSLT.Value = Convert.ToDecimal(dgvCTDDH.CurrentRow.Cells["SoLuongThieu"].Value);
+        }
+
+        private void DgvCTDDH_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var currentRow = dgvCTDDH.Rows[e.RowIndex];
+
+                // Xử lý khi thay đổi tại cột SoLuongYeuCau
+                if (dgvCTDDH.Columns[e.ColumnIndex].Name == "SoLuongYeuCau")
                 {
-                    cbbTrangThaiCTDDH.SelectedValue = trangThaiDonHang;
-                    break;
+                    int soLuongCungCap = Convert.ToInt32(currentRow.Cells["SoLuongCungCap"].Value ?? 0);
+                    int soLuongYeuCau = Convert.ToInt32(currentRow.Cells["SoLuongYeuCau"].Value ?? 0);
+
+                    // Kiểm tra số lượng yêu cầu không nhỏ hơn số lượng cung cấp
+                    if (soLuongYeuCau < soLuongCungCap)
+                    {
+                        MessageBox.Show("Số lượng yêu cầu không được nhỏ hơn số lượng cung cấp.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        // Khôi phục giá trị cũ nếu không hợp lệ
+                        currentRow.Cells["SoLuongYeuCau"].Value = soLuongCungCap;
+                        return;
+                    }
+
+                    decimal donGia = Convert.ToDecimal(currentRow.Cells["DonGia"].Value ?? 0);
+                    int soLuongThieu = soLuongYeuCau - soLuongCungCap;
+                    decimal thanhTien = soLuongYeuCau * donGia;
+
+                    // Cập nhật giá trị
+                    currentRow.Cells["SoLuongThieu"].Value = soLuongThieu;
+                    currentRow.Cells["ThanhTien"].Value = thanhTien;
+
+                    // Cập nhật tổng tiền
+                    CapNhatTongTien();
                 }
             }
         }
 
-        private void suaTieuDeCotDSCTDDH()
+        private void DgvCTDDH_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            dgvChiTietDDH.Columns["MaDonDatHang"].Visible = false;
-            dgvChiTietDDH.Columns["STT"].Visible = false;
-            dgvChiTietDDH.Columns["MaChiTietDonDatHang"].Visible = false;
-            dgvChiTietDDH.Columns["DonViTinh"].HeaderText = "Đơn vị tính";
-            dgvChiTietDDH.Columns["SoLuongYeuCau"].HeaderText = "Số lượng yêu cầu";
-            dgvChiTietDDH.Columns["SoLuongCungCap"].HeaderText = "Số lượng cung cấp";
-            dgvChiTietDDH.Columns["SoLuongThieu"].HeaderText = "Số lượng thiếu";
-            dgvChiTietDDH.Columns["DonGia"].HeaderText = "Đơn giá";
-            dgvChiTietDDH.Columns["DonGia"].DefaultCellStyle.Format = "N0";
-            dgvChiTietDDH.Columns["ThanhTien"].HeaderText = "Thành tiền";
-            dgvChiTietDDH.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
-            dgvChiTietDDH.Columns["TrangThai"].Visible = false;
-            dgvChiTietDDH.Columns["GhiChu"].Visible = false;
-            dgvChiTietDDH.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
-            dgvChiTietDDH.Columns["DonDatHang"].Visible = false;
-            dgvChiTietDDH.Columns["SanPham"].Visible = false;
-        }
-
-        private void dgvChiTietDDH_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            foreach (DataGridViewRow row in dgvChiTietDDH.Rows)
+            // Chỉ cho phép chỉnh sửa cột SoLuongYeuCau và GhiChu
+            string columnName = dgvCTDDH.Columns[e.ColumnIndex].Name;
+            if (columnName != "SoLuongYeuCau" && columnName != "GhiChu")
             {
-                row.Cells["SoThuTu"].Value = row.Index + 1;
+                e.Cancel = true;
             }
         }
 
-        private void ThemCotSoThuTu(DataGridView dgv)
+        private void CapNhatTongTien()
         {
-            // Kiểm tra xem cột số thứ tự đã tồn tại chưa
-            if (!dgv.Columns.Contains("SoThuTu"))
-            {
-                // Tạo cột số thứ tự
-                DataGridViewTextBoxColumn soThuTuColumn = new DataGridViewTextBoxColumn();
-                soThuTuColumn.Name = "SoThuTu";
-                soThuTuColumn.HeaderText = "STT";
-                soThuTuColumn.Width = 50;
-                soThuTuColumn.ReadOnly = true;
+            // Tính tổng tiền từ dgvCTDDH
+            decimal tongTien = dgvCTDDH.Rows.Cast<DataGridViewRow>()
+                .Where(row => row.Cells["ThanhTien"].Value != null)
+                .Sum(row => Convert.ToDecimal(row.Cells["ThanhTien"].Value));
 
-                // Thêm cột vào vị trí đầu tiên
-                dgv.Columns.Insert(0, soThuTuColumn);
+            // Cập nhật vào ô TongTien trong dgvDDH
+            if (dgvDDH.CurrentRow != null)
+            {
+                dgvDDH.CurrentRow.Cells["TongTien"].Value = tongTien;
+            }
+
+            // Cập nhật hiển thị
+            lblTongTien.Text = tongTien.ToString("#,0");
+        }
+
+        private void LoadData()
+        {
+            DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
+            lstDonDatHang.Clear();
+            lstCTDDH.Clear();
+            lstDonDatHang = donDatHangBLL.LayDanhSachDonDatHang();
+            dgvDDH.DataSource = lstDonDatHang;
+
+            // Ẩn các cột không cần thiết
+            dgvDDH.Columns["NhaCungCap"].Visible = false;
+            dgvDDH.Columns["NhanVien"].Visible = false;
+
+            // Đặt lại tên cột
+            dgvDDH.Columns["MaDonDatHang"].HeaderText = "Mã DDH";
+            dgvDDH.Columns["NgayDat"].HeaderText = "Ngày đặt";
+            dgvDDH.Columns["MaNhaCungCap"].HeaderText = "Mã nhà cung cấp";
+            dgvDDH.Columns["MaNhanVien"].HeaderText = "Mã nhân viên";
+            dgvDDH.Columns["TongTien"].HeaderText = "Tổng tiền";
+            dgvDDH.Columns["TrangThai"].HeaderText = "Trạng thái";
+            dgvDDH.Columns["NgayTao"].HeaderText = "Ngày tạo đơn";
+            dgvDDH.Columns["NgayCapNhat"].HeaderText = "Ngày cập nhật";
+
+            // Đặt lại thứ tự các cột
+            dgvDDH.Columns["MaDonDatHang"].DisplayIndex = 0;
+            dgvDDH.Columns["NgayDat"].DisplayIndex = 1;
+            dgvDDH.Columns["MaNhaCungCap"].DisplayIndex = 2;
+            dgvDDH.Columns["MaNhanVien"].DisplayIndex = 3;
+            dgvDDH.Columns["TongTien"].DisplayIndex = 4;
+            dgvDDH.Columns["TrangThai"].DisplayIndex = 5;
+            dgvDDH.Columns["NgayTao"].DisplayIndex = 6;
+            dgvDDH.Columns["NgayCapNhat"].DisplayIndex = 7;
+
+            // Đặt Autosize column mode cho DataGridView
+            dgvDDH.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Định dạng các cột đặc biệt (nếu cần)
+            dgvDDH.Columns["TongTien"].DefaultCellStyle.Format = "N0";
+            dgvDDH.Columns["TongTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDDH.Columns["NgayDat"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dgvDDH.Columns["NgayTao"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dgvDDH.Columns["NgayCapNhat"].DefaultCellStyle.Format = "dd/MM/yyyy";
+        }
+
+        private void DgvDDH_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            // Đặt số thứ tự vào từng dòng
+            using (SolidBrush b = new SolidBrush(dgvDDH.RowHeadersDefaultCellStyle.ForeColor))
+            {
+                string rowNumber = (e.RowIndex + 1).ToString(); // Đánh số từ 1
+                e.Graphics.DrawString(
+                    rowNumber,
+                    dgvDDH.Font,
+                    b,
+                    e.RowBounds.Location.X + 10, // Khoảng cách từ cạnh trái
+                    e.RowBounds.Location.Y + (e.RowBounds.Height - dgvDDH.Font.Height) / 2
+                );
             }
         }
 
-        private void dgvDanhSachDonDatHang_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void BtnLamMoi_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dgvDanhSachDonDatHang.Rows)
+            // Load dữ liệu danh sách đơn đặt hàng
+            LoadData();
+        }
+
+        private void loadDataChiTiet(string maDDH)
+        {
+            ChiTietDonDatHangBLL chiTietDonDatHangBLL = new ChiTietDonDatHangBLL();
+            lstCTDDH = chiTietDonDatHangBLL.LayDanhSachChiTietDonDatHangTheoMaDonDatHang(maDDH);
+
+            if (lstCTDDH == null || lstCTDDH.Count == 0)
             {
-                row.Cells["SoThuTu"].Value = row.Index + 1;
+                MessageBox.Show("Không có chi tiết đơn đặt hàng nào!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvCTDDH.DataSource = null;
+                return;
+            }
+
+            dgvCTDDH.DataSource = lstCTDDH;
+
+            // Ẩn các cột không cần thiết
+            dgvCTDDH.Columns["STT"].Visible = false;
+            dgvCTDDH.Columns["MaDonDatHang"].Visible = false;
+            dgvCTDDH.Columns["DonDatHang"].Visible = false;
+            dgvCTDDH.Columns["SanPham"].Visible = false;
+
+            // Đặt tên các cột
+            dgvCTDDH.Columns["MaChiTietDonDatHang"].HeaderText = "Mã chi tiết";
+            dgvCTDDH.Columns["DonViTinh"].HeaderText = "Đơn vị tính";
+            dgvCTDDH.Columns["SoLuongYeuCau"].HeaderText = "SL yêu cầu";
+            dgvCTDDH.Columns["SoLuongCungCap"].HeaderText = "SL cung cấp";
+            dgvCTDDH.Columns["SoLuongThieu"].HeaderText = "SL thiếu";
+            dgvCTDDH.Columns["DonGia"].HeaderText = "Đơn giá";
+            dgvCTDDH.Columns["ThanhTien"].HeaderText = "Thành tiền";
+            dgvCTDDH.Columns["TrangThai"].HeaderText = "Trạng thái";
+            dgvCTDDH.Columns["GhiChu"].HeaderText = "Ghi chú";
+            dgvCTDDH.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
+
+            // Đặt lại thứ tự các cột
+            dgvCTDDH.Columns["MaChiTietDonDatHang"].DisplayIndex = 0;
+            dgvCTDDH.Columns["MaSanPham"].DisplayIndex = 1;
+            dgvCTDDH.Columns["DonViTinh"].DisplayIndex = 2;
+            dgvCTDDH.Columns["SoLuongYeuCau"].DisplayIndex = 3;
+            dgvCTDDH.Columns["SoLuongCungCap"].DisplayIndex = 4;
+            dgvCTDDH.Columns["SoLuongThieu"].DisplayIndex = 5;
+            dgvCTDDH.Columns["DonGia"].DisplayIndex = 6;
+            dgvCTDDH.Columns["ThanhTien"].DisplayIndex = 7;
+            dgvCTDDH.Columns["TrangThai"].DisplayIndex = 8;
+            dgvCTDDH.Columns["GhiChu"].DisplayIndex = 9;
+
+            // Định dạng các cột đặc biệt
+            dgvCTDDH.Columns["DonGia"].DefaultCellStyle.Format = "N0"; // Định dạng số nguyên
+            dgvCTDDH.Columns["ThanhTien"].DefaultCellStyle.Format = "N0"; // Định dạng số nguyên
+            dgvCTDDH.Columns["SoLuongThieu"].DefaultCellStyle.Format = "N0";
+            dgvCTDDH.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvCTDDH.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvCTDDH.Columns["SoLuongYeuCau"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvCTDDH.Columns["SoLuongCungCap"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvCTDDH.Columns["SoLuongThieu"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // Căn chỉnh Header
+            foreach (DataGridViewColumn column in dgvCTDDH.Columns)
+            {
+                column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+
+            // Autosize cột để nội dung vừa khung
+            dgvCTDDH.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Căn chỉnh toàn bộ cột mặc định
+            dgvCTDDH.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            // Thêm tooltip (tuỳ chọn)
+            dgvCTDDH.Columns["TrangThai"].ToolTipText = "Trạng thái hiện tại của chi tiết đơn đặt hàng.";
+        }
+
+        private void DgvDDH_SelectionChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra nếu có ô đang được chọn
+            if (dgvDDH.CurrentCell != null && dgvDDH.CurrentRow != null && dgvDDH.CurrentRow.Cells["MaDonDatHang"].Value != null)
+            {
+                string maDDH = dgvDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
+                loadDataChiTiet(maDDH);
             }
         }
 
-        private void BtnTim_Click(object sender, EventArgs e)
+        private void BtnTaoDonDatHang_Click(object sender, EventArgs e)
         {
-            string luaChon = cbbLuaChonHienThi.SelectedValue.ToString();
-            ThemCotSoThuTu(dgvDanhSachDonDatHang);
-            switch (luaChon)
+            // Hiện thông báo xác nhận
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn tạo đơn đặt hàng mới không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                case "TatCa":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(x => x.TongTien.HasValue && x.TongTien.Value != 0).ToList();
-
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                case "NhanVien":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => (ddh.MaNhanVien == cbbNhanVien.SelectedValue.ToString())&& (ddh.TongTien.HasValue && ddh.TongTien.Value!=0)).ToList();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                case "NgayDatHang":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => (ddh.NgayDat >= dtpTuNgay.Value && ddh.NgayDat <= dtpDenNgay.Value) && (ddh.TongTien.HasValue && ddh.TongTien.Value != 0)).ToList();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                case "TrangThai":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => (ddh.TrangThai == cbbTrangThai.SelectedValue.ToString()) && (ddh.TongTien.HasValue && ddh.TongTien.Value != 0)).ToList();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                case "NhaCungCap":
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang().Where(ddh => (ddh.MaNhaCungCap == cbbNhaCungCap.SelectedValue.ToString()) && (ddh.TongTien.HasValue && ddh.TongTien.Value != 0)).ToList();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
-                default:
-                    _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang();
-                    dgvDanhSachDonDatHang.DataSource = _listDonDatHang;
-                    suaTieuDeCotDSDDH();
-                    break;
+                frm_TaoDDH frm = new frm_TaoDDH() { MaNhanVien = _maNhanVien };
+                frm.ShowDialog();
+                LoadData();
             }
         }
 
-        private void suaTieuDeCotDSDDH()
+        private void BtnXoaDonDatHang_Click(object sender, EventArgs e)
         {
-            dgvDanhSachDonDatHang.Columns["MaDonDatHang"].HeaderText = "Mã đơn đặt";
-            dgvDanhSachDonDatHang.Columns["NgayDat"].HeaderText = "Ngày đặt";
-            dgvDanhSachDonDatHang.Columns["NgayDat"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            dgvDanhSachDonDatHang.Columns["TongTien"].HeaderText = "Tổng tiền";
-            dgvDanhSachDonDatHang.Columns["TongTien"].DefaultCellStyle.Format = "N0";
-            dgvDanhSachDonDatHang.Columns["TrangThai"].HeaderText = "Trạng thái";
-            dgvDanhSachDonDatHang.Columns["NgayTao"].Visible = false;
-            dgvDanhSachDonDatHang.Columns["NgayCapNhat"].HeaderText = "Ngày cập nhật";
-            dgvDanhSachDonDatHang.Columns["NgayCapNhat"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            dgvDanhSachDonDatHang.Columns["MaNhaCungCap"].Visible = false;
-            dgvDanhSachDonDatHang.Columns["MaNhanVien"].Visible = false;
-            dgvDanhSachDonDatHang.Columns["NhaCungCap"].Visible = false;
-            dgvDanhSachDonDatHang.Columns["NhanVien"].Visible = false;
-            if(_listDonDatHang.Count <= 0)
+            // Hỏi xác nhận
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa đơn đặt hàng này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                dgvChiTietDDH.DataSource = null;
-            }
-        }
-
-        private void ChinhSuaTieuDeCot(DataGridView dgv, Dictionary<string, string> columnHeaders)
-        {
-            foreach (DataGridViewColumn column in dgv.Columns)
-            {
-                if (columnHeaders.ContainsKey(column.Name))
+                // Kiểm tra xem có đơn đặt hàng nào đang được chọn không
+                if (dgvDDH.CurrentCell == null)
                 {
-                    column.HeaderText = columnHeaders[column.Name];
+                    MessageBox.Show("Vui lòng chọn một đơn đặt hàng để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                //Xoá lstCTDDH
+                lstCTDDH.Clear();
+                // Lấy mã đơn đặt hàng cần xóa
+                string maDDH = dgvDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
+                DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
+                if (donDatHangBLL.XoaDonDatHang(maDDH))
+                {
+                    MessageBox.Show("Xóa đơn đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa đơn đặt hàng thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
-
-        private void CbbLuaChonHienThi_SelectedIndexChanged(object sender, EventArgs e)
+        private void DgvCTDDH_SelectionChanged(object sender, EventArgs e)
         {
-            string luaChon = cbbLuaChonHienThi.SelectedValue.ToString();
-            switch (luaChon)
+            // Kiểm tra nếu có ô đang được chọn
+            if (dgvCTDDH.CurrentCell != null)
             {
-                case "NhanVien":
-                    cbbNhanVien.Enabled = true;
-                    cbbNhaCungCap.Enabled = false;
-                    dtpTuNgay.Enabled = false;
-                    dtpDenNgay.Enabled = false;
-                    cbbTrangThai.Enabled = false;
-                    break;
-                case "NgayDatHang":
-                    cbbNhanVien.Enabled = false;
-                    cbbNhaCungCap.Enabled = false;
-                    dtpTuNgay.Enabled = true;
-                    dtpDenNgay.Enabled = true;
-                    cbbTrangThai.Enabled = false;
-                    break;
-                case "TrangThai":
-                    cbbNhanVien.Enabled = false;
-                    cbbNhaCungCap.Enabled = false;
-                    dtpTuNgay.Enabled = false;
-                    dtpDenNgay.Enabled = false;
-                    cbbTrangThai.Enabled = true;
-                    break;
-                case "TatCa":
-                    cbbNhanVien.Enabled = false;
-                    cbbNhaCungCap.Enabled = false;
-                    dtpTuNgay.Enabled = false;
-                    dtpDenNgay.Enabled = false;
-                    cbbTrangThai.Enabled = false;
-                    break;
-                case "NhaCungCap":
-                    cbbNhanVien.Enabled = false;
-                    cbbNhaCungCap.Enabled = true;
-                    dtpTuNgay.Enabled = false;
-                    dtpDenNgay.Enabled = false;
-                    cbbTrangThai.Enabled = false;
-                    break;
-                default:
-                    cbbNhanVien.Enabled = false;
-                    cbbNhaCungCap.Enabled = false;
-                    dtpTuNgay.Enabled = false;
-                    dtpDenNgay.Enabled = false;
-                    break;
+                string trangThaiDDH, ngayTao, maSP, donViTinh, trangThaiCTDDH, ghiChu;
+                int soLuongYeuCau, soLuongCungCap, soLuongThieu;
+                decimal donGia, thanhTien, tongTien;
+
+                // Lấy thông tin nhà cung cấp từ mã nhà cung cấp trong dgvDDH
+                string maNCC = dgvDDH.CurrentRow.Cells["MaNhaCungCap"].Value?.ToString();
+                NhaCungCapBLL nhaCungCapBLL = new NhaCungCapBLL();
+
+                // Trạng thái DDH gồm: 
+                trangThaiDDH = dgvDDH.CurrentRow.Cells["TrangThai"]?.Value?.ToString() ?? "Chưa xác nhận";
+                if (trangThaiDDH == "Chưa xác nhận")
+                {
+                    cboTrangThaiDonHang.SelectedIndex = 0;
+                }
+                else if (trangThaiDDH == "Đã xác nhận")
+                {
+                    cboTrangThaiDonHang.SelectedIndex = 1;
+                }
+                else if (trangThaiDDH == "Hoàn thành")
+                {
+                    cboTrangThaiDonHang.SelectedIndex = 2;
+                }
+                else if (trangThaiDDH == "Đã huỷ")
+                {
+                    cboTrangThaiDonHang.SelectedIndex = 3;
+                }
+
+                // Lấy thông tin ngày tạo từ dgvDDH
+                ngayTao = Convert.ToDateTime(dgvDDH.CurrentRow.Cells["NgayTao"].Value).ToString("dd/MM/yyyy");
+
+                // Lấy thông tin tổng tiền từ dgvDDH
+                tongTien = Convert.ToDecimal(dgvDDH.CurrentRow.Cells["TongTien"].Value);
+
+                // Lấy thông tin mã sản phẩm từ dgvCTDDH
+                maSP = dgvCTDDH.CurrentRow.Cells["MaSanPham"].Value?.ToString();
+                SanPhamBLL sanPhamBLL = new SanPhamBLL();
+                SanPham sanPham = sanPhamBLL.LaySanPhamTheoMa(maSP);
+                if (sanPham == null) return;
+                donViTinh = sanPham?.DonViTinh ?? "";
+
+                // Trạng thái CTDDH gồm: 
+                trangThaiCTDDH = dgvCTDDH.CurrentRow.Cells["TrangThai"]?.Value?.ToString() ?? "Chưa xác nhận";
+                if (trangThaiCTDDH == "Chưa xác nhận")
+                {
+                    cboTrangThaiCTDDH.SelectedIndex = 0;
+                }
+                else if (trangThaiCTDDH == "Đã xác nhận")
+                {
+                    cboTrangThaiCTDDH.SelectedIndex = 1;
+                }
+                else if (trangThaiCTDDH == "Hoàn thành")
+                {
+                    cboTrangThaiCTDDH.SelectedIndex = 2;
+                }
+                else if (trangThaiCTDDH == "Đã huỷ")
+                {
+                    cboTrangThaiCTDDH.SelectedIndex = 3;
+                }
+                ghiChu = dgvCTDDH.CurrentRow.Cells["GhiChu"]?.Value?.ToString() ?? "";
+
+                // Lấy thông tin số lượng yêu cầu từ dgvCTDDH
+                soLuongYeuCau = Convert.ToInt32(dgvCTDDH.CurrentRow.Cells["SoLuongYeuCau"].Value);
+                soLuongCungCap = Convert.ToInt32(dgvCTDDH.CurrentRow.Cells["SoLuongCungCap"].Value);
+                soLuongThieu = Convert.ToInt32(dgvCTDDH.CurrentRow.Cells["SoLuongThieu"].Value);
+                donGia = (decimal)sanPham.GiaNhap;
+                thanhTien = (decimal)dgvCTDDH.CurrentRow.Cells["ThanhTien"].Value;
+
+                // Hiển thị thông tin lên các control
+                NhaCungCapBLL nhaCungCapBLL1 = new NhaCungCapBLL();
+                List<NhaCungCap> lstNCC = nhaCungCapBLL.LayDanhSachNhaCungCap();
+                cboNhaCungCap.DataSource = lstNCC;
+                cboNhaCungCap.DisplayMember = "TenNhaCungCap";
+                cboNhaCungCap.ValueMember = "MaNhaCungCap";
+                cboNhaCungCap.SelectedValue = maNCC;
+                lblNgayTaoDDH.Text = ngayTao;
+                lblTongTien.Text = tongTien.ToString("N0");
+                lblMaSP.Text = maSP;
+                lblDonViTinh.Text = donViTinh;
+                txtGhiChuCTDDH.Text = ghiChu;
+                nudSLYC.Value = soLuongYeuCau;
+                nudSLCC.Value = soLuongCungCap;
+                nudSLT.Value = soLuongThieu;
+                lblDonGia.Text = donGia.ToString("N0");
+                lblThanhTien.Text = thanhTien.ToString("N0");
             }
         }
 
-        private void Frm_quanLyDonDatHang_Load(object sender, EventArgs e)
-        {
-            cbbNhanVien.Enabled = false;
-            cbbNhaCungCap.Enabled = false;
-            dtpTuNgay.Enabled = false;
-            dtpDenNgay.Enabled = false;
-            cbbTrangThai.Enabled = false;
-            txtSoLuongYeuCau.KeyDown += TextBox_KeyDown;
-            txtSoLuongCungCap.KeyDown += TextBox_KeyDown;
-            txtDonGia.KeyDown += TextBox_KeyDown;
-            loadNhaCungCapVaoComboBox(cbbNhaCungCap);
-            loadLuaChonHienThiVaoComboBox(cbbLuaChonHienThi);
-            loadNhanVienVaoComboBox(cbbNhanVien);
-            loadTrangThaiVaoComboBox1(cbbTrangThai);
-            loadTrangThaiVaoComboBox1(cbbTrangThaiCTDDH);
-        }
 
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void BtnLuuDuLieu_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            int index = dgvDDH.CurrentRow.Index;
+            // Hỏi xác nhận trước khi lưu
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn lưu dữ liệu không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                btnCapNhat.PerformClick();
+                DonDatHang ddhTemp = new DonDatHang();
+                ddhTemp.MaDonDatHang = dgvDDH.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
+                ddhTemp.MaNhaCungCap = dgvDDH.CurrentRow.Cells["MaNhaCungCap"].Value.ToString();
+                ddhTemp.MaNhanVien = _maNhanVien;
+                ddhTemp.TongTien = Convert.ToDecimal(lblTongTien.Text);
+                ddhTemp.TrangThai = dgvDDH.CurrentRow.Cells["TrangThai"].Value.ToString();
+                ddhTemp.NgayTao = DateTime.ParseExact(lblNgayTaoDDH.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                ddhTemp.NgayDat = ddhTemp.NgayTao;
+
+                List<ChiTietDonDatHang> lstTemp = new List<ChiTietDonDatHang>();
+                foreach (DataGridViewRow row in dgvCTDDH.Rows)
+                {
+                    ChiTietDonDatHang ctddh = new ChiTietDonDatHang();
+                    ctddh.MaChiTietDonDatHang = row.Cells["MaChiTietDonDatHang"].Value.ToString();
+                    ctddh.MaDonDatHang = row.Cells["MaDonDatHang"].Value.ToString();
+                    ctddh.MaSanPham = row.Cells["MaSanPham"].Value.ToString();
+                    ctddh.DonViTinh = row.Cells["DonViTinh"].Value.ToString();
+                    ctddh.SoLuongYeuCau = Convert.ToInt32(row.Cells["SoLuongYeuCau"].Value);
+                    ctddh.SoLuongCungCap = Convert.ToInt32(row.Cells["SoLuongCungCap"].Value);
+                    ctddh.SoLuongThieu = Convert.ToInt32(row.Cells["SoLuongThieu"].Value);
+                    ctddh.DonGia = Convert.ToDecimal(row.Cells["DonGia"].Value);
+                    ctddh.ThanhTien = Convert.ToDecimal(row.Cells["ThanhTien"].Value);
+                    ctddh.TrangThai = row.Cells["TrangThai"].Value.ToString();
+                    ctddh.GhiChu = row.Cells["GhiChu"].Value.ToString();
+                    lstTemp.Add(ctddh);
+                }
+                DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
+                if (donDatHangBLL.CapNhatChiTietDonDatHangDuaTrenDDHVaDSCTDDH(ddhTemp, lstTemp))
+                {
+                    MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    dgvDDH.Rows[index].Selected = true;
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật chi tiết thất bại");
+                }
             }
-        }
 
-        private void loadTrangThaiVaoComboBox1(ComboBox combo)
-        {
-            List<LuaChonHienThi> lst = new List<LuaChonHienThi>();
-            lst.Add(new LuaChonHienThi() { TenHienThi = "Chưa xác nhận", MaHienThi = "Chưa xác nhận" });
-            lst.Add(new LuaChonHienThi() { TenHienThi = "Đã xác nhận", MaHienThi = "Đã xác nhận" });
-            lst.Add(new LuaChonHienThi() { TenHienThi = "Đang giao hàng", MaHienThi = "Đang giao hàng" });
-            lst.Add(new LuaChonHienThi() { TenHienThi = "Đã nhận hàng", MaHienThi = "Đã nhận hàng" });
-            lst.Add(new LuaChonHienThi() { TenHienThi = "Hoàn thành", MaHienThi = "Hoàn thành" });
-            lst.Add(new LuaChonHienThi() { TenHienThi = "Đã hủy", MaHienThi = "Đã hủy" });
-            lst.Add(new LuaChonHienThi() { TenHienThi = "Hoàn trả", MaHienThi = "Hoàn trả" });
-            combo.DataSource = lst;
-            combo.DisplayMember = "TenHienThi";
-            combo.ValueMember = "MaHienThi";
 
         }
 
-        private void loadTrangThaiVaoComboBox(ComboBox combo)
+
+        private void cboNhaCungCap_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _listDonDatHang = _donDatHangBLL.LayDanhSachDonDatHang();
-            HashSet<string> s = new HashSet<string>();
-            foreach (DonDatHang item in _listDonDatHang)
+            if (cboNhaCungCap.SelectedItem == null) return;
+
+            string maNCC = cboNhaCungCap.SelectedValue.ToString();
+            dgvDDH.CurrentRow.Cells["MaNhaCungCap"].Value = maNCC;
+        }
+
+
+        private void CboTrangThaiDonHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboTrangThaiDonHang.SelectedItem == null)
             {
-                s.Add(item.TrangThai);
+                return;
             }
-            List<LuaChonHienThi> lst = new List<LuaChonHienThi>();
-            foreach (string item in s)
+            string trangThai = cboTrangThaiDonHang.SelectedItem.ToString();
+            dgvDDH.CurrentRow.Cells["TrangThai"].Value = trangThai;
+        }
+
+        private void CboTrangThaiCTDDH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboTrangThaiCTDDH.SelectedItem == null)
             {
-                lst.Add(new LuaChonHienThi() { TenHienThi = item, MaHienThi = item });
+                return;
             }
-            combo.DataSource = lst;
-            combo.DisplayMember = "TenHienThi";
-            combo.ValueMember = "MaHienThi";
+            string trangThai = cboTrangThaiCTDDH.SelectedItem.ToString();
+            dgvCTDDH.CurrentRow.Cells["TrangThai"].Value = trangThai;
         }
 
-        private void loadNhanVienVaoComboBox(ComboBox combo)
-        {
-            _listNhanVien = _nhanVienBLL.getAllNhanVien();
-            combo.DataSource = _listNhanVien;
-            combo.DisplayMember = "HoTen";
-            combo.ValueMember = "MaNhanVien";
-        }
-
-        private void loadLuaChonHienThiVaoComboBox(ComboBox combo)
-        {
-            List<LuaChonHienThi> lstLuaChon = new List<LuaChonHienThi>();
-            lstLuaChon.Add(new LuaChonHienThi() { TenHienThi = "Tất cả", MaHienThi = "TatCa" });
-            lstLuaChon.Add(new LuaChonHienThi() { TenHienThi = "Nhân viên", MaHienThi = "NhanVien" });
-            lstLuaChon.Add(new LuaChonHienThi() { TenHienThi = "Ngày đặt hàng", MaHienThi = "NgayDatHang" });
-            lstLuaChon.Add(new LuaChonHienThi() { TenHienThi = "Trạng thái", MaHienThi = "TrangThai" });
-            lstLuaChon.Add(new LuaChonHienThi() { TenHienThi = "Nhà cung cấp", MaHienThi = "NhaCungCap" });
-            combo.DataSource = lstLuaChon;
-            combo.DisplayMember = "TenHienThi";
-            combo.ValueMember = "MaHienThi";
-        }
-
-        private void loadNhaCungCapVaoComboBox(ComboBox comboBox)
-        {
-            _listNhaCungCap = _nhaCungCapBLL.LayDanhSachNhaCungCap();
-            comboBox.DataSource = _listNhaCungCap;
-            comboBox.DisplayMember = "TenNhaCungCap";
-            comboBox.ValueMember = "MaNhaCungCap";
-        }
     }
 }

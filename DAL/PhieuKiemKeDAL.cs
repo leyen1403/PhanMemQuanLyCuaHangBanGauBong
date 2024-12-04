@@ -11,6 +11,10 @@ namespace DAL
     {
         db_QLCHBGBDataContext db = new db_QLCHBGBDataContext();
         public PhieuKiemKeDAL() { }
+        public List<PhieuKiemKe> LayDanhSachPhieuKiemKe()
+        {
+            return db.PhieuKiemKes.ToList();
+        }
         public List<PhieuKiemKe> GetListPhieuKiemKe()
         {
             return db.PhieuKiemKes.OrderByDescending(x => x.MaPhieuKiemKe).ToList();
@@ -74,6 +78,21 @@ namespace DAL
         public List<PhieuKiemKe> GetListPhieuKiemKeByNhanVien(string maNhanVien)
         {
             return db.PhieuKiemKes.Where(x => x.MaNhanVien == maNhanVien).ToList();
+        }
+
+        public bool XoaPhieuKiemKe1(string maPhieuKiemKe)
+        {
+            try
+            {
+                var phieuKiemKe = db.PhieuKiemKes.Single(x => x.MaPhieuKiemKe == maPhieuKiemKe);
+                db.PhieuKiemKes.DeleteOnSubmit(phieuKiemKe);
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

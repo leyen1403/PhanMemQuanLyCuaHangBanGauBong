@@ -97,6 +97,7 @@ namespace DAL
                     ct.DonGia = ctddh.DonGia;
                     ct.TrangThai = ctddh.TrangThai;
                     ct.ThanhTien = ctddh.ThanhTien;
+                    ct.GhiChu = ctddh.GhiChu;
 
                     // Thử lưu các thay đổi vào cơ sở dữ liệu
                     db.SubmitChanges(ConflictMode.ContinueOnConflict);

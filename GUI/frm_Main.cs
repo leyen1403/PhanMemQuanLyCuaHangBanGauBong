@@ -30,7 +30,7 @@ namespace GUI
 
         private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_quanLyPhieuKiemKe());
+            loadForm(new frm_quanLyPhieuKiemKe() { MaNhanVien = nhanVien.MaNhanVien});
         }
 
         private void Btn_NhanVien_Click1(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace GUI
 
         private void Btn_LapPhieuKiemKe_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapPhieuKiemKe() { _maNhanVien = nhanVien.MaNhanVien });
+            
         }
 
         private void Frm_main1_Load(object sender, EventArgs e)
@@ -51,12 +51,11 @@ namespace GUI
             this.btn_NhanVien.Click += Btn_NhanVien_Click;
             this.btn_Kho.Click += Btn_Kho_Click;
             this.btn_Loai.Click += Btn_Loai_Click;
-            this.btn_LapDonDatHang.Click += Btn_LapDonDatHang_Click;
             this.btn_LapPhieuDichVu.Click += Btn_LapPhieuDichVu_Click;
             this.btn_HoaDon.Click += Btn_HoaDon_Click;
             this.btn_DichVu.Click += Btn_DichVu_Click;
             PhanQuyenAccordion(nhanVien.MaNhanVien);
-            loadForm(new frm_lapHoaDon());
+            loadForm(new frm_quanLyDonDatHang() { _maNhanVien = nhanVien.MaNhanVien });
             txt_tenNV.Caption = nhanVien.HoTen.ToString();
 
         }
@@ -102,10 +101,6 @@ namespace GUI
             loadForm(new frm_lapPhieuDichVu());
         }
 
-        private void Btn_LapDonDatHang_Click(object sender, EventArgs e)
-        {
-           loadForm(new frm_lapDonDatHang() { MaNhanVien = nhanVien.MaNhanVien});
-        }
 
         private void Btn_Loai_Click(object sender, EventArgs e)
         {
@@ -223,6 +218,21 @@ namespace GUI
         private void btn_phieuHoanTra_Click(object sender, EventArgs e)
         {
             loadForm(new frm_lapPhieuHoanTra());
+        }
+
+        private void btn_PhieuNhapHang_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapPhieuNhapHang());
+        }
+
+        private void btn_NhapHang_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyNhapHang());
+        }
+
+        private void btn_LapDonDatHang_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_TaoDDH() { MaNhanVien = nhanVien.MaNhanVien });
         }
     }
 }

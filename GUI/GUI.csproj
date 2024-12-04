@@ -97,6 +97,7 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Syncfusion.Compression.Base, Version=16.1450.0.37, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\PTUDTM\BT\Buoi10\22_BuiPhuongNam_10\bin\Debug\Syncfusion.Compression.Base.dll</HintPath>
@@ -126,6 +127,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_TaoDDH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_TaoDDH.Designer.cs">
+      <DependentUpon>frm_TaoDDH.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_dangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,6 +265,12 @@
     <Compile Include="frm_quanLyPhieuKiemKe.Designer.cs">
       <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_TaoPKK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_TaoPKK.Designer.cs">
+      <DependentUpon>frm_TaoPKK.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_thietLapTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +284,7 @@
       <DependentUpon>frm_wait.cs</DependentUpon>
     </Compile>
     <Compile Include="LuaChonHienThi.cs" />
+    <Compile Include="PlaceHoder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frm_dangNhap.resx">
@@ -338,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_quanLyPhieuKiemKe.resx">
       <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_TaoDDH.resx">
+      <DependentUpon>frm_TaoDDH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_TaoPKK.resx">
+      <DependentUpon>frm_TaoPKK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_thietLapTaiKhoan.resx">
       <DependentUpon>frm_thietLapTaiKhoan.cs</DependentUpon>
@@ -410,8 +430,11 @@
     <None Include="Resources\icons8-clear-32.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icons8-word-32.png" />
+    <None Include="Resources\icons8-tick-32.png" />
     <None Include="Resources\icons8-print-32.png" />
     <None Include="Resources\icons8-macos-close-30.png" />
+    <None Include="Resources\hethang1.png" />
     <Content Include="Resources\icons8-print-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
