@@ -262,11 +262,39 @@ namespace GUI
                 dgvCTPKK.Columns["SoLuongThucTe"].HeaderText = "Số lượng thực tế";
                 dgvCTPKK.Columns["LyDoChenhLech"].HeaderText = "Lý do chênh lệch";
 
-
                 dgvCTPKK.Columns["SoLuongHeThong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvCTPKK.Columns["SoLuongThucTe"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                dgvCTPKK.Columns["PhieuKiemKe"].Visible = false;
+                dgvCTPKK.Columns["SanPham"].Visible = false;
+
+                // Đăng ký sự kiện định dạng màu
+                dgvCTPKK.CellFormatting += DgvCTPKK_CellFormatting;
             }
         }
+
+        private void DgvCTPKK_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvCTPKK.Columns["SoLuongHeThong"] != null && dgvCTPKK.Columns["SoLuongThucTe"] != null)
+            {
+                var currentRow = dgvCTPKK.Rows[e.RowIndex];
+                int soLuongHeThong = Convert.ToInt32(currentRow.Cells["SoLuongHeThong"].Value ?? 0);
+                int soLuongThucTe = Convert.ToInt32(currentRow.Cells["SoLuongThucTe"].Value ?? 0);
+
+                // Kiểm tra sự chênh lệch
+                if (soLuongHeThong != soLuongThucTe)
+                {
+                    currentRow.DefaultCellStyle.BackColor = Color.LightCoral; // Màu đỏ nhạt cho chênh lệch
+                    currentRow.DefaultCellStyle.ForeColor = Color.White;
+                }
+                else
+                {
+                    currentRow.DefaultCellStyle.BackColor = Color.White; // Màu trắng cho dòng bình thường
+                    currentRow.DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
+        }
+
 
         private void BtnTaoPKK_Click(object sender, EventArgs e)
         {
@@ -296,7 +324,12 @@ namespace GUI
                 dgvPKK.Columns["MaNhanVien"].HeaderText = "Mã nhân viên";
                 dgvPKK.Columns["NgayLap"].HeaderText = "Ngày kiểm kê";
                 dgvPKK.Columns["GhiChu"].HeaderText = "Ghi chú";
+
+                dgvPKK.Columns["NgayLap"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dgvPKK.Columns["NgayLap"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvPKK.Columns["NhanVien"].Visible = false;
             }
+
         }
     }
 }

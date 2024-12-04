@@ -2,12 +2,9 @@
 using DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI
@@ -39,7 +36,7 @@ namespace GUI
             btnXoaToanBo.Click += BtnXoaToanBo_Click;
         }
 
- 
+
 
         private void TxtTimKiemSP_Leave(object sender, EventArgs e)
         {
@@ -159,7 +156,7 @@ namespace GUI
             // Thêm placeholder cho textbox tìm kiếm
             txtTimKiemSP.ForeColor = Color.Gray;
             txtTimKiemSP.Text = "Tìm kiếm sản phẩm...";
-              
+
         }
 
         private void DgvSP_SelectionChanged(object sender, EventArgs e)
@@ -463,7 +460,7 @@ namespace GUI
                     // Tính lại giá trị Thành tiền
                     row.Cells["ThanhTien"].Value = soLuongYeuCau * donGia;
 
-                    ChiTietDonDatHang ctddhOld = lstChiTietDonDatHang.Where(x=>x.MaChiTietDonDatHang == row.Cells["MaChiTietDonDatHang"].Value.ToString()).FirstOrDefault();
+                    ChiTietDonDatHang ctddhOld = lstChiTietDonDatHang.Where(x => x.MaChiTietDonDatHang == row.Cells["MaChiTietDonDatHang"].Value.ToString()).FirstOrDefault();
                     ctddhOld.SoLuongYeuCau = soLuongYeuCau;
                     ctddhOld.ThanhTien = soLuongYeuCau * donGia;
                     ctddhOld.SoLuongThieu = soLuongYeuCau;
@@ -475,7 +472,7 @@ namespace GUI
         private void BtnHoanTat_Click(object sender, EventArgs e)
         {
             // Kiểm tra nhân viên
-            if(cboNhanVien.SelectedValue == null)
+            if (cboNhanVien.SelectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn nhân viên lập đơn đặt hàng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -516,7 +513,7 @@ namespace GUI
                 DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
                 if (donDatHangBLL.LuuDonDatHangVoiDanhSachChiTietDonDatHang(donDatHang, lstChiTietDonDatHang))
                 {
-                    MessageBox.Show("Tạo đơn đặt hàng thành công.\n Tổng giá trị đơn hàng là: "+tongTien.ToString("N0"), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tạo đơn đặt hàng thành công.\n Tổng giá trị đơn hàng là: " + tongTien.ToString("N0"), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 else
