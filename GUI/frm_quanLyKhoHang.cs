@@ -27,6 +27,7 @@ namespace GUI
             loadSanPham();
             LoadComBoBoxTrangThai();
             this.Load += Frm_quanLyKhoHang_Load;
+            btn_luuSanPham.Enabled = false;
         }
         private void LoadComBoBoxTrangThai()
         {
@@ -311,6 +312,24 @@ namespace GUI
             btn_load.Click += Btn_load_Click;
             PlaceHolder.SetPlaceholder(txt_timSanPham, "Nhập mã hoặc tên sản phẩm");
             PlaceHoverButton();
+            // chi chi chon combobox
+            cbo_loaiSanPhamAdd.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbo_tenMauSac.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_kichThuoc.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbo_loaiSanPham.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbo_tenMauSac.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbo_tenKichThuoc.DropDownStyle = ComboBoxStyle.DropDownList;
+            txt_donViTinh.DropDownStyle = ComboBoxStyle.DropDownList;
+            LoadComBoBoxDonViTinh();
+        }
+
+        // load chọn đơn vị tính
+        private void LoadComBoBoxDonViTinh()
+        {
+            txt_donViTinh.Items.Add("Cái");
+            txt_donViTinh.Items.Add("Con");
+            txt_donViTinh.Items.Add("Bộ");
+            txt_donViTinh.SelectedIndex = 0;
         }
 
         // Đặt tất cả các button với màu nền và viền mặc định khi load form
@@ -428,8 +447,9 @@ namespace GUI
                 string maMau = cbo_tenMauSac.SelectedValue.ToString();
                 string maKichThuoc = cb_kichThuoc.SelectedValue.ToString();
                 string hinhanh = txt_duongDan.Text.Trim();
-                string tenMau = cbo_tenMauSac.SelectedItem.ToString();
-                string tenKichThuoc = cb_kichThuoc.SelectedItem.ToString();
+                //lấy mã màu sắc và kích thước từ sản phẩm hiện tại
+                string tenMau = (MauSac)cbo_tenMauSac.SelectedItem != null ? ((MauSac)cbo_tenMauSac.SelectedItem).MaMau : string.Empty;
+                string tenKichThuoc = (KichThuoc)cb_kichThuoc.SelectedItem != null ? ((KichThuoc)cb_kichThuoc.SelectedItem).MaKichThuoc : string.Empty;
                 string giaTriTrangThai = cbo_trangThai.Text;
                 bool trangThai = giaTriTrangThai == "Hoạt động";
 
@@ -468,6 +488,7 @@ namespace GUI
                     if (result && capNhatMauSac && capNhatKichThuoc)
                     {
                         MessageBox.Show("Cập nhật sản phẩm thành công.");
+                        btn_luuSanPham.BackColor = Color.Navy;
                         btn_luuSanPham.Enabled = false;
                         loadSanPham();
                     }
@@ -548,6 +569,7 @@ namespace GUI
             btn_luuSanPham.Enabled = true;
             btn_themSanPham.Enabled=true;
             btn_xoaSanPham.Enabled =true ;
+            btn_luuSanPham.BackColor = Color.White;
         }
         private string taoMaSanPham()
         {
@@ -568,7 +590,7 @@ namespace GUI
             // Xóa các giá trị trong các TextBox
             txt_maSanPham.Clear();
             txt_tenSanPham.Clear();
-            txt_donViTinh.Clear();
+            txt_donViTinh.SelectedIndex = -1;
             txt_soLuongTon.Clear();
             txt_giaNhap.Clear();
             txt_giaBan.Clear();
@@ -594,6 +616,7 @@ namespace GUI
                     DataGridViewRow currentRow = dgv_dsSanPham.CurrentRow;
                     txt_maSanPham.Text = currentRow.Cells["MaSanPham"].Value.ToString();
                     txt_tenSanPham.Text = currentRow.Cells["TenSanPham"].Value.ToString();
+                    //load combox đơn vị tính
                     txt_donViTinh.Text = currentRow.Cells["DonViTinh"].Value.ToString();
                     txt_soLuongTon.Text = Convert.ToInt32(currentRow.Cells["SoLuongTon"].Value).ToString();
                     decimal giaNhap = Convert.ToDecimal(currentRow.Cells["GiaNhap"].Value);
@@ -606,7 +629,21 @@ namespace GUI
                     txt_soLuongToiThieu.Text = Convert.ToInt32(currentRow.Cells["SoLuongToiThieu"].Value).ToString();
                     txt_duongDan.Text = currentRow.Cells["HinhAnh"].Value?.ToString();
                     string hinhanh = currentRow.Cells["HinhAnh"].Value?.ToString();
-                    LoadKichThuocAndMauSac(txt_maSanPham.Text = currentRow.Cells["MaSanPham"].Value.ToString());
+                   // LoadKichThuocAndMauSac(txt_maSanPham.Text = currentRow.Cells["MaSanPham"].Value.ToString());
+
+                    //hiện loại sản phẩm lên combobox
+                    string maLoai = currentRow.Cells["MaLoai"].Value.ToString();
+                    cbo_loaiSanPhamAdd.SelectedValue = maLoai;
+
+                    //lấy mã màu sắc và kích thước từ sản phẩm hiện tại
+                    string maMau = _sanPhamMauSacBll.GetOldProductColor(txt_maSanPham.Text);
+                    string maKichThuoc = _sanPhamKichThuocBLL.GetOldSize(txt_maSanPham.Text);
+                    //hiện màu sắc lên combobox
+                    //string maMau = currentRow.Cells["MaMau"].Value.ToString();
+                    cbo_tenMauSac.SelectedValue = maMau;
+                    //hiện kích thước sản phẩm lên combobox
+                    //string maKichThuoc = currentRow.Cells["MaKichThuoc"].Value.ToString();
+                    cb_kichThuoc.SelectedValue = maKichThuoc;
                     if (!string.IsNullOrEmpty(hinhanh))
                     {
                         LoadImageToPictureBox(hinhanh);

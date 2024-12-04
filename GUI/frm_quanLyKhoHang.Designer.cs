@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_donViTinh = new System.Windows.Forms.ComboBox();
+            this.cbo_trangThai = new System.Windows.Forms.ComboBox();
             this.btn_clear = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.txt_soLuongToiThieu = new System.Windows.Forms.TextBox();
@@ -59,7 +61,6 @@
             this.img_sanPham = new System.Windows.Forms.PictureBox();
             this.txt_giaNhap = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txt_donViTinh = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txt_moTa = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -81,7 +82,6 @@
             this.btn_load = new System.Windows.Forms.Button();
             this.btn_timDK = new System.Windows.Forms.Button();
             this.btn_timKiem = new System.Windows.Forms.Button();
-            this.cbo_trangThai = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_sanPham)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -94,6 +94,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.groupBox2.Controls.Add(this.txt_donViTinh);
             this.groupBox2.Controls.Add(this.cbo_trangThai);
             this.groupBox2.Controls.Add(this.btn_clear);
             this.groupBox2.Controls.Add(this.label21);
@@ -125,7 +126,6 @@
             this.groupBox2.Controls.Add(this.img_sanPham);
             this.groupBox2.Controls.Add(this.txt_giaNhap);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.txt_donViTinh);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.txt_moTa);
             this.groupBox2.Controls.Add(this.label11);
@@ -143,6 +143,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin sản phẩm";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // txt_donViTinh
+            // 
+            this.txt_donViTinh.FormattingEnabled = true;
+            this.txt_donViTinh.Location = new System.Drawing.Point(191, 155);
+            this.txt_donViTinh.Name = "txt_donViTinh";
+            this.txt_donViTinh.Size = new System.Drawing.Size(229, 28);
+            this.txt_donViTinh.TabIndex = 53;
+            // 
+            // cbo_trangThai
+            // 
+            this.cbo_trangThai.FormattingEnabled = true;
+            this.cbo_trangThai.Location = new System.Drawing.Point(194, 623);
+            this.cbo_trangThai.Margin = new System.Windows.Forms.Padding(2);
+            this.cbo_trangThai.Name = "cbo_trangThai";
+            this.cbo_trangThai.Size = new System.Drawing.Size(232, 28);
+            this.cbo_trangThai.TabIndex = 52;
             // 
             // btn_clear
             // 
@@ -496,14 +513,6 @@
             this.label13.TabIndex = 11;
             this.label13.Text = "Mô tả";
             // 
-            // txt_donViTinh
-            // 
-            this.txt_donViTinh.Location = new System.Drawing.Point(191, 157);
-            this.txt_donViTinh.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_donViTinh.Name = "txt_donViTinh";
-            this.txt_donViTinh.Size = new System.Drawing.Size(232, 26);
-            this.txt_donViTinh.TabIndex = 3;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -614,7 +623,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1240, 48);
+            this.label1.Size = new System.Drawing.Size(1240, 57);
             this.label1.TabIndex = 25;
             this.label1.Text = "QUẢN LÝ KHO HÀNG";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -764,15 +773,6 @@
             this.btn_timKiem.TabIndex = 16;
             this.btn_timKiem.UseVisualStyleBackColor = false;
             // 
-            // cbo_trangThai
-            // 
-            this.cbo_trangThai.FormattingEnabled = true;
-            this.cbo_trangThai.Location = new System.Drawing.Point(194, 623);
-            this.cbo_trangThai.Margin = new System.Windows.Forms.Padding(2);
-            this.cbo_trangThai.Name = "cbo_trangThai";
-            this.cbo_trangThai.Size = new System.Drawing.Size(232, 28);
-            this.cbo_trangThai.TabIndex = 52;
-            // 
             // frm_quanLyKhoHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -809,7 +809,6 @@
         private System.Windows.Forms.Button btn_themSanPham;
         private System.Windows.Forms.TextBox txt_giaNhap;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txt_donViTinh;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txt_moTa;
         private System.Windows.Forms.Label label11;
@@ -856,5 +855,6 @@
         private System.Windows.Forms.Button btn_load;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cbo_trangThai;
+        private System.Windows.Forms.ComboBox txt_donViTinh;
     }
 }

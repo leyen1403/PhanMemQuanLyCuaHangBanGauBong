@@ -1436,7 +1436,6 @@ namespace GUI
         }
         private void LoadSanPhamPage()
         {
-            currentPage = 1;  // Quay lại trang đầu
             loadSanPham(_sanPhamBLL.GetUniqueProductsByCategoryWithPagination("", "", currentPage, pageSize, out totalRecords));
             UpdatePaginationButtons();  // Cập nhật trạng thái các nút phân trang
         }

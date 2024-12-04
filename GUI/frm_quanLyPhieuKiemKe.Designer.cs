@@ -30,10 +30,17 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboNhanVien = new System.Windows.Forms.ComboBox();
+            this.nudSLTT = new System.Windows.Forms.NumericUpDown();
+            this.nudSLCL = new System.Windows.Forms.NumericUpDown();
+            this.nudSLHT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMaPhieu = new System.Windows.Forms.TextBox();
+            this.txtLyDoChenhLech = new System.Windows.Forms.TextBox();
             this.txtMaSP = new System.Windows.Forms.TextBox();
             this.dtpNgayLap = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,21 +54,14 @@
             this.dgvPKK = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvCTPKK = new System.Windows.Forms.DataGridView();
-            this.nudSLHT = new System.Windows.Forms.NumericUpDown();
-            this.nudSLTT = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.nudSLCL = new System.Windows.Forms.NumericUpDown();
-            this.txtLyDoChenhLech = new System.Windows.Forms.TextBox();
-            this.cboNhanVien = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSLTT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSLCL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSLHT)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPKK)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTPKK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSLHT)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSLTT)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSLCL)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -73,7 +73,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1491, 48);
+            this.label1.Size = new System.Drawing.Size(1491, 57);
             this.label1.TabIndex = 3;
             this.label1.Text = "QUẢN LÝ PHIẾU KIỂM KÊ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -111,6 +111,50 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chung";
             // 
+            // cboNhanVien
+            // 
+            this.cboNhanVien.FormattingEnabled = true;
+            this.cboNhanVien.Location = new System.Drawing.Point(204, 78);
+            this.cboNhanVien.Name = "cboNhanVien";
+            this.cboNhanVien.Size = new System.Drawing.Size(189, 28);
+            this.cboNhanVien.TabIndex = 10;
+            // 
+            // nudSLTT
+            // 
+            this.nudSLTT.Location = new System.Drawing.Point(581, 126);
+            this.nudSLTT.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudSLTT.Name = "nudSLTT";
+            this.nudSLTT.Size = new System.Drawing.Size(120, 26);
+            this.nudSLTT.TabIndex = 9;
+            // 
+            // nudSLCL
+            // 
+            this.nudSLCL.Location = new System.Drawing.Point(999, 27);
+            this.nudSLCL.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudSLCL.Name = "nudSLCL";
+            this.nudSLCL.Size = new System.Drawing.Size(120, 26);
+            this.nudSLCL.TabIndex = 9;
+            // 
+            // nudSLHT
+            // 
+            this.nudSLHT.Location = new System.Drawing.Point(581, 79);
+            this.nudSLHT.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudSLHT.Name = "nudSLHT";
+            this.nudSLHT.Size = new System.Drawing.Size(120, 26);
+            this.nudSLHT.TabIndex = 9;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -129,6 +173,24 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "SL hệ thống";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(849, 29);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 20);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Chênh lệch";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(849, 81);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(128, 20);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Lý do chênh lệch";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -144,6 +206,14 @@
             this.txtMaPhieu.Name = "txtMaPhieu";
             this.txtMaPhieu.Size = new System.Drawing.Size(189, 26);
             this.txtMaPhieu.TabIndex = 7;
+            // 
+            // txtLyDoChenhLech
+            // 
+            this.txtLyDoChenhLech.Location = new System.Drawing.Point(999, 78);
+            this.txtLyDoChenhLech.Multiline = true;
+            this.txtLyDoChenhLech.Name = "txtLyDoChenhLech";
+            this.txtLyDoChenhLech.Size = new System.Drawing.Size(327, 73);
+            this.txtLyDoChenhLech.TabIndex = 7;
             // 
             // txtMaSP
             // 
@@ -276,76 +346,6 @@
             this.dgvCTPKK.Size = new System.Drawing.Size(1461, 445);
             this.dgvCTPKK.TabIndex = 0;
             // 
-            // nudSLHT
-            // 
-            this.nudSLHT.Location = new System.Drawing.Point(581, 79);
-            this.nudSLHT.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nudSLHT.Name = "nudSLHT";
-            this.nudSLHT.Size = new System.Drawing.Size(120, 26);
-            this.nudSLHT.TabIndex = 9;
-            // 
-            // nudSLTT
-            // 
-            this.nudSLTT.Location = new System.Drawing.Point(581, 126);
-            this.nudSLTT.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nudSLTT.Name = "nudSLTT";
-            this.nudSLTT.Size = new System.Drawing.Size(120, 26);
-            this.nudSLTT.TabIndex = 9;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(849, 81);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(128, 20);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Lý do chênh lệch";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(849, 29);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 20);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Chênh lệch";
-            // 
-            // nudSLCL
-            // 
-            this.nudSLCL.Location = new System.Drawing.Point(999, 27);
-            this.nudSLCL.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nudSLCL.Name = "nudSLCL";
-            this.nudSLCL.Size = new System.Drawing.Size(120, 26);
-            this.nudSLCL.TabIndex = 9;
-            // 
-            // txtLyDoChenhLech
-            // 
-            this.txtLyDoChenhLech.Location = new System.Drawing.Point(999, 78);
-            this.txtLyDoChenhLech.Multiline = true;
-            this.txtLyDoChenhLech.Name = "txtLyDoChenhLech";
-            this.txtLyDoChenhLech.Size = new System.Drawing.Size(327, 73);
-            this.txtLyDoChenhLech.TabIndex = 7;
-            // 
-            // cboNhanVien
-            // 
-            this.cboNhanVien.FormattingEnabled = true;
-            this.cboNhanVien.Location = new System.Drawing.Point(204, 78);
-            this.cboNhanVien.Name = "cboNhanVien";
-            this.cboNhanVien.Size = new System.Drawing.Size(189, 28);
-            this.cboNhanVien.TabIndex = 10;
-            // 
             // frm_quanLyPhieuKiemKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,13 +359,13 @@
             this.Text = "frm_quanLyPhieuKiemKe";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSLTT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSLCL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSLHT)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPKK)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTPKK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSLHT)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSLTT)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSLCL)).EndInit();
             this.ResumeLayout(false);
 
         }

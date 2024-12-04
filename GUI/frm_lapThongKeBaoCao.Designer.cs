@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabCrlDoanhThu = new System.Windows.Forms.TabControl();
             this.tabDanhThu = new System.Windows.Forms.TabPage();
             this.cbbNhanVien = new System.Windows.Forms.ComboBox();
@@ -51,6 +51,7 @@
             this.tabSoLuongTon = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabCrlDoanhThu.SuspendLayout();
             this.tabDanhThu.SuspendLayout();
             this.grbThongKe.SuspendLayout();
@@ -66,15 +67,17 @@
             // 
             // tabCrlDoanhThu
             // 
+            this.tabCrlDoanhThu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabCrlDoanhThu.Controls.Add(this.tabDanhThu);
             this.tabCrlDoanhThu.Controls.Add(this.tabSPBanChay);
             this.tabCrlDoanhThu.Controls.Add(this.tabSoLuongTon);
-            this.tabCrlDoanhThu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCrlDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabCrlDoanhThu.Location = new System.Drawing.Point(0, 0);
+            this.tabCrlDoanhThu.Location = new System.Drawing.Point(0, 60);
             this.tabCrlDoanhThu.Name = "tabCrlDoanhThu";
             this.tabCrlDoanhThu.SelectedIndex = 0;
-            this.tabCrlDoanhThu.Size = new System.Drawing.Size(1240, 857);
+            this.tabCrlDoanhThu.Size = new System.Drawing.Size(1240, 797);
             this.tabCrlDoanhThu.TabIndex = 1;
             // 
             // tabDanhThu
@@ -92,7 +95,7 @@
             this.tabDanhThu.Location = new System.Drawing.Point(4, 29);
             this.tabDanhThu.Name = "tabDanhThu";
             this.tabDanhThu.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDanhThu.Size = new System.Drawing.Size(1232, 824);
+            this.tabDanhThu.Size = new System.Drawing.Size(1232, 764);
             this.tabDanhThu.TabIndex = 0;
             this.tabDanhThu.Text = "Doanh thu";
             this.tabDanhThu.UseVisualStyleBackColor = true;
@@ -109,9 +112,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(23, 127);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 20);
+            this.label1.Size = new System.Drawing.Size(177, 20);
             this.label1.TabIndex = 52;
             this.label1.Text = "Chọn nhân viên xuất:";
             // 
@@ -154,17 +159,17 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(3, 22);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1195, 551);
             this.chart1.TabIndex = 45;
             this.chart1.Text = "chart1";
@@ -218,22 +223,24 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Navy;
             this.label12.Location = new System.Drawing.Point(23, 81);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(154, 20);
+            this.label12.Size = new System.Drawing.Size(174, 20);
             this.label12.TabIndex = 45;
             this.label12.Text = "Chọn ngày kết thúc :";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Navy;
             this.label11.Location = new System.Drawing.Point(23, 35);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(151, 20);
+            this.label11.Size = new System.Drawing.Size(170, 20);
             this.label11.TabIndex = 44;
             this.label11.Text = "Chọn ngày bắt đầu :";
             // 
@@ -310,11 +317,26 @@
             this.dataGridView2.Size = new System.Drawing.Size(1195, 551);
             this.dataGridView2.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Navy;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1240, 57);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Thống kê doanh thu";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frm_lapThongKeBaoCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1240, 857);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.tabCrlDoanhThu);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frm_lapThongKeBaoCao";
@@ -357,5 +379,6 @@
         private System.Windows.Forms.Button btnXuatDoanhThu;
         private System.Windows.Forms.ComboBox cbbNhanVien;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

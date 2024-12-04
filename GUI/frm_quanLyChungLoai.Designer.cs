@@ -127,7 +127,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1240, 48);
+            this.label1.Size = new System.Drawing.Size(1240, 57);
             this.label1.TabIndex = 33;
             this.label1.Text = "QUẢN LÝ CHỦNG LOẠI";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

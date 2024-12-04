@@ -49,6 +49,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_tongTienHD = new System.Windows.Forms.Label();
+            this.txt_soLuongHD = new System.Windows.Forms.Label();
             this.cbo_trangThaiDon = new System.Windows.Forms.ComboBox();
             this.txt_ngayLap = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -86,8 +88,6 @@
             this.dtpDenNgay = new System.Windows.Forms.DateTimePicker();
             this.label21 = new System.Windows.Forms.Label();
             this.cbbLuaChonHienThi = new System.Windows.Forms.ComboBox();
-            this.txt_soLuongHD = new System.Windows.Forms.Label();
-            this.txt_tongTienHD = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -367,7 +367,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1530, 48);
+            this.label1.Size = new System.Drawing.Size(1530, 57);
             this.label1.TabIndex = 14;
             this.label1.Text = "QUẢN LÝ HOÁ ĐƠN BÁN HÀNG";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -412,6 +412,32 @@
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "o";
+            // 
+            // txt_tongTienHD
+            // 
+            this.txt_tongTienHD.AutoSize = true;
+            this.txt_tongTienHD.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txt_tongTienHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_tongTienHD.ForeColor = System.Drawing.Color.Navy;
+            this.txt_tongTienHD.Location = new System.Drawing.Point(676, 249);
+            this.txt_tongTienHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.txt_tongTienHD.Name = "txt_tongTienHD";
+            this.txt_tongTienHD.Size = new System.Drawing.Size(29, 20);
+            this.txt_tongTienHD.TabIndex = 54;
+            this.txt_tongTienHD.Text = "TT";
+            // 
+            // txt_soLuongHD
+            // 
+            this.txt_soLuongHD.AutoSize = true;
+            this.txt_soLuongHD.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txt_soLuongHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_soLuongHD.ForeColor = System.Drawing.Color.Navy;
+            this.txt_soLuongHD.Location = new System.Drawing.Point(517, 249);
+            this.txt_soLuongHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.txt_soLuongHD.Name = "txt_soLuongHD";
+            this.txt_soLuongHD.Size = new System.Drawing.Size(31, 20);
+            this.txt_soLuongHD.TabIndex = 53;
+            this.txt_soLuongHD.Text = "SL";
             // 
             // cbo_trangThaiDon
             // 
@@ -873,32 +899,6 @@
             this.cbbLuaChonHienThi.Name = "cbbLuaChonHienThi";
             this.cbbLuaChonHienThi.Size = new System.Drawing.Size(281, 27);
             this.cbbLuaChonHienThi.TabIndex = 4;
-            // 
-            // txt_soLuongHD
-            // 
-            this.txt_soLuongHD.AutoSize = true;
-            this.txt_soLuongHD.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txt_soLuongHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_soLuongHD.ForeColor = System.Drawing.Color.Navy;
-            this.txt_soLuongHD.Location = new System.Drawing.Point(517, 249);
-            this.txt_soLuongHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.txt_soLuongHD.Name = "txt_soLuongHD";
-            this.txt_soLuongHD.Size = new System.Drawing.Size(31, 20);
-            this.txt_soLuongHD.TabIndex = 53;
-            this.txt_soLuongHD.Text = "SL";
-            // 
-            // txt_tongTienHD
-            // 
-            this.txt_tongTienHD.AutoSize = true;
-            this.txt_tongTienHD.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txt_tongTienHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_tongTienHD.ForeColor = System.Drawing.Color.Navy;
-            this.txt_tongTienHD.Location = new System.Drawing.Point(676, 249);
-            this.txt_tongTienHD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.txt_tongTienHD.Name = "txt_tongTienHD";
-            this.txt_tongTienHD.Size = new System.Drawing.Size(29, 20);
-            this.txt_tongTienHD.TabIndex = 54;
-            this.txt_tongTienHD.Text = "TT";
             // 
             // frm_quanLyHoaDon
             // 

@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnWord = new System.Windows.Forms.Button();
             this.nudSLYC = new System.Windows.Forms.NumericUpDown();
             this.nudSLT = new System.Windows.Forms.NumericUpDown();
             this.nudSLCC = new System.Windows.Forms.NumericUpDown();
@@ -56,15 +57,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvDDH = new System.Windows.Forms.DataGridView();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvCTDDH = new System.Windows.Forms.DataGridView();
-            this.btnWord = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnLuuDuLieu = new System.Windows.Forms.Button();
             this.btnXoaDonDatHang = new System.Windows.Forms.Button();
             this.btnTaoDonDatHang = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvDDH = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dgvCTDDH = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSLYC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSLT)).BeginInit();
@@ -84,7 +84,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1491, 48);
+            this.label1.Size = new System.Drawing.Size(1491, 57);
             this.label1.TabIndex = 1;
             this.label1.Text = "QUẢN LÝ ĐƠN ĐẶT HÀNG";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -126,12 +126,22 @@
             this.groupBox1.Controls.Add(this.btnTaoDonDatHang);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Navy;
-            this.groupBox1.Location = new System.Drawing.Point(12, 51);
+            this.groupBox1.Location = new System.Drawing.Point(12, 60);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1467, 247);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chung";
+            // 
+            // btnWord
+            // 
+            this.btnWord.AutoSize = true;
+            this.btnWord.Image = global::GUI.Properties.Resources.icons8_word_32;
+            this.btnWord.Location = new System.Drawing.Point(1203, 129);
+            this.btnWord.Name = "btnWord";
+            this.btnWord.Size = new System.Drawing.Size(75, 38);
+            this.btnWord.TabIndex = 5;
+            this.btnWord.UseVisualStyleBackColor = true;
             // 
             // nudSLYC
             // 
@@ -393,6 +403,46 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Nhà cung cấp";
             // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.AutoSize = true;
+            this.btnLamMoi.Image = global::GUI.Properties.Resources.icons8_update_32;
+            this.btnLamMoi.Location = new System.Drawing.Point(6, 173);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(75, 41);
+            this.btnLamMoi.TabIndex = 0;
+            this.btnLamMoi.UseVisualStyleBackColor = true;
+            // 
+            // btnLuuDuLieu
+            // 
+            this.btnLuuDuLieu.AutoSize = true;
+            this.btnLuuDuLieu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuDuLieu.Location = new System.Drawing.Point(6, 126);
+            this.btnLuuDuLieu.Name = "btnLuuDuLieu";
+            this.btnLuuDuLieu.Size = new System.Drawing.Size(75, 41);
+            this.btnLuuDuLieu.TabIndex = 0;
+            this.btnLuuDuLieu.UseVisualStyleBackColor = true;
+            // 
+            // btnXoaDonDatHang
+            // 
+            this.btnXoaDonDatHang.AutoSize = true;
+            this.btnXoaDonDatHang.Image = global::GUI.Properties.Resources.icons8_delete_35;
+            this.btnXoaDonDatHang.Location = new System.Drawing.Point(6, 79);
+            this.btnXoaDonDatHang.Name = "btnXoaDonDatHang";
+            this.btnXoaDonDatHang.Size = new System.Drawing.Size(75, 41);
+            this.btnXoaDonDatHang.TabIndex = 0;
+            this.btnXoaDonDatHang.UseVisualStyleBackColor = true;
+            // 
+            // btnTaoDonDatHang
+            // 
+            this.btnTaoDonDatHang.AutoSize = true;
+            this.btnTaoDonDatHang.Image = global::GUI.Properties.Resources.icons8_add_35;
+            this.btnTaoDonDatHang.Location = new System.Drawing.Point(6, 32);
+            this.btnTaoDonDatHang.Name = "btnTaoDonDatHang";
+            this.btnTaoDonDatHang.Size = new System.Drawing.Size(75, 41);
+            this.btnTaoDonDatHang.TabIndex = 0;
+            this.btnTaoDonDatHang.UseVisualStyleBackColor = true;
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -442,56 +492,6 @@
             this.dgvCTDDH.Name = "dgvCTDDH";
             this.dgvCTDDH.Size = new System.Drawing.Size(1461, 232);
             this.dgvCTDDH.TabIndex = 0;
-            // 
-            // btnWord
-            // 
-            this.btnWord.AutoSize = true;
-            this.btnWord.Image = global::GUI.Properties.Resources.icons8_word_32;
-            this.btnWord.Location = new System.Drawing.Point(1203, 129);
-            this.btnWord.Name = "btnWord";
-            this.btnWord.Size = new System.Drawing.Size(75, 38);
-            this.btnWord.TabIndex = 5;
-            this.btnWord.UseVisualStyleBackColor = true;
-            // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.AutoSize = true;
-            this.btnLamMoi.Image = global::GUI.Properties.Resources.icons8_update_32;
-            this.btnLamMoi.Location = new System.Drawing.Point(6, 173);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(75, 41);
-            this.btnLamMoi.TabIndex = 0;
-            this.btnLamMoi.UseVisualStyleBackColor = true;
-            // 
-            // btnLuuDuLieu
-            // 
-            this.btnLuuDuLieu.AutoSize = true;
-            this.btnLuuDuLieu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuDuLieu.Location = new System.Drawing.Point(6, 126);
-            this.btnLuuDuLieu.Name = "btnLuuDuLieu";
-            this.btnLuuDuLieu.Size = new System.Drawing.Size(75, 41);
-            this.btnLuuDuLieu.TabIndex = 0;
-            this.btnLuuDuLieu.UseVisualStyleBackColor = true;
-            // 
-            // btnXoaDonDatHang
-            // 
-            this.btnXoaDonDatHang.AutoSize = true;
-            this.btnXoaDonDatHang.Image = global::GUI.Properties.Resources.icons8_delete_35;
-            this.btnXoaDonDatHang.Location = new System.Drawing.Point(6, 79);
-            this.btnXoaDonDatHang.Name = "btnXoaDonDatHang";
-            this.btnXoaDonDatHang.Size = new System.Drawing.Size(75, 41);
-            this.btnXoaDonDatHang.TabIndex = 0;
-            this.btnXoaDonDatHang.UseVisualStyleBackColor = true;
-            // 
-            // btnTaoDonDatHang
-            // 
-            this.btnTaoDonDatHang.AutoSize = true;
-            this.btnTaoDonDatHang.Image = global::GUI.Properties.Resources.icons8_add_35;
-            this.btnTaoDonDatHang.Location = new System.Drawing.Point(6, 32);
-            this.btnTaoDonDatHang.Name = "btnTaoDonDatHang";
-            this.btnTaoDonDatHang.Size = new System.Drawing.Size(75, 41);
-            this.btnTaoDonDatHang.TabIndex = 0;
-            this.btnTaoDonDatHang.UseVisualStyleBackColor = true;
             // 
             // frm_quanLyDonDatHang
             // 

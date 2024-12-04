@@ -83,7 +83,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1364, 48);
+            this.label1.Size = new System.Drawing.Size(1364, 57);
             this.label1.TabIndex = 1;
             this.label1.Text = "LẬP PHIỂU KIỂM KÊ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -137,9 +137,9 @@
             this.groupBox2.Controls.Add(this.txtMaSanPham);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(746, 219);
+            this.groupBox2.Location = new System.Drawing.Point(746, 257);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(612, 617);
+            this.groupBox2.Size = new System.Drawing.Size(612, 579);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin sản phẩm";
@@ -365,7 +365,7 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(4, 51);
+            this.groupBox3.Location = new System.Drawing.Point(7, 77);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(942, 162);
             this.groupBox3.TabIndex = 5;
@@ -399,7 +399,7 @@
             this.btnTao.ForeColor = System.Drawing.Color.White;
             this.btnTao.Image = global::GUI.Properties.Resources.icons8_add_35;
             this.btnTao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTao.Location = new System.Drawing.Point(952, 67);
+            this.btnTao.Location = new System.Drawing.Point(955, 93);
             this.btnTao.Name = "btnTao";
             this.btnTao.Size = new System.Drawing.Size(85, 53);
             this.btnTao.TabIndex = 3;
@@ -416,7 +416,7 @@
             this.btnDong.ForeColor = System.Drawing.Color.White;
             this.btnDong.Image = global::GUI.Properties.Resources.icons8_delete_35;
             this.btnDong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDong.Location = new System.Drawing.Point(952, 126);
+            this.btnDong.Location = new System.Drawing.Point(955, 152);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(85, 53);
             this.btnDong.TabIndex = 3;
@@ -465,7 +465,7 @@
             this.btnCapNhatGhiChu.ForeColor = System.Drawing.Color.White;
             this.btnCapNhatGhiChu.Image = global::GUI.Properties.Resources.icons8_save_as_32;
             this.btnCapNhatGhiChu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCapNhatGhiChu.Location = new System.Drawing.Point(1043, 69);
+            this.btnCapNhatGhiChu.Location = new System.Drawing.Point(1046, 95);
             this.btnCapNhatGhiChu.Name = "btnCapNhatGhiChu";
             this.btnCapNhatGhiChu.Size = new System.Drawing.Size(109, 51);
             this.btnCapNhatGhiChu.TabIndex = 3;

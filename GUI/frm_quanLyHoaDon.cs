@@ -23,9 +23,7 @@ namespace GUI
             this.Load += Frm_quanLyHoaDon_Load;
             loadHoaDon();
             loadComBoBoxChucNang();
-            loadCTHD();
             IniDataGirdViewHoaDon();
-            IniDataGirdViewCTHD();
             loadComBoBoxTrangThaiDonHang();
 
         }
@@ -557,6 +555,7 @@ namespace GUI
             {
                 dgv_dsCTHD.DataSource = dsCTHDBH;
             }
+            IniDataGirdViewCTHD();
         }
         private void loadComBoBoxChucNang()
         {
@@ -605,9 +604,17 @@ namespace GUI
         }
         private void IniDataGirdViewHoaDon()
         {
+            // Check if the DataGridView is not null
             if (dgv_dsHoaDon != null)
             {
-                // sét tiêu đề
+                // If there is no data to display, you can handle this case by clearing the grid or showing a message
+                if (dgv_dsHoaDon.Rows.Count == 0)
+                {
+                    MessageBox.Show("No invoices available.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return; // Exit the method if no data is available
+                }
+
+                // Set column headers
                 dgv_dsHoaDon.Columns["MaHoaDonBanHang"].HeaderText = "Mã Hóa Đơn";
                 dgv_dsHoaDon.Columns["MaKhachHang"].HeaderText = "Mã Khách Hàng";
                 dgv_dsHoaDon.Columns["MaNhanVien"].HeaderText = "Mã Nhân Viên";
@@ -620,23 +627,25 @@ namespace GUI
                 dgv_dsHoaDon.Columns["HinhThucGiaoHang"].HeaderText = "Hình Thức Giao Hàng";
                 dgv_dsHoaDon.Columns["TrangThaiDonHang"].HeaderText = "Trạng Thái";
 
-                //căn chỉnh độ rộng cột
-                // Thiết lập chế độ tự động dàn đều cột và đồng thời điều chỉnh chiều cao của hàng
+                // Auto size columns and rows
                 dgv_dsHoaDon.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dgv_dsHoaDon.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-                //in đậm tiêu đề
+                // Make header text bold
                 dgv_dsHoaDon.Columns[0].HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold);
-                dgv_dsHoaDon.Columns["TongTien"].DefaultCellStyle.Format = "N0";  // Định dạng tiền tệ
 
-                //ẩn cột không cần thiết
+                // Format currency for the "TongTien" column
+                dgv_dsHoaDon.Columns["TongTien"].DefaultCellStyle.Format = "N0";
+
+                // Hide unnecessary columns
                 dgv_dsHoaDon.Columns["KhachHang"].Visible = false;
                 dgv_dsHoaDon.Columns["NhanVien"].Visible = false;
-                //hiển thị trên datagirdview cột tiền tệ
             }
-
+            else
+            {
+                // Handle case where DataGridView itself is null
+                MessageBox.Show("DataGridView is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-
     }
 }
