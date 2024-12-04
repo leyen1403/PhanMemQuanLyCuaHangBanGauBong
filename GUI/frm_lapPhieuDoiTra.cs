@@ -16,10 +16,18 @@ namespace GUI
     {
         PhieuDoiTraBLL bll;
         private List<ChiTietHoaDonDTO> chiTietHoaDonDTOs;
+        public NhanVien nhanVien { get; set; }
         public frm_lapPhieuDoiTra()
         {
             InitializeComponent();
             bll = new PhieuDoiTraBLL();
+        }
+
+        private void frm_lapPhieuDoiTra_Load(object sender, EventArgs e)
+        {
+            lblNVienLap.Text = nhanVien.HoTen;
+            initDgvCTHD();
+            initCboSanPham();
         }
 
         private void btnTim_Click(object sender, EventArgs e)
@@ -40,7 +48,7 @@ namespace GUI
             }
 
             lblMaHD.Text = hoaDon.MaHoaDon;
-            lblNgayLap.Text = hoaDon.NgayLap.ToString();
+            lblNgayLap.Text = hoaDon.NgayLap.ToString().Substring(0, 10);
             lblTongSP.Text = hoaDon.TongSanPham.ToString();
             lblTongTien.Text = hoaDon.TongTien.ToString();
             lblDiemCongTL.Text = hoaDon.DiemCongTichLuy.ToString();
@@ -94,12 +102,6 @@ namespace GUI
             chiTietHoaDonDTOs = bll.LayDSChiTietHD(maHD);
             dgvCTHD.DataSource = chiTietHoaDonDTOs;
             loadCboSanPham(chiTietHoaDonDTOs);
-        }
-
-        private void frm_lapPhieuDoiTra_Load(object sender, EventArgs e)
-        {
-            initDgvCTHD();
-            initCboSanPham();
         }
 
         private void initDgvCTHD()

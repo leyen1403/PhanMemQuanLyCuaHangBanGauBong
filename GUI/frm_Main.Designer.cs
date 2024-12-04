@@ -111,9 +111,6 @@ namespace GUI
             this.fluentDesignFormControl1.Size = new System.Drawing.Size(1195, 31);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
-            this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_thietLap);
-            this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_Khoa);
-            this.fluentDesignFormControl1.TitleItemLinks.Add(this.txt_tenNV);
             // 
             // btn_thietLapTaiKhoan
             // 

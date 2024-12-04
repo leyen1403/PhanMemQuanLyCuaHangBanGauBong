@@ -24,9 +24,6 @@ namespace BLL
 
             if (hoaDon != null)
             {
-                var khachHang = dal.TimKhachHangTheoMa(hoaDon.MaKhachHang);
-                var nhanVien = dal.TimNhanVienTheoMa(hoaDon.MaNhanVien);
-
                 var hoaDonDTO = new HoaDonDTO();
                 hoaDonDTO.MaHoaDon = hoaDon.MaHoaDonBanHang;
                 hoaDonDTO.NgayLap = hoaDon.NgayLap;
@@ -35,9 +32,9 @@ namespace BLL
                 hoaDonDTO.DiemCongTichLuy = hoaDon.DiemCongTichLuy;
                 hoaDonDTO.DiemTichLuy = hoaDon.DiemTichLuy;
                 hoaDonDTO.MaKhachHang = hoaDon.MaKhachHang;
-                hoaDonDTO.TenKhachHang = khachHang.TenKhachHang;
+                hoaDonDTO.TenKhachHang = hoaDon.KhachHang?.TenKhachHang;
                 hoaDonDTO.MaNhanVien = hoaDon.MaNhanVien;
-                hoaDonDTO.TenNhanVien = nhanVien.HoTen;
+                hoaDonDTO.TenNhanVien = hoaDon.NhanVien?.HoTen;
 
                 return hoaDonDTO;
             }

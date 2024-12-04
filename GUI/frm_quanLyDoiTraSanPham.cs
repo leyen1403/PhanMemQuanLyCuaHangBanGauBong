@@ -179,5 +179,6 @@ namespace GUI
             initNhapLieu(false);
             clearData();
         }
+
     }
 }
