@@ -485,6 +485,10 @@ namespace GUI
 
                 // 4. Tính toán tổng tiền và điểm tích lũy
                 decimal tongTien = CalculateTotalAmount();
+                decimal diemKhachHangHienTai = _khachHangBLL.GetKhachHang(maKhachHang)?.DiemTichLuy ?? 0;
+                // Tính điểm tích lũy cộng thêm từ hóa đơn
+                diemTichLuyCong = CalculateDiemTichLuy(tongTien);
+                diemTichLuyMoi = diemKhachHangHienTai + diemTichLuyCong;
 
                 if (chkSuDungDiemTichLuy.Checked && kh?.ThanhVien == true && loaiKhachHang != "Khách hàng vãng lai")
                 {
@@ -494,10 +498,6 @@ namespace GUI
                         MessageBox.Show("Điểm sử dụng không hợp lệ.");
                         return;
                     }
-
-                    // Lấy điểm tích lũy hiện tại của khách hàng
-                    decimal diemKhachHangHienTai = _khachHangBLL.GetKhachHang(maKhachHang)?.DiemTichLuy ?? 0;
-
                     // Kiểm tra nếu điểm sử dụng vượt quá điểm tích lũy hiện tại
                     if (diemSuDung > diemKhachHangHienTai)
                     {
@@ -505,8 +505,7 @@ namespace GUI
                         return;
                     }
 
-                    // Tính điểm tích lũy cộng thêm từ hóa đơn
-                    diemTichLuyCong = CalculateDiemTichLuy(tongTien);
+                    
 
                     // Trừ điểm sử dụng từ tổng tiền và tính tổng tiền còn lại
                     tongTien -= diemSuDung;
@@ -523,15 +522,26 @@ namespace GUI
                         MessageBox.Show("Có lỗi xảy ra khi cập nhật điểm tích lũy.");
                         return;
                     }
-                    diemTichLuyCong = CalculateDiemTichLuy(tongTien);
-                    diemKhachHangHienTai = _khachHangBLL.GetKhachHang(maKhachHang)?.DiemTichLuy ?? 0;
-                    diemTichLuyMoi = diemKhachHangHienTai + diemTichLuyCong;
                 }
-                else
+                if (loaiKhachHang != "Khách hàng vãng lai" && chkSuDungDiemTichLuy.Checked==false)
                 {
+                    if (diemTichLuyMoi < 0)
+                    {
+                        MessageBox.Show("Điểm tích lũy không hợp lệ.");
+                        return;
+                    }
+                    // Ghi nhận điểm tích lũy mới vào hệ thống
+                    bool isUpdated = _khachHangBLL.UpdateDiemTichLuy(maKhachHang, diemTichLuyMoi);
+
+                    // Hiển thị thông báo nếu có lỗi xảy ra khi cập nhật
+                    if (!isUpdated)
+                    {
+                        MessageBox.Show("Có lỗi xảy ra khi cập nhật điểm tích lũy.");
+                        return;
+                    }
                 }
 
-                if (tongTien <= 0)
+                    if (tongTien <= 0)
                 {
                     MessageBox.Show("Tổng tiền không hợp lệ.");
                     return;
@@ -995,13 +1005,11 @@ namespace GUI
                         MessageBox.Show($"Sản phẩm với mã {maSanPham} không tồn tại.");
                     }
                 }
-
-                MessageBox.Show("Cập nhật tồn kho sản phẩm thành công!");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Lỗi khi cập nhật tồn kho: {ex.Message}");
-                MessageBox.Show($"Có lỗi xảy ra khi cập nhật tồn kho: {ex.Message}");
+                //MessageBox.Show($"Có lỗi xảy ra khi cập nhật tồn kho: {ex.Message}");
             }
         }
 
